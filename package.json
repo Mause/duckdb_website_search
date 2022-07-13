@@ -1,0 +1,22 @@
+{
+  "name": "duckdb_website_search",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Mause/duckdb_website_search",
+  "author": "Elliana May <me@mause.me>",
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node-esm src/build_index.ts --project ."
+  },
+  "dependencies": {
+    "@duckdb/duckdb-wasm": "^1.15.0",
+    "@vercel/node": "^2.4.3",
+    "axios": "^0.27.2",
+    "duckdb": "^0.4.0",
+    "front-matter": "^4.0.2",
+    "jszip": "^3.10.0",
+    "node-duckdb": "^0.0.79",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
+}
