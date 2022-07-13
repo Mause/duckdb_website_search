@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@duckdb/duckdb-wasm": "^1.15.0",
+    "@netlify/functions": "^1.0.0",
     "@vercel/node": "^2.4.3",
     "axios": "^0.27.2",
     "duckdb": "^0.4.0",

@@ -1,7 +1,14 @@
-import { VercelApiHandler } from "@vercel/node";
+import { Handler, HandlerResponse } from "@netlify/functions";
+import { readdir } from "fs/promises";
+import { readBuilderProgram } from "typescript";
 
-const handler: VercelApiHandler = (res, req) => {
-  req.json({ hello: "world" });
+export const handler: Handler = async (event, ctx) => {
+  return {
+    statusCode: 200,
+    json: {
+      hello: "world",
+      parentDir: await readdir(".."),
+      dir: await readdir("."),
+    },
+  };
 };
-
-export default handler;
