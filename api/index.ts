@@ -3,6 +3,7 @@ import { query } from "../src/common";
 import Worker from "web-worker";
 import { dirname } from "path";
 import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
+import instantiateStreaming from 'wasm-instantiate-streaming';
 
 const base = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
 const pair = (type: string) => ({
@@ -31,6 +32,7 @@ export const handler: Handler = async (event, ctx) => {
   }
 
   const bundle = await selectBundle(DUCKDB_BUNDLES);
+  WebAssembly.instantiateStreaming = instantiateStreaming;
   console.log({ bundle, WebAssembly: WebAssembly.instantiateStreaming, XMLHttpRequest: global.XMLHttpRequest });
 
   const db = new AsyncDuckDB(
