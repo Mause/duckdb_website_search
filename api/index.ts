@@ -37,6 +37,9 @@ export const handler: Handler = async (event, ctx) => {
     new ConsoleLogger(),
     new Worker(bundle.mainWorker!)
   );
+  await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
+    console.log(progress)
+  );
   await db.open({ path: "search_index.db" });
   const conn = await db.connect();
 
