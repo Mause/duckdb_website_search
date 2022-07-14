@@ -3,15 +3,7 @@ import JSZip from "jszip";
 import frontMatter from "front-matter";
 import duckdb, { Database } from "duckdb";
 import { promisify } from "util";
-
-const queryBuilder = (index_schema: string, index_name: string) => `
-SELECT title, score
-FROM (SELECT *, fts_${index_schema}_${index_name}.match_bm25(title, ?) AS score
-    FROM ${index_name}) sq
-WHERE score IS NOT NULL
-ORDER BY score DESC;
-`;
-export const query = queryBuilder('main', 'search_index');
+import { query } from "./common";
 
 async function populate_index(
   prep_run: (title: string, body: string) => Promise<unknown>
