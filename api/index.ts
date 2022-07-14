@@ -1,9 +1,10 @@
 import { Handler, HandlerResponse } from "@netlify/functions";
 import { query } from "../src/common";
 import Worker from "web-worker";
+import { dirname } from "path";
 import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
 
-const base = require.resolve("@duckdb/duckdb-wasm") + "/dist/";
+const base = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
 const pair = (type: string) => ({
   mainModule: base + `duckdb-${type}.wasm`,
   mainWorker: base + `duckdb-browser-${type}.worker.js`,
