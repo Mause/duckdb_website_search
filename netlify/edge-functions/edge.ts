@@ -2,7 +2,7 @@ import {
   AsyncDuckDB,
   ConsoleLogger,
   createWorker,
-} from "https://github.com/duckdb/duckdb-wasm/blob/master/packages/duckdb-wasm/src/index.ts";
+} from "https://github.com/duckdb/duckdb-wasm/raw/master/packages/duckdb-wasm/src/index.ts";
 
 const queryBuilder = (index_schema: string, index_name: string) => `
 SELECT title, score
