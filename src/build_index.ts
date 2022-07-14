@@ -11,7 +11,7 @@ FROM (SELECT *, fts_${index_schema}_${index_name}.match_bm25(title, ?) AS score
 WHERE score IS NOT NULL
 ORDER BY score DESC;
 `;
-const query = queryBuilder('main', 'search_index');
+export const query = queryBuilder('main', 'search_index');
 
 async function populate_index(
   prep_run: (title: string, body: string) => Promise<unknown>

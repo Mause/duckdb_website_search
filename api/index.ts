@@ -1,7 +1,6 @@
 import { Handler, HandlerResponse } from "@netlify/functions";
-import { Database } from "duckdb";
 import { query } from "../src/build_index";
-import { promisify } from "util";
+import { AsyncDuckDB, ConsoleLogger, createWorker } from "@duckdb/duckdb-wasm";
 
 const json = (statusCode: number, body: any): HandlerResponse => ({
   statusCode,
@@ -14,12 +13,13 @@ export const handler: Handler = async (event, ctx) => {
     return json(422, { error: "missing search query" });
   }
 
-  const db = new Database("search_index.db");
-  const all = promisify(db.all.bind(db));
+  const db = new AsyncDuckDB(new ConsoleLogger(), await createWorker('file://' + __dirname));
+  await db.open({ path: "search_index.db" });
+  const conn = await db.connect();
 
-  const results = all(query, q);
+  const prepped = await conn.prepare(query);
 
-  db.close();
+  const results = prepped.query(q);
 
   return json(200, {
     results,
