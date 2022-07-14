@@ -35,7 +35,7 @@ export const handler: Handler = async (event, ctx) => {
 
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
-    new Worker(bundle.mainWorker!)
+    new Worker(bundle.mainWorker!, { type: "module" })
   );
   await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
     console.log(progress)
