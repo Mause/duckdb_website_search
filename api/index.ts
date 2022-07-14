@@ -31,7 +31,7 @@ export const handler: Handler = async (event, ctx) => {
   }
 
   const bundle = await selectBundle(DUCKDB_BUNDLES);
-  console.log({ bundle });
+  console.log({ bundle, WebAssembly, XMLHttpRequest });
 
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
