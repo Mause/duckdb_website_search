@@ -1,12 +1,22 @@
 import { Handler, HandlerResponse } from "@netlify/functions";
 import { query } from "../src/common";
 import Worker from "web-worker";
-import {
-  AsyncDuckDB,
-  ConsoleLogger,
-  selectBundle,
-  getJsDelivrBundles,
-} from "@duckdb/duckdb-wasm";
+import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
+
+const base = require.resolve("@duckdb/duckdb-wasm") + "/dist/";
+const pair = (type: string) => ({
+  mainModule: base + `duckdb-${type}.wasm`,
+  mainWorker: base + `duckdb-browser-${type}.worker.js`,
+});
+
+const DUCKDB_BUNDLES = {
+  mvp: pair('mvp'),
+  eh: pair('eh'),
+  coi: {
+    ...pair('coi'),
+    pthreadWorker: base + "duckdb-browser-coi.pthread.worker.js",
+  },
+};
 
 const json = (statusCode: number, body: any): HandlerResponse => ({
   statusCode,
@@ -19,7 +29,7 @@ export const handler: Handler = async (event, ctx) => {
     return json(422, { error: "missing search query" });
   }
 
-  const bundle = await selectBundle(getJsDelivrBundles());
+  const bundle = await selectBundle(DUCKDB_BUNDLES);
 
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
