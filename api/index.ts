@@ -10,10 +10,10 @@ const pair = (type: string) => ({
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: pair('mvp'),
-  eh: pair('eh'),
+  mvp: pair("mvp"),
+  eh: pair("eh"),
   coi: {
-    ...pair('coi'),
+    ...pair("coi"),
     pthreadWorker: base + "duckdb-browser-coi.pthread.worker.js",
   },
 };
@@ -30,6 +30,7 @@ export const handler: Handler = async (event, ctx) => {
   }
 
   const bundle = await selectBundle(DUCKDB_BUNDLES);
+  console.log({ bundle });
 
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
