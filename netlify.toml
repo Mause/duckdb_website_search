@@ -1,3 +1,7 @@
 [functions]
   included_files = ["search_index*"]
   external_node_modules = ["@duckdb/duckdb-wasm"]
+
+[[edge_functions]]
+path = "/edge"
+function = "edge"
