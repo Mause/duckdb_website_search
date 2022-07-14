@@ -1,6 +1,12 @@
 import { Handler, HandlerResponse } from "@netlify/functions";
 import { query } from "../src/common";
-import { AsyncDuckDB, ConsoleLogger, createWorker, selectBundle, getJsDelivrBundles } from "@duckdb/duckdb-wasm";
+import Worker from "web-worker";
+import {
+  AsyncDuckDB,
+  ConsoleLogger,
+  selectBundle,
+  getJsDelivrBundles,
+} from "@duckdb/duckdb-wasm";
 
 const json = (statusCode: number, body: any): HandlerResponse => ({
   statusCode,
@@ -17,7 +23,7 @@ export const handler: Handler = async (event, ctx) => {
 
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
-    new Worker(bundle.mainWorker!),
+    new Worker(bundle.mainWorker!)
   );
   await db.open({ path: "search_index.db" });
   const conn = await db.connect();
