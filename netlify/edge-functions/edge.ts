@@ -1,4 +1,8 @@
-import { AsyncDuckDB, ConsoleLogger, createWorker } from "@duckdb/duckdb-wasm";
+import {
+  AsyncDuckDB,
+  ConsoleLogger,
+  createWorker,
+} from "https://github.com/duckdb/duckdb-wasm/blob/master/packages/duckdb-wasm/src/index.ts";
 
 const queryBuilder = (index_schema: string, index_name: string) => `
 SELECT title, score
@@ -7,12 +11,13 @@ FROM (SELECT *, fts_${index_schema}_${index_name}.match_bm25(title, ?) AS score
 WHERE score IS NOT NULL
 ORDER BY score DESC;
 `;
-export const query = queryBuilder('main', 'search_index');
+export const query = queryBuilder("main", "search_index");
 
-const json = (statusCode: number, body: any): Response => new Response(body, {status: statusCode});
+const json = (statusCode: number, body: any): Response =>
+  new Response(body, { status: statusCode });
 
-export default async (event, ctx) => {
-  const q = event.queryStringParameters?.q;
+export default async (request: Request) => {
+  const q = new URL(request.url).searchParams.get("q");
   if (!q) {
     return json(422, { error: "missing search query" });
   }
