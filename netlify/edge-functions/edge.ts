@@ -1,5 +1,13 @@
-import { query } from "../../src/common";
 import { AsyncDuckDB, ConsoleLogger, createWorker } from "@duckdb/duckdb-wasm";
+
+const queryBuilder = (index_schema: string, index_name: string) => `
+SELECT title, score
+FROM (SELECT *, fts_${index_schema}_${index_name}.match_bm25(title, ?) AS score
+    FROM ${index_name}) sq
+WHERE score IS NOT NULL
+ORDER BY score DESC;
+`;
+export const query = queryBuilder('main', 'search_index');
 
 const json = (statusCode: number, body: any): Response => new Response(body, {status: statusCode});
 
