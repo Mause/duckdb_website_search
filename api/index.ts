@@ -1,6 +1,6 @@
 import { Handler, HandlerResponse } from "@netlify/functions";
 import { query } from "../src/common";
-import { AsyncDuckDB, ConsoleLogger, createWorker } from "@duckdb/duckdb-wasm";
+import { AsyncDuckDB, ConsoleLogger, createWorker, selectBundle, getJsDelivrBundles } from "@duckdb/duckdb-wasm";
 
 const json = (statusCode: number, body: any): HandlerResponse => ({
   statusCode,
@@ -13,9 +13,11 @@ export const handler: Handler = async (event, ctx) => {
     return json(422, { error: "missing search query" });
   }
 
+  const bundle = await selectBundle(getJsDelivrBundles());
+
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
-    await createWorker("file://" + __dirname)
+    new Worker(bundle.mainWorker!),
   );
   await db.open({ path: "search_index.db" });
   const conn = await db.connect();
