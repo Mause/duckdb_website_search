@@ -1,4 +1,4 @@
-require("whatwg-fetch");
+// require("whatwg-fetch");
 require('wasm-instantiate-streaming');
 const { dirname } = require("path");
 
