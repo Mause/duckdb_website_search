@@ -159,29 +159,29 @@
   resolved "https://registry.npmjs.org/@types/pad-left/-/pad-left-2.1.1.tgz"
   integrity sha512-Xd22WCRBydkGSApl5Bw0PhAOHKSVjNL3E3AwzKaps96IMraPqy5BvZIsBVK6JLwdybUzjHnuWVwpDd0JjTfHXA==
 
-"@vercel/build-utils@5.0.2":
-  version "5.0.2"
-  resolved "https://registry.npmjs.org/@vercel/build-utils/-/build-utils-5.0.2.tgz"
-  integrity sha512-G8tg02A0L/GvArY5bV9PFHxcerReeX/AoiUuV7iLh76XYZDKC5kKh4A59eNmsqk/UOsgk4U/dLDkdGuExVqjXg==
+"@vercel/build-utils@5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.0.4.tgz#005c8d65a5242ec8152f4416c2a9c1bc4e26ecbf"
+  integrity sha512-M6zNCUZxAFWC+K9ezcXtwSgIrBGjvz545h2UWSP25z2jUEzOBijpAkYJ5Cdek7bIloRcBUeXfWQDsTl8Q7yuwQ==
 
 "@vercel/node-bridge@3.0.0":
   version "3.0.0"
   resolved "https://registry.npmjs.org/@vercel/node-bridge/-/node-bridge-3.0.0.tgz"
   integrity sha512-TNQK6cufwrhd8ASDk5YHHenH8Xhp9sY8xUjOTKnQQI37KLk+Sw2HlHhT5rzUFN23ahosUlkY8InwtYUmSNb9kw==
 
-"@vercel/node@^2.4.3":
-  version "2.4.3"
-  resolved "https://registry.npmjs.org/@vercel/node/-/node-2.4.3.tgz"
-  integrity sha512-HmhRC7pThfSi/ZKfe7txKaoOMgSW9HpIdrfwAEULyQ5AWn6NXyJaDnRWwOL3RVJU11YITHa49ZJwRe/OQNMWfw==
+"@vercel/node@^2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@vercel/node/-/node-2.4.5.tgz#766883062d7e263051530a780aa73ff9b089dccc"
+  integrity sha512-quPIJZAc0IujL3AyyiTQ1GvQV/0j7GJ5165uv5U0OsBUHGhmie6YpW+wFtdsMaRSEy/sv7EfylztxwTM6Tsfrw==
   dependencies:
     "@types/node" "*"
-    "@vercel/build-utils" "5.0.2"
+    "@vercel/build-utils" "5.0.4"
     "@vercel/node-bridge" "3.0.0"
     "@vercel/static-config" "2.0.1"
     edge-runtime "1.0.1"
     esbuild "0.14.47"
     exit-hook "2.2.1"
-    node-fetch "2.6.1"
+    node-fetch "2.6.7"
     ts-node "8.9.1"
     typescript "4.3.4"
 
@@ -1722,12 +1722,7 @@ node-duckdb@^0.0.79:
     prebuild "^10.0.1"
     prebuild-install "^6.0.0"
 
-node-fetch@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.1.tgz"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
-
-node-fetch@^2.6.7:
+node-fetch@2.6.7, node-fetch@^2.6.7:
   version "2.6.7"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
   integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
