@@ -28,22 +28,27 @@ export const handler: Handler = async (event, ctx) => {
 
   const bundle = await selectBundle(DUCKDB_BUNDLES);
 
-  const db = new AsyncDuckDB(
-    new ConsoleLogger(),
-    new Worker(bundle.mainWorker!, { type: "module" })
-  );
-  await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
-    console.log(progress)
-  );
-  await db.open({ path: "search_index.db" });
-  const conn = await db.connect();
+  try {
+    const db = new AsyncDuckDB(
+      new ConsoleLogger(),
+      new Worker(bundle.mainWorker!, { type: "module" })
+    );
+    await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
+      console.log(progress)
+    );
+    await db.open({ path: "search_index.db" });
+    const conn = await db.connect();
 
-  const prepped = await conn.prepare(query);
+    const prepped = await conn.prepare(query);
 
-  const results = prepped.query(q);
+    const results = prepped.query(q);
 
-  return json(200, {
-    results,
-    query: q,
-  });
+    return json(200, {
+      results,
+      query: q,
+    });
+  } catch (e) {
+    console.error(e);
+    return json(500, { error: e.toString(), stack: (e as Error).stack });
+  }
 };
