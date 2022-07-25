@@ -3,7 +3,6 @@ import { query } from "../src/common";
 import Worker from "web-worker";
 import { dirname } from "path";
 import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
-import 'whatwg-fetch';
 
 console.log(global.Request, global.fetch);
 
@@ -14,7 +13,7 @@ const pair = (type: string) => ({
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: pair("mvp"),
+  mvp: { ...pair("mvp"), mainWorker: require.resolve("./interceptor") },
   eh: pair("eh"),
   coi: {
     ...pair("coi"),
@@ -34,6 +33,7 @@ export const handler: Handler = async (event, ctx) => {
   }
 
   const bundle = await selectBundle(DUCKDB_BUNDLES);
+  console.log({ bundle });
 
   const db = new AsyncDuckDB(
     new ConsoleLogger(),
