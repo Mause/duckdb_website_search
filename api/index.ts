@@ -14,6 +14,7 @@ const DUCKDB_BUNDLES = {
   mvp: pair("mvp"),
   eh: pair("eh"),
 };
+console.log(DUCKDB_BUNDLES);
 
 const json = (statusCode: number, body: any): HandlerResponse => ({
   statusCode,
@@ -29,10 +30,9 @@ export const handler: Handler = async (event, ctx) => {
   const bundle = await selectBundle(DUCKDB_BUNDLES);
 
   try {
-    const db = new AsyncDuckDB(
-      new ConsoleLogger(),
-      new Worker(bundle.mainWorker!, { type: "module" })
-    );
+    const logger = new ConsoleLogger();
+    const worker = new Worker(bundle.mainWorker);
+    const db = new AsyncDuckDB(logger, worker);
     await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
       console.log(progress)
     );
