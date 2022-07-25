@@ -7,16 +7,12 @@ import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
 const base = 'file:///' + dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
 const pair = (type: string) => ({
   mainModule: base + `duckdb-${type}.wasm`,
-  mainWorker: base + `duckdb-browser-${type}.worker.js`,
+  mainWorker: base + `duckdb-node-${type}.worker.cjs`,
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: { ...pair("mvp"), mainWorker: require.resolve("./interceptor.mjs") },
+  mvp: pair("mvp"),
   eh: pair("eh"),
-  coi: {
-    ...pair("coi"),
-    pthreadWorker: base + "duckdb-browser-coi.pthread.worker.js",
-  },
 };
 
 const json = (statusCode: number, body: any): HandlerResponse => ({
