@@ -2,18 +2,13 @@ import { Handler, HandlerResponse } from "@netlify/functions";
 import { query } from "../src/common";
 import Worker from "web-worker";
 import { dirname } from "path";
-import { readdirSync } from "fs";
 import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
 
-console.log(global.Request, global.fetch);
-
-const base = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
+const base = 'file:///' + dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
 const pair = (type: string) => ({
   mainModule: base + `duckdb-${type}.wasm`,
   mainWorker: base + `duckdb-browser-${type}.worker.js`,
 });
-
-console.log(readdirSync("."), readdirSync("api"));
 
 const DUCKDB_BUNDLES = {
   mvp: { ...pair("mvp"), mainWorker: require.resolve("./interceptor.mjs") },
