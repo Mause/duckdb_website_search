@@ -49,6 +49,9 @@ export const handler: Handler = async (event, ctx) => {
     });
   } catch (e) {
     console.error(e);
-    return json(500, { error: e.toString(), stack: (e as Error).stack });
+    return json(500, {
+      error: e.toString(),
+      stack: (e as Error).stack?.split("\n"),
+    });
   }
 };
