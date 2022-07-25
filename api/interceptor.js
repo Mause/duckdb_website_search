@@ -1,5 +1,5 @@
 // require("whatwg-fetch");
-require('wasm-instantiate-streaming');
+WebAssembly.instantiateStreaming = require('wasm-instantiate-streaming').instantiateStreaming;
 const { dirname } = require("path");
 
 const url = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/duckdb-browser-mvp.worker.js";
