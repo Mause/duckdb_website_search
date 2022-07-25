@@ -13,7 +13,7 @@ const pair = (type: string) => ({
   mainWorker: base + `duckdb-browser-${type}.worker.js`,
 });
 
-console.log(readdirSync("."));
+console.log(readdirSync("."), readdirSync("api"));
 
 const DUCKDB_BUNDLES = {
   mvp: { ...pair("mvp"), mainWorker: require.resolve("./interceptor.mjs") },
