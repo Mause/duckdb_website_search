@@ -5,7 +5,7 @@ const { dirname } = require("path");
 const url = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/duckdb-browser-mvp.worker.js";
 
 console.log({ url });
-console.log({ instantiateStreaming: WebAssembly.instantiateStreaming, Request, XMLHttpRequest, fetch });
+console.log({ instantiateStreaming: WebAssembly.instantiateStreaming, Request: global.Request, XMLHttpRequest: global.XMLHttpRequest, fetch: global.fetch });
 
 try {
     require(url);
