@@ -9,7 +9,7 @@
     "build": "ts-node-esm src/build_index.ts --project ."
   },
   "dependencies": {
-    "@duckdb/duckdb-wasm": "^1.15.0",
+    "@duckdb/duckdb-wasm": "^1.16.0",
     "@netlify/functions": "^1.0.0",
     "@vercel/node": "^2.4.3",
     "axios": "^0.27.2",
