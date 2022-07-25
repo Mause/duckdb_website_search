@@ -1,12 +1,12 @@
 // require("whatwg-fetch");
 import fetch, { Request } from 'node-fetch';
 WebAssembly.instantiateStreaming = require('wasm-instantiate-streaming').instantiateStreaming;
-const { dirname } = require("path");
+import { dirname } from "path";
 
 const url = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/duckdb-browser-mvp.worker.js";
 
-global.fetch = fetch as typeof global.fetch;
-global.Request = Request as unknown as typeof global.Request;
+global.fetch = fetch;
+global.Request = Request;
 
 console.log({ url });
 console.log({ instantiateStreaming: WebAssembly.instantiateStreaming, Request: global.Request, XMLHttpRequest: global.XMLHttpRequest, fetch: global.fetch });
