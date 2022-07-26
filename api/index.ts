@@ -11,7 +11,7 @@ const pair = (type: string) => ({
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: { ...pair("mvp"), mainModule: __dirname + "/duckdb_wasm.wasm" },
+  mvp: { ...pair("mvp"), mainModule: __dirname + "/duckdb-mvp.wasm" },
   eh: pair("eh"),
 };
 console.log(DUCKDB_BUNDLES);
