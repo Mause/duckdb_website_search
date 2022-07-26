@@ -107,3 +107,5 @@ dist
 
 # Local Netlify folder
 .netlify
+
+search_index.db
