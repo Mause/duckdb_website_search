@@ -11,7 +11,7 @@ const pair = (type: string) => ({
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: pair("mvp"),
+  mvp: { ...pair("mvp"), mainModule: __dirname + "/duckdb_wasm.wasm" },
   eh: pair("eh"),
 };
 console.log(DUCKDB_BUNDLES);
@@ -28,6 +28,7 @@ export const handler: Handler = async (event, ctx) => {
   }
 
   const bundle = await selectBundle(DUCKDB_BUNDLES);
+  console.log({ bundle });
 
   try {
     const logger = new ConsoleLogger();
