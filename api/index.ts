@@ -12,7 +12,7 @@ const pair = (type: string) => ({
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: ...pair("mvp"),
+  mvp: pair("mvp"),
   eh: pair("eh"),
 };
 console.log(DUCKDB_BUNDLES);
