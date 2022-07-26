@@ -4,14 +4,15 @@ import Worker from "web-worker";
 import { dirname } from "path";
 import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
 
-const base = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
+// const base = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
+const base = __dirname + "/duckdb-wasm/";
 const pair = (type: string) => ({
   mainModule: base + `duckdb-${type}.wasm`,
   mainWorker: base + `duckdb-node-${type}.worker.cjs`,
 });
 
 const DUCKDB_BUNDLES = {
-  mvp: { ...pair("mvp"), mainModule: __dirname + "/duckdb-mvp.wasm" },
+  mvp: ...pair("mvp"),
   eh: pair("eh"),
 };
 console.log(DUCKDB_BUNDLES);
