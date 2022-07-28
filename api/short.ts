@@ -10,8 +10,10 @@ export const handler: Handler = async (_event, _ctx) => {
     const conn = await db.connect();
     const prepped = await conn.prepare('select 42');
     const results = prepped.query();
+    await prepped.close();
+    await conn.close();
 
-    console.log({ results });
+    return json(200, { results });
 
   } catch (e) {
     console.error(e);
@@ -20,6 +22,4 @@ export const handler: Handler = async (_event, _ctx) => {
       stack: (e as Error).stack?.split("\n"),
     });
   }
-
-  return json(200, { db: db.toString() });
 }
