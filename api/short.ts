@@ -9,11 +9,11 @@ export const handler: Handler = async (_event, _ctx) => {
 
     const conn = await db.connect();
     const prepped = await conn.prepare('select 42');
-    const results = prepped.query();
+    const results = await prepped.query();
     await prepped.close();
     await conn.close();
 
-    return json(200, { results });
+    return json(200, { results: results.get(0) });
 
   } catch (e) {
     console.error(e);
