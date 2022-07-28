@@ -11,7 +11,9 @@ export const handler: Handler = async (event, ctx) => {
   try {
     const db = await initiate();
     console.log('opening');
-    await db.open({ path: __dirname + "/../search_index.db" });
+    const path = __dirname + "/../search_index.db";
+    await db.registerFileHandle(path, path);
+    await db.open({ path });
     console.log('connecting');
     const conn = await db.connect();
 
