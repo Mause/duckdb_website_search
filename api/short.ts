@@ -8,7 +8,7 @@ export const handler: Handler = async (_event, _ctx) => {
     db = await initiate();
 
     const conn = await db.connect();
-    const prepped = await conn.prepare('select 42');
+    const prepped = await conn.prepare(`select * from read_parquet("${__dirname}/duckdb-wasm/lineitem.parquet")`);
     const results = await prepped.query();
     await prepped.close();
     await conn.close();
