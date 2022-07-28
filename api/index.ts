@@ -10,7 +10,7 @@ export const handler: Handler = async (event, ctx) => {
 
   try {
     const db = await initiate();
-    await db.open({ path: "search_index.db" });
+    await db.open({ path: __dirname + "/../search_index.db" });
     const conn = await db.connect();
 
     const prepped = await conn.prepare(query);
