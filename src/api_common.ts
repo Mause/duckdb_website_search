@@ -1,7 +1,7 @@
 import { HandlerResponse } from "@netlify/functions";
 import Worker from "web-worker";
 // import { dirname } from "path";
-import { AsyncDuckDB, ConsoleLogger, selectBundle } from "@duckdb/duckdb-wasm";
+import { AsyncDuckDB, ConsoleLogger, LogLevel, selectBundle } from "@duckdb/duckdb-wasm";
 
 // const base = dirname(require.resolve("@duckdb/duckdb-wasm")) + "/";
 const base = __dirname + "/duckdb-wasm/";
@@ -26,7 +26,7 @@ export async function initiate() {
   const bundle = await selectBundle(DUCKDB_BUNDLES);
   console.log({ bundle });
 
-  const logger = new ConsoleLogger();
+  const logger = new ConsoleLogger(LogLevel.DEBUG);
   const worker = new Worker(bundle.mainWorker);
   const db = new AsyncDuckDB(logger, worker);
   await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
