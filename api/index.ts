@@ -32,7 +32,7 @@ export const handler: Handler = async (event, ctx) => {
 
     const prepped = await conn.prepare(query);
 
-    const results = prepped.query(q);
+    const results = await prepped.query(q);
 
     return json(200, {
       results,
