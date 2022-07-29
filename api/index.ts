@@ -24,9 +24,9 @@ export const handler: Handler = async (event, ctx) => {
   try {
     const db = await initiate();
     console.log('opening');
-    const fd = await promisify(fss.open)(destPath, 'r+');
-    await db.registerFileHandle(path, fd);
-    await db.open({ path });
+    const fd = await promisify(fss.open)(destPath);
+    await db.registerFileHandle(destPath, fd);
+    await db.open({ path: destPath });
     console.log('connecting');
     const conn = await db.connect();
 
