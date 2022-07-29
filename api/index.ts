@@ -35,7 +35,7 @@ export const handler: Handler = async (event, ctx) => {
     const results = await prepped.query(q);
 
     return json(200, {
-      results: results.toArray(),
+      results: Array.from(results),
       query: q,
     });
   } catch (e) {
