@@ -30,12 +30,14 @@ export const handler: Handler = async (event, ctx) => {
     console.log('connecting');
     const conn = await db.connect();
 
+    console.log('connected');
     const prepped = await conn.prepare(query);
 
+    console.log('querying');
     const results = await prepped.query(q);
 
     return json(200, {
-      results: Array.from(results),
+      results: results.get(0),
       query: q,
     });
   } catch (e) {
