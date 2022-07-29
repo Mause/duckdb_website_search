@@ -12,7 +12,9 @@ export const handler: Handler = async (event, ctx) => {
     const db = await initiate();
     console.log('opening');
     const path = 'search_index.db';
-    await db.registerFileURL(path, 'https://duckdb-website-search.netlify.app/' + path);
+    const url = 'https://duckdb-website-search.netlify.app/' + path;
+    console.log({ db, path, url });
+    await db.registerFileURL(path, url);
     await db.open({ path });
     console.log('connecting');
     const conn = await db.connect();
