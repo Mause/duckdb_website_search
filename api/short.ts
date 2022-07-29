@@ -1,17 +1,16 @@
 import { Handler } from "@netlify/functions";
 import { AsyncDuckDB } from "@duckdb/duckdb-wasm";
 import { json, initiate } from '../src/api_common';
+import { readFile } from 'fs/promises';
 
 export const handler: Handler = async (_event, _ctx) => {
   let db: AsyncDuckDB;
   try {
-    // @ts-ignore
-    const bufferfromfile = await import('bufferfromfile');
     db = await initiate();
 
     const conn = await db.connect();
     const filename = `${__dirname}/duckdb-wasm/lineitem.parquet`;
-    const buff = bufferfromfile(filename);
+    const buff = await readFile(filename);
     console.log({ filename, buff });
     await db.registerFileBuffer(filename, buff);
     const query = `select * from read_parquet('${filename}')`;
