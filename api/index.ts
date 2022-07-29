@@ -1,7 +1,7 @@
 import { Handler } from "@netlify/functions";
 import { query } from "../src/common";
 import { json, initiate } from '../src/api_common';
-import fs from 'fs/promises';
+import { promisify } from 'util';
 import fss from 'fs';
 
 const path = 'search_index.db';
@@ -24,7 +24,7 @@ export const handler: Handler = async (event, ctx) => {
   try {
     const db = await initiate();
     console.log('opening');
-    const fd = await fs.open(destPath, 'r+');
+    const fd = await promisify(fss.open)(destPath, 'r+');
     await db.registerFileHandle(path, fd);
     await db.open({ path });
     console.log('connecting');
