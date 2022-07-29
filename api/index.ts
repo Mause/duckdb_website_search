@@ -1,6 +1,7 @@
 import { Handler } from "@netlify/functions";
 import { query } from "../src/common";
 import { json, initiate } from '../src/api_common';
+import { readFile } from 'fs/promises';
 
 export const handler: Handler = async (event, ctx) => {
   const q = event.queryStringParameters?.q;
@@ -12,7 +13,7 @@ export const handler: Handler = async (event, ctx) => {
     const db = await initiate();
     console.log('opening');
     const path = __dirname + "/../search_index.db";
-    await db.registerFileHandle(path, path);
+    await db.registerFileHandle(path, await readFile(path));
     await db.open({ path });
     console.log('connecting');
     const conn = await db.connect();
