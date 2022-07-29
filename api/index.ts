@@ -2,6 +2,18 @@ import { Handler } from "@netlify/functions";
 import { query } from "../src/common";
 import { json, initiate } from '../src/api_common';
 import fs from 'fs/promises';
+import fss from 'fs';
+
+const path = 'search_index.db';
+const destPath = '/tmp/' + path;
+const srcPath = __dirname + '/../' + path;
+
+if (!fss.existsSync(destPath)) {
+  fss.copyFileSync(
+    srcPath,
+    destPath
+  )
+}
 
 export const handler: Handler = async (event, ctx) => {
   const q = event.queryStringParameters?.q;
@@ -12,10 +24,7 @@ export const handler: Handler = async (event, ctx) => {
   try {
     const db = await initiate();
     console.log('opening');
-    const path = 'search_index.db';
-    const url = 'https://duckdb-website-search.netlify.app/' + path;
-    console.log({ db, path, url });
-    const fd = await fs.open(__dirname + '/../' + path, 'r+');
+    const fd = await fs.open(destPath, 'r+');
     await db.registerFileHandle(path, fd);
     await db.open({ path });
     console.log('connecting');
