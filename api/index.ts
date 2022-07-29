@@ -11,8 +11,8 @@ export const handler: Handler = async (event, ctx) => {
   try {
     const db = await initiate();
     console.log('opening');
-    const path = 'file://' + __dirname + "/../search_index.db";
-    await db.registerFileURL(path, path);
+    const path = 'search_index.db';
+    await db.registerFileURL(path, 'https://duckdb-website-search.netlify.app/' + path);
     await db.open({ path });
     console.log('connecting');
     const conn = await db.connect();
