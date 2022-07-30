@@ -1,18 +1,12 @@
 import { Handler } from "@netlify/functions";
 import { query } from "../src/common";
-import { json, initiate } from '../src/api_common';
+import { json, initiate, timing } from '../src/api_common';
 import fs from 'fs/promises';
 
 const path = 'search_index.db';
 const destPath = '/tmp/' + path;
 const srcPath = __dirname + '/../' + path;
 
-async function timing<T>(name:string, f: () => Promise<T>): Promise<T> {
-  console.time(name);
-  const value = await f();
-  console.timeEnd(name);
-  return value;
-}
 
 export const handler: Handler = async (event, ctx) => {
   try {

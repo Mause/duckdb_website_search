@@ -22,15 +22,22 @@ export const json = (statusCode: number, body: any): HandlerResponse => ({
 });
 
 
+export async function timing<T>(name:string, f: () => Promise<T>): Promise<T> {
+  console.time(name);
+  const value = await f();
+  console.timeEnd(name);
+  return value;
+}
+
 export async function initiate() {
-  const bundle = await selectBundle(DUCKDB_BUNDLES);
+  const bundle = await timing('selectBundle', () => selectBundle(DUCKDB_BUNDLES));
   console.log({ bundle });
 
   const logger = new ConsoleLogger(LogLevel.DEBUG);
   const worker = new Worker(bundle.mainWorker);
   const db = new AsyncDuckDB(logger, worker);
-  await db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
+  await timing('instantiate', () => db.instantiate(bundle.mainModule, bundle.pthreadWorker, (progress) =>
     console.log(progress)
-  );
+  ));
   return db;
 }
