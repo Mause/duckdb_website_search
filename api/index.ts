@@ -39,7 +39,7 @@ export const handler: Handler = async (event, ctx) => {
     const results = await timing("querying", () => prepped.query(q));
 
     const rows: Struct<Shape>["TValue"][] = [];
-    for (let i = 0; i < Math.min(10, results.numRows); i++) {
+    for (let i = 0; i < results.numRows; i++) {
       const row = results.get(i);
       row && rows.push(row);
     }
