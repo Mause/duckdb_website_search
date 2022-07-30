@@ -8,7 +8,7 @@ const destPath = '/tmp/' + path;
 const srcPath = __dirname + '/../' + path;
 
 async function timing<T>(name:string, f: () => Promise<T>): Promise<T> {
-  console.timeLog(name);
+  console.time(name);
   const value = await f();
   console.timeEnd(name);
   return value;
@@ -19,7 +19,7 @@ export const handler: Handler = async (event, ctx) => {
     await fs.stat(destPath);
     console.log('db exists');
   } catch (e) {
-    await timing('coping db', () => fs.copyFile(srcPath, destPath));
+    await timing('copying db', () => fs.copyFile(srcPath, destPath));
   }
 
   const q = event.queryStringParameters?.q;
