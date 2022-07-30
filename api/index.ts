@@ -9,6 +9,7 @@ const destPath = '/tmp/' + path;
 const srcPath = __dirname + '/../' + path;
 
 if (!fss.existsSync(destPath)) {
+  console.log('copying db!');
   fss.copyFileSync(
     srcPath,
     destPath
