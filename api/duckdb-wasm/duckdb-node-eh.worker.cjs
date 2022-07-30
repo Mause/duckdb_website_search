@@ -1,9 +1,16113 @@
-"use strict";var wj=Object.create;var lr=Object.defineProperty;var kj=Object.getOwnPropertyDescriptor;var Ej=Object.getOwnPropertyNames;var Sj=Object.getPrototypeOf,Cj=Object.prototype.hasOwnProperty;var te=(r,i)=>()=>(i||r((i={exports:{}}).exports,i),i.exports),Aj=(r,i)=>{for(var e in i)lr(r,e,{get:i[e],enumerable:!0})},wl=(r,i,e,l)=>{if(i&&typeof i=="object"||typeof i=="function")for(let p of Ej(i))!Cj.call(r,p)&&p!==e&&lr(r,p,{get:()=>i[p],enumerable:!(l=kj(i,p))||l.enumerable});return r};var Pn=(r,i,e)=>(e=r!=null?wj(Sj(r)):{},wl(i||!r||!r.__esModule?lr(e,"default",{value:r,enumerable:!0}):e,r)),Rj=r=>wl(lr({},"__esModule",{value:!0}),r);var Dl=te(qi=>{"use strict";Object.defineProperty(qi,"__esModule",{value:!0});qi.splitWhen=qi.flatten=void 0;function Mj(r){return r.reduce((i,e)=>[].concat(i,e),[])}qi.flatten=Mj;function Uj(r,i){let e=[[]],l=0;for(let p of r)i(p)?(l++,e[l]=[]):e[l].push(p);return e}qi.splitWhen=Uj});var Il=te(vr=>{"use strict";Object.defineProperty(vr,"__esModule",{value:!0});vr.isEnoentCodeError=void 0;function Lj(r){return r.code==="ENOENT"}vr.isEnoentCodeError=Lj});var Ml=te(jr=>{"use strict";Object.defineProperty(jr,"__esModule",{value:!0});jr.createDirentFromStats=void 0;var xs=class{constructor(i,e){this.name=i,this.isBlockDevice=e.isBlockDevice.bind(e),this.isCharacterDevice=e.isCharacterDevice.bind(e),this.isDirectory=e.isDirectory.bind(e),this.isFIFO=e.isFIFO.bind(e),this.isFile=e.isFile.bind(e),this.isSocket=e.isSocket.bind(e),this.isSymbolicLink=e.isSymbolicLink.bind(e)}};function Fj(r,i){return new xs(r,i)}jr.createDirentFromStats=Fj});var Ul=te(Pt=>{"use strict";Object.defineProperty(Pt,"__esModule",{value:!0});Pt.removeLeadingDotSegment=Pt.escape=Pt.makeAbsolute=Pt.unixify=void 0;var xj=require("path"),Nj=2,Bj=/(\\?)([()*?[\]{|}]|^!|[!+@](?=\())/g;function Yj(r){return r.replace(/\\/g,"/")}Pt.unixify=Yj;function Hj(r,i){return xj.resolve(r,i)}Pt.makeAbsolute=Hj;function qj(r){return r.replace(Bj,"\\$2")}Pt.escape=qj;function Wj(r){if(r.charAt(0)==="."){let i=r.charAt(1);if(i==="/"||i==="\\")return r.slice(Nj)}return r}Pt.removeLeadingDotSegment=Wj});var Fl=te((oE,Ll)=>{Ll.exports=function(i){if(typeof i!="string"||i==="")return!1;for(var e;e=/(\\).|([@?!+*]\(.*\))/g.exec(i);){if(e[2])return!0;i=i.slice(e.index+e[0].length)}return!1}});var Bl=te((cE,Nl)=>{var Zj=Fl(),xl={"{":"}","(":")","[":"]"},$j=function(r){if(r[0]==="!")return!0;for(var i=0,e=-2,l=-2,p=-2,m=-2,w=-2;i<r.length;){if(r[i]==="*"||r[i+1]==="?"&&/[\].+)]/.test(r[i])||l!==-1&&r[i]==="["&&r[i+1]!=="]"&&(l<i&&(l=r.indexOf("]",i)),l>i&&(w===-1||w>l||(w=r.indexOf("\\",i),w===-1||w>l)))||p!==-1&&r[i]==="{"&&r[i+1]!=="}"&&(p=r.indexOf("}",i),p>i&&(w=r.indexOf("\\",i),w===-1||w>p))||m!==-1&&r[i]==="("&&r[i+1]==="?"&&/[:!=]/.test(r[i+2])&&r[i+3]!==")"&&(m=r.indexOf(")",i),m>i&&(w=r.indexOf("\\",i),w===-1||w>m))||e!==-1&&r[i]==="("&&r[i+1]!=="|"&&(e<i&&(e=r.indexOf("|",i)),e!==-1&&r[e+1]!==")"&&(m=r.indexOf(")",e),m>e&&(w=r.indexOf("\\",e),w===-1||w>m))))return!0;if(r[i]==="\\"){var O=r[i+1];i+=2;var P=xl[O];if(P){var B=r.indexOf(P,i);B!==-1&&(i=B+1)}if(r[i]==="!")return!0}else i++}return!1},Gj=function(r){if(r[0]==="!")return!0;for(var i=0;i<r.length;){if(/[*?{}()[\]]/.test(r[i]))return!0;if(r[i]==="\\"){var e=r[i+1];i+=2;var l=xl[e];if(l){var p=r.indexOf(l,i);p!==-1&&(i=p+1)}if(r[i]==="!")return!0}else i++}return!1};Nl.exports=function(i,e){if(typeof i!="string"||i==="")return!1;if(Zj(i))return!0;var l=$j;return e&&e.strict===!1&&(l=Gj),l(i)}});var Hl=te((lE,Yl)=>{"use strict";var Vj=Bl(),Kj=require("path").posix.dirname,zj=require("os").platform()==="win32",Ns="/",Qj=/\\/g,Xj=/[\{\[].*[\}\]]$/,Jj=/(^|[^\\])([\{\[]|\([^\)]+$)/,em=/\\([\!\*\?\|\[\]\(\)\{\}])/g;Yl.exports=function(i,e){var l=Object.assign({flipBackslashes:!0},e);l.flipBackslashes&&zj&&i.indexOf(Ns)<0&&(i=i.replace(Qj,Ns)),Xj.test(i)&&(i+=Ns),i+="a";do i=Kj(i);while(Vj(i)||Jj.test(i));return i.replace(em,"$1")}});var mr=te(mt=>{"use strict";mt.isInteger=r=>typeof r=="number"?Number.isInteger(r):typeof r=="string"&&r.trim()!==""?Number.isInteger(Number(r)):!1;mt.find=(r,i)=>r.nodes.find(e=>e.type===i);mt.exceedsLimit=(r,i,e=1,l)=>l===!1||!mt.isInteger(r)||!mt.isInteger(i)?!1:(Number(i)-Number(r))/Number(e)>=l;mt.escapeNode=(r,i=0,e)=>{let l=r.nodes[i];!l||(e&&l.type===e||l.type==="open"||l.type==="close")&&l.escaped!==!0&&(l.value="\\"+l.value,l.escaped=!0)};mt.encloseBrace=r=>r.type!=="brace"?!1:r.commas>>0+r.ranges>>0===0?(r.invalid=!0,!0):!1;mt.isInvalidBrace=r=>r.type!=="brace"?!1:r.invalid===!0||r.dollar?!0:r.commas>>0+r.ranges>>0===0||r.open!==!0||r.close!==!0?(r.invalid=!0,!0):!1;mt.isOpenOrClose=r=>r.type==="open"||r.type==="close"?!0:r.open===!0||r.close===!0;mt.reduce=r=>r.reduce((i,e)=>(e.type==="text"&&i.push(e.value),e.type==="range"&&(e.type="text"),i),[]);mt.flatten=(...r)=>{let i=[],e=l=>{for(let p=0;p<l.length;p++){let m=l[p];Array.isArray(m)?e(m,i):m!==void 0&&i.push(m)}return i};return e(r),i}});var wr=te((_E,Wl)=>{"use strict";var ql=mr();Wl.exports=(r,i={})=>{let e=(l,p={})=>{let m=i.escapeInvalid&&ql.isInvalidBrace(p),w=l.invalid===!0&&i.escapeInvalid===!0,O="";if(l.value)return(m||w)&&ql.isOpenOrClose(l)?"\\"+l.value:l.value;if(l.value)return l.value;if(l.nodes)for(let P of l.nodes)O+=e(P);return O};return e(r)}});var $l=te((dE,Zl)=>{"use strict";Zl.exports=function(r){return typeof r=="number"?r-r===0:typeof r=="string"&&r.trim()!==""?Number.isFinite?Number.isFinite(+r):isFinite(+r):!1}});var tu=te((fE,eu)=>{"use strict";var Gl=$l(),Si=(r,i,e)=>{if(Gl(r)===!1)throw new TypeError("toRegexRange: expected the first argument to be a number");if(i===void 0||r===i)return String(r);if(Gl(i)===!1)throw new TypeError("toRegexRange: expected the second argument to be a number.");let l={relaxZeros:!0,...e};typeof l.strictZeros=="boolean"&&(l.relaxZeros=l.strictZeros===!1);let p=String(l.relaxZeros),m=String(l.shorthand),w=String(l.capture),O=String(l.wrap),P=r+":"+i+"="+p+m+w+O;if(Si.cache.hasOwnProperty(P))return Si.cache[P].result;let B=Math.min(r,i),D=Math.max(r,i);if(Math.abs(B-D)===1){let J=r+"|"+i;return l.capture?`(${J})`:l.wrap===!1?J:`(?:${J})`}let q=Jl(r)||Jl(i),x={min:r,max:i,a:B,b:D},ie=[],X=[];if(q&&(x.isPadded=q,x.maxLen=String(x.max).length),B<0){let J=D<0?Math.abs(D):1;X=Vl(J,Math.abs(B),x,l),B=x.a=0}return D>=0&&(ie=Vl(B,D,x,l)),x.negatives=X,x.positives=ie,x.result=tm(X,ie,l),l.capture===!0?x.result=`(${x.result})`:l.wrap!==!1&&ie.length+X.length>1&&(x.result=`(?:${x.result})`),Si.cache[P]=x,x.result};function tm(r,i,e){let l=Bs(r,i,"-",!1,e)||[],p=Bs(i,r,"",!1,e)||[],m=Bs(r,i,"-?",!0,e)||[];return l.concat(m).concat(p).join("|")}function im(r,i){let e=1,l=1,p=zl(r,e),m=new Set([i]);for(;r<=p&&p<=i;)m.add(p),e+=1,p=zl(r,e);for(p=Ql(i+1,l)-1;r<p&&p<=i;)m.add(p),l+=1,p=Ql(i+1,l)-1;return m=[...m],m.sort(am),m}function nm(r,i,e){if(r===i)return{pattern:r,count:[],digits:0};let l=rm(r,i),p=l.length,m="",w=0;for(let O=0;O<p;O++){let[P,B]=l[O];P===B?m+=P:P!=="0"||B!=="9"?m+=sm(P,B,e):w++}return w&&(m+=e.shorthand===!0?"\\d":"[0-9]"),{pattern:m,count:[w],digits:p}}function Vl(r,i,e,l){let p=im(r,i),m=[],w=r,O;for(let P=0;P<p.length;P++){let B=p[P],D=nm(String(w),String(B),l),q="";if(!e.isPadded&&O&&O.pattern===D.pattern){O.count.length>1&&O.count.pop(),O.count.push(D.count[0]),O.string=O.pattern+Xl(O.count),w=B+1;continue}e.isPadded&&(q=om(B,e,l)),D.string=q+D.pattern+Xl(D.count),m.push(D),w=B+1,O=D}return m}function Bs(r,i,e,l,p){let m=[];for(let w of r){let{string:O}=w;!l&&!Kl(i,"string",O)&&m.push(e+O),l&&Kl(i,"string",O)&&m.push(e+O)}return m}function rm(r,i){let e=[];for(let l=0;l<r.length;l++)e.push([r[l],i[l]]);return e}function am(r,i){return r>i?1:i>r?-1:0}function Kl(r,i,e){return r.some(l=>l[i]===e)}function zl(r,i){return Number(String(r).slice(0,-i)+"9".repeat(i))}function Ql(r,i){return r-r%Math.pow(10,i)}function Xl(r){let[i=0,e=""]=r;return e||i>1?`{${i+(e?","+e:"")}}`:""}function sm(r,i,e){return`[${r}${i-r===1?"":"-"}${i}]`}function Jl(r){return/^-?(0+)\d/.test(r)}function om(r,i,e){if(!i.isPadded)return r;let l=Math.abs(i.maxLen-String(r).length),p=e.relaxZeros!==!1;switch(l){case 0:return"";case 1:return p?"0?":"0";case 2:return p?"0{0,2}":"00";default:return p?`0{0,${l}}`:`0{${l}}`}}Si.cache={};Si.clearCache=()=>Si.cache={};eu.exports=Si});var qs=te((hE,lu)=>{"use strict";var cm=require("util"),ru=tu(),iu=r=>r!==null&&typeof r=="object"&&!Array.isArray(r),lm=r=>i=>r===!0?Number(i):String(i),Ys=r=>typeof r=="number"||typeof r=="string"&&r!=="",Dn=r=>Number.isInteger(+r),Hs=r=>{let i=`${r}`,e=-1;if(i[0]==="-"&&(i=i.slice(1)),i==="0")return!1;for(;i[++e]==="0";);return e>0},um=(r,i,e)=>typeof r=="string"||typeof i=="string"?!0:e.stringify===!0,_m=(r,i,e)=>{if(i>0){let l=r[0]==="-"?"-":"";l&&(r=r.slice(1)),r=l+r.padStart(l?i-1:i,"0")}return e===!1?String(r):r},nu=(r,i)=>{let e=r[0]==="-"?"-":"";for(e&&(r=r.slice(1),i--);r.length<i;)r="0"+r;return e?"-"+r:r},dm=(r,i)=>{r.negatives.sort((w,O)=>w<O?-1:w>O?1:0),r.positives.sort((w,O)=>w<O?-1:w>O?1:0);let e=i.capture?"":"?:",l="",p="",m;return r.positives.length&&(l=r.positives.join("|")),r.negatives.length&&(p=`-(${e}${r.negatives.join("|")})`),l&&p?m=`${l}|${p}`:m=l||p,i.wrap?`(${e}${m})`:m},au=(r,i,e,l)=>{if(e)return ru(r,i,{wrap:!1,...l});let p=String.fromCharCode(r);if(r===i)return p;let m=String.fromCharCode(i);return`[${p}-${m}]`},su=(r,i,e)=>{if(Array.isArray(r)){let l=e.wrap===!0,p=e.capture?"":"?:";return l?`(${p}${r.join("|")})`:r.join("|")}return ru(r,i,e)},ou=(...r)=>new RangeError("Invalid range arguments: "+cm.inspect(...r)),cu=(r,i,e)=>{if(e.strictRanges===!0)throw ou([r,i]);return[]},fm=(r,i)=>{if(i.strictRanges===!0)throw new TypeError(`Expected step "${r}" to be a number`);return[]},hm=(r,i,e=1,l={})=>{let p=Number(r),m=Number(i);if(!Number.isInteger(p)||!Number.isInteger(m)){if(l.strictRanges===!0)throw ou([r,i]);return[]}p===0&&(p=0),m===0&&(m=0);let w=p>m,O=String(r),P=String(i),B=String(e);e=Math.max(Math.abs(e),1);let D=Hs(O)||Hs(P)||Hs(B),q=D?Math.max(O.length,P.length,B.length):0,x=D===!1&&um(r,i,l)===!1,ie=l.transform||lm(x);if(l.toRegex&&e===1)return au(nu(r,q),nu(i,q),!0,l);let X={negatives:[],positives:[]},J=Ae=>X[Ae<0?"negatives":"positives"].push(Math.abs(Ae)),ce=[],le=0;for(;w?p>=m:p<=m;)l.toRegex===!0&&e>1?J(p):ce.push(_m(ie(p,le),q,x)),p=w?p-e:p+e,le++;return l.toRegex===!0?e>1?dm(X,l):su(ce,null,{wrap:!1,...l}):ce},bm=(r,i,e=1,l={})=>{if(!Dn(r)&&r.length>1||!Dn(i)&&i.length>1)return cu(r,i,l);let p=l.transform||(x=>String.fromCharCode(x)),m=`${r}`.charCodeAt(0),w=`${i}`.charCodeAt(0),O=m>w,P=Math.min(m,w),B=Math.max(m,w);if(l.toRegex&&e===1)return au(P,B,!1,l);let D=[],q=0;for(;O?m>=w:m<=w;)D.push(p(m,q)),m=O?m-e:m+e,q++;return l.toRegex===!0?su(D,null,{wrap:!1,options:l}):D},kr=(r,i,e,l={})=>{if(i==null&&Ys(r))return[r];if(!Ys(r)||!Ys(i))return cu(r,i,l);if(typeof e=="function")return kr(r,i,1,{transform:e});if(iu(e))return kr(r,i,0,e);let p={...l};return p.capture===!0&&(p.wrap=!0),e=e||p.step||1,Dn(e)?Dn(r)&&Dn(i)?hm(r,i,e,p):bm(r,i,Math.max(Math.abs(e),1),p):e!=null&&!iu(e)?fm(e,p):kr(r,i,1,e)};lu.exports=kr});var du=te((bE,_u)=>{"use strict";var pm=qs(),uu=mr(),ym=(r,i={})=>{let e=(l,p={})=>{let m=uu.isInvalidBrace(p),w=l.invalid===!0&&i.escapeInvalid===!0,O=m===!0||w===!0,P=i.escapeInvalid===!0?"\\":"",B="";if(l.isOpen===!0||l.isClose===!0)return P+l.value;if(l.type==="open")return O?P+l.value:"(";if(l.type==="close")return O?P+l.value:")";if(l.type==="comma")return l.prev.type==="comma"?"":O?l.value:"|";if(l.value)return l.value;if(l.nodes&&l.ranges>0){let D=uu.reduce(l.nodes),q=pm(...D,{...i,wrap:!1,toRegex:!0});if(q.length!==0)return D.length>1&&q.length>1?`(${q})`:q}if(l.nodes)for(let D of l.nodes)B+=e(D,l);return B};return e(r)};_u.exports=ym});var bu=te((pE,hu)=>{"use strict";var gm=qs(),fu=wr(),Wi=mr(),Ci=(r="",i="",e=!1)=>{let l=[];if(r=[].concat(r),i=[].concat(i),!i.length)return r;if(!r.length)return e?Wi.flatten(i).map(p=>`{${p}}`):i;for(let p of r)if(Array.isArray(p))for(let m of p)l.push(Ci(m,i,e));else for(let m of i)e===!0&&typeof m=="string"&&(m=`{${m}}`),l.push(Array.isArray(m)?Ci(p,m,e):p+m);return Wi.flatten(l)},vm=(r,i={})=>{let e=i.rangeLimit===void 0?1e3:i.rangeLimit,l=(p,m={})=>{p.queue=[];let w=m,O=m.queue;for(;w.type!=="brace"&&w.type!=="root"&&w.parent;)w=w.parent,O=w.queue;if(p.invalid||p.dollar){O.push(Ci(O.pop(),fu(p,i)));return}if(p.type==="brace"&&p.invalid!==!0&&p.nodes.length===2){O.push(Ci(O.pop(),["{}"]));return}if(p.nodes&&p.ranges>0){let q=Wi.reduce(p.nodes);if(Wi.exceedsLimit(...q,i.step,e))throw new RangeError("expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.");let x=gm(...q,i);x.length===0&&(x=fu(p,i)),O.push(Ci(O.pop(),x)),p.nodes=[];return}let P=Wi.encloseBrace(p),B=p.queue,D=p;for(;D.type!=="brace"&&D.type!=="root"&&D.parent;)D=D.parent,B=D.queue;for(let q=0;q<p.nodes.length;q++){let x=p.nodes[q];if(x.type==="comma"&&p.type==="brace"){q===1&&B.push(""),B.push("");continue}if(x.type==="close"){O.push(Ci(O.pop(),B,P));continue}if(x.value&&x.type!=="open"){B.push(Ci(B.pop(),x.value));continue}x.nodes&&l(x,p)}return B};return Wi.flatten(l(r))};hu.exports=vm});var yu=te((yE,pu)=>{"use strict";pu.exports={MAX_LENGTH:1024*64,CHAR_0:"0",CHAR_9:"9",CHAR_UPPERCASE_A:"A",CHAR_LOWERCASE_A:"a",CHAR_UPPERCASE_Z:"Z",CHAR_LOWERCASE_Z:"z",CHAR_LEFT_PARENTHESES:"(",CHAR_RIGHT_PARENTHESES:")",CHAR_ASTERISK:"*",CHAR_AMPERSAND:"&",CHAR_AT:"@",CHAR_BACKSLASH:"\\",CHAR_BACKTICK:"`",CHAR_CARRIAGE_RETURN:"\r",CHAR_CIRCUMFLEX_ACCENT:"^",CHAR_COLON:":",CHAR_COMMA:",",CHAR_DOLLAR:"$",CHAR_DOT:".",CHAR_DOUBLE_QUOTE:'"',CHAR_EQUAL:"=",CHAR_EXCLAMATION_MARK:"!",CHAR_FORM_FEED:"\f",CHAR_FORWARD_SLASH:"/",CHAR_HASH:"#",CHAR_HYPHEN_MINUS:"-",CHAR_LEFT_ANGLE_BRACKET:"<",CHAR_LEFT_CURLY_BRACE:"{",CHAR_LEFT_SQUARE_BRACKET:"[",CHAR_LINE_FEED:`
-`,CHAR_NO_BREAK_SPACE:"\xA0",CHAR_PERCENT:"%",CHAR_PLUS:"+",CHAR_QUESTION_MARK:"?",CHAR_RIGHT_ANGLE_BRACKET:">",CHAR_RIGHT_CURLY_BRACE:"}",CHAR_RIGHT_SQUARE_BRACKET:"]",CHAR_SEMICOLON:";",CHAR_SINGLE_QUOTE:"'",CHAR_SPACE:" ",CHAR_TAB:"	",CHAR_UNDERSCORE:"_",CHAR_VERTICAL_LINE:"|",CHAR_ZERO_WIDTH_NOBREAK_SPACE:"\uFEFF"}});var wu=te((gE,mu)=>{"use strict";var jm=wr(),{MAX_LENGTH:gu,CHAR_BACKSLASH:Ws,CHAR_BACKTICK:mm,CHAR_COMMA:wm,CHAR_DOT:km,CHAR_LEFT_PARENTHESES:Em,CHAR_RIGHT_PARENTHESES:Sm,CHAR_LEFT_CURLY_BRACE:Cm,CHAR_RIGHT_CURLY_BRACE:Am,CHAR_LEFT_SQUARE_BRACKET:vu,CHAR_RIGHT_SQUARE_BRACKET:ju,CHAR_DOUBLE_QUOTE:Rm,CHAR_SINGLE_QUOTE:Om,CHAR_NO_BREAK_SPACE:Tm,CHAR_ZERO_WIDTH_NOBREAK_SPACE:Pm}=yu(),Dm=(r,i={})=>{if(typeof r!="string")throw new TypeError("Expected a string");let e=i||{},l=typeof e.maxLength=="number"?Math.min(gu,e.maxLength):gu;if(r.length>l)throw new SyntaxError(`Input length (${r.length}), exceeds max characters (${l})`);let p={type:"root",input:r,nodes:[]},m=[p],w=p,O=p,P=0,B=r.length,D=0,q=0,x,ie={},X=()=>r[D++],J=ce=>{if(ce.type==="text"&&O.type==="dot"&&(O.type="text"),O&&O.type==="text"&&ce.type==="text"){O.value+=ce.value;return}return w.nodes.push(ce),ce.parent=w,ce.prev=O,O=ce,ce};for(J({type:"bos"});D<B;)if(w=m[m.length-1],x=X(),!(x===Pm||x===Tm)){if(x===Ws){J({type:"text",value:(i.keepEscaping?x:"")+X()});continue}if(x===ju){J({type:"text",value:"\\"+x});continue}if(x===vu){P++;let ce=!0,le;for(;D<B&&(le=X());){if(x+=le,le===vu){P++;continue}if(le===Ws){x+=X();continue}if(le===ju&&(P--,P===0))break}J({type:"text",value:x});continue}if(x===Em){w=J({type:"paren",nodes:[]}),m.push(w),J({type:"text",value:x});continue}if(x===Sm){if(w.type!=="paren"){J({type:"text",value:x});continue}w=m.pop(),J({type:"text",value:x}),w=m[m.length-1];continue}if(x===Rm||x===Om||x===mm){let ce=x,le;for(i.keepQuotes!==!0&&(x="");D<B&&(le=X());){if(le===Ws){x+=le+X();continue}if(le===ce){i.keepQuotes===!0&&(x+=le);break}x+=le}J({type:"text",value:x});continue}if(x===Cm){q++;let ce=O.value&&O.value.slice(-1)==="$"||w.dollar===!0;w=J({type:"brace",open:!0,close:!1,dollar:ce,depth:q,commas:0,ranges:0,nodes:[]}),m.push(w),J({type:"open",value:x});continue}if(x===Am){if(w.type!=="brace"){J({type:"text",value:x});continue}let ce="close";w=m.pop(),w.close=!0,J({type:ce,value:x}),q--,w=m[m.length-1];continue}if(x===wm&&q>0){if(w.ranges>0){w.ranges=0;let ce=w.nodes.shift();w.nodes=[ce,{type:"text",value:jm(w)}]}J({type:"comma",value:x}),w.commas++;continue}if(x===km&&q>0&&w.commas===0){let ce=w.nodes;if(q===0||ce.length===0){J({type:"text",value:x});continue}if(O.type==="dot"){if(w.range=[],O.value+=x,O.type="range",w.nodes.length!==3&&w.nodes.length!==5){w.invalid=!0,w.ranges=0,O.type="text";continue}w.ranges++,w.args=[];continue}if(O.type==="range"){ce.pop();let le=ce[ce.length-1];le.value+=O.value+x,O=le,w.ranges--;continue}J({type:"dot",value:x});continue}J({type:"text",value:x})}do if(w=m.pop(),w.type!=="root"){w.nodes.forEach(Ae=>{Ae.nodes||(Ae.type==="open"&&(Ae.isOpen=!0),Ae.type==="close"&&(Ae.isClose=!0),Ae.nodes||(Ae.type="text"),Ae.invalid=!0)});let ce=m[m.length-1],le=ce.nodes.indexOf(w);ce.nodes.splice(le,1,...w.nodes)}while(m.length>0);return J({type:"eos"}),p};mu.exports=Dm});var Su=te((vE,Eu)=>{"use strict";var ku=wr(),Im=du(),Mm=bu(),Um=wu(),gt=(r,i={})=>{let e=[];if(Array.isArray(r))for(let l of r){let p=gt.create(l,i);Array.isArray(p)?e.push(...p):e.push(p)}else e=[].concat(gt.create(r,i));return i&&i.expand===!0&&i.nodupes===!0&&(e=[...new Set(e)]),e};gt.parse=(r,i={})=>Um(r,i);gt.stringify=(r,i={})=>ku(typeof r=="string"?gt.parse(r,i):r,i);gt.compile=(r,i={})=>(typeof r=="string"&&(r=gt.parse(r,i)),Im(r,i));gt.expand=(r,i={})=>{typeof r=="string"&&(r=gt.parse(r,i));let e=Mm(r,i);return i.noempty===!0&&(e=e.filter(Boolean)),i.nodupes===!0&&(e=[...new Set(e)]),e};gt.create=(r,i={})=>r===""||r.length<3?[r]:i.expand!==!0?gt.compile(r,i):gt.expand(r,i);Eu.exports=gt});var In=te((jE,Tu)=>{"use strict";var Lm=require("path"),Dt="\\\\/",Cu=`[^${Dt}]`,Wt="\\.",Fm="\\+",xm="\\?",Er="\\/",Nm="(?=.)",Au="[^/]",Zs=`(?:${Er}|$)`,Ru=`(?:^|${Er})`,$s=`${Wt}{1,2}${Zs}`,Bm=`(?!${Wt})`,Ym=`(?!${Ru}${$s})`,Hm=`(?!${Wt}{0,1}${Zs})`,qm=`(?!${$s})`,Wm=`[^.${Er}]`,Zm=`${Au}*?`,Ou={DOT_LITERAL:Wt,PLUS_LITERAL:Fm,QMARK_LITERAL:xm,SLASH_LITERAL:Er,ONE_CHAR:Nm,QMARK:Au,END_ANCHOR:Zs,DOTS_SLASH:$s,NO_DOT:Bm,NO_DOTS:Ym,NO_DOT_SLASH:Hm,NO_DOTS_SLASH:qm,QMARK_NO_DOT:Wm,STAR:Zm,START_ANCHOR:Ru},$m={...Ou,SLASH_LITERAL:`[${Dt}]`,QMARK:Cu,STAR:`${Cu}*?`,DOTS_SLASH:`${Wt}{1,2}(?:[${Dt}]|$)`,NO_DOT:`(?!${Wt})`,NO_DOTS:`(?!(?:^|[${Dt}])${Wt}{1,2}(?:[${Dt}]|$))`,NO_DOT_SLASH:`(?!${Wt}{0,1}(?:[${Dt}]|$))`,NO_DOTS_SLASH:`(?!${Wt}{1,2}(?:[${Dt}]|$))`,QMARK_NO_DOT:`[^.${Dt}]`,START_ANCHOR:`(?:^|[${Dt}])`,END_ANCHOR:`(?:[${Dt}]|$)`},Gm={alnum:"a-zA-Z0-9",alpha:"a-zA-Z",ascii:"\\x00-\\x7F",blank:" \\t",cntrl:"\\x00-\\x1F\\x7F",digit:"0-9",graph:"\\x21-\\x7E",lower:"a-z",print:"\\x20-\\x7E ",punct:"\\-!\"#$%&'()\\*+,./:;<=>?@[\\]^_`{|}~",space:" \\t\\r\\n\\v\\f",upper:"A-Z",word:"A-Za-z0-9_",xdigit:"A-Fa-f0-9"};Tu.exports={MAX_LENGTH:1024*64,POSIX_REGEX_SOURCE:Gm,REGEX_BACKSLASH:/\\(?![*+?^${}(|)[\]])/g,REGEX_NON_SPECIAL_CHARS:/^[^@![\].,$*+?^{}()|\\/]+/,REGEX_SPECIAL_CHARS:/[-*+?.^${}(|)[\]]/,REGEX_SPECIAL_CHARS_BACKREF:/(\\?)((\W)(\3*))/g,REGEX_SPECIAL_CHARS_GLOBAL:/([-*+?.^${}(|)[\]])/g,REGEX_REMOVE_BACKSLASH:/(?:\[.*?[^\\]\]|\\(?=.))/g,REPLACEMENTS:{"***":"*","**/**":"**","**/**/**":"**"},CHAR_0:48,CHAR_9:57,CHAR_UPPERCASE_A:65,CHAR_LOWERCASE_A:97,CHAR_UPPERCASE_Z:90,CHAR_LOWERCASE_Z:122,CHAR_LEFT_PARENTHESES:40,CHAR_RIGHT_PARENTHESES:41,CHAR_ASTERISK:42,CHAR_AMPERSAND:38,CHAR_AT:64,CHAR_BACKWARD_SLASH:92,CHAR_CARRIAGE_RETURN:13,CHAR_CIRCUMFLEX_ACCENT:94,CHAR_COLON:58,CHAR_COMMA:44,CHAR_DOT:46,CHAR_DOUBLE_QUOTE:34,CHAR_EQUAL:61,CHAR_EXCLAMATION_MARK:33,CHAR_FORM_FEED:12,CHAR_FORWARD_SLASH:47,CHAR_GRAVE_ACCENT:96,CHAR_HASH:35,CHAR_HYPHEN_MINUS:45,CHAR_LEFT_ANGLE_BRACKET:60,CHAR_LEFT_CURLY_BRACE:123,CHAR_LEFT_SQUARE_BRACKET:91,CHAR_LINE_FEED:10,CHAR_NO_BREAK_SPACE:160,CHAR_PERCENT:37,CHAR_PLUS:43,CHAR_QUESTION_MARK:63,CHAR_RIGHT_ANGLE_BRACKET:62,CHAR_RIGHT_CURLY_BRACE:125,CHAR_RIGHT_SQUARE_BRACKET:93,CHAR_SEMICOLON:59,CHAR_SINGLE_QUOTE:39,CHAR_SPACE:32,CHAR_TAB:9,CHAR_UNDERSCORE:95,CHAR_VERTICAL_LINE:124,CHAR_ZERO_WIDTH_NOBREAK_SPACE:65279,SEP:Lm.sep,extglobChars(r){return{"!":{type:"negate",open:"(?:(?!(?:",close:`))${r.STAR})`},"?":{type:"qmark",open:"(?:",close:")?"},"+":{type:"plus",open:"(?:",close:")+"},"*":{type:"star",open:"(?:",close:")*"},"@":{type:"at",open:"(?:",close:")"}}},globChars(r){return r===!0?$m:Ou}}});var Mn=te(ht=>{"use strict";var Vm=require("path"),Km=process.platform==="win32",{REGEX_BACKSLASH:zm,REGEX_REMOVE_BACKSLASH:Qm,REGEX_SPECIAL_CHARS:Xm,REGEX_SPECIAL_CHARS_GLOBAL:Jm}=In();ht.isObject=r=>r!==null&&typeof r=="object"&&!Array.isArray(r);ht.hasRegexChars=r=>Xm.test(r);ht.isRegexChar=r=>r.length===1&&ht.hasRegexChars(r);ht.escapeRegex=r=>r.replace(Jm,"\\$1");ht.toPosixSlashes=r=>r.replace(zm,"/");ht.removeBackslashes=r=>r.replace(Qm,i=>i==="\\"?"":i);ht.supportsLookbehinds=()=>{let r=process.version.slice(1).split(".").map(Number);return r.length===3&&r[0]>=9||r[0]===8&&r[1]>=10};ht.isWindows=r=>r&&typeof r.windows=="boolean"?r.windows:Km===!0||Vm.sep==="\\";ht.escapeLast=(r,i,e)=>{let l=r.lastIndexOf(i,e);return l===-1?r:r[l-1]==="\\"?ht.escapeLast(r,i,l-1):`${r.slice(0,l)}\\${r.slice(l)}`};ht.removePrefix=(r,i={})=>{let e=r;return e.startsWith("./")&&(e=e.slice(2),i.prefix="./"),e};ht.wrapOutput=(r,i={},e={})=>{let l=e.contains?"":"^",p=e.contains?"":"$",m=`${l}(?:${r})${p}`;return i.negated===!0&&(m=`(?:^(?!${m}).*$)`),m}});var xu=te((wE,Fu)=>{"use strict";var Pu=Mn(),{CHAR_ASTERISK:Gs,CHAR_AT:ew,CHAR_BACKWARD_SLASH:Un,CHAR_COMMA:tw,CHAR_DOT:Vs,CHAR_EXCLAMATION_MARK:Ks,CHAR_FORWARD_SLASH:Lu,CHAR_LEFT_CURLY_BRACE:zs,CHAR_LEFT_PARENTHESES:Qs,CHAR_LEFT_SQUARE_BRACKET:iw,CHAR_PLUS:nw,CHAR_QUESTION_MARK:Du,CHAR_RIGHT_CURLY_BRACE:rw,CHAR_RIGHT_PARENTHESES:Iu,CHAR_RIGHT_SQUARE_BRACKET:aw}=In(),Mu=r=>r===Lu||r===Un,Uu=r=>{r.isPrefix!==!0&&(r.depth=r.isGlobstar?1/0:1)},sw=(r,i)=>{let e=i||{},l=r.length-1,p=e.parts===!0||e.scanToEnd===!0,m=[],w=[],O=[],P=r,B=-1,D=0,q=0,x=!1,ie=!1,X=!1,J=!1,ce=!1,le=!1,Ae=!1,Ee=!1,xe=!1,_e=!1,Se=0,de,Y,ne={value:"",depth:0,isGlob:!1},Ce=()=>B>=l,F=()=>P.charCodeAt(B+1),je=()=>(de=Y,P.charCodeAt(++B));for(;B<l;){Y=je();let ge;if(Y===Un){Ae=ne.backslashes=!0,Y=je(),Y===zs&&(le=!0);continue}if(le===!0||Y===zs){for(Se++;Ce()!==!0&&(Y=je());){if(Y===Un){Ae=ne.backslashes=!0,je();continue}if(Y===zs){Se++;continue}if(le!==!0&&Y===Vs&&(Y=je())===Vs){if(x=ne.isBrace=!0,X=ne.isGlob=!0,_e=!0,p===!0)continue;break}if(le!==!0&&Y===tw){if(x=ne.isBrace=!0,X=ne.isGlob=!0,_e=!0,p===!0)continue;break}if(Y===rw&&(Se--,Se===0)){le=!1,x=ne.isBrace=!0,_e=!0;break}}if(p===!0)continue;break}if(Y===Lu){if(m.push(B),w.push(ne),ne={value:"",depth:0,isGlob:!1},_e===!0)continue;if(de===Vs&&B===D+1){D+=2;continue}q=B+1;continue}if(e.noext!==!0&&(Y===nw||Y===ew||Y===Gs||Y===Du||Y===Ks)===!0&&F()===Qs){if(X=ne.isGlob=!0,J=ne.isExtglob=!0,_e=!0,Y===Ks&&B===D&&(xe=!0),p===!0){for(;Ce()!==!0&&(Y=je());){if(Y===Un){Ae=ne.backslashes=!0,Y=je();continue}if(Y===Iu){X=ne.isGlob=!0,_e=!0;break}}continue}break}if(Y===Gs){if(de===Gs&&(ce=ne.isGlobstar=!0),X=ne.isGlob=!0,_e=!0,p===!0)continue;break}if(Y===Du){if(X=ne.isGlob=!0,_e=!0,p===!0)continue;break}if(Y===iw){for(;Ce()!==!0&&(ge=je());){if(ge===Un){Ae=ne.backslashes=!0,je();continue}if(ge===aw){ie=ne.isBracket=!0,X=ne.isGlob=!0,_e=!0;break}}if(p===!0)continue;break}if(e.nonegate!==!0&&Y===Ks&&B===D){Ee=ne.negated=!0,D++;continue}if(e.noparen!==!0&&Y===Qs){if(X=ne.isGlob=!0,p===!0){for(;Ce()!==!0&&(Y=je());){if(Y===Qs){Ae=ne.backslashes=!0,Y=je();continue}if(Y===Iu){_e=!0;break}}continue}break}if(X===!0){if(_e=!0,p===!0)continue;break}}e.noext===!0&&(J=!1,X=!1);let ye=P,Ue="",I="";D>0&&(Ue=P.slice(0,D),P=P.slice(D),q-=D),ye&&X===!0&&q>0?(ye=P.slice(0,q),I=P.slice(q)):X===!0?(ye="",I=P):ye=P,ye&&ye!==""&&ye!=="/"&&ye!==P&&Mu(ye.charCodeAt(ye.length-1))&&(ye=ye.slice(0,-1)),e.unescape===!0&&(I&&(I=Pu.removeBackslashes(I)),ye&&Ae===!0&&(ye=Pu.removeBackslashes(ye)));let L={prefix:Ue,input:r,start:D,base:ye,glob:I,isBrace:x,isBracket:ie,isGlob:X,isExtglob:J,isGlobstar:ce,negated:Ee,negatedExtglob:xe};if(e.tokens===!0&&(L.maxDepth=0,Mu(Y)||w.push(ne),L.tokens=w),e.parts===!0||e.tokens===!0){let ge;for(let we=0;we<m.length;we++){let lt=ge?ge+1:D,Je=m[we],Te=r.slice(lt,Je);e.tokens&&(we===0&&D!==0?(w[we].isPrefix=!0,w[we].value=Ue):w[we].value=Te,Uu(w[we]),L.maxDepth+=w[we].depth),(we!==0||Te!=="")&&O.push(Te),ge=Je}if(ge&&ge+1<r.length){let we=r.slice(ge+1);O.push(we),e.tokens&&(w[w.length-1].value=we,Uu(w[w.length-1]),L.maxDepth+=w[w.length-1].depth)}L.slashes=m,L.parts=O}return L};Fu.exports=sw});var Hu=te((kE,Yu)=>{"use strict";var Sr=In(),vt=Mn(),{MAX_LENGTH:Cr,POSIX_REGEX_SOURCE:ow,REGEX_NON_SPECIAL_CHARS:cw,REGEX_SPECIAL_CHARS_BACKREF:lw,REPLACEMENTS:Nu}=Sr,uw=(r,i)=>{if(typeof i.expandRange=="function")return i.expandRange(...r,i);r.sort();let e=`[${r.join("-")}]`;try{new RegExp(e)}catch{return r.map(p=>vt.escapeRegex(p)).join("..")}return e},Zi=(r,i)=>`Missing ${r}: "${i}" - use "\\\\${i}" to match literal characters`,Bu=(r,i)=>{if(typeof r!="string")throw new TypeError("Expected a string");r=Nu[r]||r;let e={...i},l=typeof e.maxLength=="number"?Math.min(Cr,e.maxLength):Cr,p=r.length;if(p>l)throw new SyntaxError(`Input length: ${p}, exceeds maximum allowed length: ${l}`);let m={type:"bos",value:"",output:e.prepend||""},w=[m],O=e.capture?"":"?:",P=vt.isWindows(i),B=Sr.globChars(P),D=Sr.extglobChars(B),{DOT_LITERAL:q,PLUS_LITERAL:x,SLASH_LITERAL:ie,ONE_CHAR:X,DOTS_SLASH:J,NO_DOT:ce,NO_DOT_SLASH:le,NO_DOTS_SLASH:Ae,QMARK:Ee,QMARK_NO_DOT:xe,STAR:_e,START_ANCHOR:Se}=B,de=ee=>`(${O}(?:(?!${Se}${ee.dot?J:q}).)*?)`,Y=e.dot?"":ce,ne=e.dot?Ee:xe,Ce=e.bash===!0?de(e):_e;e.capture&&(Ce=`(${Ce})`),typeof e.noext=="boolean"&&(e.noextglob=e.noext);let F={input:r,index:-1,start:0,dot:e.dot===!0,consumed:"",output:"",prefix:"",backtrack:!1,negated:!1,brackets:0,braces:0,parens:0,quotes:0,globstar:!1,tokens:w};r=vt.removePrefix(r,F),p=r.length;let je=[],ye=[],Ue=[],I=m,L,ge=()=>F.index===p-1,we=F.peek=(ee=1)=>r[F.index+ee],lt=F.advance=()=>r[++F.index]||"",Je=()=>r.slice(F.index+1),Te=(ee="",b=0)=>{F.consumed+=ee,F.index+=b},Gt=ee=>{F.output+=ee.output!=null?ee.output:ee.value,Te(ee.value)},Ji=()=>{let ee=1;for(;we()==="!"&&(we(2)!=="("||we(3)==="?");)lt(),F.start++,ee++;return ee%2===0?!1:(F.negated=!0,F.start++,!0)},Ti=ee=>{F[ee]++,Ue.push(ee)},Lt=ee=>{F[ee]--,Ue.pop()},se=ee=>{if(I.type==="globstar"){let b=F.braces>0&&(ee.type==="comma"||ee.type==="brace"),z=ee.extglob===!0||je.length&&(ee.type==="pipe"||ee.type==="paren");ee.type!=="slash"&&ee.type!=="paren"&&!b&&!z&&(F.output=F.output.slice(0,-I.output.length),I.type="star",I.value="*",I.output=Ce,F.output+=I.output)}if(je.length&&ee.type!=="paren"&&(je[je.length-1].inner+=ee.value),(ee.value||ee.output)&&Gt(ee),I&&I.type==="text"&&ee.type==="text"){I.value+=ee.value,I.output=(I.output||"")+ee.value;return}ee.prev=I,w.push(ee),I=ee},Vt=(ee,b)=>{let z={...D[b],conditions:1,inner:""};z.prev=I,z.parens=F.parens,z.output=F.output;let oe=(e.capture?"(":"")+z.open;Ti("parens"),se({type:ee,value:b,output:F.output?"":X}),se({type:"paren",extglob:!0,value:lt(),output:oe}),je.push(z)},si=ee=>{let b=ee.close+(e.capture?")":""),z;if(ee.type==="negate"){let oe=Ce;ee.inner&&ee.inner.length>1&&ee.inner.includes("/")&&(oe=de(e)),(oe!==Ce||ge()||/^\)+$/.test(Je()))&&(b=ee.close=`)$))${oe}`),ee.inner.includes("*")&&(z=Je())&&/^\.[^\\/.]+$/.test(z)&&(b=ee.close=`)${z})${oe})`),ee.prev.type==="bos"&&(F.negatedExtglob=!0)}se({type:"paren",extglob:!0,value:L,output:b}),Lt("parens")};if(e.fastpaths!==!1&&!/(^[*!]|[/()[\]{}"])/.test(r)){let ee=!1,b=r.replace(lw,(z,oe,Ne,Ie,Ye,oi)=>Ie==="\\"?(ee=!0,z):Ie==="?"?oe?oe+Ie+(Ye?Ee.repeat(Ye.length):""):oi===0?ne+(Ye?Ee.repeat(Ye.length):""):Ee.repeat(Ne.length):Ie==="."?q.repeat(Ne.length):Ie==="*"?oe?oe+Ie+(Ye?Ce:""):Ce:oe?z:`\\${z}`);return ee===!0&&(e.unescape===!0?b=b.replace(/\\/g,""):b=b.replace(/\\+/g,z=>z.length%2===0?"\\\\":z?"\\":"")),b===r&&e.contains===!0?(F.output=r,F):(F.output=vt.wrapOutput(b,F,i),F)}for(;!ge();){if(L=lt(),L==="\0")continue;if(L==="\\"){let z=we();if(z==="/"&&e.bash!==!0||z==="."||z===";")continue;if(!z){L+="\\",se({type:"text",value:L});continue}let oe=/^\\+/.exec(Je()),Ne=0;if(oe&&oe[0].length>2&&(Ne=oe[0].length,F.index+=Ne,Ne%2!==0&&(L+="\\")),e.unescape===!0?L=lt():L+=lt(),F.brackets===0){se({type:"text",value:L});continue}}if(F.brackets>0&&(L!=="]"||I.value==="["||I.value==="[^")){if(e.posix!==!1&&L===":"){let z=I.value.slice(1);if(z.includes("[")&&(I.posix=!0,z.includes(":"))){let oe=I.value.lastIndexOf("["),Ne=I.value.slice(0,oe),Ie=I.value.slice(oe+2),Ye=ow[Ie];if(Ye){I.value=Ne+Ye,F.backtrack=!0,lt(),!m.output&&w.indexOf(I)===1&&(m.output=X);continue}}}(L==="["&&we()!==":"||L==="-"&&we()==="]")&&(L=`\\${L}`),L==="]"&&(I.value==="["||I.value==="[^")&&(L=`\\${L}`),e.posix===!0&&L==="!"&&I.value==="["&&(L="^"),I.value+=L,Gt({value:L});continue}if(F.quotes===1&&L!=='"'){L=vt.escapeRegex(L),I.value+=L,Gt({value:L});continue}if(L==='"'){F.quotes=F.quotes===1?0:1,e.keepQuotes===!0&&se({type:"text",value:L});continue}if(L==="("){Ti("parens"),se({type:"paren",value:L});continue}if(L===")"){if(F.parens===0&&e.strictBrackets===!0)throw new SyntaxError(Zi("opening","("));let z=je[je.length-1];if(z&&F.parens===z.parens+1){si(je.pop());continue}se({type:"paren",value:L,output:F.parens?")":"\\)"}),Lt("parens");continue}if(L==="["){if(e.nobracket===!0||!Je().includes("]")){if(e.nobracket!==!0&&e.strictBrackets===!0)throw new SyntaxError(Zi("closing","]"));L=`\\${L}`}else Ti("brackets");se({type:"bracket",value:L});continue}if(L==="]"){if(e.nobracket===!0||I&&I.type==="bracket"&&I.value.length===1){se({type:"text",value:L,output:`\\${L}`});continue}if(F.brackets===0){if(e.strictBrackets===!0)throw new SyntaxError(Zi("opening","["));se({type:"text",value:L,output:`\\${L}`});continue}Lt("brackets");let z=I.value.slice(1);if(I.posix!==!0&&z[0]==="^"&&!z.includes("/")&&(L=`/${L}`),I.value+=L,Gt({value:L}),e.literalBrackets===!1||vt.hasRegexChars(z))continue;let oe=vt.escapeRegex(I.value);if(F.output=F.output.slice(0,-I.value.length),e.literalBrackets===!0){F.output+=oe,I.value=oe;continue}I.value=`(${O}${oe}|${I.value})`,F.output+=I.value;continue}if(L==="{"&&e.nobrace!==!0){Ti("braces");let z={type:"brace",value:L,output:"(",outputIndex:F.output.length,tokensIndex:F.tokens.length};ye.push(z),se(z);continue}if(L==="}"){let z=ye[ye.length-1];if(e.nobrace===!0||!z){se({type:"text",value:L,output:L});continue}let oe=")";if(z.dots===!0){let Ne=w.slice(),Ie=[];for(let Ye=Ne.length-1;Ye>=0&&(w.pop(),Ne[Ye].type!=="brace");Ye--)Ne[Ye].type!=="dots"&&Ie.unshift(Ne[Ye].value);oe=uw(Ie,e),F.backtrack=!0}if(z.comma!==!0&&z.dots!==!0){let Ne=F.output.slice(0,z.outputIndex),Ie=F.tokens.slice(z.tokensIndex);z.value=z.output="\\{",L=oe="\\}",F.output=Ne;for(let Ye of Ie)F.output+=Ye.output||Ye.value}se({type:"brace",value:L,output:oe}),Lt("braces"),ye.pop();continue}if(L==="|"){je.length>0&&je[je.length-1].conditions++,se({type:"text",value:L});continue}if(L===","){let z=L,oe=ye[ye.length-1];oe&&Ue[Ue.length-1]==="braces"&&(oe.comma=!0,z="|"),se({type:"comma",value:L,output:z});continue}if(L==="/"){if(I.type==="dot"&&F.index===F.start+1){F.start=F.index+1,F.consumed="",F.output="",w.pop(),I=m;continue}se({type:"slash",value:L,output:ie});continue}if(L==="."){if(F.braces>0&&I.type==="dot"){I.value==="."&&(I.output=q);let z=ye[ye.length-1];I.type="dots",I.output+=L,I.value+=L,z.dots=!0;continue}if(F.braces+F.parens===0&&I.type!=="bos"&&I.type!=="slash"){se({type:"text",value:L,output:q});continue}se({type:"dot",value:L,output:q});continue}if(L==="?"){if(!(I&&I.value==="(")&&e.noextglob!==!0&&we()==="("&&we(2)!=="?"){Vt("qmark",L);continue}if(I&&I.type==="paren"){let oe=we(),Ne=L;if(oe==="<"&&!vt.supportsLookbehinds())throw new Error("Node.js v10 or higher is required for regex lookbehinds");(I.value==="("&&!/[!=<:]/.test(oe)||oe==="<"&&!/<([!=]|\w+>)/.test(Je()))&&(Ne=`\\${L}`),se({type:"text",value:L,output:Ne});continue}if(e.dot!==!0&&(I.type==="slash"||I.type==="bos")){se({type:"qmark",value:L,output:xe});continue}se({type:"qmark",value:L,output:Ee});continue}if(L==="!"){if(e.noextglob!==!0&&we()==="("&&(we(2)!=="?"||!/[!=<:]/.test(we(3)))){Vt("negate",L);continue}if(e.nonegate!==!0&&F.index===0){Ji();continue}}if(L==="+"){if(e.noextglob!==!0&&we()==="("&&we(2)!=="?"){Vt("plus",L);continue}if(I&&I.value==="("||e.regex===!1){se({type:"plus",value:L,output:x});continue}if(I&&(I.type==="bracket"||I.type==="paren"||I.type==="brace")||F.parens>0){se({type:"plus",value:L});continue}se({type:"plus",value:x});continue}if(L==="@"){if(e.noextglob!==!0&&we()==="("&&we(2)!=="?"){se({type:"at",extglob:!0,value:L,output:""});continue}se({type:"text",value:L});continue}if(L!=="*"){(L==="$"||L==="^")&&(L=`\\${L}`);let z=cw.exec(Je());z&&(L+=z[0],F.index+=z[0].length),se({type:"text",value:L});continue}if(I&&(I.type==="globstar"||I.star===!0)){I.type="star",I.star=!0,I.value+=L,I.output=Ce,F.backtrack=!0,F.globstar=!0,Te(L);continue}let ee=Je();if(e.noextglob!==!0&&/^\([^?]/.test(ee)){Vt("star",L);continue}if(I.type==="star"){if(e.noglobstar===!0){Te(L);continue}let z=I.prev,oe=z.prev,Ne=z.type==="slash"||z.type==="bos",Ie=oe&&(oe.type==="star"||oe.type==="globstar");if(e.bash===!0&&(!Ne||ee[0]&&ee[0]!=="/")){se({type:"star",value:L,output:""});continue}let Ye=F.braces>0&&(z.type==="comma"||z.type==="brace"),oi=je.length&&(z.type==="pipe"||z.type==="paren");if(!Ne&&z.type!=="paren"&&!Ye&&!oi){se({type:"star",value:L,output:""});continue}for(;ee.slice(0,3)==="/**";){let Kt=r[F.index+4];if(Kt&&Kt!=="/")break;ee=ee.slice(3),Te("/**",3)}if(z.type==="bos"&&ge()){I.type="globstar",I.value+=L,I.output=de(e),F.output=I.output,F.globstar=!0,Te(L);continue}if(z.type==="slash"&&z.prev.type!=="bos"&&!Ie&&ge()){F.output=F.output.slice(0,-(z.output+I.output).length),z.output=`(?:${z.output}`,I.type="globstar",I.output=de(e)+(e.strictSlashes?")":"|$)"),I.value+=L,F.globstar=!0,F.output+=z.output+I.output,Te(L);continue}if(z.type==="slash"&&z.prev.type!=="bos"&&ee[0]==="/"){let Kt=ee[1]!==void 0?"|$":"";F.output=F.output.slice(0,-(z.output+I.output).length),z.output=`(?:${z.output}`,I.type="globstar",I.output=`${de(e)}${ie}|${ie}${Kt})`,I.value+=L,F.output+=z.output+I.output,F.globstar=!0,Te(L+lt()),se({type:"slash",value:"/",output:""});continue}if(z.type==="bos"&&ee[0]==="/"){I.type="globstar",I.value+=L,I.output=`(?:^|${ie}|${de(e)}${ie})`,F.output=I.output,F.globstar=!0,Te(L+lt()),se({type:"slash",value:"/",output:""});continue}F.output=F.output.slice(0,-I.output.length),I.type="globstar",I.output=de(e),I.value+=L,F.output+=I.output,F.globstar=!0,Te(L);continue}let b={type:"star",value:L,output:Ce};if(e.bash===!0){b.output=".*?",(I.type==="bos"||I.type==="slash")&&(b.output=Y+b.output),se(b);continue}if(I&&(I.type==="bracket"||I.type==="paren")&&e.regex===!0){b.output=L,se(b);continue}(F.index===F.start||I.type==="slash"||I.type==="dot")&&(I.type==="dot"?(F.output+=le,I.output+=le):e.dot===!0?(F.output+=Ae,I.output+=Ae):(F.output+=Y,I.output+=Y),we()!=="*"&&(F.output+=X,I.output+=X)),se(b)}for(;F.brackets>0;){if(e.strictBrackets===!0)throw new SyntaxError(Zi("closing","]"));F.output=vt.escapeLast(F.output,"["),Lt("brackets")}for(;F.parens>0;){if(e.strictBrackets===!0)throw new SyntaxError(Zi("closing",")"));F.output=vt.escapeLast(F.output,"("),Lt("parens")}for(;F.braces>0;){if(e.strictBrackets===!0)throw new SyntaxError(Zi("closing","}"));F.output=vt.escapeLast(F.output,"{"),Lt("braces")}if(e.strictSlashes!==!0&&(I.type==="star"||I.type==="bracket")&&se({type:"maybe_slash",value:"",output:`${ie}?`}),F.backtrack===!0){F.output="";for(let ee of F.tokens)F.output+=ee.output!=null?ee.output:ee.value,ee.suffix&&(F.output+=ee.suffix)}return F};Bu.fastpaths=(r,i)=>{let e={...i},l=typeof e.maxLength=="number"?Math.min(Cr,e.maxLength):Cr,p=r.length;if(p>l)throw new SyntaxError(`Input length: ${p}, exceeds maximum allowed length: ${l}`);r=Nu[r]||r;let m=vt.isWindows(i),{DOT_LITERAL:w,SLASH_LITERAL:O,ONE_CHAR:P,DOTS_SLASH:B,NO_DOT:D,NO_DOTS:q,NO_DOTS_SLASH:x,STAR:ie,START_ANCHOR:X}=Sr.globChars(m),J=e.dot?q:D,ce=e.dot?x:D,le=e.capture?"":"?:",Ae={negated:!1,prefix:""},Ee=e.bash===!0?".*?":ie;e.capture&&(Ee=`(${Ee})`);let xe=Y=>Y.noglobstar===!0?Ee:`(${le}(?:(?!${X}${Y.dot?B:w}).)*?)`,_e=Y=>{switch(Y){case"*":return`${J}${P}${Ee}`;case".*":return`${w}${P}${Ee}`;case"*.*":return`${J}${Ee}${w}${P}${Ee}`;case"*/*":return`${J}${Ee}${O}${P}${ce}${Ee}`;case"**":return J+xe(e);case"**/*":return`(?:${J}${xe(e)}${O})?${ce}${P}${Ee}`;case"**/*.*":return`(?:${J}${xe(e)}${O})?${ce}${Ee}${w}${P}${Ee}`;case"**/.*":return`(?:${J}${xe(e)}${O})?${w}${P}${Ee}`;default:{let ne=/^(.*?)\.(\w+)$/.exec(Y);if(!ne)return;let Ce=_e(ne[1]);return Ce?Ce+w+ne[2]:void 0}}},Se=vt.removePrefix(r,Ae),de=_e(Se);return de&&e.strictSlashes!==!0&&(de+=`${O}?`),de};Yu.exports=Bu});var Wu=te((EE,qu)=>{"use strict";var _w=require("path"),dw=xu(),Xs=Hu(),Js=Mn(),fw=In(),hw=r=>r&&typeof r=="object"&&!Array.isArray(r),Ke=(r,i,e=!1)=>{if(Array.isArray(r)){let D=r.map(x=>Ke(x,i,e));return x=>{for(let ie of D){let X=ie(x);if(X)return X}return!1}}let l=hw(r)&&r.tokens&&r.input;if(r===""||typeof r!="string"&&!l)throw new TypeError("Expected pattern to be a non-empty string");let p=i||{},m=Js.isWindows(i),w=l?Ke.compileRe(r,i):Ke.makeRe(r,i,!1,!0),O=w.state;delete w.state;let P=()=>!1;if(p.ignore){let D={...i,ignore:null,onMatch:null,onResult:null};P=Ke(p.ignore,D,e)}let B=(D,q=!1)=>{let{isMatch:x,match:ie,output:X}=Ke.test(D,w,i,{glob:r,posix:m}),J={glob:r,state:O,regex:w,posix:m,input:D,output:X,match:ie,isMatch:x};return typeof p.onResult=="function"&&p.onResult(J),x===!1?(J.isMatch=!1,q?J:!1):P(D)?(typeof p.onIgnore=="function"&&p.onIgnore(J),J.isMatch=!1,q?J:!1):(typeof p.onMatch=="function"&&p.onMatch(J),q?J:!0)};return e&&(B.state=O),B};Ke.test=(r,i,e,{glob:l,posix:p}={})=>{if(typeof r!="string")throw new TypeError("Expected input to be a string");if(r==="")return{isMatch:!1,output:""};let m=e||{},w=m.format||(p?Js.toPosixSlashes:null),O=r===l,P=O&&w?w(r):r;return O===!1&&(P=w?w(r):r,O=P===l),(O===!1||m.capture===!0)&&(m.matchBase===!0||m.basename===!0?O=Ke.matchBase(r,i,e,p):O=i.exec(P)),{isMatch:Boolean(O),match:O,output:P}};Ke.matchBase=(r,i,e,l=Js.isWindows(e))=>(i instanceof RegExp?i:Ke.makeRe(i,e)).test(_w.basename(r));Ke.isMatch=(r,i,e)=>Ke(i,e)(r);Ke.parse=(r,i)=>Array.isArray(r)?r.map(e=>Ke.parse(e,i)):Xs(r,{...i,fastpaths:!1});Ke.scan=(r,i)=>dw(r,i);Ke.compileRe=(r,i,e=!1,l=!1)=>{if(e===!0)return r.output;let p=i||{},m=p.contains?"":"^",w=p.contains?"":"$",O=`${m}(?:${r.output})${w}`;r&&r.negated===!0&&(O=`^(?!${O}).*$`);let P=Ke.toRegex(O,i);return l===!0&&(P.state=r),P};Ke.makeRe=(r,i={},e=!1,l=!1)=>{if(!r||typeof r!="string")throw new TypeError("Expected a non-empty string");let p={negated:!1,fastpaths:!0};return i.fastpaths!==!1&&(r[0]==="."||r[0]==="*")&&(p.output=Xs.fastpaths(r,i)),p.output||(p=Xs(r,i)),Ke.compileRe(p,i,e,l)};Ke.toRegex=(r,i)=>{try{let e=i||{};return new RegExp(r,e.flags||(e.nocase?"i":""))}catch(e){if(i&&i.debug===!0)throw e;return/$^/}};Ke.constants=fw;qu.exports=Ke});var $u=te((SE,Zu)=>{"use strict";Zu.exports=Wu()});var Qu=te((CE,zu)=>{"use strict";var Vu=require("util"),Ku=Su(),It=$u(),eo=Mn(),Gu=r=>r===""||r==="./",Be=(r,i,e)=>{i=[].concat(i),r=[].concat(r);let l=new Set,p=new Set,m=new Set,w=0,O=D=>{m.add(D.output),e&&e.onResult&&e.onResult(D)};for(let D=0;D<i.length;D++){let q=It(String(i[D]),{...e,onResult:O},!0),x=q.state.negated||q.state.negatedExtglob;x&&w++;for(let ie of r){let X=q(ie,!0);!(x?!X.isMatch:X.isMatch)||(x?l.add(X.output):(l.delete(X.output),p.add(X.output)))}}let B=(w===i.length?[...m]:[...p]).filter(D=>!l.has(D));if(e&&B.length===0){if(e.failglob===!0)throw new Error(`No matches found for "${i.join(", ")}"`);if(e.nonull===!0||e.nullglob===!0)return e.unescape?i.map(D=>D.replace(/\\/g,"")):i}return B};Be.match=Be;Be.matcher=(r,i)=>It(r,i);Be.isMatch=(r,i,e)=>It(i,e)(r);Be.any=Be.isMatch;Be.not=(r,i,e={})=>{i=[].concat(i).map(String);let l=new Set,p=[],w=Be(r,i,{...e,onResult:O=>{e.onResult&&e.onResult(O),p.push(O.output)}});for(let O of p)w.includes(O)||l.add(O);return[...l]};Be.contains=(r,i,e)=>{if(typeof r!="string")throw new TypeError(`Expected a string: "${Vu.inspect(r)}"`);if(Array.isArray(i))return i.some(l=>Be.contains(r,l,e));if(typeof i=="string"){if(Gu(r)||Gu(i))return!1;if(r.includes(i)||r.startsWith("./")&&r.slice(2).includes(i))return!0}return Be.isMatch(r,i,{...e,contains:!0})};Be.matchKeys=(r,i,e)=>{if(!eo.isObject(r))throw new TypeError("Expected the first argument to be an object");let l=Be(Object.keys(r),i,e),p={};for(let m of l)p[m]=r[m];return p};Be.some=(r,i,e)=>{let l=[].concat(r);for(let p of[].concat(i)){let m=It(String(p),e);if(l.some(w=>m(w)))return!0}return!1};Be.every=(r,i,e)=>{let l=[].concat(r);for(let p of[].concat(i)){let m=It(String(p),e);if(!l.every(w=>m(w)))return!1}return!0};Be.all=(r,i,e)=>{if(typeof r!="string")throw new TypeError(`Expected a string: "${Vu.inspect(r)}"`);return[].concat(i).every(l=>It(l,e)(r))};Be.capture=(r,i,e)=>{let l=eo.isWindows(e),m=It.makeRe(String(r),{...e,capture:!0}).exec(l?eo.toPosixSlashes(i):i);if(m)return m.slice(1).map(w=>w===void 0?"":w)};Be.makeRe=(...r)=>It.makeRe(...r);Be.scan=(...r)=>It.scan(...r);Be.parse=(r,i)=>{let e=[];for(let l of[].concat(r||[]))for(let p of Ku(String(l),i))e.push(It.parse(p,i));return e};Be.braces=(r,i)=>{if(typeof r!="string")throw new TypeError("Expected a string");return i&&i.nobrace===!0||!/\{.*\}/.test(r)?[r]:Ku(r,i)};Be.braceExpand=(r,i)=>{if(typeof r!="string")throw new TypeError("Expected a string");return Be.braces(r,{...i,expand:!0})};zu.exports=Be});var a_=te(be=>{"use strict";Object.defineProperty(be,"__esModule",{value:!0});be.matchAny=be.convertPatternsToRe=be.makeRe=be.getPatternParts=be.expandBraceExpansion=be.expandPatternsWithBraceExpansion=be.isAffectDepthOfReadingPattern=be.endsWithSlashGlobStar=be.hasGlobStar=be.getBaseDirectory=be.isPatternRelatedToParentDirectory=be.getPatternsOutsideCurrentDirectory=be.getPatternsInsideCurrentDirectory=be.getPositivePatterns=be.getNegativePatterns=be.isPositivePattern=be.isNegativePattern=be.convertToNegativePattern=be.convertToPositivePattern=be.isDynamicPattern=be.isStaticPattern=void 0;var bw=require("path"),pw=Hl(),to=Qu(),Xu="**",yw="\\",gw=/[*?]|^!/,vw=/\[[^[]*]/,jw=/(?:^|[^!*+?@])\([^(]*\|[^|]*\)/,mw=/[!*+?@]\([^(]*\)/,ww=/,|\.\./;function Ju(r,i={}){return!e_(r,i)}be.isStaticPattern=Ju;function e_(r,i={}){return r===""?!1:!!(i.caseSensitiveMatch===!1||r.includes(yw)||gw.test(r)||vw.test(r)||jw.test(r)||i.extglob!==!1&&mw.test(r)||i.braceExpansion!==!1&&kw(r))}be.isDynamicPattern=e_;function kw(r){let i=r.indexOf("{");if(i===-1)return!1;let e=r.indexOf("}",i+1);if(e===-1)return!1;let l=r.slice(i,e);return ww.test(l)}function Ew(r){return Ar(r)?r.slice(1):r}be.convertToPositivePattern=Ew;function Sw(r){return"!"+r}be.convertToNegativePattern=Sw;function Ar(r){return r.startsWith("!")&&r[1]!=="("}be.isNegativePattern=Ar;function t_(r){return!Ar(r)}be.isPositivePattern=t_;function Cw(r){return r.filter(Ar)}be.getNegativePatterns=Cw;function Aw(r){return r.filter(t_)}be.getPositivePatterns=Aw;function Rw(r){return r.filter(i=>!io(i))}be.getPatternsInsideCurrentDirectory=Rw;function Ow(r){return r.filter(io)}be.getPatternsOutsideCurrentDirectory=Ow;function io(r){return r.startsWith("..")||r.startsWith("./..")}be.isPatternRelatedToParentDirectory=io;function Tw(r){return pw(r,{flipBackslashes:!1})}be.getBaseDirectory=Tw;function Pw(r){return r.includes(Xu)}be.hasGlobStar=Pw;function i_(r){return r.endsWith("/"+Xu)}be.endsWithSlashGlobStar=i_;function Dw(r){let i=bw.basename(r);return i_(r)||Ju(i)}be.isAffectDepthOfReadingPattern=Dw;function Iw(r){return r.reduce((i,e)=>i.concat(n_(e)),[])}be.expandPatternsWithBraceExpansion=Iw;function n_(r){return to.braces(r,{expand:!0,nodupes:!0})}be.expandBraceExpansion=n_;function Mw(r,i){let{parts:e}=to.scan(r,Object.assign(Object.assign({},i),{parts:!0}));return e.length===0&&(e=[r]),e[0].startsWith("/")&&(e[0]=e[0].slice(1),e.unshift("")),e}be.getPatternParts=Mw;function r_(r,i){return to.makeRe(r,i)}be.makeRe=r_;function Uw(r,i){return r.map(e=>r_(e,i))}be.convertPatternsToRe=Uw;function Lw(r,i){return i.some(e=>e.test(r))}be.matchAny=Lw});var l_=te((RE,c_)=>{"use strict";var Fw=require("stream"),s_=Fw.PassThrough,xw=Array.prototype.slice;c_.exports=Nw;function Nw(){let r=[],i=xw.call(arguments),e=!1,l=i[i.length-1];l&&!Array.isArray(l)&&l.pipe==null?i.pop():l={};let p=l.end!==!1,m=l.pipeError===!0;l.objectMode==null&&(l.objectMode=!0),l.highWaterMark==null&&(l.highWaterMark=64*1024);let w=s_(l);function O(){for(let D=0,q=arguments.length;D<q;D++)r.push(o_(arguments[D],l));return P(),this}function P(){if(e)return;e=!0;let D=r.shift();if(!D){process.nextTick(B);return}Array.isArray(D)||(D=[D]);let q=D.length+1;function x(){--q>0||(e=!1,P())}function ie(X){function J(){X.removeListener("merge2UnpipeEnd",J),X.removeListener("end",J),m&&X.removeListener("error",ce),x()}function ce(le){w.emit("error",le)}if(X._readableState.endEmitted)return x();X.on("merge2UnpipeEnd",J),X.on("end",J),m&&X.on("error",ce),X.pipe(w,{end:!1}),X.resume()}for(let X=0;X<D.length;X++)ie(D[X]);x()}function B(){e=!1,w.emit("queueDrain"),p&&w.end()}return w.setMaxListeners(0),w.add=O,w.on("unpipe",function(D){D.emit("merge2UnpipeEnd")}),i.length&&O.apply(null,i),w}function o_(r,i){if(Array.isArray(r))for(let e=0,l=r.length;e<l;e++)r[e]=o_(r[e],i);else{if(!r._readableState&&r.pipe&&(r=r.pipe(s_(i))),!r._readableState||!r.pause||!r.pipe)throw new Error("Only readable stream can be merged.");r.pause()}return r}});var __=te(Rr=>{"use strict";Object.defineProperty(Rr,"__esModule",{value:!0});Rr.merge=void 0;var Bw=l_();function Yw(r){let i=Bw(r);return r.forEach(e=>{e.once("error",l=>i.emit("error",l))}),i.once("close",()=>u_(r)),i.once("end",()=>u_(r)),i}Rr.merge=Yw;function u_(r){r.forEach(i=>i.emit("close"))}});var d_=te($i=>{"use strict";Object.defineProperty($i,"__esModule",{value:!0});$i.isEmpty=$i.isString=void 0;function Hw(r){return typeof r=="string"}$i.isString=Hw;function qw(r){return r===""}$i.isEmpty=qw});var Zt=te(st=>{"use strict";Object.defineProperty(st,"__esModule",{value:!0});st.string=st.stream=st.pattern=st.path=st.fs=st.errno=st.array=void 0;var Ww=Dl();st.array=Ww;var Zw=Il();st.errno=Zw;var $w=Ml();st.fs=$w;var Gw=Ul();st.path=Gw;var Vw=a_();st.pattern=Vw;var Kw=__();st.stream=Kw;var zw=d_();st.string=zw});var b_=te(ot=>{"use strict";Object.defineProperty(ot,"__esModule",{value:!0});ot.convertPatternGroupToTask=ot.convertPatternGroupsToTasks=ot.groupPatternsByBaseDirectory=ot.getNegativePatternsAsPositive=ot.getPositivePatterns=ot.convertPatternsToTasks=ot.generate=void 0;var $t=Zt();function Qw(r,i){let e=f_(r),l=h_(r,i.ignore),p=e.filter(P=>$t.pattern.isStaticPattern(P,i)),m=e.filter(P=>$t.pattern.isDynamicPattern(P,i)),w=no(p,l,!1),O=no(m,l,!0);return w.concat(O)}ot.generate=Qw;function no(r,i,e){let l=[],p=$t.pattern.getPatternsOutsideCurrentDirectory(r),m=$t.pattern.getPatternsInsideCurrentDirectory(r),w=ro(p),O=ro(m);return l.push(...ao(w,i,e)),"."in O?l.push(so(".",m,i,e)):l.push(...ao(O,i,e)),l}ot.convertPatternsToTasks=no;function f_(r){return $t.pattern.getPositivePatterns(r)}ot.getPositivePatterns=f_;function h_(r,i){return $t.pattern.getNegativePatterns(r).concat(i).map($t.pattern.convertToPositivePattern)}ot.getNegativePatternsAsPositive=h_;function ro(r){let i={};return r.reduce((e,l)=>{let p=$t.pattern.getBaseDirectory(l);return p in e?e[p].push(l):e[p]=[l],e},i)}ot.groupPatternsByBaseDirectory=ro;function ao(r,i,e){return Object.keys(r).map(l=>so(l,r[l],i,e))}ot.convertPatternGroupsToTasks=ao;function so(r,i,e,l){return{dynamic:l,positive:i,negative:e,base:r,patterns:[].concat(i,e.map($t.pattern.convertToNegativePattern))}}ot.convertPatternGroupToTask=so});var y_=te(Gi=>{"use strict";Object.defineProperty(Gi,"__esModule",{value:!0});Gi.removeDuplicateSlashes=Gi.transform=void 0;var Xw=/(?!^)\/{2,}/g;function Jw(r){return r.map(i=>p_(i))}Gi.transform=Jw;function p_(r){return r.replace(Xw,"/")}Gi.removeDuplicateSlashes=p_});var v_=te(Or=>{"use strict";Object.defineProperty(Or,"__esModule",{value:!0});Or.read=void 0;function ek(r,i,e){i.fs.lstat(r,(l,p)=>{if(l!==null){g_(e,l);return}if(!p.isSymbolicLink()||!i.followSymbolicLink){oo(e,p);return}i.fs.stat(r,(m,w)=>{if(m!==null){if(i.throwErrorOnBrokenSymbolicLink){g_(e,m);return}oo(e,p);return}i.markSymbolicLink&&(w.isSymbolicLink=()=>!0),oo(e,w)})})}Or.read=ek;function g_(r,i){r(i)}function oo(r,i){r(null,i)}});var j_=te(Tr=>{"use strict";Object.defineProperty(Tr,"__esModule",{value:!0});Tr.read=void 0;function tk(r,i){let e=i.fs.lstatSync(r);if(!e.isSymbolicLink()||!i.followSymbolicLink)return e;try{let l=i.fs.statSync(r);return i.markSymbolicLink&&(l.isSymbolicLink=()=>!0),l}catch(l){if(!i.throwErrorOnBrokenSymbolicLink)return e;throw l}}Tr.read=tk});var m_=te(ei=>{"use strict";Object.defineProperty(ei,"__esModule",{value:!0});ei.createFileSystemAdapter=ei.FILE_SYSTEM_ADAPTER=void 0;var Pr=require("fs");ei.FILE_SYSTEM_ADAPTER={lstat:Pr.lstat,stat:Pr.stat,lstatSync:Pr.lstatSync,statSync:Pr.statSync};function ik(r){return r===void 0?ei.FILE_SYSTEM_ADAPTER:Object.assign(Object.assign({},ei.FILE_SYSTEM_ADAPTER),r)}ei.createFileSystemAdapter=ik});var w_=te(lo=>{"use strict";Object.defineProperty(lo,"__esModule",{value:!0});var nk=m_(),co=class{constructor(i={}){this._options=i,this.followSymbolicLink=this._getValue(this._options.followSymbolicLink,!0),this.fs=nk.createFileSystemAdapter(this._options.fs),this.markSymbolicLink=this._getValue(this._options.markSymbolicLink,!1),this.throwErrorOnBrokenSymbolicLink=this._getValue(this._options.throwErrorOnBrokenSymbolicLink,!0)}_getValue(i,e){return i??e}};lo.default=co});var Ai=te(ti=>{"use strict";Object.defineProperty(ti,"__esModule",{value:!0});ti.statSync=ti.stat=ti.Settings=void 0;var k_=v_(),rk=j_(),uo=w_();ti.Settings=uo.default;function ak(r,i,e){if(typeof i=="function"){k_.read(r,_o(),i);return}k_.read(r,_o(i),e)}ti.stat=ak;function sk(r,i){let e=_o(i);return rk.read(r,e)}ti.statSync=sk;function _o(r={}){return r instanceof uo.default?r:new uo.default(r)}});var C_=te((NE,S_)=>{var E_;S_.exports=typeof queueMicrotask=="function"?queueMicrotask.bind(typeof window<"u"?window:global):r=>(E_||(E_=Promise.resolve())).then(r).catch(i=>setTimeout(()=>{throw i},0))});var R_=te((BE,A_)=>{A_.exports=ck;var ok=C_();function ck(r,i){let e,l,p,m=!0;Array.isArray(r)?(e=[],l=r.length):(p=Object.keys(r),e={},l=p.length);function w(P){function B(){i&&i(P,e),i=null}m?ok(B):B()}function O(P,B,D){e[P]=D,(--l===0||B)&&w(B)}l?p?p.forEach(function(P){r[P](function(B,D){O(P,B,D)})}):r.forEach(function(P,B){P(function(D,q){O(B,D,q)})}):w(null),m=!1}});var fo=te(Ir=>{"use strict";Object.defineProperty(Ir,"__esModule",{value:!0});Ir.IS_SUPPORT_READDIR_WITH_FILE_TYPES=void 0;var Dr=process.versions.node.split(".");if(Dr[0]===void 0||Dr[1]===void 0)throw new Error(`Unexpected behavior. The 'process.versions.node' variable has invalid value: ${process.versions.node}`);var O_=Number.parseInt(Dr[0],10),lk=Number.parseInt(Dr[1],10),T_=10,uk=10,_k=O_>T_,dk=O_===T_&&lk>=uk;Ir.IS_SUPPORT_READDIR_WITH_FILE_TYPES=_k||dk});var P_=te(Mr=>{"use strict";Object.defineProperty(Mr,"__esModule",{value:!0});Mr.createDirentFromStats=void 0;var ho=class{constructor(i,e){this.name=i,this.isBlockDevice=e.isBlockDevice.bind(e),this.isCharacterDevice=e.isCharacterDevice.bind(e),this.isDirectory=e.isDirectory.bind(e),this.isFIFO=e.isFIFO.bind(e),this.isFile=e.isFile.bind(e),this.isSocket=e.isSocket.bind(e),this.isSymbolicLink=e.isSymbolicLink.bind(e)}};function fk(r,i){return new ho(r,i)}Mr.createDirentFromStats=fk});var bo=te(Ur=>{"use strict";Object.defineProperty(Ur,"__esModule",{value:!0});Ur.fs=void 0;var hk=P_();Ur.fs=hk});var po=te(Lr=>{"use strict";Object.defineProperty(Lr,"__esModule",{value:!0});Lr.joinPathSegments=void 0;function bk(r,i,e){return r.endsWith(e)?r+i:r+e+i}Lr.joinPathSegments=bk});var F_=te(ii=>{"use strict";Object.defineProperty(ii,"__esModule",{value:!0});ii.readdir=ii.readdirWithFileTypes=ii.read=void 0;var pk=Ai(),D_=R_(),yk=fo(),I_=bo(),M_=po();function gk(r,i,e){if(!i.stats&&yk.IS_SUPPORT_READDIR_WITH_FILE_TYPES){U_(r,i,e);return}L_(r,i,e)}ii.read=gk;function U_(r,i,e){i.fs.readdir(r,{withFileTypes:!0},(l,p)=>{if(l!==null){Fr(e,l);return}let m=p.map(O=>({dirent:O,name:O.name,path:M_.joinPathSegments(r,O.name,i.pathSegmentSeparator)}));if(!i.followSymbolicLinks){yo(e,m);return}let w=m.map(O=>vk(O,i));D_(w,(O,P)=>{if(O!==null){Fr(e,O);return}yo(e,P)})})}ii.readdirWithFileTypes=U_;function vk(r,i){return e=>{if(!r.dirent.isSymbolicLink()){e(null,r);return}i.fs.stat(r.path,(l,p)=>{if(l!==null){if(i.throwErrorOnBrokenSymbolicLink){e(l);return}e(null,r);return}r.dirent=I_.fs.createDirentFromStats(r.name,p),e(null,r)})}}function L_(r,i,e){i.fs.readdir(r,(l,p)=>{if(l!==null){Fr(e,l);return}let m=p.map(w=>{let O=M_.joinPathSegments(r,w,i.pathSegmentSeparator);return P=>{pk.stat(O,i.fsStatSettings,(B,D)=>{if(B!==null){P(B);return}let q={name:w,path:O,dirent:I_.fs.createDirentFromStats(w,D)};i.stats&&(q.stats=D),P(null,q)})}});D_(m,(w,O)=>{if(w!==null){Fr(e,w);return}yo(e,O)})})}ii.readdir=L_;function Fr(r,i){r(i)}function yo(r,i){r(null,i)}});var H_=te(ni=>{"use strict";Object.defineProperty(ni,"__esModule",{value:!0});ni.readdir=ni.readdirWithFileTypes=ni.read=void 0;var jk=Ai(),mk=fo(),x_=bo(),N_=po();function wk(r,i){return!i.stats&&mk.IS_SUPPORT_READDIR_WITH_FILE_TYPES?B_(r,i):Y_(r,i)}ni.read=wk;function B_(r,i){return i.fs.readdirSync(r,{withFileTypes:!0}).map(l=>{let p={dirent:l,name:l.name,path:N_.joinPathSegments(r,l.name,i.pathSegmentSeparator)};if(p.dirent.isSymbolicLink()&&i.followSymbolicLinks)try{let m=i.fs.statSync(p.path);p.dirent=x_.fs.createDirentFromStats(p.name,m)}catch(m){if(i.throwErrorOnBrokenSymbolicLink)throw m}return p})}ni.readdirWithFileTypes=B_;function Y_(r,i){return i.fs.readdirSync(r).map(l=>{let p=N_.joinPathSegments(r,l,i.pathSegmentSeparator),m=jk.statSync(p,i.fsStatSettings),w={name:l,path:p,dirent:x_.fs.createDirentFromStats(l,m)};return i.stats&&(w.stats=m),w})}ni.readdir=Y_});var q_=te(ri=>{"use strict";Object.defineProperty(ri,"__esModule",{value:!0});ri.createFileSystemAdapter=ri.FILE_SYSTEM_ADAPTER=void 0;var Vi=require("fs");ri.FILE_SYSTEM_ADAPTER={lstat:Vi.lstat,stat:Vi.stat,lstatSync:Vi.lstatSync,statSync:Vi.statSync,readdir:Vi.readdir,readdirSync:Vi.readdirSync};function kk(r){return r===void 0?ri.FILE_SYSTEM_ADAPTER:Object.assign(Object.assign({},ri.FILE_SYSTEM_ADAPTER),r)}ri.createFileSystemAdapter=kk});var W_=te(vo=>{"use strict";Object.defineProperty(vo,"__esModule",{value:!0});var Ek=require("path"),Sk=Ai(),Ck=q_(),go=class{constructor(i={}){this._options=i,this.followSymbolicLinks=this._getValue(this._options.followSymbolicLinks,!1),this.fs=Ck.createFileSystemAdapter(this._options.fs),this.pathSegmentSeparator=this._getValue(this._options.pathSegmentSeparator,Ek.sep),this.stats=this._getValue(this._options.stats,!1),this.throwErrorOnBrokenSymbolicLink=this._getValue(this._options.throwErrorOnBrokenSymbolicLink,!0),this.fsStatSettings=new Sk.Settings({followSymbolicLink:this.followSymbolicLinks,fs:this.fs,throwErrorOnBrokenSymbolicLink:this.throwErrorOnBrokenSymbolicLink})}_getValue(i,e){return i??e}};vo.default=go});var xr=te(ai=>{"use strict";Object.defineProperty(ai,"__esModule",{value:!0});ai.Settings=ai.scandirSync=ai.scandir=void 0;var Z_=F_(),Ak=H_(),jo=W_();ai.Settings=jo.default;function Rk(r,i,e){if(typeof i=="function"){Z_.read(r,mo(),i);return}Z_.read(r,mo(i),e)}ai.scandir=Rk;function Ok(r,i){let e=mo(i);return Ak.read(r,e)}ai.scandirSync=Ok;function mo(r={}){return r instanceof jo.default?r:new jo.default(r)}});var G_=te((zE,$_)=>{"use strict";function Tk(r){var i=new r,e=i;function l(){var m=i;return m.next?i=m.next:(i=new r,e=i),m.next=null,m}function p(m){e.next=m,e=m}return{get:l,release:p}}$_.exports=Tk});var K_=te((QE,wo)=>{"use strict";var Pk=G_();function V_(r,i,e){if(typeof r=="function"&&(e=i,i=r,r=null),e<1)throw new Error("fastqueue concurrency must be greater than 1");var l=Pk(Dk),p=null,m=null,w=0,O=null,P={push:J,drain:wt,saturated:wt,pause:D,paused:!1,concurrency:e,running:B,resume:ie,idle:X,length:q,getQueue:x,unshift:ce,empty:wt,kill:Ae,killAndDrain:Ee,error:xe};return P;function B(){return w}function D(){P.paused=!0}function q(){for(var _e=p,Se=0;_e;)_e=_e.next,Se++;return Se}function x(){for(var _e=p,Se=[];_e;)Se.push(_e.value),_e=_e.next;return Se}function ie(){if(!!P.paused){P.paused=!1;for(var _e=0;_e<P.concurrency;_e++)w++,le()}}function X(){return w===0&&P.length()===0}function J(_e,Se){var de=l.get();de.context=r,de.release=le,de.value=_e,de.callback=Se||wt,de.errorHandler=O,w===P.concurrency||P.paused?m?(m.next=de,m=de):(p=de,m=de,P.saturated()):(w++,i.call(r,de.value,de.worked))}function ce(_e,Se){var de=l.get();de.context=r,de.release=le,de.value=_e,de.callback=Se||wt,w===P.concurrency||P.paused?p?(de.next=p,p=de):(p=de,m=de,P.saturated()):(w++,i.call(r,de.value,de.worked))}function le(_e){_e&&l.release(_e);var Se=p;Se?P.paused?w--:(m===p&&(m=null),p=Se.next,Se.next=null,i.call(r,Se.value,Se.worked),m===null&&P.empty()):--w===0&&P.drain()}function Ae(){p=null,m=null,P.drain=wt}function Ee(){p=null,m=null,P.drain(),P.drain=wt}function xe(_e){O=_e}}function wt(){}function Dk(){this.value=null,this.callback=wt,this.next=null,this.release=wt,this.context=null,this.errorHandler=null;var r=this;this.worked=function(e,l){var p=r.callback,m=r.errorHandler,w=r.value;r.value=null,r.callback=wt,r.errorHandler&&m(e,w),p.call(r.context,e,l),r.release(r)}}function Ik(r,i,e){typeof r=="function"&&(e=i,i=r,r=null);function l(D,q){i.call(this,D).then(function(x){q(null,x)},q)}var p=V_(r,l,e),m=p.push,w=p.unshift;return p.push=O,p.unshift=P,p.drained=B,p;function O(D){var q=new Promise(function(x,ie){m(D,function(X,J){if(X){ie(X);return}x(J)})});return q.catch(wt),q}function P(D){var q=new Promise(function(x,ie){w(D,function(X,J){if(X){ie(X);return}x(J)})});return q.catch(wt),q}function B(){var D=p.drain,q=new Promise(function(x){p.drain=function(){D(),x()}});return q}}wo.exports=V_;wo.exports.promise=Ik});var Nr=te(Mt=>{"use strict";Object.defineProperty(Mt,"__esModule",{value:!0});Mt.joinPathSegments=Mt.replacePathSegmentSeparator=Mt.isAppliedFilter=Mt.isFatalError=void 0;function Mk(r,i){return r.errorFilter===null?!0:!r.errorFilter(i)}Mt.isFatalError=Mk;function Uk(r,i){return r===null||r(i)}Mt.isAppliedFilter=Uk;function Lk(r,i){return r.split(/[/\\]/).join(i)}Mt.replacePathSegmentSeparator=Lk;function Fk(r,i,e){return r===""?i:r.endsWith(e)?r+i:r+e+i}Mt.joinPathSegments=Fk});var So=te(Eo=>{"use strict";Object.defineProperty(Eo,"__esModule",{value:!0});var xk=Nr(),ko=class{constructor(i,e){this._root=i,this._settings=e,this._root=xk.replacePathSegmentSeparator(i,e.pathSegmentSeparator)}};Eo.default=ko});var Ro=te(Ao=>{"use strict";Object.defineProperty(Ao,"__esModule",{value:!0});var Nk=require("events"),Bk=xr(),Yk=K_(),Br=Nr(),Hk=So(),Co=class extends Hk.default{constructor(i,e){super(i,e),this._settings=e,this._scandir=Bk.scandir,this._emitter=new Nk.EventEmitter,this._queue=Yk(this._worker.bind(this),this._settings.concurrency),this._isFatalError=!1,this._isDestroyed=!1,this._queue.drain=()=>{this._isFatalError||this._emitter.emit("end")}}read(){return this._isFatalError=!1,this._isDestroyed=!1,setImmediate(()=>{this._pushToQueue(this._root,this._settings.basePath)}),this._emitter}get isDestroyed(){return this._isDestroyed}destroy(){if(this._isDestroyed)throw new Error("The reader is already destroyed");this._isDestroyed=!0,this._queue.killAndDrain()}onEntry(i){this._emitter.on("entry",i)}onError(i){this._emitter.once("error",i)}onEnd(i){this._emitter.once("end",i)}_pushToQueue(i,e){let l={directory:i,base:e};this._queue.push(l,p=>{p!==null&&this._handleError(p)})}_worker(i,e){this._scandir(i.directory,this._settings.fsScandirSettings,(l,p)=>{if(l!==null){e(l,void 0);return}for(let m of p)this._handleEntry(m,i.base);e(null,void 0)})}_handleError(i){this._isDestroyed||!Br.isFatalError(this._settings,i)||(this._isFatalError=!0,this._isDestroyed=!0,this._emitter.emit("error",i))}_handleEntry(i,e){if(this._isDestroyed||this._isFatalError)return;let l=i.path;e!==void 0&&(i.path=Br.joinPathSegments(e,i.name,this._settings.pathSegmentSeparator)),Br.isAppliedFilter(this._settings.entryFilter,i)&&this._emitEntry(i),i.dirent.isDirectory()&&Br.isAppliedFilter(this._settings.deepFilter,i)&&this._pushToQueue(l,e===void 0?void 0:i.path)}_emitEntry(i){this._emitter.emit("entry",i)}};Ao.default=Co});var z_=te(To=>{"use strict";Object.defineProperty(To,"__esModule",{value:!0});var qk=Ro(),Oo=class{constructor(i,e){this._root=i,this._settings=e,this._reader=new qk.default(this._root,this._settings),this._storage=[]}read(i){this._reader.onError(e=>{Wk(i,e)}),this._reader.onEntry(e=>{this._storage.push(e)}),this._reader.onEnd(()=>{Zk(i,this._storage)}),this._reader.read()}};To.default=Oo;function Wk(r,i){r(i)}function Zk(r,i){r(null,i)}});var Q_=te(Do=>{"use strict";Object.defineProperty(Do,"__esModule",{value:!0});var $k=require("stream"),Gk=Ro(),Po=class{constructor(i,e){this._root=i,this._settings=e,this._reader=new Gk.default(this._root,this._settings),this._stream=new $k.Readable({objectMode:!0,read:()=>{},destroy:()=>{this._reader.isDestroyed||this._reader.destroy()}})}read(){return this._reader.onError(i=>{this._stream.emit("error",i)}),this._reader.onEntry(i=>{this._stream.push(i)}),this._reader.onEnd(()=>{this._stream.push(null)}),this._reader.read(),this._stream}};Do.default=Po});var X_=te(Mo=>{"use strict";Object.defineProperty(Mo,"__esModule",{value:!0});var Vk=xr(),Yr=Nr(),Kk=So(),Io=class extends Kk.default{constructor(){super(...arguments),this._scandir=Vk.scandirSync,this._storage=[],this._queue=new Set}read(){return this._pushToQueue(this._root,this._settings.basePath),this._handleQueue(),this._storage}_pushToQueue(i,e){this._queue.add({directory:i,base:e})}_handleQueue(){for(let i of this._queue.values())this._handleDirectory(i.directory,i.base)}_handleDirectory(i,e){try{let l=this._scandir(i,this._settings.fsScandirSettings);for(let p of l)this._handleEntry(p,e)}catch(l){this._handleError(l)}}_handleError(i){if(!!Yr.isFatalError(this._settings,i))throw i}_handleEntry(i,e){let l=i.path;e!==void 0&&(i.path=Yr.joinPathSegments(e,i.name,this._settings.pathSegmentSeparator)),Yr.isAppliedFilter(this._settings.entryFilter,i)&&this._pushToStorage(i),i.dirent.isDirectory()&&Yr.isAppliedFilter(this._settings.deepFilter,i)&&this._pushToQueue(l,e===void 0?void 0:i.path)}_pushToStorage(i){this._storage.push(i)}};Mo.default=Io});var J_=te(Lo=>{"use strict";Object.defineProperty(Lo,"__esModule",{value:!0});var zk=X_(),Uo=class{constructor(i,e){this._root=i,this._settings=e,this._reader=new zk.default(this._root,this._settings)}read(){return this._reader.read()}};Lo.default=Uo});var ed=te(xo=>{"use strict";Object.defineProperty(xo,"__esModule",{value:!0});var Qk=require("path"),Xk=xr(),Fo=class{constructor(i={}){this._options=i,this.basePath=this._getValue(this._options.basePath,void 0),this.concurrency=this._getValue(this._options.concurrency,Number.POSITIVE_INFINITY),this.deepFilter=this._getValue(this._options.deepFilter,null),this.entryFilter=this._getValue(this._options.entryFilter,null),this.errorFilter=this._getValue(this._options.errorFilter,null),this.pathSegmentSeparator=this._getValue(this._options.pathSegmentSeparator,Qk.sep),this.fsScandirSettings=new Xk.Settings({followSymbolicLinks:this._options.followSymbolicLinks,fs:this._options.fs,pathSegmentSeparator:this._options.pathSegmentSeparator,stats:this._options.stats,throwErrorOnBrokenSymbolicLink:this._options.throwErrorOnBrokenSymbolicLink})}_getValue(i,e){return i??e}};xo.default=Fo});var Bo=te(Ut=>{"use strict";Object.defineProperty(Ut,"__esModule",{value:!0});Ut.Settings=Ut.walkStream=Ut.walkSync=Ut.walk=void 0;var td=z_(),Jk=Q_(),e0=J_(),No=ed();Ut.Settings=No.default;function t0(r,i,e){if(typeof i=="function"){new td.default(r,Hr()).read(i);return}new td.default(r,Hr(i)).read(e)}Ut.walk=t0;function i0(r,i){let e=Hr(i);return new e0.default(r,e).read()}Ut.walkSync=i0;function n0(r,i){let e=Hr(i);return new Jk.default(r,e).read()}Ut.walkStream=n0;function Hr(r={}){return r instanceof No.default?r:new No.default(r)}});var qo=te(Ho=>{"use strict";Object.defineProperty(Ho,"__esModule",{value:!0});var r0=require("path"),a0=Ai(),id=Zt(),Yo=class{constructor(i){this._settings=i,this._fsStatSettings=new a0.Settings({followSymbolicLink:this._settings.followSymbolicLinks,fs:this._settings.fs,throwErrorOnBrokenSymbolicLink:this._settings.followSymbolicLinks})}_getFullEntryPath(i){return r0.resolve(this._settings.cwd,i)}_makeEntry(i,e){let l={name:e,path:e,dirent:id.fs.createDirentFromStats(e,i)};return this._settings.stats&&(l.stats=i),l}_isFatalError(i){return!id.errno.isEnoentCodeError(i)&&!this._settings.suppressErrors}};Ho.default=Yo});var $o=te(Zo=>{"use strict";Object.defineProperty(Zo,"__esModule",{value:!0});var s0=require("stream"),o0=Ai(),c0=Bo(),l0=qo(),Wo=class extends l0.default{constructor(){super(...arguments),this._walkStream=c0.walkStream,this._stat=o0.stat}dynamic(i,e){return this._walkStream(i,e)}static(i,e){let l=i.map(this._getFullEntryPath,this),p=new s0.PassThrough({objectMode:!0});p._write=(m,w,O)=>this._getEntry(l[m],i[m],e).then(P=>{P!==null&&e.entryFilter(P)&&p.push(P),m===l.length-1&&p.end(),O()}).catch(O);for(let m=0;m<l.length;m++)p.write(m);return p}_getEntry(i,e,l){return this._getStat(i).then(p=>this._makeEntry(p,e)).catch(p=>{if(l.errorFilter(p))return null;throw p})}_getStat(i){return new Promise((e,l)=>{this._stat(i,this._fsStatSettings,(p,m)=>p===null?e(m):l(p))})}};Zo.default=Wo});var nd=te(Vo=>{"use strict";Object.defineProperty(Vo,"__esModule",{value:!0});var Ki=Zt(),Go=class{constructor(i,e,l){this._patterns=i,this._settings=e,this._micromatchOptions=l,this._storage=[],this._fillStorage()}_fillStorage(){let i=Ki.pattern.expandPatternsWithBraceExpansion(this._patterns);for(let e of i){let l=this._getPatternSegments(e),p=this._splitSegmentsIntoSections(l);this._storage.push({complete:p.length<=1,pattern:e,segments:l,sections:p})}}_getPatternSegments(i){return Ki.pattern.getPatternParts(i,this._micromatchOptions).map(l=>Ki.pattern.isDynamicPattern(l,this._settings)?{dynamic:!0,pattern:l,patternRe:Ki.pattern.makeRe(l,this._micromatchOptions)}:{dynamic:!1,pattern:l})}_splitSegmentsIntoSections(i){return Ki.array.splitWhen(i,e=>e.dynamic&&Ki.pattern.hasGlobStar(e.pattern))}};Vo.default=Go});var rd=te(zo=>{"use strict";Object.defineProperty(zo,"__esModule",{value:!0});var u0=nd(),Ko=class extends u0.default{match(i){let e=i.split("/"),l=e.length,p=this._storage.filter(m=>!m.complete||m.segments.length>l);for(let m of p){let w=m.sections[0];if(!m.complete&&l>w.length||e.every((P,B)=>{let D=m.segments[B];return!!(D.dynamic&&D.patternRe.test(P)||!D.dynamic&&D.pattern===P)}))return!0}return!1}};zo.default=Ko});var ad=te(Xo=>{"use strict";Object.defineProperty(Xo,"__esModule",{value:!0});var qr=Zt(),_0=rd(),Qo=class{constructor(i,e){this._settings=i,this._micromatchOptions=e}getFilter(i,e,l){let p=this._getMatcher(e),m=this._getNegativePatternsRe(l);return w=>this._filter(i,w,p,m)}_getMatcher(i){return new _0.default(i,this._settings,this._micromatchOptions)}_getNegativePatternsRe(i){let e=i.filter(qr.pattern.isAffectDepthOfReadingPattern);return qr.pattern.convertPatternsToRe(e,this._micromatchOptions)}_filter(i,e,l,p){if(this._isSkippedByDeep(i,e.path)||this._isSkippedSymbolicLink(e))return!1;let m=qr.path.removeLeadingDotSegment(e.path);return this._isSkippedByPositivePatterns(m,l)?!1:this._isSkippedByNegativePatterns(m,p)}_isSkippedByDeep(i,e){return this._settings.deep===1/0?!1:this._getEntryLevel(i,e)>=this._settings.deep}_getEntryLevel(i,e){let l=e.split("/").length;if(i==="")return l;let p=i.split("/").length;return l-p}_isSkippedSymbolicLink(i){return!this._settings.followSymbolicLinks&&i.dirent.isSymbolicLink()}_isSkippedByPositivePatterns(i,e){return!this._settings.baseNameMatch&&!e.match(i)}_isSkippedByNegativePatterns(i,e){return!qr.pattern.matchAny(i,e)}};Xo.default=Qo});var sd=te(ec=>{"use strict";Object.defineProperty(ec,"__esModule",{value:!0});var Ri=Zt(),Jo=class{constructor(i,e){this._settings=i,this._micromatchOptions=e,this.index=new Map}getFilter(i,e){let l=Ri.pattern.convertPatternsToRe(i,this._micromatchOptions),p=Ri.pattern.convertPatternsToRe(e,this._micromatchOptions);return m=>this._filter(m,l,p)}_filter(i,e,l){if(this._settings.unique&&this._isDuplicateEntry(i)||this._onlyFileFilter(i)||this._onlyDirectoryFilter(i)||this._isSkippedByAbsoluteNegativePatterns(i.path,l))return!1;let p=this._settings.baseNameMatch?i.name:i.path,m=this._isMatchToPatterns(p,e)&&!this._isMatchToPatterns(i.path,l);return this._settings.unique&&m&&this._createIndexRecord(i),m}_isDuplicateEntry(i){return this.index.has(i.path)}_createIndexRecord(i){this.index.set(i.path,void 0)}_onlyFileFilter(i){return this._settings.onlyFiles&&!i.dirent.isFile()}_onlyDirectoryFilter(i){return this._settings.onlyDirectories&&!i.dirent.isDirectory()}_isSkippedByAbsoluteNegativePatterns(i,e){if(!this._settings.absolute)return!1;let l=Ri.path.makeAbsolute(this._settings.cwd,i);return Ri.pattern.matchAny(l,e)}_isMatchToPatterns(i,e){let l=Ri.path.removeLeadingDotSegment(i);return Ri.pattern.matchAny(l,e)||Ri.pattern.matchAny(l+"/",e)}};ec.default=Jo});var od=te(ic=>{"use strict";Object.defineProperty(ic,"__esModule",{value:!0});var d0=Zt(),tc=class{constructor(i){this._settings=i}getFilter(){return i=>this._isNonFatalError(i)}_isNonFatalError(i){return d0.errno.isEnoentCodeError(i)||this._settings.suppressErrors}};ic.default=tc});var ld=te(rc=>{"use strict";Object.defineProperty(rc,"__esModule",{value:!0});var cd=Zt(),nc=class{constructor(i){this._settings=i}getTransformer(){return i=>this._transform(i)}_transform(i){let e=i.path;return this._settings.absolute&&(e=cd.path.makeAbsolute(this._settings.cwd,e),e=cd.path.unixify(e)),this._settings.markDirectories&&i.dirent.isDirectory()&&(e+="/"),this._settings.objectMode?Object.assign(Object.assign({},i),{path:e}):e}};rc.default=nc});var Wr=te(sc=>{"use strict";Object.defineProperty(sc,"__esModule",{value:!0});var f0=require("path"),h0=ad(),b0=sd(),p0=od(),y0=ld(),ac=class{constructor(i){this._settings=i,this.errorFilter=new p0.default(this._settings),this.entryFilter=new b0.default(this._settings,this._getMicromatchOptions()),this.deepFilter=new h0.default(this._settings,this._getMicromatchOptions()),this.entryTransformer=new y0.default(this._settings)}_getRootDirectory(i){return f0.resolve(this._settings.cwd,i.base)}_getReaderOptions(i){let e=i.base==="."?"":i.base;return{basePath:e,pathSegmentSeparator:"/",concurrency:this._settings.concurrency,deepFilter:this.deepFilter.getFilter(e,i.positive,i.negative),entryFilter:this.entryFilter.getFilter(i.positive,i.negative),errorFilter:this.errorFilter.getFilter(),followSymbolicLinks:this._settings.followSymbolicLinks,fs:this._settings.fs,stats:this._settings.stats,throwErrorOnBrokenSymbolicLink:this._settings.throwErrorOnBrokenSymbolicLink,transform:this.entryTransformer.getTransformer()}}_getMicromatchOptions(){return{dot:this._settings.dot,matchBase:this._settings.baseNameMatch,nobrace:!this._settings.braceExpansion,nocase:!this._settings.caseSensitiveMatch,noext:!this._settings.extglob,noglobstar:!this._settings.globstar,posix:!0,strictSlashes:!1}}};sc.default=ac});var ud=te(cc=>{"use strict";Object.defineProperty(cc,"__esModule",{value:!0});var g0=$o(),v0=Wr(),oc=class extends v0.default{constructor(){super(...arguments),this._reader=new g0.default(this._settings)}read(i){let e=this._getRootDirectory(i),l=this._getReaderOptions(i),p=[];return new Promise((m,w)=>{let O=this.api(e,i,l);O.once("error",w),O.on("data",P=>p.push(l.transform(P))),O.once("end",()=>m(p))})}api(i,e,l){return e.dynamic?this._reader.dynamic(i,l):this._reader.static(e.patterns,l)}};cc.default=oc});var _d=te(uc=>{"use strict";Object.defineProperty(uc,"__esModule",{value:!0});var j0=require("stream"),m0=$o(),w0=Wr(),lc=class extends w0.default{constructor(){super(...arguments),this._reader=new m0.default(this._settings)}read(i){let e=this._getRootDirectory(i),l=this._getReaderOptions(i),p=this.api(e,i,l),m=new j0.Readable({objectMode:!0,read:()=>{}});return p.once("error",w=>m.emit("error",w)).on("data",w=>m.emit("data",l.transform(w))).once("end",()=>m.emit("end")),m.once("close",()=>p.destroy()),m}api(i,e,l){return e.dynamic?this._reader.dynamic(i,l):this._reader.static(e.patterns,l)}};uc.default=lc});var dd=te(dc=>{"use strict";Object.defineProperty(dc,"__esModule",{value:!0});var k0=Ai(),E0=Bo(),S0=qo(),_c=class extends S0.default{constructor(){super(...arguments),this._walkSync=E0.walkSync,this._statSync=k0.statSync}dynamic(i,e){return this._walkSync(i,e)}static(i,e){let l=[];for(let p of i){let m=this._getFullEntryPath(p),w=this._getEntry(m,p,e);w===null||!e.entryFilter(w)||l.push(w)}return l}_getEntry(i,e,l){try{let p=this._getStat(i);return this._makeEntry(p,e)}catch(p){if(l.errorFilter(p))return null;throw p}}_getStat(i){return this._statSync(i,this._fsStatSettings)}};dc.default=_c});var fd=te(hc=>{"use strict";Object.defineProperty(hc,"__esModule",{value:!0});var C0=dd(),A0=Wr(),fc=class extends A0.default{constructor(){super(...arguments),this._reader=new C0.default(this._settings)}read(i){let e=this._getRootDirectory(i),l=this._getReaderOptions(i);return this.api(e,i,l).map(l.transform)}api(i,e,l){return e.dynamic?this._reader.dynamic(i,l):this._reader.static(e.patterns,l)}};hc.default=fc});var hd=te(Qi=>{"use strict";Object.defineProperty(Qi,"__esModule",{value:!0});Qi.DEFAULT_FILE_SYSTEM_ADAPTER=void 0;var zi=require("fs"),R0=require("os"),O0=Math.max(R0.cpus().length,1);Qi.DEFAULT_FILE_SYSTEM_ADAPTER={lstat:zi.lstat,lstatSync:zi.lstatSync,stat:zi.stat,statSync:zi.statSync,readdir:zi.readdir,readdirSync:zi.readdirSync};var bc=class{constructor(i={}){this._options=i,this.absolute=this._getValue(this._options.absolute,!1),this.baseNameMatch=this._getValue(this._options.baseNameMatch,!1),this.braceExpansion=this._getValue(this._options.braceExpansion,!0),this.caseSensitiveMatch=this._getValue(this._options.caseSensitiveMatch,!0),this.concurrency=this._getValue(this._options.concurrency,O0),this.cwd=this._getValue(this._options.cwd,process.cwd()),this.deep=this._getValue(this._options.deep,1/0),this.dot=this._getValue(this._options.dot,!1),this.extglob=this._getValue(this._options.extglob,!0),this.followSymbolicLinks=this._getValue(this._options.followSymbolicLinks,!0),this.fs=this._getFileSystemMethods(this._options.fs),this.globstar=this._getValue(this._options.globstar,!0),this.ignore=this._getValue(this._options.ignore,[]),this.markDirectories=this._getValue(this._options.markDirectories,!1),this.objectMode=this._getValue(this._options.objectMode,!1),this.onlyDirectories=this._getValue(this._options.onlyDirectories,!1),this.onlyFiles=this._getValue(this._options.onlyFiles,!0),this.stats=this._getValue(this._options.stats,!1),this.suppressErrors=this._getValue(this._options.suppressErrors,!1),this.throwErrorOnBrokenSymbolicLink=this._getValue(this._options.throwErrorOnBrokenSymbolicLink,!1),this.unique=this._getValue(this._options.unique,!0),this.onlyDirectories&&(this.onlyFiles=!1),this.stats&&(this.objectMode=!0)}_getValue(i,e){return i===void 0?e:i}_getFileSystemMethods(i={}){return Object.assign(Object.assign({},Qi.DEFAULT_FILE_SYSTEM_ADAPTER),i)}};Qi.default=bc});var gd=te((mS,yd)=>{"use strict";var bd=b_(),pd=y_(),T0=ud(),P0=_d(),D0=fd(),pc=hd(),Oi=Zt();async function yc(r,i){Xi(r);let e=gc(r,T0.default,i),l=await Promise.all(e);return Oi.array.flatten(l)}(function(r){function i(w,O){Xi(w);let P=gc(w,D0.default,O);return Oi.array.flatten(P)}r.sync=i;function e(w,O){Xi(w);let P=gc(w,P0.default,O);return Oi.stream.merge(P)}r.stream=e;function l(w,O){Xi(w);let P=pd.transform([].concat(w)),B=new pc.default(O);return bd.generate(P,B)}r.generateTasks=l;function p(w,O){Xi(w);let P=new pc.default(O);return Oi.pattern.isDynamicPattern(w,P)}r.isDynamicPattern=p;function m(w){return Xi(w),Oi.path.escape(w)}r.escapePath=m})(yc||(yc={}));function gc(r,i,e){let l=pd.transform([].concat(r)),p=new pc.default(e),m=bd.generate(l,p),w=new i(p);return m.map(w.read,w)}function Xi(r){if(![].concat(r).every(l=>Oi.string.isString(l)&&!Oi.string.isEmpty(l)))throw new TypeError("Patterns must be a string (non empty) or an array of strings")}yd.exports=yc});var I0={};Aj(I0,{registerWorker:()=>jd});module.exports=Rj(I0);var ke=Pn(require("apache-arrow"));function Hi(r){switch(r.typeId){case ke.Type.Binary:return{sqlType:"binary"};case ke.Type.Bool:return{sqlType:"bool"};case ke.Type.Date:return{sqlType:"date"};case ke.Type.DateDay:return{sqlType:"date32[d]"};case ke.Type.DateMillisecond:return{sqlType:"date64[ms]"};case ke.Type.Decimal:{let i=r;return{sqlType:"decimal",precision:i.precision,scale:i.scale}}case ke.Type.Float:return{sqlType:"float"};case ke.Type.Float16:return{sqlType:"float16"};case ke.Type.Float32:return{sqlType:"float32"};case ke.Type.Float64:return{sqlType:"float64"};case ke.Type.Int:return{sqlType:"int32"};case ke.Type.Int16:return{sqlType:"int16"};case ke.Type.Int32:return{sqlType:"int32"};case ke.Type.Int64:return{sqlType:"int64"};case ke.Type.Uint16:return{sqlType:"uint16"};case ke.Type.Uint32:return{sqlType:"uint32"};case ke.Type.Uint64:return{sqlType:"uint64"};case ke.Type.Uint8:return{sqlType:"uint8"};case ke.Type.IntervalDayTime:return{sqlType:"interval[dt]"};case ke.Type.IntervalYearMonth:return{sqlType:"interval[m]"};case ke.Type.List:return{sqlType:"list",valueType:Hi(r.valueType)};case ke.Type.FixedSizeBinary:return{sqlType:"fixedsizebinary",byteWidth:r.byteWidth};case ke.Type.Null:return{sqlType:"null"};case ke.Type.Utf8:return{sqlType:"utf8"};case ke.Type.Struct:return{sqlType:"struct",fields:r.children.map(e=>ur(e.name,e.type))};case ke.Type.Map:{let i=r;return{sqlType:"map",keyType:Hi(i.keyType),valueType:Hi(i.valueType)}}case ke.Type.Time:return{sqlType:"time[s]"};case ke.Type.TimeMicrosecond:return{sqlType:"time[us]"};case ke.Type.TimeMillisecond:return{sqlType:"time[ms]"};case ke.Type.TimeNanosecond:return{sqlType:"time[ns]"};case ke.Type.TimeSecond:return{sqlType:"time[s]"};case ke.Type.Timestamp:return{sqlType:"timestamp",timezone:r.timezone||void 0};case ke.Type.TimestampSecond:return{sqlType:"timestamp[s]",timezone:r.timezone||void 0};case ke.Type.TimestampMicrosecond:return{sqlType:"timestamp[us]",timezone:r.timezone||void 0};case ke.Type.TimestampNanosecond:return{sqlType:"timestamp[ns]",timezone:r.timezone||void 0};case ke.Type.TimestampMillisecond:return{sqlType:"timestamp[ms]",timezone:r.timezone||void 0}}throw new Error(`unsupported arrow type: ${r.toString()}`)}function ur(r,i){let e=Hi(i);return e.name=r,e}var _r=class{constructor(){this._bindings=null;this._nextMessageId=0}log(i){this.postMessage({messageId:this._nextMessageId++,requestId:0,type:"LOG",data:i},[])}sendOK(i){this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"OK",data:null},[])}failWith(i,e){let l={name:e.name,message:e.message,stack:e.stack||void 0};this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"ERROR",data:l},[])}async onMessage(i){switch(i.type){case"PING":this.sendOK(i);return;case"INSTANTIATE":this._bindings!=null&&this.failWith(i,new Error("duckdb already initialized"));try{this._bindings=await this.instantiate(i.data[0],i.data[1],e=>{this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"INSTANTIATE_PROGRESS",data:e},[])}),this.sendOK(i)}catch(e){this._bindings=null,this.failWith(i,e)}return;default:break}if(!this._bindings)return this.failWith(i,new Error("duckdb is not initialized"));try{switch(i.type){case"GET_VERSION":this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"VERSION_STRING",data:this._bindings.getVersion()},[]);break;case"GET_FEATURE_FLAGS":this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"FEATURE_FLAGS",data:this._bindings.getFeatureFlags()},[]);break;case"RESET":this._bindings.reset(),this.sendOK(i);break;case"OPEN":this._bindings.open(i.data),this.sendOK(i);break;case"DROP_FILE":this._bindings.dropFile(i.data),this.sendOK(i);break;case"DROP_FILES":this._bindings.dropFiles(),this.sendOK(i);break;case"FLUSH_FILES":this._bindings.flushFiles(),this.sendOK(i);break;case"CONNECT":{let e=this._bindings.connect();this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"CONNECTION_INFO",data:e.useUnsafe((l,p)=>p)},[]);break}case"DISCONNECT":this._bindings.disconnect(i.data),this.sendOK(i);break;case"CREATE_PREPARED":{let e=this._bindings.createPrepared(i.data[0],i.data[1]);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"PREPARED_STATEMENT_ID",data:e},[]);break}case"CLOSE_PREPARED":{this._bindings.closePrepared(i.data[0],i.data[1]),this.sendOK(i);break}case"RUN_PREPARED":{let e=this._bindings.runPrepared(i.data[0],i.data[1],i.data[2]);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"QUERY_RESULT",data:e},[e.buffer]);break}case"RUN_QUERY":{let e=this._bindings.runQuery(i.data[0],i.data[1]);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"QUERY_RESULT",data:e},[e.buffer]);break}case"SEND_PREPARED":{let e=this._bindings.sendPrepared(i.data[0],i.data[1],i.data[2]);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"QUERY_RESULT_HEADER",data:e},[e.buffer]);break}case"START_PENDING_QUERY":{let e=this._bindings.startPendingQuery(i.data[0],i.data[1]),l=[];e&&l.push(e.buffer),this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"QUERY_RESULT_HEADER_OR_NULL",data:e},l);break}case"POLL_PENDING_QUERY":{let e=this._bindings.pollPendingQuery(i.data),l=[];e&&l.push(e.buffer),this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"QUERY_RESULT_HEADER_OR_NULL",data:e},l);break}case"CANCEL_PENDING_QUERY":{let e=this._bindings.cancelPendingQuery(i.data);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"SUCCESS",data:e},[]);break}case"FETCH_QUERY_RESULTS":{let e=this._bindings.fetchQueryResults(i.data);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"QUERY_RESULT_CHUNK",data:e},[e.buffer]);break}case"GET_TABLE_NAMES":{let e=this._bindings.getTableNames(i.data[0],i.data[1]);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"TABLE_NAMES",data:e},[]);break}case"GLOB_FILE_INFOS":{let e=this._bindings.globFiles(i.data);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"FILE_INFOS",data:e},[]);break}case"REGISTER_FILE_URL":this._bindings.registerFileURL(i.data[0],i.data[1]),this.sendOK(i);break;case"REGISTER_FILE_BUFFER":this._bindings.registerFileBuffer(i.data[0],i.data[1]),this.sendOK(i);break;case"REGISTER_FILE_HANDLE":this._bindings.registerFileHandle(i.data[0],i.data[1]),this.sendOK(i);break;case"COPY_FILE_TO_PATH":this._bindings.copyFileToPath(i.data[0],i.data[1]),this.sendOK(i);break;case"COPY_FILE_TO_BUFFER":{let e=this._bindings.copyFileToBuffer(i.data);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"FILE_BUFFER",data:e},[]);break}case"COLLECT_FILE_STATISTICS":this._bindings.collectFileStatistics(i.data[0],i.data[1]),this.sendOK(i);break;case"EXPORT_FILE_STATISTICS":{this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"FILE_STATISTICS",data:this._bindings.exportFileStatistics(i.data)},[]);break}case"INSERT_ARROW_FROM_IPC_STREAM":{this._bindings.insertArrowFromIPCStream(i.data[0],i.data[1],i.data[2]),this.sendOK(i);break}case"IMPORT_CSV_FROM_PATH":{this._bindings.insertCSVFromPath(i.data[0],i.data[1],i.data[2]),this.sendOK(i);break}case"IMPORT_JSON_FROM_PATH":{this._bindings.insertJSONFromPath(i.data[0],i.data[1],i.data[2]),this.sendOK(i);break}case"TOKENIZE":{let e=this._bindings.tokenize(i.data);this.postMessage({messageId:this._nextMessageId++,requestId:i.messageId,type:"SCRIPT_TOKENS",data:e},[]);break}}}catch(e){return this.failWith(i,e)}}};var kl={},Oj=(()=>{var r=kl.url;return function(i){i=i||{};var e=typeof i<"u"?i:{},l,p;e.ready=new Promise(function(c,h){l=c,p=h}),Object.getOwnPropertyDescriptor(e.ready,"_main")||(Object.defineProperty(e.ready,"_main",{configurable:!0,get:function(){k("You are getting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_main",{configurable:!0,set:function(){k("You are setting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_malloc")||(Object.defineProperty(e.ready,"_malloc",{configurable:!0,get:function(){k("You are getting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_malloc",{configurable:!0,set:function(){k("You are setting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_free")||(Object.defineProperty(e.ready,"_free",{configurable:!0,get:function(){k("You are getting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_free",{configurable:!0,set:function(){k("You are setting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_clear_response")||(Object.defineProperty(e.ready,"_duckdb_web_clear_response",{configurable:!0,get:function(){k("You are getting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_clear_response",{configurable:!0,set:function(){k("You are setting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_collect_file_stats")||(Object.defineProperty(e.ready,"_duckdb_web_collect_file_stats",{configurable:!0,get:function(){k("You are getting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_collect_file_stats",{configurable:!0,set:function(){k("You are setting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_connect")||(Object.defineProperty(e.ready,"_duckdb_web_connect",{configurable:!0,get:function(){k("You are getting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_connect",{configurable:!0,set:function(){k("You are setting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_copy_file_to_buffer")||(Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_buffer",{configurable:!0,get:function(){k("You are getting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_buffer",{configurable:!0,set:function(){k("You are setting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_copy_file_to_path")||(Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_disconnect")||(Object.defineProperty(e.ready,"_duckdb_web_disconnect",{configurable:!0,get:function(){k("You are getting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_disconnect",{configurable:!0,set:function(){k("You are setting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_export_file_stats")||(Object.defineProperty(e.ready,"_duckdb_web_export_file_stats",{configurable:!0,get:function(){k("You are getting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_export_file_stats",{configurable:!0,set:function(){k("You are setting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fail_with")||(Object.defineProperty(e.ready,"_duckdb_web_fail_with",{configurable:!0,get:function(){k("You are getting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fail_with",{configurable:!0,set:function(){k("You are setting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_flush_file")||(Object.defineProperty(e.ready,"_duckdb_web_flush_file",{configurable:!0,get:function(){k("You are getting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_flush_file",{configurable:!0,set:function(){k("You are setting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_flush_files")||(Object.defineProperty(e.ready,"_duckdb_web_flush_files",{configurable:!0,get:function(){k("You are getting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_flush_files",{configurable:!0,set:function(){k("You are setting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_drop_file")||(Object.defineProperty(e.ready,"_duckdb_web_fs_drop_file",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_drop_file",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_drop_files")||(Object.defineProperty(e.ready,"_duckdb_web_fs_drop_files",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_drop_files",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_get_file_info_by_id")||(Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_id",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_id",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_get_file_info_by_name")||(Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_name",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_name",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_glob_add_path")||(Object.defineProperty(e.ready,"_duckdb_web_fs_glob_add_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_glob_add_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_glob_file_infos")||(Object.defineProperty(e.ready,"_duckdb_web_fs_glob_file_infos",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_glob_file_infos",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_register_file_buffer")||(Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_buffer",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_buffer",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_register_file_url")||(Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_url",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_url",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_set_file_descriptor")||(Object.defineProperty(e.ready,"_duckdb_web_fs_set_file_descriptor",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_set_file_descriptor",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_feature_flags")||(Object.defineProperty(e.ready,"_duckdb_web_get_feature_flags",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_feature_flags",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_global_file_info")||(Object.defineProperty(e.ready,"_duckdb_web_get_global_file_info",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_global_file_info",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_tablenames")||(Object.defineProperty(e.ready,"_duckdb_web_get_tablenames",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_tablenames",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_version")||(Object.defineProperty(e.ready,"_duckdb_web_get_version",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_version",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_insert_arrow_from_ipc_stream")||(Object.defineProperty(e.ready,"_duckdb_web_insert_arrow_from_ipc_stream",{configurable:!0,get:function(){k("You are getting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_insert_arrow_from_ipc_stream",{configurable:!0,set:function(){k("You are setting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_insert_csv_from_path")||(Object.defineProperty(e.ready,"_duckdb_web_insert_csv_from_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_insert_csv_from_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_insert_json_from_path")||(Object.defineProperty(e.ready,"_duckdb_web_insert_json_from_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_insert_json_from_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_open")||(Object.defineProperty(e.ready,"_duckdb_web_open",{configurable:!0,get:function(){k("You are getting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_open",{configurable:!0,set:function(){k("You are setting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_pending_query_cancel")||(Object.defineProperty(e.ready,"_duckdb_web_pending_query_cancel",{configurable:!0,get:function(){k("You are getting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_pending_query_cancel",{configurable:!0,set:function(){k("You are setting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_pending_query_poll")||(Object.defineProperty(e.ready,"_duckdb_web_pending_query_poll",{configurable:!0,get:function(){k("You are getting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_pending_query_poll",{configurable:!0,set:function(){k("You are setting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_pending_query_start")||(Object.defineProperty(e.ready,"_duckdb_web_pending_query_start",{configurable:!0,get:function(){k("You are getting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_pending_query_start",{configurable:!0,set:function(){k("You are setting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_close")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_close",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_close",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_create")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_create",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_create",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_run")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_run",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_run",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_send")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_send",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_send",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_query_fetch_results")||(Object.defineProperty(e.ready,"_duckdb_web_query_fetch_results",{configurable:!0,get:function(){k("You are getting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_query_fetch_results",{configurable:!0,set:function(){k("You are setting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_query_run")||(Object.defineProperty(e.ready,"_duckdb_web_query_run",{configurable:!0,get:function(){k("You are getting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_query_run",{configurable:!0,set:function(){k("You are setting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_reset")||(Object.defineProperty(e.ready,"_duckdb_web_reset",{configurable:!0,get:function(){k("You are getting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_reset",{configurable:!0,set:function(){k("You are setting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_tokenize")||(Object.defineProperty(e.ready,"_duckdb_web_tokenize",{configurable:!0,get:function(){k("You are getting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_tokenize",{configurable:!0,set:function(){k("You are setting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_udf_scalar_create")||(Object.defineProperty(e.ready,"_duckdb_web_udf_scalar_create",{configurable:!0,get:function(){k("You are getting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_udf_scalar_create",{configurable:!0,set:function(){k("You are setting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"___stdio_exit")||(Object.defineProperty(e.ready,"___stdio_exit",{configurable:!0,get:function(){k("You are getting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"___stdio_exit",{configurable:!0,set:function(){k("You are setting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"onRuntimeInitialized")||(Object.defineProperty(e.ready,"onRuntimeInitialized",{configurable:!0,get:function(){k("You are getting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"onRuntimeInitialized",{configurable:!0,set:function(){k("You are setting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}));var m=Object.assign({},e),w=[],O="./this.program",P=(c,h)=>{throw h},B=typeof window=="object",D=typeof importScripts=="function",q=typeof process=="object"&&typeof process.versions=="object"&&typeof process.versions.node=="string",x=!B&&!q&&!D;if(e.ENVIRONMENT)throw new Error("Module.ENVIRONMENT has been deprecated. To force the environment, use the ENVIRONMENT compile-time option (for example, -sENVIRONMENT=web or -sENVIRONMENT=node)");var ie="";function X(c){return e.locateFile?e.locateFile(c,ie):ie+c}var J,ce,le,Ae;function Ee(c){if(c instanceof Yi)return;let h=c;c&&typeof c=="object"&&c.stack&&(h=[c,c.stack]),Y("exiting due to exception: "+h)}var xe,_e,Se;if(q){if(!(typeof process=="object"&&typeof require=="function"))throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");D?ie=require("path").dirname(ie)+"/":ie=__dirname+"/",Se=()=>{_e||(xe=require("fs"),_e=require("path"))},J=function(h,v){return Se(),h=_e.normalize(h),xe.readFileSync(h,v?void 0:"utf8")},le=c=>{var h=J(c,!0);return h.buffer||(h=new Uint8Array(h)),M(h.buffer),h},ce=(c,h,v)=>{Se(),c=_e.normalize(c),xe.readFile(c,function(R,U){R?v(R):h(U.buffer)})},process.argv.length>1&&(O=process.argv[1].replace(/\\/g,"/")),w=process.argv.slice(2),process.on("uncaughtException",function(c){if(!(c instanceof Yi))throw c}),process.on("unhandledRejection",function(c){throw c}),P=(c,h)=>{if(bi())throw process.exitCode=c,h;Ee(h),process.exit(c)},e.inspect=function(){return"[Emscripten Module object]"}}else if(x){if(typeof process=="object"&&typeof require=="function"||typeof window=="object"||typeof importScripts=="function")throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");typeof read<"u"&&(J=function(h){return read(h)}),le=function(h){let v;return typeof readbuffer=="function"?new Uint8Array(readbuffer(h)):(v=read(h,"binary"),M(typeof v=="object"),v)},ce=function(h,v,R){setTimeout(()=>v(le(h)),0)},typeof scriptArgs<"u"?w=scriptArgs:typeof arguments<"u"&&(w=arguments),typeof quit=="function"&&(P=(c,h)=>{Ee(h),quit(c)}),typeof print<"u"&&(typeof console>"u"&&(console={}),console.log=print,console.warn=console.error=typeof printErr<"u"?printErr:print)}else if(B||D){if(D?ie=self.location.href:typeof document<"u"&&document.currentScript&&(ie=document.currentScript.src),r&&(ie=r),ie.indexOf("blob:")!==0?ie=ie.substr(0,ie.replace(/[?#].*/,"").lastIndexOf("/")+1):ie="",!(typeof window=="object"||typeof importScripts=="function"))throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");J=c=>{var h=new XMLHttpRequest;return h.open("GET",c,!1),h.send(null),h.responseText},D&&(le=c=>{var h=new XMLHttpRequest;return h.open("GET",c,!1),h.responseType="arraybuffer",h.send(null),new Uint8Array(h.response)}),ce=(c,h,v)=>{var R=new XMLHttpRequest;R.open("GET",c,!0),R.responseType="arraybuffer",R.onload=()=>{if(R.status==200||R.status==0&&R.response){h(R.response);return}v()},R.onerror=v,R.send(null)},Ae=c=>document.title=c}else throw new Error("environment detection error");var de=e.print||console.log.bind(console),Y=e.printErr||console.warn.bind(console);Object.assign(e,m),m=null,bs(),e.arguments&&(w=e.arguments),se("arguments","arguments_"),e.thisProgram&&(O=e.thisProgram),se("thisProgram","thisProgram"),e.quit&&(P=e.quit),se("quit","quit_"),M(typeof e.memoryInitializerPrefixURL>"u","Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead"),M(typeof e.pthreadMainPrefixURL>"u","Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead"),M(typeof e.cdInitializerPrefixURL>"u","Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead"),M(typeof e.filePackagePrefixURL>"u","Module.filePackagePrefixURL option was removed, use Module.locateFile instead"),M(typeof e.read>"u","Module.read option was removed (modify read_ in JS)"),M(typeof e.readAsync>"u","Module.readAsync option was removed (modify readAsync in JS)"),M(typeof e.readBinary>"u","Module.readBinary option was removed (modify readBinary in JS)"),M(typeof e.setWindowTitle>"u","Module.setWindowTitle option was removed (modify setWindowTitle in JS)"),M(typeof e.TOTAL_MEMORY>"u","Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY"),se("read","read_"),se("readAsync","readAsync"),se("readBinary","readBinary"),se("setWindowTitle","setWindowTitle");var ne="IDBFS is no longer included by default; build with -lidbfs.js",Ce="PROXYFS is no longer included by default; build with -lproxyfs.js",F="WORKERFS is no longer included by default; build with -lworkerfs.js",je="NODEFS is no longer included by default; build with -lnodefs.js";function ye(){k("`alignMemory` is now a library function and not included by default; add it to your library.js __deps or to DEFAULT_LIBRARY_FUNCS_TO_INCLUDE on the command line")}M(!x,"shell environment detected but not enabled at build time.  Add 'shell' to `-sENVIRONMENT` to enable.");var Ue=16,I=4;function L(c){switch(c){case"i1":case"i8":return 1;case"i16":return 2;case"i32":return 4;case"i64":return 8;case"float":return 4;case"double":return 8;default:{if(c[c.length-1]==="*")return I;if(c[0]==="i"){let h=Number(c.substr(1));return M(h%8===0,"getNativeTypeSize invalid bits "+h+", type "+c),h/8}else return 0}}}function ge(c){ge.shown||(ge.shown={}),ge.shown[c]||(ge.shown[c]=1,Y(c))}function we(c){return M(c<16384),c<128?[c]:[c%128|128,c>>7]}function lt(c,h){if(typeof WebAssembly.Function=="function"){for(var v={i:"i32",j:"i64",f:"f32",d:"f64"},R={parameters:[],results:h[0]=="v"?[]:[v[h[0]]]},U=1;U<h.length;++U)R.parameters.push(v[h[U]]);return new WebAssembly.Function(R,c)}var Z=[1,96],H=h.slice(0,1),$=h.slice(1),ae={i:127,j:126,f:125,d:124};Z=Z.concat(we($.length));for(var U=0;U<$.length;++U)Z.push(ae[$[U]]);H=="v"?Z.push(0):Z=Z.concat([1,ae[H]]),Z=[1].concat(we(Z.length),Z);var fe=new Uint8Array([0,97,115,109,1,0,0,0].concat(Z,[2,7,1,1,101,1,102,0,0,7,5,1,1,102,0,0])),ve=new WebAssembly.Module(fe),We=new WebAssembly.Instance(ve,{e:{f:c}}),Oe=We.exports.f;return Oe}var Je=[],Te;function Gt(){if(Je.length)return Je.pop();try{Xe.grow(1)}catch(c){throw c instanceof RangeError?"Unable to grow wasm table. Set ALLOW_TABLE_GROWTH.":c}return Xe.length-1}function Ji(c,h){for(var v=c;v<c+h;v++){var R=re(v);R&&Te.set(R,v)}}function Ti(c,h){if(M(typeof c<"u"),Te||(Te=new WeakMap,Ji(0,Xe.length)),Te.has(c))return Te.get(c);var v=Gt();try{gn(v,c)}catch(U){if(!(U instanceof TypeError))throw U;M(typeof h<"u","Missing signature argument to addFunction: "+c);var R=lt(c,h);gn(v,R)}return Te.set(c,v),v}function Lt(c){Te.delete(re(c)),Je.push(c)}function se(c,h){Object.getOwnPropertyDescriptor(e,c)||Object.defineProperty(e,c,{configurable:!0,get:function(){k("Module."+c+" has been replaced with plain "+h+" (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)")}})}function Vt(c){Object.getOwnPropertyDescriptor(e,c)&&k("`Module."+c+"` was supplied but `"+c+"` not included in INCOMING_MODULE_JS_API")}function si(c,h){var v="'"+c+"' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";return h&&(v+=". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you"),v}function ee(c,h){Object.getOwnPropertyDescriptor(e,c)||Object.defineProperty(e,c,{configurable:!0,get:function(){k(si(c,h))}})}function b(c,h){Object.getOwnPropertyDescriptor(e,c)||(e[c]=()=>k(si(c,h)))}var z=0,oe=c=>{z=c},Ne=()=>z,Ie;e.wasmBinary&&(Ie=e.wasmBinary),se("wasmBinary","wasmBinary");var Ye=e.noExitRuntime||!0;se("noExitRuntime","noExitRuntime"),typeof WebAssembly!="object"&&k("no native wasm support detected");function oi(c,h,v="i8",R){if(v.charAt(v.length-1)==="*"&&(v="i32"),R)switch(v){case"i1":Ge[c>>>0]=h;break;case"i8":Ge[c>>>0]=h;break;case"i16":li[c>>>1]=h;break;case"i32":bt[c>>>2]=h;break;case"i64":yt=[h>>>0,(Le=h,+Math.abs(Le)>=1?Le>0?(Math.min(+Math.floor(Le/4294967296),4294967295)|0)>>>0:~~+Math.ceil((Le-+(~~Le>>>0))/4294967296)>>>0:0)],bt[c>>>2]=yt[0],bt[c+4>>>2]=yt[1];break;case"float":ui[c>>>2]=h;break;case"double":_i[c>>>3]=h;break;default:k("invalid type for setValue: "+v)}else switch(v){case"i1":N(c|0,h|0,1);break;case"i8":N(c|0,h|0,1);break;case"i16":N(c|0,h|0,2);break;case"i32":N(c|0,h|0,4);break;case"i64":yt=[h>>>0,(Le=h,+Math.abs(Le)>=1?Le>0?(Math.min(+Math.floor(Le/4294967296),4294967295)|0)>>>0:~~+Math.ceil((Le-+(~~Le>>>0))/4294967296)>>>0:0)],N(c|0,yt[0]|0,4),N(c+4|0,yt[1]|0,4);break;case"float":tn(c|0,Math.fround(h),4);break;case"double":tn(c|0,+h,8);break;default:k("invalid type for setValue: "+v)}}function Kt(c,h="i8",v){if(h.charAt(h.length-1)==="*"&&(h="i32"),v)switch(h){case"i1":return Ge[c>>>0];case"i8":return Ge[c>>>0];case"i16":return li[c>>>1];case"i32":return bt[c>>>2];case"i64":return bt[c>>>2];case"float":return ui[c>>>2];case"double":return Number(_i[c>>>3]);default:k("invalid type for getValue: "+h)}else switch(h){case"i1":return V(c|0,1,0)|0;case"i8":return V(c|0,1,0)|0;case"i16":return V(c|0,2,0)|0;case"i32":return V(c|0,4,0)|0;case"i64":return V(c|0,8,0)|0;case"float":return Math.fround(nn(c|0,4,0));case"double":return+nn(c|0,8,0);default:k("invalid type for getValue: "+h)}return null}function en(c,h){switch(c){case 1:return"i8";case 2:return"i16";case 4:return h?"float":"i32";case 8:return h?"double":"i64";default:M(0)}}function N(c,h,v,R){if(c>>>=0,c<=0&&k("segmentation fault storing "+v+" bytes to address "+c),c%v!==0&&k("alignment error storing to address "+c+", which was expected to be aligned to a multiple of "+v),Ct){var U=js()>>>0;c+v>U&&k("segmentation fault, exceeded the top of the available dynamic heap when storing "+v+" bytes to address "+c+". DYNAMICTOP="+U),M(U>=Jn()),M(U<=Ge.length)}return oi(c,h,en(v,R),1),h}function tn(c,h,v){return N(c,h,v,!0)}function V(c,h,v,R){if(c>>>=0,c<=0&&k("segmentation fault loading "+h+" bytes from address "+c),c%h!==0&&k("alignment error loading from address "+c+", which was expected to be aligned to a multiple of "+h),Ct){var U=js()>>>0;c+h>U&&k("segmentation fault, exceeded the top of the available dynamic heap when loading "+h+" bytes from address "+c+". DYNAMICTOP="+U),M(U>=Jn()),M(U<=Ge.length)}var Z=en(h,R),H=Kt(c,Z,1);return v&&(H=ha(H,parseInt(Z.substr(1),10))),H}function nn(c,h,v){return V(c,h,v,!0)}function md(c,h){var v=c&h;return v!==c&&k("Function table mask error: function pointer is "+c+" which is masked by "+h+", the likely cause of this is that the function pointer is being called by the wrong type."),v}function Zr(){k("segmentation fault")}function $r(){k("alignment fault")}var kt,Et=!1,Ft;function M(c,h){c||k("Assertion failed"+(h?": "+h:""))}function Gr(c){var h=e["_"+c];return M(h,"Cannot call unknown function "+c+", make sure it is exported"),h}function rn(c,h,v,R,U){var Z={string:function(Ze){var nt=0;if(Ze!=null&&Ze!==0){var Ht=(Ze.length<<2)+1;nt=Fi(Ht),Nt(Ze,nt,Ht)}return nt},array:function(Ze){var nt=Fi(Ze.length);return ln(Ze,nt),nt}};function H(Ze){return h==="string"?$e(Ze):h==="boolean"?Boolean(Ze):Ze}var $=Gr(c),ae=[],fe=0;if(M(h!=="array",'Return type should not be "array".'),R)for(var ve=0;ve<R.length;ve++){var We=Z[v[ve]];We?(fe===0&&(fe=ws()),ae[ve]=We(R[ve])):ae[ve]=R[ve]}var Oe=$.apply(null,ae);function ji(Ze){return fe!==0&&ks(fe),H(Ze)}return Oe=ji(Oe),Oe}function wd(c,h,v,R){return function(){return rn(c,h,v,arguments,R)}}var kd=0,Vr=1;function Ed(c,h){var v;return M(typeof h=="number","allocate no longer takes a type argument"),M(typeof c!="number","allocate no longer takes a number as arg0"),h==Vr?v=Fi(c.length):v=Rn(c.length),!c.subarray&&!c.slice&&(c=new Uint8Array(c)),Qe.set(c,v>>>0),v}var an=typeof TextDecoder<"u"?new TextDecoder("utf8"):void 0;function sn(c,h,v){h>>>=0;for(var R=h+v,U=h;c[U]&&!(U>=R);)++U;if(U-h>16&&c.buffer&&an)return an.decode(c.subarray(h,U));for(var Z="";h<U;){var H=c[h++];if(!(H&128)){Z+=String.fromCharCode(H);continue}var $=c[h++]&63;if((H&224)==192){Z+=String.fromCharCode((H&31)<<6|$);continue}var ae=c[h++]&63;if((H&240)==224?H=(H&15)<<12|$<<6|ae:((H&248)!=240&&ge("Invalid UTF-8 leading byte 0x"+H.toString(16)+" encountered when deserializing a UTF-8 string in wasm memory to a JS string!"),H=(H&7)<<18|$<<12|ae<<6|c[h++]&63),H<65536)Z+=String.fromCharCode(H);else{var fe=H-65536;Z+=String.fromCharCode(55296|fe>>10,56320|fe&1023)}}return Z}function $e(c,h){return c>>>=0,c?sn(Qe,c,h):""}function xt(c,h,v,R){if(v>>>=0,!(R>0))return 0;for(var U=v,Z=v+R-1,H=0;H<c.length;++H){var $=c.charCodeAt(H);if($>=55296&&$<=57343){var ae=c.charCodeAt(++H);$=65536+(($&1023)<<10)|ae&1023}if($<=127){if(v>=Z)break;h[v++>>>0]=$}else if($<=2047){if(v+1>=Z)break;h[v++>>>0]=192|$>>6,h[v++>>>0]=128|$&63}else if($<=65535){if(v+2>=Z)break;h[v++>>>0]=224|$>>12,h[v++>>>0]=128|$>>6&63,h[v++>>>0]=128|$&63}else{if(v+3>=Z)break;$>1114111&&ge("Invalid Unicode code point 0x"+$.toString(16)+" encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF)."),h[v++>>>0]=240|$>>18,h[v++>>>0]=128|$>>12&63,h[v++>>>0]=128|$>>6&63,h[v++>>>0]=128|$&63}}return h[v>>>0]=0,v-U}function Nt(c,h,v){return M(typeof v=="number","stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"),xt(c,Qe,h,v)}function Bt(c){for(var h=0,v=0;v<c.length;++v){var R=c.charCodeAt(v);R>=55296&&R<=57343&&(R=65536+((R&1023)<<10)|c.charCodeAt(++v)&1023),R<=127?++h:R<=2047?h+=2:R<=65535?h+=3:h+=4}return h}function Sd(c){c>>>=0;for(var h="";;){var v=V(c++|0,1,1)>>>0;if(!v)return h;h+=String.fromCharCode(v)}}function Cd(c,h){return un(c,h,!1)}var on=typeof TextDecoder<"u"?new TextDecoder("utf-16le"):void 0;function Ad(c,h){M(c%2==0,"Pointer passed to UTF16ToString must be aligned to two bytes!");for(var v=c,R=v>>1,U=R+h/2;!(R>=U)&&V((R>>>0)*2,2,1);)++R;if(v=R<<1,v-c>32&&on)return on.decode(Qe.subarray(c>>>0,v>>>0));for(var Z="",H=0;!(H>=h/2);++H){var $=V(c+H*2|0,2,0)|0;if($==0)break;Z+=String.fromCharCode($)}return Z}function Rd(c,h,v){if(M(h%2==0,"Pointer passed to stringToUTF16 must be aligned to two bytes!"),M(typeof v=="number","stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"),v===void 0&&(v=2147483647),v<2)return 0;v-=2;for(var R=h,U=v<c.length*2?v/2:c.length,Z=0;Z<U;++Z){var H=c.charCodeAt(Z);N(h|0,H|0,2),h+=2}return N(h|0,0,2),h-R}function Od(c){return c.length*2}function Td(c,h){M(c%4==0,"Pointer passed to UTF32ToString must be aligned to four bytes!");for(var v=0,R="";!(v>=h/4);){var U=V(c+v*4|0,4,0)|0;if(U==0)break;if(++v,U>=65536){var Z=U-65536;R+=String.fromCharCode(55296|Z>>10,56320|Z&1023)}else R+=String.fromCharCode(U)}return R}function Pd(c,h,v){if(h>>>=0,M(h%4==0,"Pointer passed to stringToUTF32 must be aligned to four bytes!"),M(typeof v=="number","stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"),v===void 0&&(v=2147483647),v<4)return 0;for(var R=h,U=R+v-4,Z=0;Z<c.length;++Z){var H=c.charCodeAt(Z);if(H>=55296&&H<=57343){var $=c.charCodeAt(++Z);H=65536+((H&1023)<<10)|$&1023}if(N(h|0,H|0,4),h+=4,h+4>U)break}return N(h|0,0,4),h-R}function Dd(c){for(var h=0,v=0;v<c.length;++v){var R=c.charCodeAt(v);R>=55296&&R<=57343&&++v,h+=4}return h}function Id(c){var h=Bt(c)+1,v=Rn(h);return v&&xt(c,Ge,v,h),v}function cn(c){var h=Bt(c)+1,v=Fi(h);return xt(c,Ge,v,h),v}function Md(c,h,v){ge("writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!");var R,U;v&&(U=h+Bt(c),R=V(U>>>0,1,0)),Nt(c,h,1/0),v&&N(U>>>0,R,1)}function ln(c,h){M(c.length>=0,"writeArrayToMemory array must have a length (should be an array or typed array)"),Ge.set(c,h>>>0)}function un(c,h,v){for(var R=0;R<c.length;++R)M(c.charCodeAt(R)===(c.charCodeAt(R)&255)),N(h++|0,c.charCodeAt(R)|0,1);v||N(h|0,0,1)}var Ud,ci,Ge,Qe,li,Kr,bt,zr,ui,_i;function _n(c){ci=c,e.HEAP8=Ge=new Int8Array(c),e.HEAP16=li=new Int16Array(c),e.HEAP32=bt=new Int32Array(c),e.HEAPU8=Qe=new Uint8Array(c),e.HEAPU16=Kr=new Uint16Array(c),e.HEAPU32=zr=new Uint32Array(c),e.HEAPF32=ui=new Float32Array(c),e.HEAPF64=_i=new Float64Array(c)}var di=5242880;e.TOTAL_STACK&&M(di===e.TOTAL_STACK,"the stack size can no longer be determined at runtime");var fi=e.INITIAL_MEMORY||16777216;se("INITIAL_MEMORY","INITIAL_MEMORY"),M(fi>=di,"INITIAL_MEMORY should be larger than TOTAL_STACK, was "+fi+"! (TOTAL_STACK="+di+")"),M(typeof Int32Array<"u"&&typeof Float64Array<"u"&&Int32Array.prototype.subarray!=null&&Int32Array.prototype.set!=null,"JS engine does not provide full typed array support"),M(!e.wasmMemory,"Use of `wasmMemory` detected.  Use -sIMPORTED_MEMORY to define wasmMemory externally"),M(fi==16777216,"Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically");var Xe;function dn(){var c=er();M((c&3)==0),N(c|0,34821223,4),N(c+4|0,-1984246274,4)}function St(){if(!Et){var c=er(),h=V(c|0,4,1)>>>0,v=V(c+4|0,4,1)>>>0;(h!=34821223||v!=2310721022)&&k("Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x"+v.toString(16)+" 0x"+h.toString(16))}}(function(){var c=new Int16Array(1),h=new Int8Array(c.buffer);if(c[0]=25459,h[0]!==115||h[1]!==99)throw"Runtime error: expected the system to be little-endian! (Run with -sSUPPORT_BIG_ENDIAN to bypass)"})();var hi=[],fn=[],hn=[],Ld=[],bn=[],Ct=!1;function bi(){return Ye}function Qr(){if(e.preRun)for(typeof e.preRun=="function"&&(e.preRun=[e.preRun]);e.preRun.length;)ta(e.preRun.shift());Yt(hi)}function Xr(){St(),M(!Ct),Ct=!0,Yt(fn)}function Jr(){St(),Yt(hn)}function ea(){if(St(),e.postRun)for(typeof e.postRun=="function"&&(e.postRun=[e.postRun]);e.postRun.length;)na(e.postRun.shift());Yt(bn)}function ta(c){hi.unshift(c)}function ia(c){fn.unshift(c)}function Fd(c){hn.unshift(c)}function xd(c){}function na(c){bn.unshift(c)}M(Math.imul,"This browser does not support Math.imul(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"),M(Math.fround,"This browser does not support Math.fround(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"),M(Math.clz32,"This browser does not support Math.clz32(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"),M(Math.trunc,"This browser does not support Math.trunc(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill");var it=0,ct=null,At=null,pt={};function Nd(c){for(var h=c;;){if(!pt[c])return c;c=h+Math.random()}}function ra(c){it++,e.monitorRunDependencies&&e.monitorRunDependencies(it),c?(M(!pt[c]),pt[c]=1,ct===null&&typeof setInterval<"u"&&(ct=setInterval(function(){if(Et){clearInterval(ct),ct=null;return}var h=!1;for(var v in pt)h||(h=!0,Y("still waiting on run dependencies:")),Y("dependency: "+v);h&&Y("(end of list)")},1e4))):Y("warning: run dependency added without ID")}function aa(c){if(it--,e.monitorRunDependencies&&e.monitorRunDependencies(it),c?(M(pt[c]),delete pt[c]):Y("warning: run dependency removed without ID"),it==0&&(ct!==null&&(clearInterval(ct),ct=null),At)){var h=At;At=null,h()}}function k(c){e.onAbort&&e.onAbort(c),c="Aborted("+c+")",Y(c),Et=!0,Ft=1;var h=new WebAssembly.RuntimeError(c);throw p(h),h}var sa="data:application/octet-stream;base64,";function pn(c){return c.startsWith(sa)}function oa(c){return c.startsWith("file://")}function g(c,h){return function(){var v=c,R=h;return h||(R=e.asm),M(Ct,"native function `"+v+"` called before runtime initialization"),R[c]||M(R[c],"exported native function `"+v+"` not found"),R[c].apply(null,arguments)}}var Pe;e.locateFile?(Pe="./duckdb-eh.wasm",pn(Pe)||(Pe=X(Pe))):Pe=new URL("./duckdb-eh.wasm",kl.url).toString();function yn(c){try{if(c==Pe&&Ie)return new Uint8Array(Ie);if(le)return le(c);throw"both async and sync fetching of the wasm failed"}catch(h){k(h)}}function ca(){return!Ie&&(B||D)&&typeof fetch=="function"?fetch(Pe,{credentials:"same-origin"}).then(function(c){if(!c.ok)throw"failed to load wasm binary file at '"+Pe+"'";return c.arrayBuffer()}).catch(function(){return yn(Pe)}):Promise.resolve().then(function(){return yn(Pe)})}function la(){var c={env:zn,wasi_snapshot_preview1:zn};function h($,ae){var fe=$.exports;e.asm=fe,kt=e.asm.memory,M(kt,"memory not found in wasm exports"),_n(kt.buffer),Xe=e.asm.__indirect_function_table,M(Xe,"table not found in wasm exports"),ia(e.asm.__wasm_call_ctors),aa("wasm-instantiate")}ra("wasm-instantiate");var v=e;function R($){M(e===v,"the Module object should not be replaced during async compilation - perhaps the order of HTML elements is wrong?"),v=null,h($.instance)}function U($){return ca().then(function(ae){return WebAssembly.instantiate(ae,c)}).then(function(ae){return ae}).then($,function(ae){Y("failed to asynchronously prepare wasm: "+ae),oa(Pe)&&Y("warning: Loading from a file URI ("+Pe+") is not supported in most browsers. See https://emscripten.org/docs/getting_started/FAQ.html#how-do-i-run-a-local-webserver-for-testing-why-does-my-program-stall-in-downloading-or-preparing"),k(ae)})}function Z(){return!Ie&&typeof WebAssembly.instantiateStreaming=="function"&&!pn(Pe)&&typeof fetch=="function"?fetch(Pe,{credentials:"same-origin"}).then(function($){var ae=WebAssembly.instantiateStreaming($,c);return ae.then(R,function(fe){return Y("wasm streaming compile failed: "+fe),Y("falling back to ArrayBuffer instantiation"),U(R)})}):U(R)}if(e.instantiateWasm)try{var H=e.instantiateWasm(c,h);return H}catch($){return Y("Module.instantiateWasm callback failed with error: "+$),!1}return Z().catch(p),{}}var Le,yt,Bd={};function Yt(c){for(;c.length>0;){var h=c.shift();if(typeof h=="function"){h(e);continue}var v=h.func;typeof v=="number"?h.arg===void 0?re(v)():re(v)(h.arg):v(h.arg===void 0?null:h.arg)}}function Yd(c){var h=ws(),v=c();return ks(h),v}function ua(c){return ge("warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling"),c}function _a(c){var h=/\b_Z[\w\d_]+/g;return c.replace(h,function(v){var R=ua(v);return v===R?v:R+" ["+v+"]"})}var Rt=[];function re(c){var h=Rt[c];return h||(c>=Rt.length&&(Rt.length=c+1),Rt[c]=h=Xe.get(c)),M(Xe.get(c)==h,"JavaScript-side Wasm function table mirror is out of date!"),h}function da(c){if(c instanceof Yi||c=="unwind")return Ft;P(1,c)}function fa(){var c=new Error;if(!c.stack){try{throw new Error}catch(h){c=h}if(!c.stack)return"(no stack trace available)"}return c.stack.toString()}function gn(c,h){Xe.set(c,h),Rt[c]=Xe.get(c)}function Hd(){var c=fa();return e.extraStackTrace&&(c+=`
-`+e.extraStackTrace()),_a(c)}function ha(c,h){return c>=0?c:h<=32?2*Math.abs(1<<h-1)+c:Math.pow(2,h)+c}function ba(c,h,v,R){k("Assertion failed: "+$e(c)+", at: "+[h?$e(h):"unknown filename",v,R?$e(R):"unknown function"])}var He={buffers:[null,[],[]],printChar:function(c,h){var v=He.buffers[c];M(v),h===0||h===10?((c===1?de:Y)(sn(v,0)),v.length=0):v.push(h)},varargs:void 0,get:function(){M(He.varargs!=null),He.varargs+=4;var c=V(He.varargs-4|0,4,0)|0;return c},getStr:function(c){var h=$e(c);return h}};function pi(c,h,v,R,U){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function pa(){Y("missing function: $SOCKFS"),k(-1)}function yi(){Y("missing function: $FS"),k(-1)}function gi(c){var h=pa.getSocket(c);if(!h)throw new yi.ErrnoError(8);return h}function Ot(c){return N(Lc()|0,c|0,4),c}var zt={BUFFER_SIZE:10240,MAX_BUFFER_SIZE:10485760,nextFd:1,fds:{},nextport:1,maxport:65535,peer:null,connections:{},portmap:{},localAddr:4261412874,addrPool:[33554442,50331658,67108874,83886090,100663306,117440522,134217738,150994954,167772170,184549386,201326602,218103818,234881034]};function Pi(c){return(c&255)+"."+(c>>8&255)+"."+(c>>16&255)+"."+(c>>24&255)}function Ln(c){var h="",v=0,R=0,U=0,Z=0,H=0,$=0,ae=[c[0]&65535,c[0]>>16,c[1]&65535,c[1]>>16,c[2]&65535,c[2]>>16,c[3]&65535,c[3]>>16],fe=!0,ve="";for($=0;$<5;$++)if(ae[$]!==0){fe=!1;break}if(fe){if(ve=Pi(ae[6]|ae[7]<<16),ae[5]===-1)return h="::ffff:",h+=ve,h;if(ae[5]===0)return h="::",ve==="0.0.0.0"&&(ve=""),ve==="0.0.0.1"&&(ve="1"),h+=ve,h}for(v=0;v<8;v++)ae[v]===0&&(v-U>1&&(H=0),U=v,H++),H>R&&(R=H,Z=v-R+1);for(v=0;v<8;v++){if(R>1&&ae[v]===0&&v>=Z&&v<Z+R){v===Z&&(h+=":",Z===0&&(h+=":"));continue}h+=Number(vs(ae[v]&65535)).toString(16),h+=v<7?":":""}return h}function Fn(c,h){var v=V(c|0,2,0)|0,R=vs(V(c+2|0,2,1)>>>0),U;switch(v){case 2:if(h!==16)return{errno:28};U=V(c+4|0,4,0)|0,U=Pi(U);break;case 10:if(h!==28)return{errno:28};U=[V(c+8|0,4,0)|0,V(c+12|0,4,0)|0,V(c+16|0,4,0)|0,V(c+20|0,4,0)|0],U=Ln(U);break;default:return{errno:5}}return{family:v,addr:U,port:R}}function Di(c){for(var h=c.split("."),v=0;v<4;v++){var R=Number(h[v]);if(isNaN(R))return null;h[v]=R}return(h[0]|h[1]<<8|h[2]<<16|h[3]<<24)>>>0}function Ii(c){return parseInt(c)}function vn(c){var h,v,R,U,Z,H=/^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i,$=[];if(!H.test(c))return null;if(c==="::")return[0,0,0,0,0,0,0,0];for(c.startsWith("::")?c=c.replace("::","Z:"):c=c.replace("::",":Z:"),c.indexOf(".")>0?(c=c.replace(new RegExp("[.]","g"),":"),h=c.split(":"),h[h.length-4]=Ii(h[h.length-4])+Ii(h[h.length-3])*256,h[h.length-3]=Ii(h[h.length-2])+Ii(h[h.length-1])*256,h=h.slice(0,h.length-2)):h=c.split(":"),R=0,U=0,v=0;v<h.length;v++)if(typeof h[v]=="string")if(h[v]==="Z"){for(U=0;U<8-h.length+1;U++)$[v+U]=0;R=U-1}else $[v+R]=Xn(parseInt(h[v],16));else $[v+R]=h[v];return[$[1]<<16|$[0],$[3]<<16|$[2],$[5]<<16|$[4],$[7]<<16|$[6]]}var ut={address_map:{id:1,addrs:{},names:{}},lookup_name:function(c){var h=Di(c);if(h!==null||(h=vn(c),h!==null))return c;var v;if(ut.address_map.addrs[c])v=ut.address_map.addrs[c];else{var R=ut.address_map.id++;M(R<65535,"exceeded max address mappings of 65535"),v="172.29."+(R&255)+"."+(R&65280),ut.address_map.names[v]=c,ut.address_map.addrs[c]=v}return v},lookup_addr:function(c){return ut.address_map.names[c]?ut.address_map.names[c]:null}};function xn(c,h,v){if(v&&c===0)return null;var R=Fn(c,h);if(R.errno)throw new yi.ErrnoError(R.errno);return R.addr=ut.lookup_addr(R.addr)||R.addr,R}function ya(c,h,v){var R=gi(c),U=xn(h,v);return R.sock_ops.bind(R,U.addr,U.port),0}function ga(c,h,v){var R=gi(c),U=xn(h,v);return R.sock_ops.connect(R,U.addr,U.port),0}function va(c,h,v,R){return h=He.getStr(h),M(R===0),h=He.calculateAt(c,h),He.doAccess(h,v)}function qe(c,h,v){return He.varargs=v,0}function ja(c,h){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function ma(c,h,v){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Nn(c,h,v){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Qt(c,h){Qe.fill(0,c,c+h)}function Bn(c,h,v,R,U){switch(h){case 2:v=Di(v),Qt(c,16),U&&N(U|0,16,4),N(c|0,h|0,2),N(c+4|0,v|0,4),N(c+2|0,Xn(R)|0,2);break;case 10:v=vn(v),Qt(c,28),U&&N(U|0,28,4),N(c|0,h|0,4),N(c+8|0,v[0]|0,4),N(c+12|0,v[1]|0,4),N(c+16|0,v[2]|0,4),N(c+20|0,v[3]|0,4),N(c+2|0,Xn(R)|0,2);break;default:return 5}return 0}function jc(c,h,v){var R=gi(c);if(!R.daddr)return-53;var U=Bn(h,R.family,ut.lookup_name(R.daddr),R.dport,v);return M(!U),0}function jn(c,h,v,R,U){var Z=gi(c);return h===1&&v===4?(N(R|0,Z.error|0,4),N(U|0,4,4),Z.error=null,0):-50}function Yn(c,h,v){return He.varargs=v,0}function Hn(c,h){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Mi(c,h,v){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ui(c,h,v,R){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function mn(c,h,v,R){He.varargs=R,k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function _t(c,h,v,R,U,Z){var H=gi(c),$=H.sock_ops.recvmsg(H,v);if(!$)return 0;if(U){var ae=Bn(U,H.family,ut.lookup_name($.addr),$.port,Z);M(!ae)}return Qe.set($.buffer,h>>>0),$.buffer.byteLength}function qn(c,h,v,R){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function wa(c){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function ka(c,h,v,R,U,Z){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ea(c,h,v){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Sa(c,h){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ca(c,h,v){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Aa(c){}var Wn="To use dlopen, you need enable dynamic linking, see https://github.com/emscripten-core/emscripten/wiki/Linking";function Zn(c,h){k(Wn)}function wn(c,h){k(Wn)}function Ra(){return Date.now()}var Oa=!0;function Ta(){return Oa}function Pa(){k("native code called abort()")}function Da(c,h){return globalThis.DUCKDB_RUNTIME.createDirectory(e,c,h)}function Ia(c,h){return globalThis.DUCKDB_RUNTIME.checkDirectory(e,c,h)}function Ma(c,h){return globalThis.DUCKDB_RUNTIME.listDirectoryEntries(e,c,h)}function Ua(c,h){return globalThis.DUCKDB_RUNTIME.removeDirectory(e,c,h)}function La(c){return globalThis.DUCKDB_RUNTIME.closeFile(e,c)}function Fa(c,h){return globalThis.DUCKDB_RUNTIME.checkFile(e,c,h)}function xa(c){return globalThis.DUCKDB_RUNTIME.getLastFileModificationTime(e,c)}function Na(c,h,v,R){return globalThis.DUCKDB_RUNTIME.moveFile(e,c,h,v,R)}function Ba(c,h){return globalThis.DUCKDB_RUNTIME.openFile(e,c,h)}function Ya(c,h,v,R){return globalThis.DUCKDB_RUNTIME.readFile(e,c,h,v,R)}function Ha(c,h){return globalThis.DUCKDB_RUNTIME.truncateFile(e,c,h)}function $n(c,h,v,R){return globalThis.DUCKDB_RUNTIME.writeFile(e,c,h,v,R)}function qa(c,h){return globalThis.DUCKDB_RUNTIME.glob(e,c,h)}function Wa(c){return globalThis.DUCKDB_RUNTIME.testPlatformFeature(e,c)}function Za(c,h,v,R,U,Z){return globalThis.DUCKDB_RUNTIME.callScalarUDF(e,c,h,v,R,U,Z)}function $a(c){M(typeof c=="number"),console.error($e(c))}function Gn(){return 4294901760}var kn;q?kn=()=>{var c=process.hrtime();return c[0]*1e3+c[1]/1e6}:kn=()=>performance.now();function Ga(c,h,v){Qe.copyWithin(c>>>0,h>>>0,h+v>>>0)}function Va(c){try{return kt.grow(c-ci.byteLength+65535>>>16),_n(kt.buffer),1}catch(h){Y("emscripten_realloc_buffer: Attempted to grow heap from "+ci.byteLength+" bytes to "+c+" bytes, but got error: "+h)}}function Ka(c){var h=Qe.length;c=c>>>0,M(c>h);var v=Gn();if(c>v)return Y("Cannot enlarge memory, asked to go up to "+c+" bytes, but the limit is "+v+" bytes!"),!1;let R=(ae,fe)=>ae+(fe-ae%fe)%fe;for(var U=1;U<=4;U*=2){var Z=h*(1+.2/U);Z=Math.min(Z,c+100663296);var H=Math.min(v,R(Math.max(c,Z),65536)),$=Va(H);if($)return!0}return Y("Failed to grow the heap from "+h+" bytes to "+H+" bytes, not enough memory!"),!1}var En={};function za(){return O||"./this.program"}function vi(){if(!vi.strings){var c=(typeof navigator=="object"&&navigator.languages&&navigator.languages[0]||"C").replace("-","_")+".UTF-8",h={USER:"web_user",LOGNAME:"web_user",PATH:"/",PWD:"/",HOME:"/home/web_user",LANG:c,_:za()};for(var v in En)En[v]===void 0?delete h[v]:h[v]=En[v];var R=[];for(var v in h)R.push(v+"="+h[v]);vi.strings=R}return vi.strings}function Qa(c,h){var v=0;return vi().forEach(function(R,U){var Z=h+v;N(c+U*4|0,Z|0,4),un(R,Z),v+=R.length+1}),0}function Xa(c,h){var v=vi();N(c|0,v.length|0,4);var R=0;return v.forEach(function(U){R+=U.length+1}),N(h|0,R|0,4),0}function Ja(c){return k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"),0}function es(c,h,v,R,U,Z){M(!U,"offsets over 2^32 not yet supported");var H=He.getStreamFromFD(c),$=He.doReadv(H,h,v,R);return N(Z|0,$|0,4),0}function ts(c,h,v,R,U,Z){var H=He.getStreamFromFD(c);M(!U,"offsets over 2^32 not yet supported");var $=He.doWritev(H,h,v,R);return N(Z|0,$|0,4),0}function is(c,h,v,R){var U=He.getStreamFromFD(c),Z=He.doReadv(U,h,v);return N(R|0,Z|0,4),0}function ns(c,h,v,R,U){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function rs(c){var h=He.getStreamFromFD(c);return h.stream_ops&&h.stream_ops.fsync?-h.stream_ops.fsync(h):0}function as(){Fc();var c=He.buffers;c[1].length&&He.printChar(1,10),c[2].length&&He.printChar(2,10)}function ss(c,h,v,R){for(var U=0,Z=0;Z<v;Z++){var H=V(h|0,4,0)|0,$=V(h+4|0,4,0)|0;h+=8;for(var ae=0;ae<$;ae++)He.printChar(c,V(H+ae>>>0,1,1));U+=$}return N(R|0,U|0,4),0}function Vn(c,h,v,R){var U=[],Z=null,H=0,$=0,ae=0,fe=0,ve=0,We=0,Oe,ji;function Ze(nt,Ht,mi,K,he,at){var ze,qt,dt,sr;return qt=nt===10?28:16,he=nt===10?Ln(he):Pi(he),ze=Rn(qt),sr=Bn(ze,nt,he,at),M(!sr),dt=Rn(32),N(dt+4|0,nt|0,4),N(dt+8|0,Ht|0,4),N(dt+12|0,mi|0,4),N(dt+24|0,K|0,4),N(dt+20|0,ze|0,4),nt===10?N(dt+16|0,28,4):N(dt+16|0,16,4),N(dt+28|0,0,4),dt}if(v&&(ae=V(v|0,4,0)|0,fe=V(v+4|0,4,0)|0,ve=V(v+8|0,4,0)|0,We=V(v+12|0,4,0)|0),ve&&!We&&(We=ve===2?17:6),!ve&&We&&(ve=We===17?2:1),We===0&&(We=6),ve===0&&(ve=1),!c&&!h)return-2;if(ae&-1088||v!==0&&(V(v|0,4,0)|0)&2&&!c)return-1;if(ae&32)return-2;if(ve!==0&&ve!==1&&ve!==2)return-7;if(fe!==0&&fe!==2&&fe!==10)return-6;if(h&&(h=$e(h),$=parseInt(h,10),isNaN($)))return ae&1024?-2:-8;if(!c)return fe===0&&(fe=2),(ae&1)===0&&(fe===2?H=Qn(2130706433):H=[0,0,0,1]),Oe=Ze(fe,ve,We,null,H,$),N(R|0,Oe|0,4),0;if(c=$e(c),H=Di(c),H!==null)if(fe===0||fe===2)fe=2;else if(fe===10&&ae&8)H=[0,0,Qn(65535),H],fe=10;else return-2;else if(H=vn(c),H!==null)if(fe===0||fe===10)fe=10;else return-2;return H!=null?(Oe=Ze(fe,ve,We,c,H,$),N(R|0,Oe|0,4),0):ae&4?-2:(c=ut.lookup_name(c),H=Di(c),fe===0?fe=2:fe===10&&(H=[0,0,Qn(65535),H]),Oe=Ze(fe,ve,We,null,H,$),N(R|0,Oe|0,4),0)}function Sn(){if(typeof crypto=="object"&&typeof crypto.getRandomValues=="function"){var c=new Uint8Array(1);return function(){return crypto.getRandomValues(c),c[0]}}else if(q)try{var h=require("crypto");return function(){return h.randomBytes(1)[0]}}catch{}return function(){k("no cryptographic support found for randomDevice. consider polyfilling it if you want to use something insecure like Math.random(), e.g. put this in a --pre-js: var crypto = { getRandomValues: function(array) { for (var i = 0; i < array.length; i++) array[i] = (Math.random()*256)|0 } };")}}function Li(c,h){Li.randomDevice||(Li.randomDevice=Sn());for(var v=0;v<h;v++)N(c+v|0,Li.randomDevice()|0,1);return 0}function os(c,h,v,R,U,Z,H){var $=Fn(c,h);if($.errno)return-6;var ae=$.port,fe=$.addr,ve=!1;if(v&&R){var We;if(H&1||!(We=ut.lookup_addr(fe))){if(H&8)return-2}else fe=We;var Oe=Nt(fe,v,R);Oe+1>=R&&(ve=!0)}if(U&&Z){ae=""+ae;var Oe=Nt(ae,U,Z);Oe+1>=Z&&(ve=!0)}return ve?-12:0}function cs(c){oe(c)}function Xt(c){return c%4===0&&(c%100!==0||c%400===0)}function ls(c,h){for(var v=0,R=0;R<=h;v+=c[R++]);return v}var Jt=[31,29,31,30,31,30,31,31,30,31,30,31],Kn=[31,28,31,30,31,30,31,31,30,31,30,31];function us(c,h){for(var v=new Date(c.getTime());h>0;){var R=Xt(v.getFullYear()),U=v.getMonth(),Z=(R?Jt:Kn)[U];if(h>Z-v.getDate())h-=Z-v.getDate()+1,v.setDate(1),U<11?v.setMonth(U+1):(v.setMonth(0),v.setFullYear(v.getFullYear()+1));else return v.setDate(v.getDate()+h),v}return v}function _s(c,h,v,R){var U=V(R+40|0,4,0)|0,Z={tm_sec:V(R|0,4,0)|0,tm_min:V(R+4|0,4,0)|0,tm_hour:V(R+8|0,4,0)|0,tm_mday:V(R+12|0,4,0)|0,tm_mon:V(R+16|0,4,0)|0,tm_year:V(R+20|0,4,0)|0,tm_wday:V(R+24|0,4,0)|0,tm_yday:V(R+28|0,4,0)|0,tm_isdst:V(R+32|0,4,0)|0,tm_gmtoff:V(R+36|0,4,0)|0,tm_zone:U?$e(U):""},H=$e(v),$={"%c":"%a %b %d %H:%M:%S %Y","%D":"%m/%d/%y","%F":"%Y-%m-%d","%h":"%b","%r":"%I:%M:%S %p","%R":"%H:%M","%T":"%H:%M:%S","%x":"%m/%d/%y","%X":"%H:%M:%S","%Ec":"%c","%EC":"%C","%Ex":"%m/%d/%y","%EX":"%H:%M:%S","%Ey":"%y","%EY":"%Y","%Od":"%d","%Oe":"%e","%OH":"%H","%OI":"%I","%Om":"%m","%OM":"%M","%OS":"%S","%Ou":"%u","%OU":"%U","%OV":"%V","%Ow":"%w","%OW":"%W","%Oy":"%y"};for(var ae in $)H=H.replace(new RegExp(ae,"g"),$[ae]);var fe=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],ve=["January","February","March","April","May","June","July","August","September","October","November","December"];function We(K,he,at){for(var ze=typeof K=="number"?K.toString():K||"";ze.length<he;)ze=at[0]+ze;return ze}function Oe(K,he){return We(K,he,"0")}function ji(K,he){function at(qt){return qt<0?-1:qt>0?1:0}var ze;return(ze=at(K.getFullYear()-he.getFullYear()))===0&&(ze=at(K.getMonth()-he.getMonth()))===0&&(ze=at(K.getDate()-he.getDate())),ze}function Ze(K){switch(K.getDay()){case 0:return new Date(K.getFullYear()-1,11,29);case 1:return K;case 2:return new Date(K.getFullYear(),0,3);case 3:return new Date(K.getFullYear(),0,2);case 4:return new Date(K.getFullYear(),0,1);case 5:return new Date(K.getFullYear()-1,11,31);case 6:return new Date(K.getFullYear()-1,11,30)}}function nt(K){var he=us(new Date(K.tm_year+1900,0,1),K.tm_yday),at=new Date(he.getFullYear(),0,4),ze=new Date(he.getFullYear()+1,0,4),qt=Ze(at),dt=Ze(ze);return ji(qt,he)<=0?ji(dt,he)<=0?he.getFullYear()+1:he.getFullYear():he.getFullYear()-1}var Ht={"%a":function(K){return fe[K.tm_wday].substring(0,3)},"%A":function(K){return fe[K.tm_wday]},"%b":function(K){return ve[K.tm_mon].substring(0,3)},"%B":function(K){return ve[K.tm_mon]},"%C":function(K){var he=K.tm_year+1900;return Oe(he/100|0,2)},"%d":function(K){return Oe(K.tm_mday,2)},"%e":function(K){return We(K.tm_mday,2," ")},"%g":function(K){return nt(K).toString().substring(2)},"%G":function(K){return nt(K)},"%H":function(K){return Oe(K.tm_hour,2)},"%I":function(K){var he=K.tm_hour;return he==0?he=12:he>12&&(he-=12),Oe(he,2)},"%j":function(K){return Oe(K.tm_mday+ls(Xt(K.tm_year+1900)?Jt:Kn,K.tm_mon-1),3)},"%m":function(K){return Oe(K.tm_mon+1,2)},"%M":function(K){return Oe(K.tm_min,2)},"%n":function(){return`
-`},"%p":function(K){return K.tm_hour>=0&&K.tm_hour<12?"AM":"PM"},"%S":function(K){return Oe(K.tm_sec,2)},"%t":function(){return"	"},"%u":function(K){return K.tm_wday||7},"%U":function(K){var he=K.tm_yday+7-K.tm_wday;return Oe(Math.floor(he/7),2)},"%V":function(K){var he=Math.floor((K.tm_yday+7-(K.tm_wday+6)%7)/7);if((K.tm_wday+371-K.tm_yday-2)%7<=2&&he++,he){if(he==53){var ze=(K.tm_wday+371-K.tm_yday)%7;ze!=4&&(ze!=3||!Xt(K.tm_year))&&(he=1)}}else{he=52;var at=(K.tm_wday+7-K.tm_yday-1)%7;(at==4||at==5&&Xt(K.tm_year%400-1))&&he++}return Oe(he,2)},"%w":function(K){return K.tm_wday},"%W":function(K){var he=K.tm_yday+7-(K.tm_wday+6)%7;return Oe(Math.floor(he/7),2)},"%y":function(K){return(K.tm_year+1900).toString().substring(2)},"%Y":function(K){return K.tm_year+1900},"%z":function(K){var he=K.tm_gmtoff,at=he>=0;return he=Math.abs(he)/60,he=he/60*100+he%60,(at?"+":"-")+String("0000"+he).slice(-4)},"%Z":function(K){return K.tm_zone},"%%":function(){return"%"}};H=H.replace(/%%/g,"\0\0");for(var ae in Ht)H.includes(ae)&&(H=H.replace(new RegExp(ae,"g"),Ht[ae](Z)));H=H.replace(/\0\0/g,"%");var mi=hs(H,!1);return mi.length>h?0:(ln(mi,c),mi.length-1)}function ds(c,h,v,R){return _s(c,h,v,R)}var fs=!0;function hs(c,h,v){var R=v>0?v:Bt(c)+1,U=new Array(R),Z=xt(c,U,0,U.length);return h&&(U.length=Z),U}function mc(c){for(var h=[],v=0;v<c.length;v++){var R=c[v];R>255&&(fs&&M(!1,"Character code "+R+" ("+String.fromCharCode(R)+")  at offset "+v+" not in 0x00-0xFF."),R&=255),h.push(String.fromCharCode(R))}return h.join("")}function bs(){Vt("fetchSettings")}var zn={__assert_fail:ba,__syscall__newselect:pi,__syscall_bind:ya,__syscall_connect:ga,__syscall_faccessat:va,__syscall_fcntl64:qe,__syscall_fstat64:ja,__syscall_ftruncate64:ma,__syscall_getdents64:Nn,__syscall_getpeername:jc,__syscall_getsockopt:jn,__syscall_ioctl:Yn,__syscall_lstat64:Hn,__syscall_mkdirat:Mi,__syscall_newfstatat:Ui,__syscall_openat:mn,__syscall_recvfrom:_t,__syscall_renameat:qn,__syscall_rmdir:wa,__syscall_sendto:ka,__syscall_socket:Ea,__syscall_stat64:Sa,__syscall_unlinkat:Ca,_dlinit:Aa,_dlopen_js:Zn,_dlsym_js:wn,_emscripten_date_now:Ra,_emscripten_get_now_is_monotonic:Ta,abort:Pa,alignfault:$r,duckdb_web_fs_directory_create:Da,duckdb_web_fs_directory_exists:Ia,duckdb_web_fs_directory_list_files:Ma,duckdb_web_fs_directory_remove:Ua,duckdb_web_fs_file_close:La,duckdb_web_fs_file_exists:Fa,duckdb_web_fs_file_get_last_modified_time:xa,duckdb_web_fs_file_move:Na,duckdb_web_fs_file_open:Ba,duckdb_web_fs_file_read:Ya,duckdb_web_fs_file_truncate:Ha,duckdb_web_fs_file_write:$n,duckdb_web_fs_glob:qa,duckdb_web_test_platform_feature:Wa,duckdb_web_udf_scalar_call:Za,emscripten_console_error:$a,emscripten_get_heap_max:Gn,emscripten_get_now:kn,emscripten_memcpy_big:Ga,emscripten_resize_heap:Ka,environ_get:Qa,environ_sizes_get:Xa,fd_close:Ja,fd_pread:es,fd_pwrite:ts,fd_read:is,fd_seek:ns,fd_sync:rs,fd_write:ss,getaddrinfo:Vn,getentropy:Li,getnameinfo:os,segfault:Zr,setTempRet0:cs,strftime_l:ds},wc=la(),kc=e.___wasm_call_ctors=g("__wasm_call_ctors"),Ec=e._main=g("main"),Sc=e._duckdb_web_fs_glob_add_path=g("duckdb_web_fs_glob_add_path"),Cn=e._duckdb_web_clear_response=g("duckdb_web_clear_response"),Cc=e._duckdb_web_fail_with=g("duckdb_web_fail_with"),Ac=e._duckdb_web_reset=g("duckdb_web_reset"),Rc=e._duckdb_web_connect=g("duckdb_web_connect"),An=e._duckdb_web_disconnect=g("duckdb_web_disconnect"),Oc=e._duckdb_web_flush_files=g("duckdb_web_flush_files"),ps=e._duckdb_web_flush_file=g("duckdb_web_flush_file"),ys=e._duckdb_web_open=g("duckdb_web_open"),Tc=e._duckdb_web_get_global_file_info=g("duckdb_web_get_global_file_info"),Pc=e._duckdb_web_collect_file_stats=g("duckdb_web_collect_file_stats"),Dc=e._duckdb_web_export_file_stats=g("duckdb_web_export_file_stats"),Ic=e._duckdb_web_fs_drop_file=g("duckdb_web_fs_drop_file"),Mc=e._duckdb_web_fs_drop_files=g("duckdb_web_fs_drop_files"),qd=e._duckdb_web_fs_glob_file_infos=g("duckdb_web_fs_glob_file_infos"),Uc=e._duckdb_web_fs_get_file_info_by_id=g("duckdb_web_fs_get_file_info_by_id"),gs=e._duckdb_web_fs_get_file_info_by_name=g("duckdb_web_fs_get_file_info_by_name"),Wd=e._duckdb_web_fs_set_file_descriptor=g("duckdb_web_fs_set_file_descriptor"),Zd=e._duckdb_web_fs_register_file_url=g("duckdb_web_fs_register_file_url"),$d=e._duckdb_web_fs_register_file_buffer=g("duckdb_web_fs_register_file_buffer"),Gd=e._duckdb_web_copy_file_to_buffer=g("duckdb_web_copy_file_to_buffer"),Vd=e._duckdb_web_copy_file_to_path=g("duckdb_web_copy_file_to_path"),Kd=e._duckdb_web_get_version=g("duckdb_web_get_version"),zd=e._duckdb_web_get_feature_flags=g("duckdb_web_get_feature_flags"),Qd=e._duckdb_web_tokenize=g("duckdb_web_tokenize"),Xd=e._duckdb_web_udf_scalar_create=g("duckdb_web_udf_scalar_create"),Jd=e._duckdb_web_prepared_create=g("duckdb_web_prepared_create"),ef=e._duckdb_web_prepared_close=g("duckdb_web_prepared_close"),tf=e._duckdb_web_prepared_run=g("duckdb_web_prepared_run"),nf=e._duckdb_web_prepared_send=g("duckdb_web_prepared_send"),rf=e._duckdb_web_query_run=g("duckdb_web_query_run"),af=e._duckdb_web_pending_query_start=g("duckdb_web_pending_query_start"),sf=e._duckdb_web_pending_query_poll=g("duckdb_web_pending_query_poll"),of=e._duckdb_web_pending_query_cancel=g("duckdb_web_pending_query_cancel"),cf=e._duckdb_web_query_fetch_results=g("duckdb_web_query_fetch_results"),lf=e._duckdb_web_get_tablenames=g("duckdb_web_get_tablenames"),uf=e._duckdb_web_insert_arrow_from_ipc_stream=g("duckdb_web_insert_arrow_from_ipc_stream"),_f=e._duckdb_web_insert_csv_from_path=g("duckdb_web_insert_csv_from_path"),df=e._duckdb_web_insert_json_from_path=g("duckdb_web_insert_json_from_path"),Lc=e.___errno_location=g("__errno_location"),Fc=e.___stdio_exit=g("__stdio_exit"),ff=e.___dl_seterr=g("__dl_seterr"),Qn=e._htonl=g("htonl"),Xn=e._htons=g("htons"),vs=e._ntohs=g("ntohs"),Rn=e._malloc=g("malloc"),hf=e._free=g("free"),bf=e._emscripten_get_sbrk_ptr=g("emscripten_get_sbrk_ptr"),js=e._sbrk=g("sbrk"),pf=e._setThrew=g("setThrew"),ms=e._emscripten_stack_init=function(){return(ms=e._emscripten_stack_init=e.asm.emscripten_stack_init).apply(null,arguments)},xc=e._emscripten_stack_get_free=function(){return(xc=e._emscripten_stack_get_free=e.asm.emscripten_stack_get_free).apply(null,arguments)},Jn=e._emscripten_stack_get_base=function(){return(Jn=e._emscripten_stack_get_base=e.asm.emscripten_stack_get_base).apply(null,arguments)},er=e._emscripten_stack_get_end=function(){return(er=e._emscripten_stack_get_end=e.asm.emscripten_stack_get_end).apply(null,arguments)},ws=e.stackSave=g("stackSave"),ks=e.stackRestore=g("stackRestore"),Fi=e.stackAlloc=g("stackAlloc"),yf=e.dynCall_jiji=g("dynCall_jiji"),gf=e.dynCall_iiiiij=g("dynCall_iiiiij"),Nc=e.dynCall_iiiiijj=g("dynCall_iiiiijj"),Bc=e.dynCall_iiiiiijj=g("dynCall_iiiiiijj"),vf=e.dynCall_viijii=g("dynCall_viijii"),tr=e.dynCall_viij=g("dynCall_viij"),ir=e.dynCall_viijji=g("dynCall_viijji"),Es=e.dynCall_viijj=g("dynCall_viijj"),xi=e.dynCall_viiijj=g("dynCall_viiijj"),Yc=e.dynCall_viiij=g("dynCall_viiij"),jf=e.dynCall_viijij=g("dynCall_viijij"),Ss=e.dynCall_viiji=g("dynCall_viiji"),C=e.dynCall_ji=g("dynCall_ji"),Cs=e.dynCall_jiiiii=g("dynCall_jiiiii"),Hc=e.dynCall_vij=g("dynCall_vij"),nr=e.dynCall_j=g("dynCall_j"),rr=e.dynCall_jii=g("dynCall_jii"),E=e.dynCall_jiii=g("dynCall_jiii"),S=e.dynCall_jij=g("dynCall_jij"),Ni=e.dynCall_iij=g("dynCall_iij"),On=e.dynCall_iiiiiji=g("dynCall_iiiiiji"),qc=e.dynCall_jiiiij=g("dynCall_jiiiij"),mf=e.dynCall_jijjij=g("dynCall_jijjij"),Wc=e.dynCall_ijjj=g("dynCall_ijjj"),Zc=e.dynCall_jjjd=g("dynCall_jjjd"),$c=e.dynCall_jjjjjjd=g("dynCall_jjjjjjd"),wf=e.dynCall_vjjijij=g("dynCall_vjjijij"),Gc=e.dynCall_vijjji=g("dynCall_vijjji"),Vc=e.dynCall_vjjii=g("dynCall_vjjii"),Kc=e.dynCall_viiiiiji=g("dynCall_viiiiiji"),zc=e.dynCall_jiiiji=g("dynCall_jiiiji"),Qc=e.dynCall_jiiij=g("dynCall_jiiij"),Xc=e.dynCall_iiij=g("dynCall_iiij"),Jc=e.dynCall_vijjj=g("dynCall_vijjj"),el=e.dynCall_jiijii=g("dynCall_jiijii"),tl=e.dynCall_jijiii=g("dynCall_jijiii"),il=e.dynCall_viijiiiii=g("dynCall_viijiiiii"),nl=e.dynCall_viijiiij=g("dynCall_viijiiij"),rl=e.dynCall_vijiiiji=g("dynCall_vijiiiji"),al=e.dynCall_viiiij=g("dynCall_viiiij"),sl=e.dynCall_jiiji=g("dynCall_jiiji"),ol=e.dynCall_viiijij=g("dynCall_viiijij"),cl=e.dynCall_viijiij=g("dynCall_viijiij"),ll=e.dynCall_viiiiijj=g("dynCall_viiiiijj"),ul=e.dynCall_viiijji=g("dynCall_viiijji"),_l=e.dynCall_vijii=g("dynCall_vijii"),dl=e.dynCall_jiiii=g("dynCall_jiiii"),fl=e.dynCall_viiijiiiijj=g("dynCall_viiijiiiijj"),hl=e.dynCall_jiiijj=g("dynCall_jiiijj"),bl=e.dynCall_viiiji=g("dynCall_viiiji"),pl=e.dynCall_viiiiji=g("dynCall_viiiiji"),yl=e.dynCall_jiij=g("dynCall_jiij"),gl=e.dynCall_jijiiii=g("dynCall_jijiiii"),vl=e.dynCall_viiijiji=g("dynCall_viiijiji");b("intArrayFromString",!1),b("intArrayToString",!1),e.ccall=rn,b("cwrap",!1),b("setValue",!1),b("getValue",!1),b("allocate",!1),b("UTF8ArrayToString",!1),b("UTF8ToString",!1),b("stringToUTF8Array",!1),b("stringToUTF8",!1),b("lengthBytesUTF8",!1),b("stackTrace",!1),b("addOnPreRun",!1),b("addOnInit",!1),b("addOnPreMain",!1),b("addOnExit",!1),b("addOnPostRun",!1),b("writeStringToMemory",!1),b("writeArrayToMemory",!1),b("writeAsciiToMemory",!1),b("addRunDependency",!0),b("removeRunDependency",!0),b("FS_createFolder",!1),b("FS_createPath",!0),b("FS_createDataFile",!0),b("FS_createPreloadedFile",!0),b("FS_createLazyFile",!0),b("FS_createLink",!1),b("FS_createDevice",!0),b("FS_unlink",!0),b("getLEB",!1),b("getFunctionTables",!1),b("alignFunctionTables",!1),b("registerFunctions",!1),b("addFunction",!1),b("removeFunction",!1),b("prettyPrint",!1),b("dynCall",!1),b("getCompilerSetting",!1),b("print",!1),b("printErr",!1),b("getTempRet0",!1),b("setTempRet0",!1),b("callMain",!1),b("abort",!1),b("keepRuntimeAlive",!1),b("ptrToString",!1),b("zeroMemory",!1),b("stringToNewUTF8",!1),b("emscripten_realloc_buffer",!1),b("ENV",!1),b("ERRNO_CODES",!1),b("ERRNO_MESSAGES",!1),b("setErrNo",!1),b("inetPton4",!1),b("inetNtop4",!1),b("inetPton6",!1),b("inetNtop6",!1),b("readSockaddr",!1),b("writeSockaddr",!1),b("DNS",!1),b("getHostByName",!1),b("Protocols",!1),b("Sockets",!1),b("getRandomDevice",!1),b("traverseStack",!1),b("UNWIND_CACHE",!1),b("convertPCtoSourceLocation",!1),b("readAsmConstArgsArray",!1),b("readAsmConstArgs",!1),b("mainThreadEM_ASM",!1),b("jstoi_q",!1),b("jstoi_s",!1),b("getExecutableName",!1),b("listenOnce",!1),b("autoResumeAudioContext",!1),b("dynCallLegacy",!1),b("getDynCaller",!1),b("dynCall",!1),b("handleException",!1),b("runtimeKeepalivePush",!1),b("runtimeKeepalivePop",!1),b("callUserCallback",!1),b("maybeExit",!1),b("safeSetTimeout",!1),b("asmjsMangle",!1),b("asyncLoad",!1),b("alignMemory",!1),b("mmapAlloc",!1),b("reallyNegative",!1),b("unSign",!1),b("reSign",!1),b("formatString",!1),b("PATH",!1),b("PATH_FS",!1),b("SYSCALLS",!1),b("getSocketFromFD",!1),b("getSocketAddress",!1),b("JSEvents",!1),b("registerKeyEventCallback",!1),b("specialHTMLTargets",!1),b("maybeCStringToJsString",!1),b("findEventTarget",!1),b("findCanvasEventTarget",!1),b("getBoundingClientRect",!1),b("fillMouseEventData",!1),b("registerMouseEventCallback",!1),b("registerWheelEventCallback",!1),b("registerUiEventCallback",!1),b("registerFocusEventCallback",!1),b("fillDeviceOrientationEventData",!1),b("registerDeviceOrientationEventCallback",!1),b("fillDeviceMotionEventData",!1),b("registerDeviceMotionEventCallback",!1),b("screenOrientation",!1),b("fillOrientationChangeEventData",!1),b("registerOrientationChangeEventCallback",!1),b("fillFullscreenChangeEventData",!1),b("registerFullscreenChangeEventCallback",!1),b("registerRestoreOldStyle",!1),b("hideEverythingExceptGivenElement",!1),b("restoreHiddenElements",!1),b("setLetterbox",!1),b("currentFullscreenStrategy",!1),b("restoreOldWindowedStyle",!1),b("softFullscreenResizeWebGLRenderTarget",!1),b("doRequestFullscreen",!1),b("fillPointerlockChangeEventData",!1),b("registerPointerlockChangeEventCallback",!1),b("registerPointerlockErrorEventCallback",!1),b("requestPointerLock",!1),b("fillVisibilityChangeEventData",!1),b("registerVisibilityChangeEventCallback",!1),b("registerTouchEventCallback",!1),b("fillGamepadEventData",!1),b("registerGamepadEventCallback",!1),b("registerBeforeUnloadEventCallback",!1),b("fillBatteryEventData",!1),b("battery",!1),b("registerBatteryEventCallback",!1),b("setCanvasElementSize",!1),b("getCanvasElementSize",!1),b("demangle",!1),b("demangleAll",!1),b("jsStackTrace",!1),b("stackTrace",!1),b("getEnvStrings",!1),b("checkWasiClock",!1),b("flush_NO_FILESYSTEM",!1),b("writeI53ToI64",!1),b("writeI53ToI64Clamped",!1),b("writeI53ToI64Signaling",!1),b("writeI53ToU64Clamped",!1),b("writeI53ToU64Signaling",!1),b("readI53FromI64",!1),b("readI53FromU64",!1),b("convertI32PairToI53",!1),b("convertU32PairToI53",!1),b("dlopenMissingError",!1),b("setImmediateWrapped",!1),b("clearImmediateWrapped",!1),b("polyfillSetImmediate",!1),b("Browser",!1),b("setMainLoop",!1),b("wget",!1),b("tempFixedLengthArray",!1),b("miniTempWebGLFloatBuffers",!1),b("heapObjectForWebGLType",!1),b("heapAccessShiftForWebGLHeap",!1),b("GL",!1),b("emscriptenWebGLGet",!1),b("computeUnpackAlignedImageSize",!1),b("emscriptenWebGLGetTexPixelData",!1),b("emscriptenWebGLGetUniform",!1),b("webglGetUniformLocation",!1),b("webglPrepareUniformLocationsBeforeFirstUse",!1),b("webglGetLeftBracePos",!1),b("emscriptenWebGLGetVertexAttrib",!1),b("writeGLArray",!1),b("AL",!1),b("SDL_unicode",!1),b("SDL_ttfContext",!1),b("SDL_audio",!1),b("SDL",!1),b("SDL_gfx",!1),b("GLUT",!1),b("EGL",!1),b("GLFW_Window",!1),b("GLFW",!1),b("GLEW",!1),b("IDBStore",!1),b("runAndAbortIfError",!1),b("SOCKFS",!1),b("FS",!1),b("warnOnce",!1),b("stackSave",!1),b("stackRestore",!1),b("stackAlloc",!1),b("AsciiToString",!1),b("stringToAscii",!1),b("UTF16ToString",!1),b("stringToUTF16",!1),b("lengthBytesUTF16",!1),b("UTF32ToString",!1),b("stringToUTF32",!1),b("lengthBytesUTF32",!1),b("allocateUTF8",!1),b("allocateUTF8OnStack",!1),e.writeStackCookie=dn,e.checkStackCookie=St,ee("ALLOC_NORMAL",!1),ee("ALLOC_STACK",!1);var Bi;function Yi(c){this.name="ExitStatus",this.message="Program terminated with exit("+c+")",this.status=c}var As=!1;At=function c(){Bi||Tn(),Bi||(At=c)};function Rs(c){M(it==0,'cannot call main when async dependencies remain! (listen on Module["onRuntimeInitialized"])'),M(hi.length==0,"cannot call main when preRun functions remain to be called");var h=e._main;c=c||[];var v=c.length+1,R=Fi((v+1)*4);N((R>>>2)*4,cn(O),4);for(var U=1;U<v;U++)N(((R>>2)+U>>>0)*4,cn(c[U-1]),4);N(((R>>2)+v>>>0)*4,0,4);try{var Z=h(v,R);return Ps(Z,!0),Z}catch(H){return da(H)}finally{As=!0}}function Os(){ms(),dn()}function Tn(c){if(c=c||w,it>0||(Os(),Qr(),it>0))return;function h(){Bi||(Bi=!0,e.calledRun=!0,!Et&&(Xr(),Jr(),l(e),e.onRuntimeInitialized&&e.onRuntimeInitialized(),ar&&Rs(c),ea()))}e.setStatus?(e.setStatus("Running..."),setTimeout(function(){setTimeout(function(){e.setStatus("")},1),h()},1)):h(),St()}e.run=Tn;function Ts(){var c=de,h=Y,v=!1;de=Y=U=>{v=!0};try{var R=as;R&&R()}catch{}de=c,Y=h,v&&(ge("stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the FAQ), or make sure to emit a newline when you printf etc."),ge("(this may also be due to not including full filesystem support - try building with -sFORCE_FILESYSTEM)"))}function Ps(c,h){if(Ft=c,Ts(),bi()&&!h){var v="program exited (with status: "+c+"), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";p(v),Y(v)}Ds(c)}function Ds(c){Ft=c,bi()||(e.onExit&&e.onExit(c),Et=!0),P(c,new Yi(c))}if(e.preInit)for(typeof e.preInit=="function"&&(e.preInit=[e.preInit]);e.preInit.length>0;)e.preInit.pop()();var ar=!0;return e.noInitialRun&&(ar=!1),Tn(),i.ready}})(),El=Oj;var Sl={},Tj=(()=>{var r=Sl.url;return function(i){i=i||{};var e=typeof i<"u"?i:{},l,p;e.ready=new Promise(function(t,n){l=t,p=n}),Object.getOwnPropertyDescriptor(e.ready,"_main")||(Object.defineProperty(e.ready,"_main",{configurable:!0,get:function(){k("You are getting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_main",{configurable:!0,set:function(){k("You are setting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_malloc")||(Object.defineProperty(e.ready,"_malloc",{configurable:!0,get:function(){k("You are getting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_malloc",{configurable:!0,set:function(){k("You are setting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_free")||(Object.defineProperty(e.ready,"_free",{configurable:!0,get:function(){k("You are getting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_free",{configurable:!0,set:function(){k("You are setting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_clear_response")||(Object.defineProperty(e.ready,"_duckdb_web_clear_response",{configurable:!0,get:function(){k("You are getting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_clear_response",{configurable:!0,set:function(){k("You are setting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_collect_file_stats")||(Object.defineProperty(e.ready,"_duckdb_web_collect_file_stats",{configurable:!0,get:function(){k("You are getting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_collect_file_stats",{configurable:!0,set:function(){k("You are setting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_connect")||(Object.defineProperty(e.ready,"_duckdb_web_connect",{configurable:!0,get:function(){k("You are getting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_connect",{configurable:!0,set:function(){k("You are setting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_copy_file_to_buffer")||(Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_buffer",{configurable:!0,get:function(){k("You are getting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_buffer",{configurable:!0,set:function(){k("You are setting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_copy_file_to_path")||(Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_copy_file_to_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_disconnect")||(Object.defineProperty(e.ready,"_duckdb_web_disconnect",{configurable:!0,get:function(){k("You are getting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_disconnect",{configurable:!0,set:function(){k("You are setting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_export_file_stats")||(Object.defineProperty(e.ready,"_duckdb_web_export_file_stats",{configurable:!0,get:function(){k("You are getting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_export_file_stats",{configurable:!0,set:function(){k("You are setting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fail_with")||(Object.defineProperty(e.ready,"_duckdb_web_fail_with",{configurable:!0,get:function(){k("You are getting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fail_with",{configurable:!0,set:function(){k("You are setting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_flush_file")||(Object.defineProperty(e.ready,"_duckdb_web_flush_file",{configurable:!0,get:function(){k("You are getting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_flush_file",{configurable:!0,set:function(){k("You are setting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_flush_files")||(Object.defineProperty(e.ready,"_duckdb_web_flush_files",{configurable:!0,get:function(){k("You are getting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_flush_files",{configurable:!0,set:function(){k("You are setting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_drop_file")||(Object.defineProperty(e.ready,"_duckdb_web_fs_drop_file",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_drop_file",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_drop_files")||(Object.defineProperty(e.ready,"_duckdb_web_fs_drop_files",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_drop_files",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_get_file_info_by_id")||(Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_id",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_id",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_get_file_info_by_name")||(Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_name",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_get_file_info_by_name",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_glob_add_path")||(Object.defineProperty(e.ready,"_duckdb_web_fs_glob_add_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_glob_add_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_glob_file_infos")||(Object.defineProperty(e.ready,"_duckdb_web_fs_glob_file_infos",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_glob_file_infos",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_register_file_buffer")||(Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_buffer",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_buffer",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_register_file_url")||(Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_url",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_register_file_url",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_fs_set_file_descriptor")||(Object.defineProperty(e.ready,"_duckdb_web_fs_set_file_descriptor",{configurable:!0,get:function(){k("You are getting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_fs_set_file_descriptor",{configurable:!0,set:function(){k("You are setting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_feature_flags")||(Object.defineProperty(e.ready,"_duckdb_web_get_feature_flags",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_feature_flags",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_global_file_info")||(Object.defineProperty(e.ready,"_duckdb_web_get_global_file_info",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_global_file_info",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_tablenames")||(Object.defineProperty(e.ready,"_duckdb_web_get_tablenames",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_tablenames",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_get_version")||(Object.defineProperty(e.ready,"_duckdb_web_get_version",{configurable:!0,get:function(){k("You are getting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_get_version",{configurable:!0,set:function(){k("You are setting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_insert_arrow_from_ipc_stream")||(Object.defineProperty(e.ready,"_duckdb_web_insert_arrow_from_ipc_stream",{configurable:!0,get:function(){k("You are getting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_insert_arrow_from_ipc_stream",{configurable:!0,set:function(){k("You are setting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_insert_csv_from_path")||(Object.defineProperty(e.ready,"_duckdb_web_insert_csv_from_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_insert_csv_from_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_insert_json_from_path")||(Object.defineProperty(e.ready,"_duckdb_web_insert_json_from_path",{configurable:!0,get:function(){k("You are getting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_insert_json_from_path",{configurable:!0,set:function(){k("You are setting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_open")||(Object.defineProperty(e.ready,"_duckdb_web_open",{configurable:!0,get:function(){k("You are getting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_open",{configurable:!0,set:function(){k("You are setting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_pending_query_cancel")||(Object.defineProperty(e.ready,"_duckdb_web_pending_query_cancel",{configurable:!0,get:function(){k("You are getting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_pending_query_cancel",{configurable:!0,set:function(){k("You are setting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_pending_query_poll")||(Object.defineProperty(e.ready,"_duckdb_web_pending_query_poll",{configurable:!0,get:function(){k("You are getting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_pending_query_poll",{configurable:!0,set:function(){k("You are setting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_pending_query_start")||(Object.defineProperty(e.ready,"_duckdb_web_pending_query_start",{configurable:!0,get:function(){k("You are getting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_pending_query_start",{configurable:!0,set:function(){k("You are setting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_close")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_close",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_close",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_create")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_create",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_create",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_run")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_run",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_run",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_prepared_send")||(Object.defineProperty(e.ready,"_duckdb_web_prepared_send",{configurable:!0,get:function(){k("You are getting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_prepared_send",{configurable:!0,set:function(){k("You are setting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_query_fetch_results")||(Object.defineProperty(e.ready,"_duckdb_web_query_fetch_results",{configurable:!0,get:function(){k("You are getting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_query_fetch_results",{configurable:!0,set:function(){k("You are setting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_query_run")||(Object.defineProperty(e.ready,"_duckdb_web_query_run",{configurable:!0,get:function(){k("You are getting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_query_run",{configurable:!0,set:function(){k("You are setting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_reset")||(Object.defineProperty(e.ready,"_duckdb_web_reset",{configurable:!0,get:function(){k("You are getting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_reset",{configurable:!0,set:function(){k("You are setting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_tokenize")||(Object.defineProperty(e.ready,"_duckdb_web_tokenize",{configurable:!0,get:function(){k("You are getting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_tokenize",{configurable:!0,set:function(){k("You are setting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"_duckdb_web_udf_scalar_create")||(Object.defineProperty(e.ready,"_duckdb_web_udf_scalar_create",{configurable:!0,get:function(){k("You are getting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"_duckdb_web_udf_scalar_create",{configurable:!0,set:function(){k("You are setting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"___stdio_exit")||(Object.defineProperty(e.ready,"___stdio_exit",{configurable:!0,get:function(){k("You are getting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"___stdio_exit",{configurable:!0,set:function(){k("You are setting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}})),Object.getOwnPropertyDescriptor(e.ready,"onRuntimeInitialized")||(Object.defineProperty(e.ready,"onRuntimeInitialized",{configurable:!0,get:function(){k("You are getting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}),Object.defineProperty(e.ready,"onRuntimeInitialized",{configurable:!0,set:function(){k("You are setting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js")}}));var m=Object.assign({},e),w=[],O="./this.program",P=(t,n)=>{throw n},B=typeof window=="object",D=typeof importScripts=="function",q=typeof process=="object"&&typeof process.versions=="object"&&typeof process.versions.node=="string",x=!B&&!q&&!D;if(e.ENVIRONMENT)throw new Error("Module.ENVIRONMENT has been deprecated. To force the environment, use the ENVIRONMENT compile-time option (for example, -sENVIRONMENT=web or -sENVIRONMENT=node)");var ie="";function X(t){return e.locateFile?e.locateFile(t,ie):ie+t}var J,ce,le,Ae;function Ee(t){if(t instanceof cr)return;let n=t;t&&typeof t=="object"&&t.stack&&(n=[t,t.stack]),Y("exiting due to exception: "+n)}var xe,_e,Se;if(q){if(!(typeof process=="object"&&typeof require=="function"))throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");D?ie=require("path").dirname(ie)+"/":ie=__dirname+"/",Se=()=>{_e||(xe=require("fs"),_e=require("path"))},J=function(n,a){return Se(),n=_e.normalize(n),xe.readFileSync(n,a?void 0:"utf8")},le=t=>{var n=J(t,!0);return n.buffer||(n=new Uint8Array(n)),M(n.buffer),n},ce=(t,n,a)=>{Se(),t=_e.normalize(t),xe.readFile(t,function(s,o){s?a(s):n(o.buffer)})},process.argv.length>1&&(O=process.argv[1].replace(/\\/g,"/")),w=process.argv.slice(2),process.on("uncaughtException",function(t){if(!(t instanceof cr))throw t}),process.on("unhandledRejection",function(t){throw t}),P=(t,n)=>{if(bi())throw process.exitCode=t,n;Ee(n),process.exit(t)},e.inspect=function(){return"[Emscripten Module object]"}}else if(x){if(typeof process=="object"&&typeof require=="function"||typeof window=="object"||typeof importScripts=="function")throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");typeof read<"u"&&(J=function(n){return read(n)}),le=function(n){let a;return typeof readbuffer=="function"?new Uint8Array(readbuffer(n)):(a=read(n,"binary"),M(typeof a=="object"),a)},ce=function(n,a,s){setTimeout(()=>a(le(n)),0)},typeof scriptArgs<"u"?w=scriptArgs:typeof arguments<"u"&&(w=arguments),typeof quit=="function"&&(P=(t,n)=>{Ee(n),quit(t)}),typeof print<"u"&&(typeof console>"u"&&(console={}),console.log=print,console.warn=console.error=typeof printErr<"u"?printErr:print)}else if(B||D){if(D?ie=self.location.href:typeof document<"u"&&document.currentScript&&(ie=document.currentScript.src),r&&(ie=r),ie.indexOf("blob:")!==0?ie=ie.substr(0,ie.replace(/[?#].*/,"").lastIndexOf("/")+1):ie="",!(typeof window=="object"||typeof importScripts=="function"))throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");J=t=>{var n=new XMLHttpRequest;return n.open("GET",t,!1),n.send(null),n.responseText},D&&(le=t=>{var n=new XMLHttpRequest;return n.open("GET",t,!1),n.responseType="arraybuffer",n.send(null),new Uint8Array(n.response)}),ce=(t,n,a)=>{var s=new XMLHttpRequest;s.open("GET",t,!0),s.responseType="arraybuffer",s.onload=()=>{if(s.status==200||s.status==0&&s.response){n(s.response);return}a()},s.onerror=a,s.send(null)},Ae=t=>document.title=t}else throw new Error("environment detection error");var de=e.print||console.log.bind(console),Y=e.printErr||console.warn.bind(console);Object.assign(e,m),m=null,Uc(),e.arguments&&(w=e.arguments),se("arguments","arguments_"),e.thisProgram&&(O=e.thisProgram),se("thisProgram","thisProgram"),e.quit&&(P=e.quit),se("quit","quit_"),M(typeof e.memoryInitializerPrefixURL>"u","Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead"),M(typeof e.pthreadMainPrefixURL>"u","Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead"),M(typeof e.cdInitializerPrefixURL>"u","Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead"),M(typeof e.filePackagePrefixURL>"u","Module.filePackagePrefixURL option was removed, use Module.locateFile instead"),M(typeof e.read>"u","Module.read option was removed (modify read_ in JS)"),M(typeof e.readAsync>"u","Module.readAsync option was removed (modify readAsync in JS)"),M(typeof e.readBinary>"u","Module.readBinary option was removed (modify readBinary in JS)"),M(typeof e.setWindowTitle>"u","Module.setWindowTitle option was removed (modify setWindowTitle in JS)"),M(typeof e.TOTAL_MEMORY>"u","Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY"),se("read","read_"),se("readAsync","readAsync"),se("readBinary","readBinary"),se("setWindowTitle","setWindowTitle");var ne="IDBFS is no longer included by default; build with -lidbfs.js",Ce="PROXYFS is no longer included by default; build with -lproxyfs.js",F="WORKERFS is no longer included by default; build with -lworkerfs.js",je="NODEFS is no longer included by default; build with -lnodefs.js";function ye(){k("`alignMemory` is now a library function and not included by default; add it to your library.js __deps or to DEFAULT_LIBRARY_FUNCS_TO_INCLUDE on the command line")}M(!x,"shell environment detected but not enabled at build time.  Add 'shell' to `-sENVIRONMENT` to enable.");var Ue=16,I=4;function L(t){switch(t){case"i1":case"i8":return 1;case"i16":return 2;case"i32":return 4;case"i64":return 8;case"float":return 4;case"double":return 8;default:{if(t[t.length-1]==="*")return I;if(t[0]==="i"){let n=Number(t.substr(1));return M(n%8===0,"getNativeTypeSize invalid bits "+n+", type "+t),n/8}else return 0}}}function ge(t){ge.shown||(ge.shown={}),ge.shown[t]||(ge.shown[t]=1,Y(t))}function we(t){return M(t<16384),t<128?[t]:[t%128|128,t>>7]}function lt(t,n){if(typeof WebAssembly.Function=="function"){for(var a={i:"i32",j:"i64",f:"f32",d:"f64"},s={parameters:[],results:n[0]=="v"?[]:[a[n[0]]]},o=1;o<n.length;++o)s.parameters.push(a[n[o]]);return new WebAssembly.Function(s,t)}var u=[1,96],_=n.slice(0,1),d=n.slice(1),f={i:127,j:126,f:125,d:124};u=u.concat(we(d.length));for(var o=0;o<d.length;++o)u.push(f[d[o]]);_=="v"?u.push(0):u=u.concat([1,f[_]]),u=[1].concat(we(u.length),u);var y=new Uint8Array([0,97,115,109,1,0,0,0].concat(u,[2,7,1,1,101,1,102,0,0,7,5,1,1,102,0,0])),j=new WebAssembly.Module(y),A=new WebAssembly.Instance(j,{e:{f:t}}),T=A.exports.f;return T}var Je=[],Te;function Gt(){if(Je.length)return Je.pop();try{Xe.grow(1)}catch(t){throw t instanceof RangeError?"Unable to grow wasm table. Set ALLOW_TABLE_GROWTH.":t}return Xe.length-1}function Ji(t,n){for(var a=t;a<t+n;a++){var s=re(a);s&&Te.set(s,a)}}function Ti(t,n){if(M(typeof t<"u"),Te||(Te=new WeakMap,Ji(0,Xe.length)),Te.has(t))return Te.get(t);var a=Gt();try{gn(a,t)}catch(o){if(!(o instanceof TypeError))throw o;M(typeof n<"u","Missing signature argument to addFunction: "+t);var s=lt(t,n);gn(a,s)}return Te.set(t,a),a}function Lt(t){Te.delete(re(t)),Je.push(t)}function se(t,n){Object.getOwnPropertyDescriptor(e,t)||Object.defineProperty(e,t,{configurable:!0,get:function(){k("Module."+t+" has been replaced with plain "+n+" (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)")}})}function Vt(t){Object.getOwnPropertyDescriptor(e,t)&&k("`Module."+t+"` was supplied but `"+t+"` not included in INCOMING_MODULE_JS_API")}function si(t,n){var a="'"+t+"' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";return n&&(a+=". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you"),a}function ee(t,n){Object.getOwnPropertyDescriptor(e,t)||Object.defineProperty(e,t,{configurable:!0,get:function(){k(si(t,n))}})}function b(t,n){Object.getOwnPropertyDescriptor(e,t)||(e[t]=()=>k(si(t,n)))}var z=0,oe=t=>{z=t},Ne=()=>z,Ie;e.wasmBinary&&(Ie=e.wasmBinary),se("wasmBinary","wasmBinary");var Ye=e.noExitRuntime||!0;se("noExitRuntime","noExitRuntime"),typeof WebAssembly!="object"&&k("no native wasm support detected");function oi(t,n,a="i8",s){if(a.charAt(a.length-1)==="*"&&(a="i32"),s)switch(a){case"i1":Ge[t>>>0]=n;break;case"i8":Ge[t>>>0]=n;break;case"i16":li[t>>>1]=n;break;case"i32":bt[t>>>2]=n;break;case"i64":yt=[n>>>0,(Le=n,+Math.abs(Le)>=1?Le>0?(Math.min(+Math.floor(Le/4294967296),4294967295)|0)>>>0:~~+Math.ceil((Le-+(~~Le>>>0))/4294967296)>>>0:0)],bt[t>>>2]=yt[0],bt[t+4>>>2]=yt[1];break;case"float":ui[t>>>2]=n;break;case"double":_i[t>>>3]=n;break;default:k("invalid type for setValue: "+a)}else switch(a){case"i1":N(t|0,n|0,1);break;case"i8":N(t|0,n|0,1);break;case"i16":N(t|0,n|0,2);break;case"i32":N(t|0,n|0,4);break;case"i64":yt=[n>>>0,(Le=n,+Math.abs(Le)>=1?Le>0?(Math.min(+Math.floor(Le/4294967296),4294967295)|0)>>>0:~~+Math.ceil((Le-+(~~Le>>>0))/4294967296)>>>0:0)],N(t|0,yt[0]|0,4),N(t+4|0,yt[1]|0,4);break;case"float":tn(t|0,Math.fround(n),4);break;case"double":tn(t|0,+n,8);break;default:k("invalid type for setValue: "+a)}}function Kt(t,n="i8",a){if(n.charAt(n.length-1)==="*"&&(n="i32"),a)switch(n){case"i1":return Ge[t>>>0];case"i8":return Ge[t>>>0];case"i16":return li[t>>>1];case"i32":return bt[t>>>2];case"i64":return bt[t>>>2];case"float":return ui[t>>>2];case"double":return Number(_i[t>>>3]);default:k("invalid type for getValue: "+n)}else switch(n){case"i1":return V(t|0,1,0)|0;case"i8":return V(t|0,1,0)|0;case"i16":return V(t|0,2,0)|0;case"i32":return V(t|0,4,0)|0;case"i64":return V(t|0,8,0)|0;case"float":return Math.fround(nn(t|0,4,0));case"double":return+nn(t|0,8,0);default:k("invalid type for getValue: "+n)}return null}function en(t,n){switch(t){case 1:return"i8";case 2:return"i16";case 4:return n?"float":"i32";case 8:return n?"double":"i64";default:M(0)}}function N(t,n,a,s){if(t>>>=0,t<=0&&k("segmentation fault storing "+a+" bytes to address "+t),t%a!==0&&k("alignment error storing to address "+t+", which was expected to be aligned to a multiple of "+a),Ct){var o=Ss()>>>0;t+a>o&&k("segmentation fault, exceeded the top of the available dynamic heap when storing "+a+" bytes to address "+t+". DYNAMICTOP="+o),M(o>=nr()),M(o<=Ge.length)}return oi(t,n,en(a,s),1),n}function tn(t,n,a){return N(t,n,a,!0)}function V(t,n,a,s){if(t>>>=0,t<=0&&k("segmentation fault loading "+n+" bytes from address "+t),t%n!==0&&k("alignment error loading from address "+t+", which was expected to be aligned to a multiple of "+n),Ct){var o=Ss()>>>0;t+n>o&&k("segmentation fault, exceeded the top of the available dynamic heap when loading "+n+" bytes from address "+t+". DYNAMICTOP="+o),M(o>=nr()),M(o<=Ge.length)}var u=en(n,s),_=Kt(t,u,1);return a&&(_=ha(_,parseInt(u.substr(1),10))),_}function nn(t,n,a){return V(t,n,a,!0)}function md(t,n){var a=t&n;return a!==t&&k("Function table mask error: function pointer is "+t+" which is masked by "+n+", the likely cause of this is that the function pointer is being called by the wrong type."),a}function Zr(){k("segmentation fault")}function $r(){k("alignment fault")}var kt,Et=!1,Ft;function M(t,n){t||k("Assertion failed"+(n?": "+n:""))}function Gr(t){var n=e["_"+t];return M(n,"Cannot call unknown function "+t+", make sure it is exported"),n}function rn(t,n,a,s,o){var u={string:function(Q){var pe=0;if(Q!=null&&Q!==0){var De=(Q.length<<2)+1;pe=Ni(De),Nt(Q,pe,De)}return pe},array:function(Q){var pe=Ni(Q.length);return ln(Q,pe),pe}};function _(Q){return n==="string"?$e(Q):n==="boolean"?Boolean(Q):Q}var d=Gr(t),f=[],y=0;if(M(n!=="array",'Return type should not be "array".'),s)for(var j=0;j<s.length;j++){var A=u[a[j]];A?(y===0&&(y=E()),f[j]=A(s[j])):f[j]=s[j]}var T=d.apply(null,f);function G(Q){return y!==0&&S(y),_(Q)}return T=G(T),T}function wd(t,n,a,s){return function(){return rn(t,n,a,arguments,s)}}var kd=0,Vr=1;function Ed(t,n){var a;return M(typeof n=="number","allocate no longer takes a type argument"),M(typeof t!="number","allocate no longer takes a number as arg0"),n==Vr?a=Ni(t.length):a=xi(t.length),!t.subarray&&!t.slice&&(t=new Uint8Array(t)),Qe.set(t,a>>>0),a}var an=typeof TextDecoder<"u"?new TextDecoder("utf8"):void 0;function sn(t,n,a){n>>>=0;for(var s=n+a,o=n;t[o]&&!(o>=s);)++o;if(o-n>16&&t.buffer&&an)return an.decode(t.subarray(n,o));for(var u="";n<o;){var _=t[n++];if(!(_&128)){u+=String.fromCharCode(_);continue}var d=t[n++]&63;if((_&224)==192){u+=String.fromCharCode((_&31)<<6|d);continue}var f=t[n++]&63;if((_&240)==224?_=(_&15)<<12|d<<6|f:((_&248)!=240&&ge("Invalid UTF-8 leading byte 0x"+_.toString(16)+" encountered when deserializing a UTF-8 string in wasm memory to a JS string!"),_=(_&7)<<18|d<<12|f<<6|t[n++]&63),_<65536)u+=String.fromCharCode(_);else{var y=_-65536;u+=String.fromCharCode(55296|y>>10,56320|y&1023)}}return u}function $e(t,n){return t>>>=0,t?sn(Qe,t,n):""}function xt(t,n,a,s){if(a>>>=0,!(s>0))return 0;for(var o=a,u=a+s-1,_=0;_<t.length;++_){var d=t.charCodeAt(_);if(d>=55296&&d<=57343){var f=t.charCodeAt(++_);d=65536+((d&1023)<<10)|f&1023}if(d<=127){if(a>=u)break;n[a++>>>0]=d}else if(d<=2047){if(a+1>=u)break;n[a++>>>0]=192|d>>6,n[a++>>>0]=128|d&63}else if(d<=65535){if(a+2>=u)break;n[a++>>>0]=224|d>>12,n[a++>>>0]=128|d>>6&63,n[a++>>>0]=128|d&63}else{if(a+3>=u)break;d>1114111&&ge("Invalid Unicode code point 0x"+d.toString(16)+" encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF)."),n[a++>>>0]=240|d>>18,n[a++>>>0]=128|d>>12&63,n[a++>>>0]=128|d>>6&63,n[a++>>>0]=128|d&63}}return n[a>>>0]=0,a-o}function Nt(t,n,a){return M(typeof a=="number","stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"),xt(t,Qe,n,a)}function Bt(t){for(var n=0,a=0;a<t.length;++a){var s=t.charCodeAt(a);s>=55296&&s<=57343&&(s=65536+((s&1023)<<10)|t.charCodeAt(++a)&1023),s<=127?++n:s<=2047?n+=2:s<=65535?n+=3:n+=4}return n}function Sd(t){t>>>=0;for(var n="";;){var a=V(t++|0,1,1)>>>0;if(!a)return n;n+=String.fromCharCode(a)}}function Cd(t,n){return un(t,n,!1)}var on=typeof TextDecoder<"u"?new TextDecoder("utf-16le"):void 0;function Ad(t,n){M(t%2==0,"Pointer passed to UTF16ToString must be aligned to two bytes!");for(var a=t,s=a>>1,o=s+n/2;!(s>=o)&&V((s>>>0)*2,2,1);)++s;if(a=s<<1,a-t>32&&on)return on.decode(Qe.subarray(t>>>0,a>>>0));for(var u="",_=0;!(_>=n/2);++_){var d=V(t+_*2|0,2,0)|0;if(d==0)break;u+=String.fromCharCode(d)}return u}function Rd(t,n,a){if(M(n%2==0,"Pointer passed to stringToUTF16 must be aligned to two bytes!"),M(typeof a=="number","stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"),a===void 0&&(a=2147483647),a<2)return 0;a-=2;for(var s=n,o=a<t.length*2?a/2:t.length,u=0;u<o;++u){var _=t.charCodeAt(u);N(n|0,_|0,2),n+=2}return N(n|0,0,2),n-s}function Od(t){return t.length*2}function Td(t,n){M(t%4==0,"Pointer passed to UTF32ToString must be aligned to four bytes!");for(var a=0,s="";!(a>=n/4);){var o=V(t+a*4|0,4,0)|0;if(o==0)break;if(++a,o>=65536){var u=o-65536;s+=String.fromCharCode(55296|u>>10,56320|u&1023)}else s+=String.fromCharCode(o)}return s}function Pd(t,n,a){if(n>>>=0,M(n%4==0,"Pointer passed to stringToUTF32 must be aligned to four bytes!"),M(typeof a=="number","stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"),a===void 0&&(a=2147483647),a<4)return 0;for(var s=n,o=s+a-4,u=0;u<t.length;++u){var _=t.charCodeAt(u);if(_>=55296&&_<=57343){var d=t.charCodeAt(++u);_=65536+((_&1023)<<10)|d&1023}if(N(n|0,_|0,4),n+=4,n+4>o)break}return N(n|0,0,4),n-s}function Dd(t){for(var n=0,a=0;a<t.length;++a){var s=t.charCodeAt(a);s>=55296&&s<=57343&&++a,n+=4}return n}function Id(t){var n=Bt(t)+1,a=xi(n);return a&&xt(t,Ge,a,n),a}function cn(t){var n=Bt(t)+1,a=Ni(n);return xt(t,Ge,a,n),a}function Md(t,n,a){ge("writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!");var s,o;a&&(o=n+Bt(t),s=V(o>>>0,1,0)),Nt(t,n,1/0),a&&N(o>>>0,s,1)}function ln(t,n){M(t.length>=0,"writeArrayToMemory array must have a length (should be an array or typed array)"),Ge.set(t,n>>>0)}function un(t,n,a){for(var s=0;s<t.length;++s)M(t.charCodeAt(s)===(t.charCodeAt(s)&255)),N(n++|0,t.charCodeAt(s)|0,1);a||N(n|0,0,1)}var Ud,ci,Ge,Qe,li,Kr,bt,zr,ui,_i;function _n(t){ci=t,e.HEAP8=Ge=new Int8Array(t),e.HEAP16=li=new Int16Array(t),e.HEAP32=bt=new Int32Array(t),e.HEAPU8=Qe=new Uint8Array(t),e.HEAPU16=Kr=new Uint16Array(t),e.HEAPU32=zr=new Uint32Array(t),e.HEAPF32=ui=new Float32Array(t),e.HEAPF64=_i=new Float64Array(t)}var di=5242880;e.TOTAL_STACK&&M(di===e.TOTAL_STACK,"the stack size can no longer be determined at runtime");var fi=e.INITIAL_MEMORY||16777216;se("INITIAL_MEMORY","INITIAL_MEMORY"),M(fi>=di,"INITIAL_MEMORY should be larger than TOTAL_STACK, was "+fi+"! (TOTAL_STACK="+di+")"),M(typeof Int32Array<"u"&&typeof Float64Array<"u"&&Int32Array.prototype.subarray!=null&&Int32Array.prototype.set!=null,"JS engine does not provide full typed array support"),M(!e.wasmMemory,"Use of `wasmMemory` detected.  Use -sIMPORTED_MEMORY to define wasmMemory externally"),M(fi==16777216,"Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically");var Xe;function dn(){var t=rr();M((t&3)==0),N(t|0,34821223,4),N(t+4|0,-1984246274,4)}function St(){if(!Et){var t=rr(),n=V(t|0,4,1)>>>0,a=V(t+4|0,4,1)>>>0;(n!=34821223||a!=2310721022)&&k("Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x"+a.toString(16)+" 0x"+n.toString(16))}}(function(){var t=new Int16Array(1),n=new Int8Array(t.buffer);if(t[0]=25459,n[0]!==115||n[1]!==99)throw"Runtime error: expected the system to be little-endian! (Run with -sSUPPORT_BIG_ENDIAN to bypass)"})();var hi=[],fn=[],hn=[],Ld=[],bn=[],Ct=!1;function bi(){return Ye}function Qr(){if(e.preRun)for(typeof e.preRun=="function"&&(e.preRun=[e.preRun]);e.preRun.length;)ta(e.preRun.shift());Yt(hi)}function Xr(){St(),M(!Ct),Ct=!0,Yt(fn)}function Jr(){St(),Yt(hn)}function ea(){if(St(),e.postRun)for(typeof e.postRun=="function"&&(e.postRun=[e.postRun]);e.postRun.length;)na(e.postRun.shift());Yt(bn)}function ta(t){hi.unshift(t)}function ia(t){fn.unshift(t)}function Fd(t){hn.unshift(t)}function xd(t){}function na(t){bn.unshift(t)}M(Math.imul,"This browser does not support Math.imul(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"),M(Math.fround,"This browser does not support Math.fround(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"),M(Math.clz32,"This browser does not support Math.clz32(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"),M(Math.trunc,"This browser does not support Math.trunc(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill");var it=0,ct=null,At=null,pt={};function Nd(t){for(var n=t;;){if(!pt[t])return t;t=n+Math.random()}}function ra(t){it++,e.monitorRunDependencies&&e.monitorRunDependencies(it),t?(M(!pt[t]),pt[t]=1,ct===null&&typeof setInterval<"u"&&(ct=setInterval(function(){if(Et){clearInterval(ct),ct=null;return}var n=!1;for(var a in pt)n||(n=!0,Y("still waiting on run dependencies:")),Y("dependency: "+a);n&&Y("(end of list)")},1e4))):Y("warning: run dependency added without ID")}function aa(t){if(it--,e.monitorRunDependencies&&e.monitorRunDependencies(it),t?(M(pt[t]),delete pt[t]):Y("warning: run dependency removed without ID"),it==0&&(ct!==null&&(clearInterval(ct),ct=null),At)){var n=At;At=null,n()}}function k(t){e.onAbort&&e.onAbort(t),t="Aborted("+t+")",Y(t),Et=!0,Ft=1;var n=new WebAssembly.RuntimeError(t);throw p(n),n}var sa="data:application/octet-stream;base64,";function pn(t){return t.startsWith(sa)}function oa(t){return t.startsWith("file://")}function g(t,n){return function(){var a=t,s=n;return n||(s=e.asm),M(Ct,"native function `"+a+"` called before runtime initialization"),s[t]||M(s[t],"exported native function `"+a+"` not found"),s[t].apply(null,arguments)}}var Pe;e.locateFile?(Pe="./duckdb-mvp.wasm",pn(Pe)||(Pe=X(Pe))):Pe=new URL("./duckdb-mvp.wasm",Sl.url).toString();function yn(t){try{if(t==Pe&&Ie)return new Uint8Array(Ie);if(le)return le(t);throw"both async and sync fetching of the wasm failed"}catch(n){k(n)}}function ca(){return!Ie&&(B||D)&&typeof fetch=="function"?fetch(Pe,{credentials:"same-origin"}).then(function(t){if(!t.ok)throw"failed to load wasm binary file at '"+Pe+"'";return t.arrayBuffer()}).catch(function(){return yn(Pe)}):Promise.resolve().then(function(){return yn(Pe)})}function la(){var t={env:gs,wasi_snapshot_preview1:gs};function n(d,f){var y=d.exports;e.asm=y,kt=e.asm.memory,M(kt,"memory not found in wasm exports"),_n(kt.buffer),Xe=e.asm.__indirect_function_table,M(Xe,"table not found in wasm exports"),ia(e.asm.__wasm_call_ctors),aa("wasm-instantiate")}ra("wasm-instantiate");var a=e;function s(d){M(e===a,"the Module object should not be replaced during async compilation - perhaps the order of HTML elements is wrong?"),a=null,n(d.instance)}function o(d){return ca().then(function(f){return WebAssembly.instantiate(f,t)}).then(function(f){return f}).then(d,function(f){Y("failed to asynchronously prepare wasm: "+f),oa(Pe)&&Y("warning: Loading from a file URI ("+Pe+") is not supported in most browsers. See https://emscripten.org/docs/getting_started/FAQ.html#how-do-i-run-a-local-webserver-for-testing-why-does-my-program-stall-in-downloading-or-preparing"),k(f)})}function u(){return!Ie&&typeof WebAssembly.instantiateStreaming=="function"&&!pn(Pe)&&typeof fetch=="function"?fetch(Pe,{credentials:"same-origin"}).then(function(d){var f=WebAssembly.instantiateStreaming(d,t);return f.then(s,function(y){return Y("wasm streaming compile failed: "+y),Y("falling back to ArrayBuffer instantiation"),o(s)})}):o(s)}if(e.instantiateWasm)try{var _=e.instantiateWasm(t,n);return _}catch(d){return Y("Module.instantiateWasm callback failed with error: "+d),!1}return u().catch(p),{}}var Le,yt,Bd={};function Yt(t){for(;t.length>0;){var n=t.shift();if(typeof n=="function"){n(e);continue}var a=n.func;typeof a=="number"?n.arg===void 0?re(a)():re(a)(n.arg):a(n.arg===void 0?null:n.arg)}}function Yd(t){var n=E(),a=t();return S(n),a}function ua(t){return ge("warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling"),t}function _a(t){var n=/\b_Z[\w\d_]+/g;return t.replace(n,function(a){var s=ua(a);return a===s?a:s+" ["+a+"]"})}var Rt=[];function re(t){var n=Rt[t];return n||(t>=Rt.length&&(Rt.length=t+1),Rt[t]=n=Xe.get(t)),M(Xe.get(t)==n,"JavaScript-side Wasm function table mirror is out of date!"),n}function da(t){if(t instanceof cr||t=="unwind")return Ft;P(1,t)}function fa(){var t=new Error;if(!t.stack){try{throw new Error}catch(n){t=n}if(!t.stack)return"(no stack trace available)"}return t.stack.toString()}function gn(t,n){Xe.set(t,n),Rt[t]=Xe.get(t)}function Hd(){var t=fa();return e.extraStackTrace&&(t+=`
-`+e.extraStackTrace()),_a(t)}function ha(t,n){return t>=0?t:n<=32?2*Math.abs(1<<n-1)+t:Math.pow(2,n)+t}function ba(t,n,a,s){k("Assertion failed: "+$e(t)+", at: "+[n?$e(n):"unknown filename",a,s?$e(s):"unknown function"])}function He(t){return xi(t+24)+24}var pi=[];function pa(t){t.add_ref()}var yi=0;function gi(t){var n=new zt(t);return n.get_caught()||(n.set_caught(!0),yi--),n.set_rethrown(!1),pi.push(n),pa(n),n.get_exception_ptr()}var Ot=0;function zt(t){this.excPtr=t,this.ptr=t-24,this.set_type=function(n){N(this.ptr+4|0,n|0,4)},this.get_type=function(){return V(this.ptr+4|0,4,0)|0},this.set_destructor=function(n){N(this.ptr+8|0,n|0,4)},this.get_destructor=function(){return V(this.ptr+8|0,4,0)|0},this.set_refcount=function(n){N(this.ptr|0,n|0,4)},this.set_caught=function(n){n=n?1:0,N(this.ptr+12|0,n|0,1)},this.get_caught=function(){return(V(this.ptr+12|0,1,0)|0)!=0},this.set_rethrown=function(n){n=n?1:0,N(this.ptr+13|0,n|0,1)},this.get_rethrown=function(){return(V(this.ptr+13|0,1,0)|0)!=0},this.init=function(n,a){this.set_adjusted_ptr(0),this.set_type(n),this.set_destructor(a),this.set_refcount(0),this.set_caught(!1),this.set_rethrown(!1)},this.add_ref=function(){var n=V(this.ptr|0,4,0)|0;N(this.ptr|0,n+1|0,4)},this.release_ref=function(){var n=V(this.ptr|0,4,0)|0;return N(this.ptr|0,n-1|0,4),M(n>0),n===1},this.set_adjusted_ptr=function(n){N(this.ptr+16|0,n|0,4)},this.get_adjusted_ptr=function(){return V(this.ptr+16|0,4,0)|0},this.get_exception_ptr=function(){var n=qc(this.get_type());if(n)return V(this.excPtr|0,4,0)|0;var a=this.get_adjusted_ptr();return a!==0?a:this.excPtr}}function Pi(t){try{return Yc(new zt(t).ptr)}catch(n){Y("exception during __cxa_free_exception: "+n)}}function Ln(t){if(t.release_ref()&&!t.get_rethrown()){var n=t.get_destructor();n&&re(n)(t.excPtr),Pi(t.excPtr)}}function Fn(){C(0),M(pi.length>0);var t=pi.pop();Ln(t),Ot=0}function Di(t){throw Ot||(Ot=t),t}function Ii(){var t=Ot;if(!t)return oe(0),0;var n=new zt(t);n.set_adjusted_ptr(t);var a=n.get_type();if(!a)return oe(0),t|0;for(var s=Array.prototype.slice.call(arguments),o=0;o<s.length;o++){var u=s[o];if(u===0||u===a)break;var _=n.ptr+16;if(On(u,a,_))return oe(u),t|0}return oe(a),t|0}function vn(){var t=Ot;if(!t)return oe(0),0;var n=new zt(t);n.set_adjusted_ptr(t);var a=n.get_type();if(!a)return oe(0),t|0;for(var s=Array.prototype.slice.call(arguments),o=0;o<s.length;o++){var u=s[o];if(u===0||u===a)break;var _=n.ptr+16;if(On(u,a,_))return oe(u),t|0}return oe(a),t|0}function ut(){var t=Ot;if(!t)return oe(0),0;var n=new zt(t);n.set_adjusted_ptr(t);var a=n.get_type();if(!a)return oe(0),t|0;for(var s=Array.prototype.slice.call(arguments),o=0;o<s.length;o++){var u=s[o];if(u===0||u===a)break;var _=n.ptr+16;if(On(u,a,_))return oe(u),t|0}return oe(a),t|0}function xn(){var t=Ot;if(!t)return oe(0),0;var n=new zt(t);n.set_adjusted_ptr(t);var a=n.get_type();if(!a)return oe(0),t|0;for(var s=Array.prototype.slice.call(arguments),o=0;o<s.length;o++){var u=s[o];if(u===0||u===a)break;var _=n.ptr+16;if(On(u,a,_))return oe(u),t|0}return oe(a),t|0}function ya(){var t=pi.pop();t||k("no exception to throw");var n=t.excPtr;throw t.get_rethrown()||(pi.push(t),t.set_rethrown(!0),t.set_caught(!1),yi++),Ot=n,n}function ga(t,n,a){var s=new zt(t);throw s.init(n,a),Ot=t,yi++,t}function va(){return yi}var qe={buffers:[null,[],[]],printChar:function(t,n){var a=qe.buffers[t];M(a),n===0||n===10?((t===1?de:Y)(sn(a,0)),a.length=0):a.push(n)},varargs:void 0,get:function(){M(qe.varargs!=null),qe.varargs+=4;var t=V(qe.varargs-4|0,4,0)|0;return t},getStr:function(t){var n=$e(t);return n}};function ja(t,n,a,s,o){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function ma(){Y("missing function: $SOCKFS"),k(-1)}function Nn(){Y("missing function: $FS"),k(-1)}function Qt(t){var n=ma.getSocket(t);if(!n)throw new Nn.ErrnoError(8);return n}function Bn(t){return N(Nc()|0,t|0,4),t}var jc={BUFFER_SIZE:10240,MAX_BUFFER_SIZE:10485760,nextFd:1,fds:{},nextport:1,maxport:65535,peer:null,connections:{},portmap:{},localAddr:4261412874,addrPool:[33554442,50331658,67108874,83886090,100663306,117440522,134217738,150994954,167772170,184549386,201326602,218103818,234881034]};function jn(t){return(t&255)+"."+(t>>8&255)+"."+(t>>16&255)+"."+(t>>24&255)}function Yn(t){var n="",a=0,s=0,o=0,u=0,_=0,d=0,f=[t[0]&65535,t[0]>>16,t[1]&65535,t[1]>>16,t[2]&65535,t[2]>>16,t[3]&65535,t[3]>>16],y=!0,j="";for(d=0;d<5;d++)if(f[d]!==0){y=!1;break}if(y){if(j=jn(f[6]|f[7]<<16),f[5]===-1)return n="::ffff:",n+=j,n;if(f[5]===0)return n="::",j==="0.0.0.0"&&(j=""),j==="0.0.0.1"&&(j="1"),n+=j,n}for(a=0;a<8;a++)f[a]===0&&(a-o>1&&(_=0),o=a,_++),_>s&&(s=_,u=a-s+1);for(a=0;a<8;a++){if(s>1&&f[a]===0&&a>=u&&a<u+s){a===u&&(n+=":",u===0&&(n+=":"));continue}n+=Number(Es(f[a]&65535)).toString(16),n+=a<7?":":""}return n}function Hn(t,n){var a=V(t|0,2,0)|0,s=Es(V(t+2|0,2,1)>>>0),o;switch(a){case 2:if(n!==16)return{errno:28};o=V(t+4|0,4,0)|0,o=jn(o);break;case 10:if(n!==28)return{errno:28};o=[V(t+8|0,4,0)|0,V(t+12|0,4,0)|0,V(t+16|0,4,0)|0,V(t+20|0,4,0)|0],o=Yn(o);break;default:return{errno:5}}return{family:a,addr:o,port:s}}function Mi(t){for(var n=t.split("."),a=0;a<4;a++){var s=Number(n[a]);if(isNaN(s))return null;n[a]=s}return(n[0]|n[1]<<8|n[2]<<16|n[3]<<24)>>>0}function Ui(t){return parseInt(t)}function mn(t){var n,a,s,o,u,_=/^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i,d=[];if(!_.test(t))return null;if(t==="::")return[0,0,0,0,0,0,0,0];for(t.startsWith("::")?t=t.replace("::","Z:"):t=t.replace("::",":Z:"),t.indexOf(".")>0?(t=t.replace(new RegExp("[.]","g"),":"),n=t.split(":"),n[n.length-4]=Ui(n[n.length-4])+Ui(n[n.length-3])*256,n[n.length-3]=Ui(n[n.length-2])+Ui(n[n.length-1])*256,n=n.slice(0,n.length-2)):n=t.split(":"),s=0,o=0,a=0;a<n.length;a++)if(typeof n[a]=="string")if(n[a]==="Z"){for(o=0;o<8-n.length+1;o++)d[a+o]=0;s=o-1}else d[a+s]=ir(parseInt(n[a],16));else d[a+s]=n[a];return[d[1]<<16|d[0],d[3]<<16|d[2],d[5]<<16|d[4],d[7]<<16|d[6]]}var _t={address_map:{id:1,addrs:{},names:{}},lookup_name:function(t){var n=Mi(t);if(n!==null||(n=mn(t),n!==null))return t;var a;if(_t.address_map.addrs[t])a=_t.address_map.addrs[t];else{var s=_t.address_map.id++;M(s<65535,"exceeded max address mappings of 65535"),a="172.29."+(s&255)+"."+(s&65280),_t.address_map.names[a]=t,_t.address_map.addrs[t]=a}return a},lookup_addr:function(t){return _t.address_map.names[t]?_t.address_map.names[t]:null}};function qn(t,n,a){if(a&&t===0)return null;var s=Hn(t,n);if(s.errno)throw new Nn.ErrnoError(s.errno);return s.addr=_t.lookup_addr(s.addr)||s.addr,s}function wa(t,n,a){var s=Qt(t),o=qn(n,a);return s.sock_ops.bind(s,o.addr,o.port),0}function ka(t,n,a){var s=Qt(t),o=qn(n,a);return s.sock_ops.connect(s,o.addr,o.port),0}function Ea(t,n,a,s){return n=qe.getStr(n),M(s===0),n=qe.calculateAt(t,n),qe.doAccess(n,a)}function Sa(t,n,a){return qe.varargs=a,0}function Ca(t,n){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Aa(t,n,a){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Wn(t,n,a){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Zn(t,n){Qe.fill(0,t,t+n)}function wn(t,n,a,s,o){switch(n){case 2:a=Mi(a),Zn(t,16),o&&N(o|0,16,4),N(t|0,n|0,2),N(t+4|0,a|0,4),N(t+2|0,ir(s)|0,2);break;case 10:a=mn(a),Zn(t,28),o&&N(o|0,28,4),N(t|0,n|0,4),N(t+8|0,a[0]|0,4),N(t+12|0,a[1]|0,4),N(t+16|0,a[2]|0,4),N(t+20|0,a[3]|0,4),N(t+2|0,ir(s)|0,2);break;default:return 5}return 0}function Ra(t,n,a){var s=Qt(t);if(!s.daddr)return-53;var o=wn(n,s.family,_t.lookup_name(s.daddr),s.dport,a);return M(!o),0}function Oa(t,n,a,s,o){var u=Qt(t);return n===1&&a===4?(N(s|0,u.error|0,4),N(o|0,4,4),u.error=null,0):-50}function Ta(t,n,a){return qe.varargs=a,0}function Pa(t,n){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Da(t,n,a){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ia(t,n,a,s){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ma(t,n,a,s){qe.varargs=s,k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ua(t,n,a,s,o,u){var _=Qt(t),d=_.sock_ops.recvmsg(_,a);if(!d)return 0;if(o){var f=wn(o,_.family,_t.lookup_name(d.addr),d.port,u);M(!f)}return Qe.set(d.buffer,n>>>0),d.buffer.byteLength}function La(t,n,a,s){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Fa(t){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function xa(t,n,a,s,o,u){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Na(t,n,a){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ba(t,n){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ya(t,n,a){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function Ha(t){}var $n="To use dlopen, you need enable dynamic linking, see https://github.com/emscripten-core/emscripten/wiki/Linking";function qa(t,n){k($n)}function Wa(t,n){k($n)}function Za(){return Date.now()}var $a=!0;function Gn(){return $a}function kn(){k("native code called abort()")}function Ga(t,n){return globalThis.DUCKDB_RUNTIME.createDirectory(e,t,n)}function Va(t,n){return globalThis.DUCKDB_RUNTIME.checkDirectory(e,t,n)}function Ka(t,n){return globalThis.DUCKDB_RUNTIME.listDirectoryEntries(e,t,n)}function En(t,n){return globalThis.DUCKDB_RUNTIME.removeDirectory(e,t,n)}function za(t){return globalThis.DUCKDB_RUNTIME.closeFile(e,t)}function vi(t,n){return globalThis.DUCKDB_RUNTIME.checkFile(e,t,n)}function Qa(t){return globalThis.DUCKDB_RUNTIME.getLastFileModificationTime(e,t)}function Xa(t,n,a,s){return globalThis.DUCKDB_RUNTIME.moveFile(e,t,n,a,s)}function Ja(t,n){return globalThis.DUCKDB_RUNTIME.openFile(e,t,n)}function es(t,n,a,s){return globalThis.DUCKDB_RUNTIME.readFile(e,t,n,a,s)}function ts(t,n){return globalThis.DUCKDB_RUNTIME.truncateFile(e,t,n)}function is(t,n,a,s){return globalThis.DUCKDB_RUNTIME.writeFile(e,t,n,a,s)}function ns(t,n){return globalThis.DUCKDB_RUNTIME.glob(e,t,n)}function rs(t){return globalThis.DUCKDB_RUNTIME.testPlatformFeature(e,t)}function as(t,n,a,s,o,u){return globalThis.DUCKDB_RUNTIME.callScalarUDF(e,t,n,a,s,o,u)}function ss(t){M(typeof t=="number"),console.error($e(t))}function Vn(){return 4294901760}var Sn;q?Sn=()=>{var t=process.hrtime();return t[0]*1e3+t[1]/1e6}:Sn=()=>performance.now();function Li(t,n,a){Qe.copyWithin(t>>>0,n>>>0,n+a>>>0)}function os(t){try{return kt.grow(t-ci.byteLength+65535>>>16),_n(kt.buffer),1}catch(n){Y("emscripten_realloc_buffer: Attempted to grow heap from "+ci.byteLength+" bytes to "+t+" bytes, but got error: "+n)}}function cs(t){var n=Qe.length;t=t>>>0,M(t>n);var a=Vn();if(t>a)return Y("Cannot enlarge memory, asked to go up to "+t+" bytes, but the limit is "+a+" bytes!"),!1;let s=(f,y)=>f+(y-f%y)%y;for(var o=1;o<=4;o*=2){var u=n*(1+.2/o);u=Math.min(u,t+100663296);var _=Math.min(a,s(Math.max(t,u),65536)),d=os(_);if(d)return!0}return Y("Failed to grow the heap from "+n+" bytes to "+_+" bytes, not enough memory!"),!1}var Xt={};function ls(){return O||"./this.program"}function Jt(){if(!Jt.strings){var t=(typeof navigator=="object"&&navigator.languages&&navigator.languages[0]||"C").replace("-","_")+".UTF-8",n={USER:"web_user",LOGNAME:"web_user",PATH:"/",PWD:"/",HOME:"/home/web_user",LANG:t,_:ls()};for(var a in Xt)Xt[a]===void 0?delete n[a]:n[a]=Xt[a];var s=[];for(var a in n)s.push(a+"="+n[a]);Jt.strings=s}return Jt.strings}function Kn(t,n){var a=0;return Jt().forEach(function(s,o){var u=n+a;N(t+o*4|0,u|0,4),un(s,u),a+=s.length+1}),0}function us(t,n){var a=Jt();N(t|0,a.length|0,4);var s=0;return a.forEach(function(o){s+=o.length+1}),N(n|0,s|0,4),0}function _s(t){return k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"),0}function ds(t,n,a,s,o,u){M(!o,"offsets over 2^32 not yet supported");var _=qe.getStreamFromFD(t),d=qe.doReadv(_,n,a,s);return N(u|0,d|0,4),0}function fs(t,n,a,s,o,u){var _=qe.getStreamFromFD(t);M(!o,"offsets over 2^32 not yet supported");var d=qe.doWritev(_,n,a,s);return N(u|0,d|0,4),0}function hs(t,n,a,s){var o=qe.getStreamFromFD(t),u=qe.doReadv(o,n,a);return N(s|0,u|0,4),0}function mc(t,n,a,s,o){k("it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM")}function bs(t){var n=qe.getStreamFromFD(t);return n.stream_ops&&n.stream_ops.fsync?-n.stream_ops.fsync(n):0}function zn(){Bc();var t=qe.buffers;t[1].length&&qe.printChar(1,10),t[2].length&&qe.printChar(2,10)}function wc(t,n,a,s){for(var o=0,u=0;u<a;u++){var _=V(n|0,4,0)|0,d=V(n+4|0,4,0)|0;n+=8;for(var f=0;f<d;f++)qe.printChar(t,V(_+f>>>0,1,1));o+=d}return N(s|0,o|0,4),0}function kc(){return Ne()}function Ec(t,n,a,s){var o=[],u=null,_=0,d=0,f=0,y=0,j=0,A=0,T,G;function Q(pe,De,Ve,W,ue,ft){var et,wi,jt,ml;return wi=pe===10?28:16,ue=pe===10?Yn(ue):jn(ue),et=xi(wi),ml=wn(et,pe,ue,ft),M(!ml),jt=xi(32),N(jt+4|0,pe|0,4),N(jt+8|0,De|0,4),N(jt+12|0,Ve|0,4),N(jt+24|0,W|0,4),N(jt+20|0,et|0,4),pe===10?N(jt+16|0,28,4):N(jt+16|0,16,4),N(jt+28|0,0,4),jt}if(a&&(f=V(a|0,4,0)|0,y=V(a+4|0,4,0)|0,j=V(a+8|0,4,0)|0,A=V(a+12|0,4,0)|0),j&&!A&&(A=j===2?17:6),!j&&A&&(j=A===17?2:1),A===0&&(A=6),j===0&&(j=1),!t&&!n)return-2;if(f&-1088||a!==0&&(V(a|0,4,0)|0)&2&&!t)return-1;if(f&32)return-2;if(j!==0&&j!==1&&j!==2)return-7;if(y!==0&&y!==2&&y!==10)return-6;if(n&&(n=$e(n),d=parseInt(n,10),isNaN(d)))return f&1024?-2:-8;if(!t)return y===0&&(y=2),(f&1)===0&&(y===2?_=tr(2130706433):_=[0,0,0,1]),T=Q(y,j,A,null,_,d),N(s|0,T|0,4),0;if(t=$e(t),_=Mi(t),_!==null)if(y===0||y===2)y=2;else if(y===10&&f&8)_=[0,0,tr(65535),_],y=10;else return-2;else if(_=mn(t),_!==null)if(y===0||y===10)y=10;else return-2;return _!=null?(T=Q(y,j,A,t,_,d),N(s|0,T|0,4),0):f&4?-2:(t=_t.lookup_name(t),_=Mi(t),y===0?y=2:y===10&&(_=[0,0,tr(65535),_]),T=Q(y,j,A,null,_,d),N(s|0,T|0,4),0)}function Sc(){if(typeof crypto=="object"&&typeof crypto.getRandomValues=="function"){var t=new Uint8Array(1);return function(){return crypto.getRandomValues(t),t[0]}}else if(q)try{var n=require("crypto");return function(){return n.randomBytes(1)[0]}}catch{}return function(){k("no cryptographic support found for randomDevice. consider polyfilling it if you want to use something insecure like Math.random(), e.g. put this in a --pre-js: var crypto = { getRandomValues: function(array) { for (var i = 0; i < array.length; i++) array[i] = (Math.random()*256)|0 } };")}}function Cn(t,n){Cn.randomDevice||(Cn.randomDevice=Sc());for(var a=0;a<n;a++)N(t+a|0,Cn.randomDevice()|0,1);return 0}function Cc(t,n,a,s,o,u,_){var d=Hn(t,n);if(d.errno)return-6;var f=d.port,y=d.addr,j=!1;if(a&&s){var A;if(_&1||!(A=_t.lookup_addr(y))){if(_&8)return-2}else y=A;var T=Nt(y,a,s);T+1>=s&&(j=!0)}if(o&&u){f=""+f;var T=Nt(f,o,u);T+1>=u&&(j=!0)}return j?-12:0}function Ac(t){return t}function Rc(t){oe(t)}function An(t){return t%4===0&&(t%100!==0||t%400===0)}function Oc(t,n){for(var a=0,s=0;s<=n;a+=t[s++]);return a}var ps=[31,29,31,30,31,30,31,31,30,31,30,31],ys=[31,28,31,30,31,30,31,31,30,31,30,31];function Tc(t,n){for(var a=new Date(t.getTime());n>0;){var s=An(a.getFullYear()),o=a.getMonth(),u=(s?ps:ys)[o];if(n>u-a.getDate())n-=u-a.getDate()+1,a.setDate(1),o<11?a.setMonth(o+1):(a.setMonth(0),a.setFullYear(a.getFullYear()+1));else return a.setDate(a.getDate()+n),a}return a}function Pc(t,n,a,s){var o=V(s+40|0,4,0)|0,u={tm_sec:V(s|0,4,0)|0,tm_min:V(s+4|0,4,0)|0,tm_hour:V(s+8|0,4,0)|0,tm_mday:V(s+12|0,4,0)|0,tm_mon:V(s+16|0,4,0)|0,tm_year:V(s+20|0,4,0)|0,tm_wday:V(s+24|0,4,0)|0,tm_yday:V(s+28|0,4,0)|0,tm_isdst:V(s+32|0,4,0)|0,tm_gmtoff:V(s+36|0,4,0)|0,tm_zone:o?$e(o):""},_=$e(a),d={"%c":"%a %b %d %H:%M:%S %Y","%D":"%m/%d/%y","%F":"%Y-%m-%d","%h":"%b","%r":"%I:%M:%S %p","%R":"%H:%M","%T":"%H:%M:%S","%x":"%m/%d/%y","%X":"%H:%M:%S","%Ec":"%c","%EC":"%C","%Ex":"%m/%d/%y","%EX":"%H:%M:%S","%Ey":"%y","%EY":"%Y","%Od":"%d","%Oe":"%e","%OH":"%H","%OI":"%I","%Om":"%m","%OM":"%M","%OS":"%S","%Ou":"%u","%OU":"%U","%OV":"%V","%Ow":"%w","%OW":"%W","%Oy":"%y"};for(var f in d)_=_.replace(new RegExp(f,"g"),d[f]);var y=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],j=["January","February","March","April","May","June","July","August","September","October","November","December"];function A(W,ue,ft){for(var et=typeof W=="number"?W.toString():W||"";et.length<ue;)et=ft[0]+et;return et}function T(W,ue){return A(W,ue,"0")}function G(W,ue){function ft(wi){return wi<0?-1:wi>0?1:0}var et;return(et=ft(W.getFullYear()-ue.getFullYear()))===0&&(et=ft(W.getMonth()-ue.getMonth()))===0&&(et=ft(W.getDate()-ue.getDate())),et}function Q(W){switch(W.getDay()){case 0:return new Date(W.getFullYear()-1,11,29);case 1:return W;case 2:return new Date(W.getFullYear(),0,3);case 3:return new Date(W.getFullYear(),0,2);case 4:return new Date(W.getFullYear(),0,1);case 5:return new Date(W.getFullYear()-1,11,31);case 6:return new Date(W.getFullYear()-1,11,30)}}function pe(W){var ue=Tc(new Date(W.tm_year+1900,0,1),W.tm_yday),ft=new Date(ue.getFullYear(),0,4),et=new Date(ue.getFullYear()+1,0,4),wi=Q(ft),jt=Q(et);return G(wi,ue)<=0?G(jt,ue)<=0?ue.getFullYear()+1:ue.getFullYear():ue.getFullYear()-1}var De={"%a":function(W){return y[W.tm_wday].substring(0,3)},"%A":function(W){return y[W.tm_wday]},"%b":function(W){return j[W.tm_mon].substring(0,3)},"%B":function(W){return j[W.tm_mon]},"%C":function(W){var ue=W.tm_year+1900;return T(ue/100|0,2)},"%d":function(W){return T(W.tm_mday,2)},"%e":function(W){return A(W.tm_mday,2," ")},"%g":function(W){return pe(W).toString().substring(2)},"%G":function(W){return pe(W)},"%H":function(W){return T(W.tm_hour,2)},"%I":function(W){var ue=W.tm_hour;return ue==0?ue=12:ue>12&&(ue-=12),T(ue,2)},"%j":function(W){return T(W.tm_mday+Oc(An(W.tm_year+1900)?ps:ys,W.tm_mon-1),3)},"%m":function(W){return T(W.tm_mon+1,2)},"%M":function(W){return T(W.tm_min,2)},"%n":function(){return`
-`},"%p":function(W){return W.tm_hour>=0&&W.tm_hour<12?"AM":"PM"},"%S":function(W){return T(W.tm_sec,2)},"%t":function(){return"	"},"%u":function(W){return W.tm_wday||7},"%U":function(W){var ue=W.tm_yday+7-W.tm_wday;return T(Math.floor(ue/7),2)},"%V":function(W){var ue=Math.floor((W.tm_yday+7-(W.tm_wday+6)%7)/7);if((W.tm_wday+371-W.tm_yday-2)%7<=2&&ue++,ue){if(ue==53){var et=(W.tm_wday+371-W.tm_yday)%7;et!=4&&(et!=3||!An(W.tm_year))&&(ue=1)}}else{ue=52;var ft=(W.tm_wday+7-W.tm_yday-1)%7;(ft==4||ft==5&&An(W.tm_year%400-1))&&ue++}return T(ue,2)},"%w":function(W){return W.tm_wday},"%W":function(W){var ue=W.tm_yday+7-(W.tm_wday+6)%7;return T(Math.floor(ue/7),2)},"%y":function(W){return(W.tm_year+1900).toString().substring(2)},"%Y":function(W){return W.tm_year+1900},"%z":function(W){var ue=W.tm_gmtoff,ft=ue>=0;return ue=Math.abs(ue)/60,ue=ue/60*100+ue%60,(ft?"+":"-")+String("0000"+ue).slice(-4)},"%Z":function(W){return W.tm_zone},"%%":function(){return"%"}};_=_.replace(/%%/g,"\0\0");for(var f in De)_.includes(f)&&(_=_.replace(new RegExp(f,"g"),De[f](u)));_=_.replace(/\0\0/g,"%");var Ve=Mc(_,!1);return Ve.length>n?0:(ln(Ve,t),Ve.length-1)}function Dc(t,n,a,s){return Pc(t,n,a,s)}var Ic=!0;function Mc(t,n,a){var s=a>0?a:Bt(t)+1,o=new Array(s),u=xt(t,o,0,o.length);return n&&(o.length=u),o}function qd(t){for(var n=[],a=0;a<t.length;a++){var s=t[a];s>255&&(Ic&&M(!1,"Character code "+s+" ("+String.fromCharCode(s)+")  at offset "+a+" not in 0x00-0xFF."),s&=255),n.push(String.fromCharCode(s))}return n.join("")}function Uc(){Vt("fetchSettings")}var gs={__assert_fail:ba,__cxa_allocate_exception:He,__cxa_begin_catch:gi,__cxa_end_catch:Fn,__cxa_find_matching_catch_2:Ii,__cxa_find_matching_catch_3:vn,__cxa_find_matching_catch_4:ut,__cxa_find_matching_catch_5:xn,__cxa_free_exception:Pi,__cxa_rethrow:ya,__cxa_throw:ga,__cxa_uncaught_exceptions:va,__resumeException:Di,__syscall__newselect:ja,__syscall_bind:wa,__syscall_connect:ka,__syscall_faccessat:Ea,__syscall_fcntl64:Sa,__syscall_fstat64:Ca,__syscall_ftruncate64:Aa,__syscall_getdents64:Wn,__syscall_getpeername:Ra,__syscall_getsockopt:Oa,__syscall_ioctl:Ta,__syscall_lstat64:Pa,__syscall_mkdirat:Da,__syscall_newfstatat:Ia,__syscall_openat:Ma,__syscall_recvfrom:Ua,__syscall_renameat:La,__syscall_rmdir:Fa,__syscall_sendto:xa,__syscall_socket:Na,__syscall_stat64:Ba,__syscall_unlinkat:Ya,_dlinit:Ha,_dlopen_js:qa,_dlsym_js:Wa,_emscripten_date_now:Za,_emscripten_get_now_is_monotonic:Gn,abort:kn,alignfault:$r,duckdb_web_fs_directory_create:Ga,duckdb_web_fs_directory_exists:Va,duckdb_web_fs_directory_list_files:Ka,duckdb_web_fs_directory_remove:En,duckdb_web_fs_file_close:za,duckdb_web_fs_file_exists:vi,duckdb_web_fs_file_get_last_modified_time:Qa,duckdb_web_fs_file_move:Xa,duckdb_web_fs_file_open:Ja,duckdb_web_fs_file_read:es,duckdb_web_fs_file_truncate:ts,duckdb_web_fs_file_write:is,duckdb_web_fs_glob:ns,duckdb_web_test_platform_feature:rs,duckdb_web_udf_scalar_call:as,emscripten_console_error:ss,emscripten_get_heap_max:Vn,emscripten_get_now:Sn,emscripten_memcpy_big:Li,emscripten_resize_heap:cs,environ_get:Kn,environ_sizes_get:us,fd_close:_s,fd_pread:ds,fd_pwrite:fs,fd_read:hs,fd_seek:mc,fd_sync:bs,fd_write:wc,getTempRet0:kc,getaddrinfo:Ec,getentropy:Cn,getnameinfo:Cc,invoke_d:Bp,invoke_di:Ep,invoke_dii:Lp,invoke_diii:Qb,invoke_diijii:By,invoke_f:Np,invoke_fi:kp,invoke_fiii:zb,invoke_fiijii:Ny,invoke_i:rp,invoke_id:jp,invoke_idd:bp,invoke_idiii:gp,invoke_if:vp,invoke_iff:hp,invoke_ii:Zb,invoke_iid:Tp,invoke_iidii:Rp,invoke_iidj:ev,invoke_iii:Wb,invoke_iiid:Op,invoke_iiidi:xp,invoke_iiii:Yb,invoke_iiiid:Fp,invoke_iiiidjj:rv,invoke_iiiii:Kb,invoke_iiiiid:_p,invoke_iiiiii:Gb,invoke_iiiiiii:sp,invoke_iiiiiiii:tp,invoke_iiiiiiiii:yp,invoke_iiiiiiiiii:pp,invoke_iiiiiiiiiii:ip,invoke_iiiiiiiiiiii:op,invoke_iiiiiiiiiiiii:np,invoke_iiiiiiiiiiiiiii:Dp,invoke_iiiiiiiiiiiiiiii:Ap,invoke_iiiiiiiiiiiij:Rg,invoke_iiiiiiiiiiji:yg,invoke_iiiiiiiij:hg,invoke_iiiiiiiiji:lg,invoke_iiiiiiij:Ag,invoke_iiiiiiiji:nv,invoke_iiiiiiijii:Yy,invoke_iiiiiij:pg,invoke_iiiiiiji:cg,invoke_iiiiiijji:uj,invoke_iiiiij:$p,invoke_iiiiiji:ky,invoke_iiiiijii:cv,invoke_iiiiijij:Eg,invoke_iiiiijj:Gp,invoke_iiiiijji:Vg,invoke_iiiiijjiijj:Sv,invoke_iiiiijjj:hj,invoke_iiiiijjji:bj,invoke_iiiij:wy,invoke_iiiiji:Ey,invoke_iiiijii:qv,invoke_iiiijiii:yv,invoke_iiiijj:_y,invoke_iiiijji:tg,invoke_iiiijjii:Gg,invoke_iiiijjj:av,invoke_iiij:ry,invoke_iiiji:gy,invoke_iiijii:Uy,invoke_iiijiii:ov,invoke_iiijiiii:jv,invoke_iiijiij:vy,invoke_iiijiijj:zv,invoke_iiijij:yy,invoke_iiijj:Jp,invoke_iiijji:my,invoke_iiijjii:Cv,invoke_iiijjiij:iv,invoke_iiijjiiji:tv,invoke_iiijjj:Yv,invoke_iiijjji:tj,invoke_iiijjjii:_j,invoke_iij:Vp,invoke_iiji:dy,invoke_iijii:hv,invoke_iijiii:Wv,invoke_iijiiii:fv,invoke_iijiijj:ej,invoke_iijiji:Bv,invoke_iijj:jy,invoke_iijji:dv,invoke_iijjii:lv,invoke_iijjiii:uv,invoke_iijjiiii:_v,invoke_iijjijj:gg,invoke_iijjj:_g,invoke_ij:Lg,invoke_iji:oy,invoke_ijii:Ng,invoke_ijji:og,invoke_ijjiii:fy,invoke_j:Qp,invoke_jd:ng,invoke_jf:rg,invoke_ji:qp,invoke_jii:Wp,invoke_jiii:Ay,invoke_jiiii:Yp,invoke_jiiiii:Xy,invoke_jiiiiii:ag,invoke_jiiiiiii:Cg,invoke_jiiiiiijii:eg,invoke_jiiiiijiiii:Wy,invoke_jiiiij:Qg,invoke_jiiiiji:kg,invoke_jiiiijii:My,invoke_jiiij:Dg,invoke_jiiiji:Ev,invoke_jiiijii:qy,invoke_jiiijiii:Zy,invoke_jiiijj:Ug,invoke_jiiijjj:mg,invoke_jiij:Zg,invoke_jiiji:Tg,invoke_jiijii:Ly,invoke_jiijiii:Hy,invoke_jiijijjii:lj,invoke_jij:xg,invoke_jijiii:Ov,invoke_jijiiii:fj,invoke_jijij:Ig,invoke_jijj:Mg,invoke_jijjij:Pv,invoke_jj:ig,invoke_jji:Nv,invoke_jjiji:Pg,invoke_jjj:qg,invoke_jjjii:xv,invoke_jjjji:Fv,invoke_jjjjjjd:Wg,invoke_v:Hb,invoke_vi:$b,invoke_vid:wp,invoke_vidiijj:Gv,invoke_vif:mp,invoke_vifiijj:$v,invoke_vii:qb,invoke_viid:Jb,invoke_viidii:Ip,invoke_viif:Xb,invoke_viii:ep,invoke_viiii:Vb,invoke_viiiidiiii:Mp,invoke_viiiii:fp,invoke_viiiiii:up,invoke_viiiiiidiii:Pp,invoke_viiiiiii:ap,invoke_viiiiiiii:dp,invoke_viiiiiiiii:Cp,invoke_viiiiiiiiii:cp,invoke_viiiiiiiiiii:Up,invoke_viiiiiiiiiiiii:Sp,invoke_viiiiiiiiiiiiiii:lp,invoke_viiiiiij:Jy,invoke_viiiiij:Vv,invoke_viiiiiji:Sg,invoke_viiiiijiii:Yg,invoke_viiiiijiiii:$y,invoke_viiiiijj:ug,invoke_viiiiijji:Jg,invoke_viiiiijjji:Xv,invoke_viiiij:iy,invoke_viiiiji:Iy,invoke_viiiijii:pv,invoke_viiiijiii:nj,invoke_viiiijiiii:jg,invoke_viiiijiiiii:vg,invoke_viiiijiiiiiiii:Hg,invoke_viiiijij:vv,invoke_viiiijj:Iv,invoke_viiiijji:zg,invoke_viiiijjii:Xg,invoke_viiiijjjj:Gy,invoke_viiij:ny,invoke_viiiji:sg,invoke_viiijii:Fy,invoke_viiijiii:gv,invoke_viiijiiiijjj:Ky,invoke_viiijij:py,invoke_viiijiji:dj,invoke_viiijijiji:by,invoke_viiijijjj:Jv,invoke_viiijj:ly,invoke_viiijji:hy,invoke_viiijjii:Kg,invoke_viiijjiij:Qy,invoke_viiijjij:Oy,invoke_viiijjj:sy,invoke_viiijjjji:ij,invoke_viij:zp,invoke_viiji:Kp,invoke_viijii:Zp,invoke_viijiii:Ty,invoke_viijiiii:rj,invoke_viijiiiii:Dy,invoke_viijiiiiii:Lv,invoke_viijiiiiij:Vy,invoke_viijiiij:Rv,invoke_viijiij:Dv,invoke_viijiiji:kv,invoke_viijiijj:Qv,invoke_viijij:Ry,invoke_viijiji:aj,invoke_viijijiiiijjj:zy,invoke_viijijj:wg,invoke_viijj:Hp,invoke_viijji:ey,invoke_viijjii:Av,invoke_viijjj:uy,invoke_viijjji:bg,invoke_vij:ty,invoke_viji:cy,invoke_vijii:sv,invoke_vijiii:Sy,invoke_vijiiii:Cy,invoke_vijiiiji:Tv,invoke_vijiijj:Zv,invoke_vijij:Mv,invoke_vijiji:Og,invoke_vijijiiiijjj:dg,invoke_vijijj:ay,invoke_vijijjiiiii:sj,invoke_vijijjiij:Py,invoke_vijijjji:Kv,invoke_vijj:xy,invoke_vijji:$g,invoke_vijjiiii:cj,invoke_vijjiiiii:oj,invoke_vijjij:fg,invoke_vijjj:Xp,invoke_vijjji:mv,invoke_vj:Hv,invoke_vjii:Bg,invoke_vjiiii:Fg,invoke_vjiiiji:Uv,invoke_vjjii:bv,invoke_vjjijij:wv,llvm_eh_typeid_for:Ac,segfault:Zr,setTempRet0:Rc,strftime_l:Dc},Wd=la(),Zd=e.___wasm_call_ctors=g("__wasm_call_ctors"),$d=e._main=g("main"),Gd=e._duckdb_web_fs_glob_add_path=g("duckdb_web_fs_glob_add_path"),Vd=e._duckdb_web_clear_response=g("duckdb_web_clear_response"),Kd=e._duckdb_web_fail_with=g("duckdb_web_fail_with"),zd=e._duckdb_web_reset=g("duckdb_web_reset"),Qd=e._duckdb_web_connect=g("duckdb_web_connect"),Xd=e._duckdb_web_disconnect=g("duckdb_web_disconnect"),Jd=e._duckdb_web_flush_files=g("duckdb_web_flush_files"),ef=e._duckdb_web_flush_file=g("duckdb_web_flush_file"),tf=e._duckdb_web_open=g("duckdb_web_open"),nf=e._duckdb_web_get_global_file_info=g("duckdb_web_get_global_file_info"),rf=e._duckdb_web_collect_file_stats=g("duckdb_web_collect_file_stats"),af=e._duckdb_web_export_file_stats=g("duckdb_web_export_file_stats"),sf=e._duckdb_web_fs_drop_file=g("duckdb_web_fs_drop_file"),of=e._duckdb_web_fs_drop_files=g("duckdb_web_fs_drop_files"),cf=e._duckdb_web_fs_glob_file_infos=g("duckdb_web_fs_glob_file_infos"),lf=e._duckdb_web_fs_get_file_info_by_id=g("duckdb_web_fs_get_file_info_by_id"),uf=e._duckdb_web_fs_get_file_info_by_name=g("duckdb_web_fs_get_file_info_by_name"),_f=e._duckdb_web_fs_set_file_descriptor=g("duckdb_web_fs_set_file_descriptor"),df=e._duckdb_web_fs_register_file_url=g("duckdb_web_fs_register_file_url"),Lc=e._duckdb_web_fs_register_file_buffer=g("duckdb_web_fs_register_file_buffer"),Fc=e._duckdb_web_copy_file_to_buffer=g("duckdb_web_copy_file_to_buffer"),ff=e._duckdb_web_copy_file_to_path=g("duckdb_web_copy_file_to_path"),Qn=e._duckdb_web_get_version=g("duckdb_web_get_version"),Xn=e._duckdb_web_get_feature_flags=g("duckdb_web_get_feature_flags"),vs=e._duckdb_web_tokenize=g("duckdb_web_tokenize"),Rn=e._duckdb_web_udf_scalar_create=g("duckdb_web_udf_scalar_create"),hf=e._duckdb_web_prepared_create=g("duckdb_web_prepared_create"),bf=e._duckdb_web_prepared_close=g("duckdb_web_prepared_close"),js=e._duckdb_web_prepared_run=g("duckdb_web_prepared_run"),pf=e._duckdb_web_prepared_send=g("duckdb_web_prepared_send"),ms=e._duckdb_web_query_run=g("duckdb_web_query_run"),xc=e._duckdb_web_pending_query_start=g("duckdb_web_pending_query_start"),Jn=e._duckdb_web_pending_query_poll=g("duckdb_web_pending_query_poll"),er=e._duckdb_web_pending_query_cancel=g("duckdb_web_pending_query_cancel"),ws=e._duckdb_web_query_fetch_results=g("duckdb_web_query_fetch_results"),ks=e._duckdb_web_get_tablenames=g("duckdb_web_get_tablenames"),Fi=e._duckdb_web_insert_arrow_from_ipc_stream=g("duckdb_web_insert_arrow_from_ipc_stream"),yf=e._duckdb_web_insert_csv_from_path=g("duckdb_web_insert_csv_from_path"),gf=e._duckdb_web_insert_json_from_path=g("duckdb_web_insert_json_from_path"),Nc=e.___errno_location=g("__errno_location"),Bc=e.___stdio_exit=g("__stdio_exit"),vf=e.___dl_seterr=g("__dl_seterr"),tr=e._htonl=g("htonl"),ir=e._htons=g("htons"),Es=e._ntohs=g("ntohs"),xi=e._malloc=g("malloc"),Yc=e._free=g("free"),jf=e._emscripten_get_sbrk_ptr=g("emscripten_get_sbrk_ptr"),Ss=e._sbrk=g("sbrk"),C=e._setThrew=g("setThrew"),Cs=e._emscripten_stack_init=function(){return(Cs=e._emscripten_stack_init=e.asm.emscripten_stack_init).apply(null,arguments)},Hc=e._emscripten_stack_get_free=function(){return(Hc=e._emscripten_stack_get_free=e.asm.emscripten_stack_get_free).apply(null,arguments)},nr=e._emscripten_stack_get_base=function(){return(nr=e._emscripten_stack_get_base=e.asm.emscripten_stack_get_base).apply(null,arguments)},rr=e._emscripten_stack_get_end=function(){return(rr=e._emscripten_stack_get_end=e.asm.emscripten_stack_get_end).apply(null,arguments)},E=e.stackSave=g("stackSave"),S=e.stackRestore=g("stackRestore"),Ni=e.stackAlloc=g("stackAlloc"),On=e.___cxa_can_catch=g("__cxa_can_catch"),qc=e.___cxa_is_pointer_type=g("__cxa_is_pointer_type"),mf=e.dynCall_jiji=g("dynCall_jiji"),Wc=e.dynCall_jiiii=g("dynCall_jiiii"),Zc=e.dynCall_iiiiij=g("dynCall_iiiiij"),$c=e.dynCall_iiiiijj=g("dynCall_iiiiijj"),wf=e.dynCall_iiiiiijj=g("dynCall_iiiiiijj"),Gc=e.dynCall_viijii=g("dynCall_viijii"),Vc=e.dynCall_j=g("dynCall_j"),Kc=e.dynCall_ji=g("dynCall_ji"),zc=e.dynCall_iij=g("dynCall_iij"),Qc=e.dynCall_viij=g("dynCall_viij"),Xc=e.dynCall_viijji=g("dynCall_viijji"),Jc=e.dynCall_viijj=g("dynCall_viijj"),el=e.dynCall_viiijj=g("dynCall_viiijj"),tl=e.dynCall_viiji=g("dynCall_viiji"),il=e.dynCall_vijjj=g("dynCall_vijjj"),nl=e.dynCall_iiijj=g("dynCall_iiijj"),rl=e.dynCall_viiij=g("dynCall_viiij"),al=e.dynCall_viijij=g("dynCall_viijij"),sl=e.dynCall_iiij=g("dynCall_iiij"),ol=e.dynCall_vijijj=g("dynCall_vijijj"),cl=e.dynCall_viiijjj=g("dynCall_viiijjj"),ll=e.dynCall_iji=g("dynCall_iji"),ul=e.dynCall_viji=g("dynCall_viji"),_l=e.dynCall_vij=g("dynCall_vij"),dl=e.dynCall_viiiij=g("dynCall_viiiij"),fl=e.dynCall_jii=g("dynCall_jii"),hl=e.dynCall_iiji=g("dynCall_iiji"),bl=e.dynCall_iiiij=g("dynCall_iiiij"),pl=e.dynCall_iiiiiji=g("dynCall_iiiiiji"),yl=e.dynCall_iiiji=g("dynCall_iiiji"),gl=e.dynCall_iiiiji=g("dynCall_iiiiji"),vl=e.dynCall_jiii=g("dynCall_jiii"),Bi=e.dynCall_jij=g("dynCall_jij"),Yi=e.dynCall_viijiiiii=g("dynCall_viijiiiii"),As=e.dynCall_iiijii=g("dynCall_iiijii"),Rs=e.dynCall_jiijii=g("dynCall_jiijii"),Os=e.dynCall_viiijii=g("dynCall_viiijii"),Tn=e.dynCall_fiijii=g("dynCall_fiijii"),Ts=e.dynCall_diijii=g("dynCall_diijii"),Ps=e.dynCall_iiiiiiijii=g("dynCall_iiiiiiijii"),Ds=e.dynCall_vijj=g("dynCall_vijj"),ar=e.dynCall_jiiijii=g("dynCall_jiiijii"),c=e.dynCall_jiijiii=g("dynCall_jiijiii"),h=e.dynCall_viiiiji=g("dynCall_viiiiji"),v=e.dynCall_jiiiijii=g("dynCall_jiiiijii"),R=e.dynCall_jiiiiijiiii=g("dynCall_jiiiiijiiii"),U=e.dynCall_jiiijiii=g("dynCall_jiiijiii"),Z=e.dynCall_viiiiijiiii=g("dynCall_viiiiijiiii"),H=e.dynCall_viiijjij=g("dynCall_viiijjij"),$=e.dynCall_viijiii=g("dynCall_viijiii"),ae=e.dynCall_vijijjiij=g("dynCall_vijijjiij"),fe=e.dynCall_viiijjiij=g("dynCall_viiijjiij"),ve=e.dynCall_viiiijjjj=g("dynCall_viiiijjjj"),We=e.dynCall_viijiiiiij=g("dynCall_viijiiiiij"),Oe=e.dynCall_viiijiiiijjj=g("dynCall_viiijiiiijjj"),ji=e.dynCall_viijijiiiijjj=g("dynCall_viijijiiiijjj"),Ze=e.dynCall_jj=g("dynCall_jj"),nt=e.dynCall_jd=g("dynCall_jd"),Ht=e.dynCall_jf=g("dynCall_jf"),mi=e.dynCall_iijjj=g("dynCall_iijjj"),K=e.dynCall_iiijji=g("dynCall_iiijji"),he=e.dynCall_vijijiiiijjj=g("dynCall_vijijiiiijjj"),at=e.dynCall_viiiiiij=g("dynCall_viiiiiij"),ze=e.dynCall_iiiiiiji=g("dynCall_iiiiiiji"),qt=e.dynCall_iiiiiiiiji=g("dynCall_iiiiiiiiji"),dt=e.dynCall_viiiiijj=g("dynCall_viiiiijj"),sr=e.dynCall_vijiii=g("dynCall_vijiii"),kf=e.dynCall_viijjj=g("dynCall_viijjj"),Ef=e.dynCall_vijjij=g("dynCall_vijjij"),Sf=e.dynCall_jiiiii=g("dynCall_jiiiii"),Cf=e.dynCall_viijjji=g("dynCall_viijjji"),Af=e.dynCall_vijiiii=g("dynCall_vijiiii"),Rf=e.dynCall_iijjijj=g("dynCall_iijjijj"),Of=e.dynCall_viiiijiiiii=g("dynCall_viiiijiiiii"),Tf=e.dynCall_viiiijiiii=g("dynCall_viiiijiiii"),Pf=e.dynCall_iiiiiij=g("dynCall_iiiiiij"),Df=e.dynCall_iiiiiiiiiiji=g("dynCall_iiiiiiiiiiji"),If=e.dynCall_iiiiiiiij=g("dynCall_iiiiiiiij"),Mf=e.dynCall_jiiijjj=g("dynCall_jiiijjj"),Uf=e.dynCall_viijijj=g("dynCall_viijijj"),Lf=e.dynCall_jiiiiji=g("dynCall_jiiiiji"),Ff=e.dynCall_iiiiijij=g("dynCall_iiiiijij"),xf=e.dynCall_viiiiiji=g("dynCall_viiiiiji"),Nf=e.dynCall_jiiiiiii=g("dynCall_jiiiiiii"),Bf=e.dynCall_vijiji=g("dynCall_vijiji"),Yf=e.dynCall_jiiiij=g("dynCall_jiiiij"),Hf=e.dynCall_jijjij=g("dynCall_jijjij"),qf=e.dynCall_viiiijiiiiiiii=g("dynCall_viiiijiiiiiiii"),Wf=e.dynCall_ij=g("dynCall_ij"),Zf=e.dynCall_jjj=g("dynCall_jjj"),$f=e.dynCall_jiiji=g("dynCall_jiiji"),Gf=e.dynCall_jjiji=g("dynCall_jjiji"),Vf=e.dynCall_jiiij=g("dynCall_jiiij"),Kf=e.dynCall_jijij=g("dynCall_jijij"),zf=e.dynCall_jijj=g("dynCall_jijj"),Qf=e.dynCall_jiiijj=g("dynCall_jiiijj"),Xf=e.dynCall_vjii=g("dynCall_vjii"),M0=e.dynCall_ijjj=g("dynCall_ijjj"),U0=e.dynCall_jjjd=g("dynCall_jjjd"),Jf=e.dynCall_jjjjjjd=g("dynCall_jjjjjjd"),eh=e.dynCall_viiiji=g("dynCall_viiiji"),th=e.dynCall_ijii=g("dynCall_ijii"),ih=e.dynCall_vjiiii=g("dynCall_vjiiii"),nh=e.dynCall_viiiiijiii=g("dynCall_viiiiijiii"),rh=e.dynCall_jiij=g("dynCall_jiij"),ah=e.dynCall_vijji=g("dynCall_vijji"),sh=e.dynCall_iiiijjii=g("dynCall_iiiijjii"),oh=e.dynCall_iiiiijji=g("dynCall_iiiiijji"),ch=e.dynCall_viiijjii=g("dynCall_viiijjii"),lh=e.dynCall_viiiijji=g("dynCall_viiiijji"),uh=e.dynCall_viiiijjii=g("dynCall_viiiijjii"),_h=e.dynCall_viiiiijji=g("dynCall_viiiiijji"),dh=e.dynCall_iidj=g("dynCall_iidj"),fh=e.dynCall_ijji=g("dynCall_ijji"),hh=e.dynCall_iiiiiiij=g("dynCall_iiiiiiij"),bh=e.dynCall_iiiiiiiiiiiij=g("dynCall_iiiiiiiiiiiij"),ph=e.dynCall_iiijjiiji=g("dynCall_iiijjiiji"),yh=e.dynCall_iiijjiij=g("dynCall_iiijjiij"),gh=e.dynCall_iiiiiiiji=g("dynCall_iiiiiiiji"),vh=e.dynCall_iiiidjj=g("dynCall_iiiidjj"),jh=e.dynCall_iiiijjj=g("dynCall_iiiijjj"),mh=e.dynCall_vijii=g("dynCall_vijii"),wh=e.dynCall_jiiiiiijii=g("dynCall_jiiiiiijii"),kh=e.dynCall_iiiijji=g("dynCall_iiiijji"),Eh=e.dynCall_viiijji=g("dynCall_viiijji"),Sh=e.dynCall_jiiiiii=g("dynCall_jiiiiii"),Ch=e.dynCall_iiijiii=g("dynCall_iiijiii"),Ah=e.dynCall_iiiiijii=g("dynCall_iiiiijii"),Rh=e.dynCall_iiijiij=g("dynCall_iiijiij"),Oh=e.dynCall_iijjii=g("dynCall_iijjii"),Th=e.dynCall_iijjiii=g("dynCall_iijjiii"),Ph=e.dynCall_iijjiiii=g("dynCall_iijjiiii"),Dh=e.dynCall_iijji=g("dynCall_iijji"),Ih=e.dynCall_iijiiii=g("dynCall_iijiiii"),Mh=e.dynCall_iijii=g("dynCall_iijii"),Uh=e.dynCall_vjjii=g("dynCall_vjjii"),Lh=e.dynCall_viiiijii=g("dynCall_viiiijii"),Fh=e.dynCall_iiiijiii=g("dynCall_iiiijiii"),xh=e.dynCall_iiijij=g("dynCall_iiijij"),Nh=e.dynCall_iijj=g("dynCall_iijj"),Bh=e.dynCall_iiiijj=g("dynCall_iiiijj"),Yh=e.dynCall_viiijiii=g("dynCall_viiijiii"),Hh=e.dynCall_viiiijij=g("dynCall_viiiijij"),qh=e.dynCall_iiijiiii=g("dynCall_iiijiiii"),Wh=e.dynCall_iiiiijjiijj=g("dynCall_iiiiijjiijj"),Zh=e.dynCall_viijiiji=g("dynCall_viijiiji"),$h=e.dynCall_iiijjii=g("dynCall_iiijjii"),Gh=e.dynCall_vjjijij=g("dynCall_vjjijij"),Vh=e.dynCall_vijjji=g("dynCall_vijjji"),Kh=e.dynCall_jiiiji=g("dynCall_jiiiji"),zh=e.dynCall_viijjii=g("dynCall_viijjii"),Qh=e.dynCall_viiiijj=g("dynCall_viiiijj"),Xh=e.dynCall_jijiii=g("dynCall_jijiii"),Jh=e.dynCall_viijiiij=g("dynCall_viijiiij"),eb=e.dynCall_vijiiiji=g("dynCall_vijiiiji"),tb=e.dynCall_viiijij=g("dynCall_viiijij"),ib=e.dynCall_viijiij=g("dynCall_viijiij"),nb=e.dynCall_vijij=g("dynCall_vijij"),rb=e.dynCall_vjiiiji=g("dynCall_vjiiiji"),ab=e.dynCall_viijiiiiii=g("dynCall_viijiiiiii"),sb=e.dynCall_jjjji=g("dynCall_jjjji"),ob=e.dynCall_jjjii=g("dynCall_jjjii"),cb=e.dynCall_jji=g("dynCall_jji"),lb=e.dynCall_iijiji=g("dynCall_iijiji"),ub=e.dynCall_viiijijiji=g("dynCall_viiijijiji"),L0=e.dynCall_viiijiiiijj=g("dynCall_viiijiiiijj"),_b=e.dynCall_iiijjj=g("dynCall_iiijjj"),db=e.dynCall_vj=g("dynCall_vj"),fb=e.dynCall_iiiijii=g("dynCall_iiiijii"),hb=e.dynCall_iijiii=g("dynCall_iijiii"),bb=e.dynCall_vijiijj=g("dynCall_vijiijj"),pb=e.dynCall_vifiijj=g("dynCall_vifiijj"),yb=e.dynCall_vidiijj=g("dynCall_vidiijj"),gb=e.dynCall_viiiiij=g("dynCall_viiiiij"),vb=e.dynCall_ijjiii=g("dynCall_ijjiii"),jb=e.dynCall_vijijjji=g("dynCall_vijijjji"),mb=e.dynCall_viijiijj=g("dynCall_viijiijj"),wb=e.dynCall_viiiiijjji=g("dynCall_viiiiijjji"),kb=e.dynCall_iiijiijj=g("dynCall_iiijiijj"),Eb=e.dynCall_viiijijjj=g("dynCall_viiijijjj"),Sb=e.dynCall_iijiijj=g("dynCall_iijiijj"),Cb=e.dynCall_viiijjjji=g("dynCall_viiijjjji"),Ab=e.dynCall_viiiijiii=g("dynCall_viiiijiii"),Rb=e.dynCall_viijiiii=g("dynCall_viijiiii"),Ob=e.dynCall_vijjiiii=g("dynCall_vijjiiii"),Tb=e.dynCall_vijijjiiiii=g("dynCall_vijijjiiiii"),Pb=e.dynCall_vijjiiiii=g("dynCall_vijjiiiii"),Db=e.dynCall_iiijjji=g("dynCall_iiijjji"),Ib=e.dynCall_jiijijjii=g("dynCall_jiijijjii"),Mb=e.dynCall_iiiiiijji=g("dynCall_iiiiiijji"),Ub=e.dynCall_iiiiijjj=g("dynCall_iiiiijjj"),Lb=e.dynCall_jijiiii=g("dynCall_jijiiii"),Fb=e.dynCall_viiijiji=g("dynCall_viiijiji"),xb=e.dynCall_iiijjjii=g("dynCall_iiijjjii"),Nb=e.dynCall_iiiiijjji=g("dynCall_iiiiijjji"),Bb=e.dynCall_viijiji=g("dynCall_viijiji");function Yb(t,n,a,s){var o=E();try{return re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Hb(t){var n=E();try{re(t)()}catch(a){if(S(n),a!==a+0)throw a;C(1,0)}}function qb(t,n,a){var s=E();try{re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function Wb(t,n,a){var s=E();try{return re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function Zb(t,n){var a=E();try{return re(t)(n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function $b(t,n){var a=E();try{re(t)(n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function Gb(t,n,a,s,o,u){var _=E();try{return re(t)(n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Vb(t,n,a,s,o){var u=E();try{re(t)(n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Kb(t,n,a,s,o){var u=E();try{return re(t)(n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function zb(t,n,a,s){var o=E();try{return re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Qb(t,n,a,s){var o=E();try{return re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Xb(t,n,a,s){var o=E();try{re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Jb(t,n,a,s){var o=E();try{re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function ep(t,n,a,s){var o=E();try{re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function tp(t,n,a,s,o,u,_,d){var f=E();try{return re(t)(n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function ip(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return re(t)(n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function np(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{return re(t)(n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function rp(t){var n=E();try{return re(t)()}catch(a){if(S(n),a!==a+0)throw a;C(1,0)}}function ap(t,n,a,s,o,u,_,d){var f=E();try{re(t)(n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function sp(t,n,a,s,o,u,_){var d=E();try{return re(t)(n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function op(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{return re(t)(n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function cp(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{re(t)(n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function lp(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe){var De=E();try{re(t)(n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe)}catch(Ve){if(S(De),Ve!==Ve+0)throw Ve;C(1,0)}}function up(t,n,a,s,o,u,_){var d=E();try{re(t)(n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function _p(t,n,a,s,o,u){var _=E();try{return re(t)(n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function dp(t,n,a,s,o,u,_,d,f){var y=E();try{re(t)(n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function fp(t,n,a,s,o,u){var _=E();try{re(t)(n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function hp(t,n,a){var s=E();try{return re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function bp(t,n,a){var s=E();try{return re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function pp(t,n,a,s,o,u,_,d,f,y){var j=E();try{return re(t)(n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function yp(t,n,a,s,o,u,_,d,f){var y=E();try{return re(t)(n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function gp(t,n,a,s,o){var u=E();try{return re(t)(n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function vp(t,n){var a=E();try{return re(t)(n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function jp(t,n){var a=E();try{return re(t)(n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function mp(t,n,a){var s=E();try{re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function wp(t,n,a){var s=E();try{re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function kp(t,n){var a=E();try{return re(t)(n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function Ep(t,n){var a=E();try{return re(t)(n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function Sp(t,n,a,s,o,u,_,d,f,y,j,A,T,G){var Q=E();try{re(t)(n,a,s,o,u,_,d,f,y,j,A,T,G)}catch(pe){if(S(Q),pe!==pe+0)throw pe;C(1,0)}}function Cp(t,n,a,s,o,u,_,d,f,y){var j=E();try{re(t)(n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Ap(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe){var De=E();try{return re(t)(n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe)}catch(Ve){if(S(De),Ve!==Ve+0)throw Ve;C(1,0)}}function Rp(t,n,a,s,o){var u=E();try{return re(t)(n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Op(t,n,a,s){var o=E();try{return re(t)(n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Tp(t,n,a){var s=E();try{return re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function Pp(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{re(t)(n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Dp(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q){var pe=E();try{return re(t)(n,a,s,o,u,_,d,f,y,j,A,T,G,Q)}catch(De){if(S(pe),De!==De+0)throw De;C(1,0)}}function Ip(t,n,a,s,o,u){var _=E();try{re(t)(n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Mp(t,n,a,s,o,u,_,d,f,y){var j=E();try{re(t)(n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Up(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{re(t)(n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function Lp(t,n,a){var s=E();try{return re(t)(n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function Fp(t,n,a,s,o){var u=E();try{return re(t)(n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function xp(t,n,a,s,o){var u=E();try{return re(t)(n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Np(t){var n=E();try{return re(t)()}catch(a){if(S(n),a!==a+0)throw a;C(1,0)}}function Bp(t){var n=E();try{return re(t)()}catch(a){if(S(n),a!==a+0)throw a;C(1,0)}}function Yp(t,n,a,s,o){var u=E();try{return Wc(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Hp(t,n,a,s,o,u,_){var d=E();try{Jc(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function qp(t,n){var a=E();try{return Kc(t,n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function Wp(t,n,a){var s=E();try{return fl(t,n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function Zp(t,n,a,s,o,u,_){var d=E();try{Gc(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function $p(t,n,a,s,o,u,_){var d=E();try{return Zc(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Gp(t,n,a,s,o,u,_,d,f){var y=E();try{return $c(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Vp(t,n,a,s){var o=E();try{return zc(t,n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Kp(t,n,a,s,o,u){var _=E();try{tl(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function zp(t,n,a,s,o){var u=E();try{Qc(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Qp(t){var n=E();try{return Vc(t)}catch(a){if(S(n),a!==a+0)throw a;C(1,0)}}function Xp(t,n,a,s,o,u,_,d){var f=E();try{il(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Jp(t,n,a,s,o,u,_){var d=E();try{return nl(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function ey(t,n,a,s,o,u,_,d){var f=E();try{Xc(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function ty(t,n,a,s){var o=E();try{_l(t,n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function iy(t,n,a,s,o,u,_){var d=E();try{dl(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function ny(t,n,a,s,o,u){var _=E();try{rl(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function ry(t,n,a,s,o){var u=E();try{return sl(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function ay(t,n,a,s,o,u,_,d,f){var y=E();try{ol(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function sy(t,n,a,s,o,u,_,d,f,y){var j=E();try{cl(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function oy(t,n,a,s){var o=E();try{return ll(t,n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function cy(t,n,a,s,o){var u=E();try{ul(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function ly(t,n,a,s,o,u,_,d){var f=E();try{el(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function uy(t,n,a,s,o,u,_,d,f){var y=E();try{kf(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function _y(t,n,a,s,o,u,_,d){var f=E();try{return Bh(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function dy(t,n,a,s,o){var u=E();try{return hl(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function fy(t,n,a,s,o,u,_,d){var f=E();try{return vb(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function hy(t,n,a,s,o,u,_,d,f){var y=E();try{Eh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function by(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{ub(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function py(t,n,a,s,o,u,_,d,f){var y=E();try{tb(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function yy(t,n,a,s,o,u,_,d){var f=E();try{return xh(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function gy(t,n,a,s,o,u){var _=E();try{return yl(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function vy(t,n,a,s,o,u,_,d,f){var y=E();try{return Rh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function jy(t,n,a,s,o,u){var _=E();try{return Nh(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function my(t,n,a,s,o,u,_,d){var f=E();try{return K(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function wy(t,n,a,s,o,u){var _=E();try{return bl(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function ky(t,n,a,s,o,u,_,d){var f=E();try{return pl(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Ey(t,n,a,s,o,u,_){var d=E();try{return gl(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Sy(t,n,a,s,o,u,_){var d=E();try{sr(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Cy(t,n,a,s,o,u,_,d){var f=E();try{Af(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Ay(t,n,a,s){var o=E();try{return vl(t,n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Ry(t,n,a,s,o,u,_,d){var f=E();try{al(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Oy(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{H(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Ty(t,n,a,s,o,u,_,d){var f=E();try{$(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Py(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{ae(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function Dy(t,n,a,s,o,u,_,d,f,y){var j=E();try{Yi(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Iy(t,n,a,s,o,u,_,d){var f=E();try{h(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function My(t,n,a,s,o,u,_,d,f){var y=E();try{return v(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Uy(t,n,a,s,o,u,_){var d=E();try{return As(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Ly(t,n,a,s,o,u,_){var d=E();try{return Rs(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Fy(t,n,a,s,o,u,_,d){var f=E();try{Os(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function xy(t,n,a,s,o,u){var _=E();try{Ds(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Ny(t,n,a,s,o,u,_){var d=E();try{return Tn(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function By(t,n,a,s,o,u,_){var d=E();try{return Ts(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Yy(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return Ps(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Hy(t,n,a,s,o,u,_,d){var f=E();try{return c(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function qy(t,n,a,s,o,u,_,d){var f=E();try{return ar(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Wy(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{return R(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function Zy(t,n,a,s,o,u,_,d,f){var y=E();try{return U(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function $y(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{Z(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function Gy(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{ve(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function Vy(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{We(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function Ky(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe){var De=E();try{Oe(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe)}catch(Ve){if(S(De),Ve!==Ve+0)throw Ve;C(1,0)}}function zy(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe,De,Ve){var W=E();try{ji(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe,De,Ve)}catch(ue){if(S(W),ue!==ue+0)throw ue;C(1,0)}}function Qy(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{fe(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function Xy(t,n,a,s,o,u){var _=E();try{return Sf(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Jy(t,n,a,s,o,u,_,d,f){var y=E();try{at(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function eg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return wh(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function tg(t,n,a,s,o,u,_,d,f){var y=E();try{return kh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function ig(t,n,a){var s=E();try{return Ze(t,n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function ng(t,n){var a=E();try{return nt(t,n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function rg(t,n){var a=E();try{return Ht(t,n)}catch(s){if(S(a),s!==s+0)throw s;C(1,0)}}function ag(t,n,a,s,o,u,_){var d=E();try{return Sh(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function sg(t,n,a,s,o,u,_){var d=E();try{eh(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function og(t,n,a,s,o,u){var _=E();try{return fh(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function cg(t,n,a,s,o,u,_,d,f){var y=E();try{return ze(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function lg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return qt(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function ug(t,n,a,s,o,u,_,d,f,y){var j=E();try{dt(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function _g(t,n,a,s,o,u,_,d){var f=E();try{return mi(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function dg(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe,De){var Ve=E();try{he(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q,pe,De)}catch(W){if(S(Ve),W!==W+0)throw W;C(1,0)}}function fg(t,n,a,s,o,u,_,d,f){var y=E();try{Ef(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function hg(t,n,a,s,o,u,_,d,f,y){var j=E();try{return If(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function bg(t,n,a,s,o,u,_,d,f,y){var j=E();try{Cf(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function pg(t,n,a,s,o,u,_,d){var f=E();try{return Pf(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function yg(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{return Df(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function gg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return Rf(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function vg(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{Of(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function jg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{Tf(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function mg(t,n,a,s,o,u,_,d,f,y){var j=E();try{return Mf(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function wg(t,n,a,s,o,u,_,d,f,y){var j=E();try{Uf(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function kg(t,n,a,s,o,u,_,d){var f=E();try{return Lf(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Eg(t,n,a,s,o,u,_,d,f,y){var j=E();try{return Ff(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Sg(t,n,a,s,o,u,_,d,f){var y=E();try{xf(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Cg(t,n,a,s,o,u,_,d){var f=E();try{return Nf(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Ag(t,n,a,s,o,u,_,d,f){var y=E();try{return hh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Rg(t,n,a,s,o,u,_,d,f,y,j,A,T,G){var Q=E();try{return bh(t,n,a,s,o,u,_,d,f,y,j,A,T,G)}catch(pe){if(S(Q),pe!==pe+0)throw pe;C(1,0)}}function Og(t,n,a,s,o,u,_,d){var f=E();try{Bf(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Tg(t,n,a,s,o,u){var _=E();try{return $f(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Pg(t,n,a,s,o,u,_){var d=E();try{return Gf(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Dg(t,n,a,s,o,u){var _=E();try{return Vf(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Ig(t,n,a,s,o,u,_){var d=E();try{return Kf(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Mg(t,n,a,s,o,u){var _=E();try{return zf(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function Ug(t,n,a,s,o,u,_,d){var f=E();try{return Qf(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Lg(t,n,a){var s=E();try{return Wf(t,n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function Fg(t,n,a,s,o,u,_){var d=E();try{ih(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function xg(t,n,a,s){var o=E();try{return Bi(t,n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Ng(t,n,a,s,o){var u=E();try{return th(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Bg(t,n,a,s,o){var u=E();try{Xf(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Yg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{nh(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Hg(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q){var pe=E();try{qf(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q)}catch(De){if(S(pe),De!==De+0)throw De;C(1,0)}}function qg(t,n,a,s,o){var u=E();try{return Zf(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function Wg(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{return Jf(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function Zg(t,n,a,s,o){var u=E();try{return rh(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function $g(t,n,a,s,o,u,_){var d=E();try{ah(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Gg(t,n,a,s,o,u,_,d,f,y){var j=E();try{return sh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Vg(t,n,a,s,o,u,_,d,f,y){var j=E();try{return oh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Kg(t,n,a,s,o,u,_,d,f,y){var j=E();try{ch(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function zg(t,n,a,s,o,u,_,d,f,y){var j=E();try{lh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Qg(t,n,a,s,o,u,_){var d=E();try{return Yf(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Xg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{uh(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Jg(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{_h(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function ev(t,n,a,s,o){var u=E();try{return dh(t,n,a,s,o)}catch(_){if(S(u),_!==_+0)throw _;C(1,0)}}function tv(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{return ph(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function iv(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return yh(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function nv(t,n,a,s,o,u,_,d,f,y){var j=E();try{return gh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function rv(t,n,a,s,o,u,_,d,f){var y=E();try{return vh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function av(t,n,a,s,o,u,_,d,f,y){var j=E();try{return jh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function sv(t,n,a,s,o,u){var _=E();try{mh(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function ov(t,n,a,s,o,u,_,d){var f=E();try{return Ch(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function cv(t,n,a,s,o,u,_,d,f){var y=E();try{return Ah(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function lv(t,n,a,s,o,u,_,d){var f=E();try{return Oh(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function uv(t,n,a,s,o,u,_,d,f){var y=E();try{return Th(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function _v(t,n,a,s,o,u,_,d,f,y){var j=E();try{return Ph(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function dv(t,n,a,s,o,u,_){var d=E();try{return Dh(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function fv(t,n,a,s,o,u,_,d){var f=E();try{return Ih(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function hv(t,n,a,s,o,u){var _=E();try{return Mh(t,n,a,s,o,u)}catch(d){if(S(_),d!==d+0)throw d;C(1,0)}}function bv(t,n,a,s,o,u,_){var d=E();try{Uh(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function pv(t,n,a,s,o,u,_,d,f){var y=E();try{Lh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function yv(t,n,a,s,o,u,_,d,f){var y=E();try{return Fh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function gv(t,n,a,s,o,u,_,d,f){var y=E();try{Yh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function vv(t,n,a,s,o,u,_,d,f,y){var j=E();try{Hh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function jv(t,n,a,s,o,u,_,d,f){var y=E();try{return qh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function mv(t,n,a,s,o,u,_,d,f){var y=E();try{Vh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function wv(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{Gh(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function kv(t,n,a,s,o,u,_,d,f,y){var j=E();try{Zh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Ev(t,n,a,s,o,u,_){var d=E();try{return Kh(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Sv(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q){var pe=E();try{return Wh(t,n,a,s,o,u,_,d,f,y,j,A,T,G,Q)}catch(De){if(S(pe),De!==De+0)throw De;C(1,0)}}function Cv(t,n,a,s,o,u,_,d,f){var y=E();try{return $h(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Av(t,n,a,s,o,u,_,d,f){var y=E();try{zh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Rv(t,n,a,s,o,u,_,d,f,y){var j=E();try{Jh(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Ov(t,n,a,s,o,u,_){var d=E();try{return Xh(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Tv(t,n,a,s,o,u,_,d,f,y){var j=E();try{eb(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function Pv(t,n,a,s,o,u,_,d,f){var y=E();try{return Hf(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Dv(t,n,a,s,o,u,_,d,f){var y=E();try{ib(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Iv(t,n,a,s,o,u,_,d,f){var y=E();try{Qh(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Mv(t,n,a,s,o,u,_){var d=E();try{nb(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Uv(t,n,a,s,o,u,_,d,f){var y=E();try{rb(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Lv(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{ab(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Fv(t,n,a,s,o,u,_,d){var f=E();try{return sb(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function xv(t,n,a,s,o,u,_){var d=E();try{return ob(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Nv(t,n,a,s){var o=E();try{return cb(t,n,a,s)}catch(u){if(S(o),u!==u+0)throw u;C(1,0)}}function Bv(t,n,a,s,o,u,_,d){var f=E();try{return lb(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Yv(t,n,a,s,o,u,_,d,f){var y=E();try{return _b(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Hv(t,n,a){var s=E();try{db(t,n,a)}catch(o){if(S(s),o!==o+0)throw o;C(1,0)}}function qv(t,n,a,s,o,u,_,d){var f=E();try{return fb(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Wv(t,n,a,s,o,u,_){var d=E();try{return hb(t,n,a,s,o,u,_)}catch(f){if(S(d),f!==f+0)throw f;C(1,0)}}function Zv(t,n,a,s,o,u,_,d,f,y){var j=E();try{bb(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function $v(t,n,a,s,o,u,_,d,f){var y=E();try{pb(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Gv(t,n,a,s,o,u,_,d,f){var y=E();try{yb(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function Vv(t,n,a,s,o,u,_,d){var f=E();try{gb(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function Kv(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{jb(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function zv(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return kb(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Qv(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{mb(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function Xv(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{wb(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function Jv(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{Eb(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function ej(t,n,a,s,o,u,_,d,f,y){var j=E();try{return Sb(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function tj(t,n,a,s,o,u,_,d,f,y){var j=E();try{return Db(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function ij(t,n,a,s,o,u,_,d,f,y,j,A,T){var G=E();try{Cb(t,n,a,s,o,u,_,d,f,y,j,A,T)}catch(Q){if(S(G),Q!==Q+0)throw Q;C(1,0)}}function nj(t,n,a,s,o,u,_,d,f,y){var j=E();try{Ab(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function rj(t,n,a,s,o,u,_,d,f){var y=E();try{Rb(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function aj(t,n,a,s,o,u,_,d,f){var y=E();try{Bb(t,n,a,s,o,u,_,d,f)}catch(j){if(S(y),j!==j+0)throw j;C(1,0)}}function sj(t,n,a,s,o,u,_,d,f,y,j,A,T,G){var Q=E();try{Tb(t,n,a,s,o,u,_,d,f,y,j,A,T,G)}catch(pe){if(S(Q),pe!==pe+0)throw pe;C(1,0)}}function oj(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{Pb(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function cj(t,n,a,s,o,u,_,d,f,y){var j=E();try{Ob(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function lj(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{return Ib(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}function uj(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return Mb(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function _j(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return xb(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function dj(t,n,a,s,o,u,_,d,f,y){var j=E();try{Fb(t,n,a,s,o,u,_,d,f,y)}catch(A){if(S(j),A!==A+0)throw A;C(1,0)}}function fj(t,n,a,s,o,u,_,d){var f=E();try{return Lb(t,n,a,s,o,u,_,d)}catch(y){if(S(f),y!==y+0)throw y;C(1,0)}}function hj(t,n,a,s,o,u,_,d,f,y,j){var A=E();try{return Ub(t,n,a,s,o,u,_,d,f,y,j)}catch(T){if(S(A),T!==T+0)throw T;C(1,0)}}function bj(t,n,a,s,o,u,_,d,f,y,j,A){var T=E();try{return Nb(t,n,a,s,o,u,_,d,f,y,j,A)}catch(G){if(S(T),G!==G+0)throw G;C(1,0)}}b("intArrayFromString",!1),b("intArrayToString",!1),e.ccall=rn,b("cwrap",!1),b("setValue",!1),b("getValue",!1),b("allocate",!1),b("UTF8ArrayToString",!1),b("UTF8ToString",!1),b("stringToUTF8Array",!1),b("stringToUTF8",!1),b("lengthBytesUTF8",!1),b("stackTrace",!1),b("addOnPreRun",!1),b("addOnInit",!1),b("addOnPreMain",!1),b("addOnExit",!1),b("addOnPostRun",!1),b("writeStringToMemory",!1),b("writeArrayToMemory",!1),b("writeAsciiToMemory",!1),b("addRunDependency",!0),b("removeRunDependency",!0),b("FS_createFolder",!1),b("FS_createPath",!0),b("FS_createDataFile",!0),b("FS_createPreloadedFile",!0),b("FS_createLazyFile",!0),b("FS_createLink",!1),b("FS_createDevice",!0),b("FS_unlink",!0),b("getLEB",!1),b("getFunctionTables",!1),b("alignFunctionTables",!1),b("registerFunctions",!1),b("addFunction",!1),b("removeFunction",!1),b("prettyPrint",!1),b("dynCall",!1),b("getCompilerSetting",!1),b("print",!1),b("printErr",!1),b("getTempRet0",!1),b("setTempRet0",!1),b("callMain",!1),b("abort",!1),b("keepRuntimeAlive",!1),b("ptrToString",!1),b("zeroMemory",!1),b("stringToNewUTF8",!1),b("emscripten_realloc_buffer",!1),b("ENV",!1),b("ERRNO_CODES",!1),b("ERRNO_MESSAGES",!1),b("setErrNo",!1),b("inetPton4",!1),b("inetNtop4",!1),b("inetPton6",!1),b("inetNtop6",!1),b("readSockaddr",!1),b("writeSockaddr",!1),b("DNS",!1),b("getHostByName",!1),b("Protocols",!1),b("Sockets",!1),b("getRandomDevice",!1),b("traverseStack",!1),b("UNWIND_CACHE",!1),b("convertPCtoSourceLocation",!1),b("readAsmConstArgsArray",!1),b("readAsmConstArgs",!1),b("mainThreadEM_ASM",!1),b("jstoi_q",!1),b("jstoi_s",!1),b("getExecutableName",!1),b("listenOnce",!1),b("autoResumeAudioContext",!1),b("dynCallLegacy",!1),b("getDynCaller",!1),b("dynCall",!1),b("handleException",!1),b("runtimeKeepalivePush",!1),b("runtimeKeepalivePop",!1),b("callUserCallback",!1),b("maybeExit",!1),b("safeSetTimeout",!1),b("asmjsMangle",!1),b("asyncLoad",!1),b("alignMemory",!1),b("mmapAlloc",!1),b("reallyNegative",!1),b("unSign",!1),b("reSign",!1),b("formatString",!1),b("PATH",!1),b("PATH_FS",!1),b("SYSCALLS",!1),b("getSocketFromFD",!1),b("getSocketAddress",!1),b("JSEvents",!1),b("registerKeyEventCallback",!1),b("specialHTMLTargets",!1),b("maybeCStringToJsString",!1),b("findEventTarget",!1),b("findCanvasEventTarget",!1),b("getBoundingClientRect",!1),b("fillMouseEventData",!1),b("registerMouseEventCallback",!1),b("registerWheelEventCallback",!1),b("registerUiEventCallback",!1),b("registerFocusEventCallback",!1),b("fillDeviceOrientationEventData",!1),b("registerDeviceOrientationEventCallback",!1),b("fillDeviceMotionEventData",!1),b("registerDeviceMotionEventCallback",!1),b("screenOrientation",!1),b("fillOrientationChangeEventData",!1),b("registerOrientationChangeEventCallback",!1),b("fillFullscreenChangeEventData",!1),b("registerFullscreenChangeEventCallback",!1),b("registerRestoreOldStyle",!1),b("hideEverythingExceptGivenElement",!1),b("restoreHiddenElements",!1),b("setLetterbox",!1),b("currentFullscreenStrategy",!1),b("restoreOldWindowedStyle",!1),b("softFullscreenResizeWebGLRenderTarget",!1),b("doRequestFullscreen",!1),b("fillPointerlockChangeEventData",!1),b("registerPointerlockChangeEventCallback",!1),b("registerPointerlockErrorEventCallback",!1),b("requestPointerLock",!1),b("fillVisibilityChangeEventData",!1),b("registerVisibilityChangeEventCallback",!1),b("registerTouchEventCallback",!1),b("fillGamepadEventData",!1),b("registerGamepadEventCallback",!1),b("registerBeforeUnloadEventCallback",!1),b("fillBatteryEventData",!1),b("battery",!1),b("registerBatteryEventCallback",!1),b("setCanvasElementSize",!1),b("getCanvasElementSize",!1),b("demangle",!1),b("demangleAll",!1),b("jsStackTrace",!1),b("stackTrace",!1),b("getEnvStrings",!1),b("checkWasiClock",!1),b("flush_NO_FILESYSTEM",!1),b("writeI53ToI64",!1),b("writeI53ToI64Clamped",!1),b("writeI53ToI64Signaling",!1),b("writeI53ToU64Clamped",!1),b("writeI53ToU64Signaling",!1),b("readI53FromI64",!1),b("readI53FromU64",!1),b("convertI32PairToI53",!1),b("convertU32PairToI53",!1),b("dlopenMissingError",!1),b("setImmediateWrapped",!1),b("clearImmediateWrapped",!1),b("polyfillSetImmediate",!1),b("uncaughtExceptionCount",!1),b("exceptionLast",!1),b("exceptionCaught",!1),b("ExceptionInfo",!1),b("exception_addRef",!1),b("exception_decRef",!1),b("formatException",!1),b("Browser",!1),b("setMainLoop",!1),b("wget",!1),b("tempFixedLengthArray",!1),b("miniTempWebGLFloatBuffers",!1),b("heapObjectForWebGLType",!1),b("heapAccessShiftForWebGLHeap",!1),b("GL",!1),b("emscriptenWebGLGet",!1),b("computeUnpackAlignedImageSize",!1),b("emscriptenWebGLGetTexPixelData",!1),b("emscriptenWebGLGetUniform",!1),b("webglGetUniformLocation",!1),b("webglPrepareUniformLocationsBeforeFirstUse",!1),b("webglGetLeftBracePos",!1),b("emscriptenWebGLGetVertexAttrib",!1),b("writeGLArray",!1),b("AL",!1),b("SDL_unicode",!1),b("SDL_ttfContext",!1),b("SDL_audio",!1),b("SDL",!1),b("SDL_gfx",!1),b("GLUT",!1),b("EGL",!1),b("GLFW_Window",!1),b("GLFW",!1),b("GLEW",!1),b("IDBStore",!1),b("runAndAbortIfError",!1),b("SOCKFS",!1),b("FS",!1),b("warnOnce",!1),b("stackSave",!1),b("stackRestore",!1),b("stackAlloc",!1),b("AsciiToString",!1),b("stringToAscii",!1),b("UTF16ToString",!1),b("stringToUTF16",!1),b("lengthBytesUTF16",!1),b("UTF32ToString",!1),b("stringToUTF32",!1),b("lengthBytesUTF32",!1),b("allocateUTF8",!1),b("allocateUTF8OnStack",!1),e.writeStackCookie=dn,e.checkStackCookie=St,ee("ALLOC_NORMAL",!1),ee("ALLOC_STACK",!1);var or;function cr(t){this.name="ExitStatus",this.message="Program terminated with exit("+t+")",this.status=t}var pj=!1;At=function t(){or||Is(),or||(At=t)};function yj(t){M(it==0,'cannot call main when async dependencies remain! (listen on Module["onRuntimeInitialized"])'),M(hi.length==0,"cannot call main when preRun functions remain to be called");var n=e._main;t=t||[];var a=t.length+1,s=Ni((a+1)*4);N((s>>>2)*4,cn(O),4);for(var o=1;o<a;o++)N(((s>>2)+o>>>0)*4,cn(t[o-1]),4);N(((s>>2)+a>>>0)*4,0,4);try{var u=n(a,s);return jj(u,!0),u}catch(_){return da(_)}finally{pj=!0}}function gj(){Cs(),dn()}function Is(t){if(t=t||w,it>0||(gj(),Qr(),it>0))return;function n(){or||(or=!0,e.calledRun=!0,!Et&&(Xr(),Jr(),l(e),e.onRuntimeInitialized&&e.onRuntimeInitialized(),jl&&yj(t),ea()))}e.setStatus?(e.setStatus("Running..."),setTimeout(function(){setTimeout(function(){e.setStatus("")},1),n()},1)):n(),St()}e.run=Is;function vj(){var t=de,n=Y,a=!1;de=Y=o=>{a=!0};try{var s=zn;s&&s()}catch{}de=t,Y=n,a&&(ge("stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the FAQ), or make sure to emit a newline when you printf etc."),ge("(this may also be due to not including full filesystem support - try building with -sFORCE_FILESYSTEM)"))}function jj(t,n){if(Ft=t,vj(),bi()&&!n){var a="program exited (with status: "+t+"), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";p(a),Y(a)}mj(t)}function mj(t){Ft=t,bi()||(e.onExit&&e.onExit(t),Et=!0),P(t,new cr(t))}if(e.preInit)for(typeof e.preInit=="function"&&(e.preInit=[e.preInit]);e.preInit.length>0;)e.preInit.pop()();var jl=!0;return e.noInitialRun&&(jl=!1),Is(),i.ready}})(),Cl=Tj;var Tt=Pn(require("apache-arrow")),dr=class{constructor(i,e){this._bindings=i,this._conn=e}close(){this._bindings.disconnect(this._conn)}useUnsafe(i){return i(this._bindings,this._conn)}query(i){let e=this._bindings.runQuery(this._conn,i),l=Tt.RecordBatchReader.from(e);return console.assert(l.isSync()),console.assert(l.isFile()),new Tt.Table(l)}async send(i){let e=this._bindings.startPendingQuery(this._conn,i);for(;e==null;)e=await new Promise((m,w)=>{try{m(this._bindings.pollPendingQuery(this._conn))}catch(O){w(O)}});let l=new fr(this._bindings,this._conn,e),p=Tt.RecordBatchReader.from(l);return console.assert(p.isSync()),console.assert(p.isStream()),p}cancelSent(){return this._bindings.cancelPendingQuery(this._conn)}getTableNames(i){return this._bindings.getTableNames(this._conn,i)}prepare(i){let e=this._bindings.createPrepared(this._conn,i);return new Ms(this._bindings,this._conn,e)}createScalarFunction(i,e,l){this._bindings.createScalarFunction(this._conn,i,e,l)}insertArrowTable(i,e){let l=Tt.tableToIPC(i,"stream");this.insertArrowFromIPCStream(l,e)}insertArrowFromIPCStream(i,e){this._bindings.insertArrowFromIPCStream(this._conn,i,e)}insertCSVFromPath(i,e){this._bindings.insertCSVFromPath(this._conn,i,e)}insertJSONFromPath(i,e){this._bindings.insertJSONFromPath(this._conn,i,e)}},fr=class{constructor(i,e,l){this.bindings=i;this.conn=e;this.header=l;this._first=!0,this._depleted=!1}next(){if(this._first)return this._first=!1,{done:!1,value:this.header};if(this._depleted)return{done:!0,value:null};let i=this.bindings.fetchQueryResults(this.conn);return this._depleted=i.length==0,{done:this._depleted,value:i}}[Symbol.iterator](){return this}},Ms=class{constructor(i,e,l){this.bindings=i,this.connectionId=e,this.statementId=l}close(){this.bindings.closePrepared(this.connectionId,this.statementId)}query(...i){let e=this.bindings.runPrepared(this.connectionId,this.statementId,i),l=Tt.RecordBatchReader.from(e);return console.assert(l.isSync()),console.assert(l.isFile()),new Tt.Table(l)}send(...i){let e=this.bindings.sendPrepared(this.connectionId,this.statementId,i),l=new fr(this.bindings,this.connectionId,e),p=Tt.RecordBatchReader.from(l);return console.assert(p.isSync()),console.assert(p.isStream()),p}};var Ol=new TextEncoder,Al=new TextDecoder("utf-8");function Us(r,i,e){let l=Ol.encode(e),p=r._malloc(l.byteLength),m=r.HEAPU8.subarray(p,p+l.byteLength);m.set(l),r.HEAPF64[(i>>3)+0]=1,r.HEAPF64[(i>>3)+1]=p,r.HEAPF64[(i>>3)+2]=m.byteLength}function Fs(r){switch(r){case"UINT8":case"INT8":return 1;case"INT32":case"FLOAT":return 4;case"INT64":case"UINT64":case"DOUBLE":case"VARCHAR":return 8;default:return 0}}function Ls(r,i,e,l){let p=r.HEAPU8.subarray(i,i+l*Fs(e));switch(e){case"UINT8":return new Uint8Array(p.buffer,p.byteOffset,l);case"INT8":return new Int8Array(p.buffer,p.byteOffset,l);case"INT32":return new Int32Array(p.buffer,p.byteOffset,l);case"FLOAT":return new Float32Array(p.buffer,p.byteOffset,l);case"DOUBLE":return new Float64Array(p.buffer,p.byteOffset,l);case"VARCHAR":return new Float64Array(p.buffer,p.byteOffset,l);default:return new Array(0)}}function Rl(r,i,e){let l=r.HEAPU8.subarray(i,i+e);return new Uint8Array(l.buffer,l.byteOffset,e)}function hr(r,i,e){let l=r.HEAPU8.subarray(i,i+e*8);return new Float64Array(l.buffer,l.byteOffset,e)}function Tl(r,i,e,l,p,m,w,O){try{let P=r._udfFunctions.get(l);if(!P){Us(i,e,"Unknown UDF with id: "+l);return}let B=Al.decode(i.HEAPU8.subarray(p,p+m)),D=JSON.parse(B),q=hr(i,w,O/8),x=ne=>{var F;let Ce=null;switch(ne.validityBuffer!==void 0&&(Ce=Rl(i,q[ne.validityBuffer],D.rows)),ne.physicalType){case"VARCHAR":{if(ne.dataBuffer===null||ne.dataBuffer===void 0)throw new Error("malformed data view, expected data buffer for VARCHAR argument");if(ne.lengthBuffer===null||ne.lengthBuffer===void 0)throw new Error("malformed data view, expected data length buffer for VARCHAR argument");let je=Ls(i,q[ne.dataBuffer],ne.physicalType,D.rows),ye=[],Ue=hr(i,q[ne.lengthBuffer],D.rows);for(let I=0;I<D.rows;++I){if(Ce!=null&&!Ce[I]){ye.push(null);continue}let L=i.HEAPU8.subarray(je[I],je[I]+Ue[I]),ge=Al.decode(L);ye.push(ge)}return I=>ye[I]}case"STRUCT":{let je={},ye=[];for(let Ue=0;Ue<(((F=ne.children)==null?void 0:F.length)||0);++Ue){let I=ne.children[Ue],L=x(I);ye.push(ge=>{je[I.name]=L(ge)})}return Ce!=null?Ue=>{if(!Ce[Ue])return null;for(let I of ye)I(Ue);return je}:Ue=>{for(let I of ye)I(Ue);return je}}default:{if(ne.dataBuffer===void 0)throw new Error("malformed data view, expected data buffer for argument of type: "+ne.physicalType);let je=Ls(i,q[ne.dataBuffer],ne.physicalType,D.rows);return Ce!=null?ye=>Ce[ye]?je[ye]:null:ye=>je[ye]}}},ie=[];for(let ne=0;ne<D.args.length;++ne)ie.push(x(D.args[ne]));let X=D.rows*Fs(D.ret.physicalType),J=i._malloc(X),ce=Ls(i,J,D.ret.physicalType,D.rows),le=i._malloc(D.rows),Ae=Rl(i,le,D.rows);if(ce.length==0||Ae.length==0){Us(i,e,"Can't create physical arrays for result");return}let Ee=ce;D.ret.physicalType=="VARCHAR"&&(Ee=new Array(D.rows));let xe=[];for(let ne=0;ne<D.args.length;++ne)xe.push(null);for(let ne=0;ne<D.rows;++ne){for(let F=0;F<D.args.length;++F)xe[F]=ie[F](ne);let Ce=P.func(...xe);Ee[ne]=Ce,Ae[ne]=Ce==null?0:1}let _e=0;switch(D.ret.physicalType){case"VARCHAR":{let ne=new Array(0);_e=i._malloc(D.rows*Fs("DOUBLE"));let Ce=hr(i,_e,D.rows),F=0;for(let I=0;I<D.rows;++I){let L=Ol.encode(Ee[I]||"");ne.push(L),Ce[I]=L.length,F+=L.length}let je=i._malloc(F),ye=i.HEAPU8.subarray(je,je+F),Ue=0;for(let I=0;I<D.rows;++I){ce[I]=Ue;let L=ne[I];ye.subarray(Ue,Ue+L.length).set(L),Ue+=L.length}}}let Se=3*8,de=i._malloc(Se),Y=hr(i,de,3);Y[0]=J,Y[1]=le,Y[2]=_e,i.HEAPF64[(e>>3)+0]=0,i.HEAPF64[(e>>3)+1]=de,i.HEAPF64[(e>>3)+2]=0}catch(P){Us(i,e,P.toString())}}function Dj(){let r=new TextDecoder;return i=>(typeof SharedArrayBuffer<"u"&&i.buffer instanceof SharedArrayBuffer&&(i=new Uint8Array(i)),r.decode(i))}var ki=Dj();function Me(r,i){r.ccall("duckdb_web_fail_with",null,["string"],[i])}function Ei(r,i,e){let l=r.HEAPU8.subarray(i,i+e),p=new Uint8Array(new ArrayBuffer(l.byteLength));return p.set(l),p}function me(r,i,e){return ki(r.HEAPU8.subarray(i,i+e))}function Re(r,i,e,l){let p=r.stackSave(),m=r.stackAlloc(3*8);e.unshift("number"),l.unshift(m),r.ccall(i,null,e,l);let w=r.HEAPF64[(m>>3)+0],O=r.HEAPF64[(m>>3)+1],P=r.HEAPF64[(m>>3)+2];return r.stackRestore(p),[w,O,P]}function Fe(r){r.ccall("duckdb_web_clear_response",null,[],[])}var br=class{constructor(i){let e=new Float64Array(i.buffer,i.byteOffset,i.byteLength/8),l=new Uint8Array(new ArrayBuffer(i.byteLength));l.set(i.subarray(7*8)),this.totalFileReadsCold=e[0],this.totalFileReadsAhead=e[1],this.totalFileReadsCached=e[2],this.totalFileWrites=e[3],this.totalPageAccesses=e[4],this.totalPageLoads=e[5],this.blockSize=e[6],this.blockStats=l}getBlockStats(i,e){return e=e||{file_reads_cold:0,file_reads_ahead:0,file_reads_cached:0,file_writes:0,page_accesses:0,page_loads:0},e.file_writes=this.blockStats[i*3+0]&15,e.file_reads_cold=this.blockStats[i*3+0]>>4,e.file_reads_ahead=this.blockStats[i*3+1]&15,e.file_reads_cached=this.blockStats[i*3+1]>>4,e.page_accesses=this.blockStats[i*3+1]&15,e.page_loads=this.blockStats[i*3+1]>>4,e}};var Ij=new TextEncoder;var pr=class{constructor(i,e){this._instance=null;this._initPromise=null;this._initPromiseResolver=()=>{};this.onInstantiationProgress=[];this._logger=i,this._runtime=e,this._nextUDFId=1}get logger(){return this._logger}get mod(){return this._instance}get pthread(){return this.mod.PThread||null}async instantiate(i=e=>{}){return this._instance!=null?this:(this._initPromise!=null&&(this.onInstantiationProgress.push(i),await this._initPromise),this._initPromise=new Promise(e=>{this._initPromiseResolver=e}),this.onInstantiationProgress=[i],this._instance=await this.instantiateImpl({print:console.log.bind(console),printErr:console.log.bind(console),onRuntimeInitialized:this._initPromiseResolver}),await this._initPromise,this._initPromise=null,this.onInstantiationProgress=this.onInstantiationProgress.filter(e=>e!=i),this)}open(i){let[e,l,p]=Re(this.mod,"duckdb_web_open",["string"],[JSON.stringify(i)]);if(e!==0)throw new Error(me(this.mod,l,p));Fe(this.mod)}reset(){let[i,e,l]=Re(this.mod,"duckdb_web_reset",[],[]);if(i!==0)throw new Error(me(this.mod,e,l));Fe(this.mod)}getVersion(){let[i,e,l]=Re(this.mod,"duckdb_web_get_version",[],[]);if(i!==0)throw new Error(me(this.mod,e,l));let p=me(this.mod,e,l);return Fe(this.mod),p}getFeatureFlags(){return this.mod.ccall("duckdb_web_get_feature_flags","number",[],[])}tokenize(i){let[e,l,p]=Re(this.mod,"duckdb_web_tokenize",["string"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));let m=me(this.mod,l,p);return Fe(this.mod),JSON.parse(m)}connect(){let i=this.mod.ccall("duckdb_web_connect","number",[],[]);return new dr(this,i)}disconnect(i){if(this.mod.ccall("duckdb_web_disconnect",null,["number"],[i]),this.pthread)for(let e of[...this.pthread.runningWorkers,...this.pthread.unusedWorkers])e.postMessage({cmd:"dropUDFFunctions",connectionId:i})}runQuery(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_query_run",["number","string"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m));let w=Ei(this.mod,p,m);return Fe(this.mod),w}startPendingQuery(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_pending_query_start",["number","string"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m));if(p==0)return null;let w=Ei(this.mod,p,m);return Fe(this.mod),w}pollPendingQuery(i){let[e,l,p]=Re(this.mod,"duckdb_web_pending_query_poll",["number"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));if(l==0)return null;let m=Ei(this.mod,l,p);return Fe(this.mod),m}cancelPendingQuery(i){return this.mod.ccall("duckdb_web_pending_query_cancel","boolean",["number"],[i])}fetchQueryResults(i){let[e,l,p]=Re(this.mod,"duckdb_web_query_fetch_results",["number"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));let m=Ei(this.mod,l,p);return Fe(this.mod),m}getTableNames(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_get_tablenames",["number","string"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m));let w=me(this.mod,p,m);return Fe(this.mod),JSON.parse(w)}createScalarFunction(i,e,l,p){let m={functionId:this._nextUDFId,name:e,returnType:Hi(l)},w={functionId:m.functionId,connectionId:i,name:e,returnType:l,func:p};this._nextUDFId+=1;let[O,P,B]=Re(this.mod,"duckdb_web_udf_scalar_create",["number","string"],[i,JSON.stringify(m)]);if(O!==0)throw new Error(me(this.mod,P,B));if(Fe(this.mod),globalThis.DUCKDB_RUNTIME._udfFunctions=(globalThis.DUCKDB_RUNTIME._udfFunctions||new Map).set(w.functionId,w),this.pthread)for(let D of[...this.pthread.runningWorkers,...this.pthread.unusedWorkers])D.postMessage({cmd:"registerUDFFunction",udf:w})}createPrepared(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_prepared_create",["number","string"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m));return Fe(this.mod),p}closePrepared(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_prepared_close",["number","number"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m));Fe(this.mod)}runPrepared(i,e,l){let[p,m,w]=Re(this.mod,"duckdb_web_prepared_run",["number","number","string"],[i,e,JSON.stringify(l)]);if(p!==0)throw new Error(me(this.mod,m,w));let O=Ei(this.mod,m,w);return Fe(this.mod),O}sendPrepared(i,e,l){let[p,m,w]=Re(this.mod,"duckdb_web_prepared_send",["number","number","string"],[i,e,JSON.stringify(l)]);if(p!==0)throw new Error(me(this.mod,m,w));let O=Ei(this.mod,m,w);return Fe(this.mod),O}insertArrowFromIPCStream(i,e,l){if(e.length==0)return;let p=this.mod._malloc(e.length);this.mod.HEAPU8.subarray(p,p+e.length).set(e);let w=l?JSON.stringify(l):"",[O,P,B]=Re(this.mod,"duckdb_web_insert_arrow_from_ipc_stream",["number","number","number","string"],[i,p,e.length,w]);if(O!==0)throw new Error(me(this.mod,P,B))}insertCSVFromPath(i,e,l){if(l.columns!==void 0){l.columnsFlat=[];for(let B in l.columns)l.columnsFlat.push(ur(B,l.columns[B]))}let p={...l};p.columns=p.columnsFlat,delete p.columnsFlat;let m=JSON.stringify(p),[w,O,P]=Re(this.mod,"duckdb_web_insert_csv_from_path",["number","string","string"],[i,e,m]);if(w!==0)throw new Error(me(this.mod,O,P))}insertJSONFromPath(i,e,l){if(l.columns!==void 0){l.columnsFlat=[];for(let B in l.columns)l.columnsFlat.push(ur(B,l.columns[B]))}let p={...l};p.columns=p.columnsFlat,delete p.columnsFlat;let m=JSON.stringify(p),[w,O,P]=Re(this.mod,"duckdb_web_insert_json_from_path",["number","string","string"],[i,e,m]);if(w!==0)throw new Error(me(this.mod,O,P))}globFiles(i){let[e,l,p]=Re(this.mod,"duckdb_web_fs_glob_file_infos",["string"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));let m=me(this.mod,l,p);Fe(this.mod);let w=JSON.parse(m);return w??[]}registerFileURL(i,e){e===void 0&&(e=i);let[l,p,m]=Re(this.mod,"duckdb_web_fs_register_file_url",["string","string","number"],[i,e,-1]);if(l!==0)throw new Error(me(this.mod,p,m));Fe(this.mod)}registerFileText(i,e){let l=Ij.encode(e);this.registerFileBuffer(i,l)}registerFileBuffer(i,e){let l=this.mod._malloc(e.length);this.mod.HEAPU8.subarray(l,l+e.length).set(e);let[m,w,O]=Re(this.mod,"duckdb_web_fs_register_file_buffer",["string","number","number"],[i,l,e.length]);if(m!==0)throw new Error(me(this.mod,w,O));Fe(this.mod)}registerFileHandle(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_fs_register_file_url",["string","string","number"],[i,i,-1]);if(l!==0)throw new Error(me(this.mod,p,m));if(Fe(this.mod),globalThis.DUCKDB_RUNTIME._files=(globalThis.DUCKDB_RUNTIME._files||new Map).set(i,e),this.pthread){for(let w of this.pthread.runningWorkers)w.postMessage({cmd:"registerFileHandle",fileName:i,fileHandle:e});for(let w of this.pthread.unusedWorkers)w.postMessage({cmd:"dropFileHandle",fileName:i})}}dropFile(i){let[e,l,p]=Re(this.mod,"duckdb_web_fs_drop_file",["string"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));Fe(this.mod)}dropFiles(){let[i,e,l]=Re(this.mod,"duckdb_web_fs_drop_files",[],[]);if(i!==0)throw new Error(me(this.mod,e,l));Fe(this.mod)}flushFiles(){this.mod.ccall("duckdb_web_flush_files",null,[],[])}copyFileToPath(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_copy_file_to_path",["string","string"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m));Fe(this.mod)}copyFileToBuffer(i){let[e,l,p]=Re(this.mod,"duckdb_web_copy_file_to_buffer",["string"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));let m=this.mod.HEAPU8.subarray(l,l+p),w=new Uint8Array(m.length);return w.set(m),Fe(this.mod),w}collectFileStatistics(i,e){let[l,p,m]=Re(this.mod,"duckdb_web_collect_file_stats",["string","boolean"],[i,e]);if(l!==0)throw new Error(me(this.mod,p,m))}exportFileStatistics(i){let[e,l,p]=Re(this.mod,"duckdb_web_export_file_stats",["string"],[i]);if(e!==0)throw new Error(me(this.mod,l,p));return new br(this.mod.HEAPU8.subarray(l,l+p))}};var Pl=Pn(require("fs")),yr=class extends pr{constructor(e,l,p,m){super(e,l);this.mainModulePath=p,this.pthreadWorkerPath=m}locateFile(e,l){if(e.endsWith(".wasm"))return this.mainModulePath;if(e.endsWith(".worker.js")){if(!this.pthreadWorkerPath)throw new Error("Missing DuckDB worker path!");return this.pthreadWorkerPath}throw new Error(`WASM instantiation requested unexpected file: prefix=${l} path=${e}`)}instantiateWasm(e,l){globalThis.DUCKDB_RUNTIME={};for(let m of Object.getOwnPropertyNames(this._runtime))m!="constructor"&&(globalThis.DUCKDB_RUNTIME[m]=Object.getOwnPropertyDescriptor(this._runtime,m).value);let p=Pl.default.readFileSync(this.mainModulePath);return WebAssembly.instantiate(p,e).then(m=>{l(m.instance,m.module)}),[]}instantiateImpl(e){return Cl({...e,instantiateWasm:this.instantiateWasm.bind(this)})}};var gr=class extends yr{constructor(i,e,l,p=null){super(i,e,l,p)}instantiateImpl(i){return El({...i,instantiateWasm:this.instantiateWasm.bind(this),locateFile:this.locateFile.bind(this)})}};var rt=Pn(require("fs"));var vd=Pn(gd());var tt={_files:new Map,_fileInfoCache:new Map,_udfFunctions:new Map,resolveFileInfo(r,i){try{let e=tt._fileInfoCache.get(i),[l,p,m]=Re(r,"duckdb_web_fs_get_file_info_by_id",["number","number"],[i,(e==null?void 0:e.cacheEpoch)||0]);if(l!==0)return Me(r,me(r,p,m)),null;if(m===0)return e;let w=me(r,p,m);Fe(r);let O=JSON.parse(w);return O==null?null:(tt._fileInfoCache.set(i,O),O)}catch(e){return Me(r,e.toString()),null}},testPlatformFeature:(r,i)=>{switch(i){case 1:return typeof BigInt64Array<"u";default:return console.warn(`test for unknown feature: ${i}`),!1}},openFile(r,i,e){try{tt._fileInfoCache.delete(i);let l=tt.resolveFileInfo(r,i);switch(l==null?void 0:l.dataProtocol){case 1:{l.dataNativeFd=rt.default.openSync(l.dataUrl,rt.default.constants.O_CREAT|rt.default.constants.O_RDWR,rt.default.constants.S_IRUSR|rt.default.constants.S_IWUSR);let[p,m,w]=Re(r,"duckdb_web_fs_set_file_descriptor",["number","number"],[i,l.dataNativeFd]);p!==0&&Me(r,me(r,m,w));let O=rt.default.fstatSync(l.dataNativeFd).size,P=r._malloc(2*8);return r.HEAPF64[(P>>3)+0]=+O,r.HEAPF64[(P>>3)+1]=0,P}case 3:case 4:Me(r,"Not implemented")}}catch(l){Me(r,l.toString())}return 0},syncFile:(r,i)=>{},closeFile:(r,i)=>{try{let e=tt.resolveFileInfo(r,i);switch(tt._fileInfoCache.delete(i),e==null?void 0:e.dataProtocol){case 1:{if(!e.dataNativeFd)return Me(r,`File ${i} is missing a file descriptor`),0;rt.default.closeSync(e.dataNativeFd),e.dataNativeFd=null;break}case 3:case 4:Me(r,"Not implemented")}}catch(e){Me(r,e.toString())}return 0},truncateFile:(r,i,e)=>{try{let l=tt.resolveFileInfo(r,i);switch(l==null?void 0:l.dataProtocol){case 1:{if(!l.dataNativeFd)return Me(r,`File ${i} is missing a file descriptor`),0;rt.default.truncateSync(l.dataUrl,e);break}case 3:case 4:Me(r,"Not implemented")}}catch(l){Me(r,l.toString())}return 0},readFile:(r,i,e,l,p)=>{try{let m=tt.resolveFileInfo(r,i);switch(m==null?void 0:m.dataProtocol){case 1:return m.dataNativeFd?rt.default.readSync(m.dataNativeFd,r.HEAPU8,e,l,p):(Me(r,`File ${i} is missing a file descriptor`),0);case 3:case 4:Me(r,"Not implemented")}}catch(m){Me(r,m.toString())}return 0},writeFile:(r,i,e,l,p)=>{try{let m=tt.resolveFileInfo(r,i);switch(m==null?void 0:m.dataProtocol){case 1:{if(!m.dataNativeFd)return Me(r,`File ${i} is missing a file descriptor`),0;let w=r.HEAPU8.subarray(e,e+l);return rt.default.writeSync(m.dataNativeFd,w,0,w.length,p)}}}catch(m){Me(r,m.toString())}return 0},getLastFileModificationTime:(r,i)=>{try{let e=tt.resolveFileInfo(r,i);switch(e==null?void 0:e.dataProtocol){case 1:return e.dataNativeFd?rt.default.fstatSync(e.dataNativeFd).mtime.getTime():(Me(r,`File ${i} is missing a file descriptor`),0);case 3:case 4:Me(r,"Not implemented")}}catch(e){Me(r,e.toString())}return 0},checkDirectory:(r,i,e)=>{try{let l=ki(r.HEAPU8.subarray(i,i+e));return rt.default.existsSync(l)}catch(l){return Me(r,l.toString()),!1}},createDirectory:(r,i,e)=>{try{let l=ki(r.HEAPU8.subarray(i,i+e));return rt.default.mkdirSync(l)}catch(l){return Me(r,l.toString()),0}},removeDirectory:(r,i,e)=>{try{let l=ki(r.HEAPU8.subarray(i,i+e));return rt.default.rmdirSync(l)}catch(l){return Me(r,l.toString()),0}},listDirectoryEntries:(r,i,e)=>(Me(r,"Not Implemented"),!1),glob:(r,i,e)=>{try{let l=me(r,i,e),p=vd.sync([l],{dot:!0});for(let m of p)r.ccall("duckdb_web_fs_glob_add_path",null,["string"],[m])}catch(l){return Me(r,l.toString()),0}},moveFile:(r,i,e,l,p)=>{var P,B;let m=me(r,i,e),w=me(r,l,p),O=(P=tt._files)==null?void 0:P.get(m);O!==void 0&&(tt._files.delete(O),tt._files.set(w,O));for(let[D,q]of((B=tt._fileInfoCache)==null?void 0:B.entries())||[])if(q.dataUrl==m){tt._fileInfoCache.delete(D);break}return!0},checkFile:(r,i,e)=>{try{let l=ki(r.HEAPU8.subarray(i,i+e));return rt.default.existsSync(l)}catch(l){return Me(r,l.toString()),!1}},removeFile:(r,i,e)=>{try{let l=ki(r.HEAPU8.subarray(i,i+e));return rt.default.rmSync(l)}catch(l){return Me(r,l.toString()),0}},callScalarUDF:(r,i,e,l,p,m,w)=>{Tl(tt,r,i,e,l,p,m,w)}};var vc=class extends _r{postMessage(i,e){globalThis.postMessage(i,e)}async instantiate(i,e,l){return await new gr(this,tt,i,e).instantiate(l)}};function jd(){let r=new vc;globalThis.onmessage=async i=>{await r.onMessage(i.data)}}jd();0&&(module.exports={registerWorker});
+"use strict";
+var wj = Object.create;
+var lr = Object.defineProperty;
+var kj = Object.getOwnPropertyDescriptor;
+var Ej = Object.getOwnPropertyNames;
+var Sj = Object.getPrototypeOf,
+  Cj = Object.prototype.hasOwnProperty;
+var te = (r, i) => () => (i || r((i = { exports: {} }).exports, i), i.exports),
+  Aj = (r, i) => {
+    for (var e in i) lr(r, e, { get: i[e], enumerable: !0 });
+  },
+  wl = (r, i, e, l) => {
+    if ((i && typeof i == "object") || typeof i == "function")
+      for (let p of Ej(i))
+        !Cj.call(r, p) &&
+          p !== e &&
+          lr(r, p, {
+            get: () => i[p],
+            enumerable: !(l = kj(i, p)) || l.enumerable,
+          });
+    return r;
+  };
+var Pn = (r, i, e) => (
+    (e = r != null ? wj(Sj(r)) : {}),
+    wl(
+      i || !r || !r.__esModule
+        ? lr(e, "default", { value: r, enumerable: !0 })
+        : e,
+      r
+    )
+  ),
+  Rj = (r) => wl(lr({}, "__esModule", { value: !0 }), r);
+var Dl = te((qi) => {
+  "use strict";
+  Object.defineProperty(qi, "__esModule", { value: !0 });
+  qi.splitWhen = qi.flatten = void 0;
+  function Mj(r) {
+    return r.reduce((i, e) => [].concat(i, e), []);
+  }
+  qi.flatten = Mj;
+  function Uj(r, i) {
+    let e = [[]],
+      l = 0;
+    for (let p of r) i(p) ? (l++, (e[l] = [])) : e[l].push(p);
+    return e;
+  }
+  qi.splitWhen = Uj;
+});
+var Il = te((vr) => {
+  "use strict";
+  Object.defineProperty(vr, "__esModule", { value: !0 });
+  vr.isEnoentCodeError = void 0;
+  function Lj(r) {
+    return r.code === "ENOENT";
+  }
+  vr.isEnoentCodeError = Lj;
+});
+var Ml = te((jr) => {
+  "use strict";
+  Object.defineProperty(jr, "__esModule", { value: !0 });
+  jr.createDirentFromStats = void 0;
+  var xs = class {
+    constructor(i, e) {
+      (this.name = i),
+        (this.isBlockDevice = e.isBlockDevice.bind(e)),
+        (this.isCharacterDevice = e.isCharacterDevice.bind(e)),
+        (this.isDirectory = e.isDirectory.bind(e)),
+        (this.isFIFO = e.isFIFO.bind(e)),
+        (this.isFile = e.isFile.bind(e)),
+        (this.isSocket = e.isSocket.bind(e)),
+        (this.isSymbolicLink = e.isSymbolicLink.bind(e));
+    }
+  };
+  function Fj(r, i) {
+    return new xs(r, i);
+  }
+  jr.createDirentFromStats = Fj;
+});
+var Ul = te((Pt) => {
+  "use strict";
+  Object.defineProperty(Pt, "__esModule", { value: !0 });
+  Pt.removeLeadingDotSegment =
+    Pt.escape =
+    Pt.makeAbsolute =
+    Pt.unixify =
+      void 0;
+  var xj = require("path"),
+    Nj = 2,
+    Bj = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\())/g;
+  function Yj(r) {
+    return r.replace(/\\/g, "/");
+  }
+  Pt.unixify = Yj;
+  function Hj(r, i) {
+    return xj.resolve(r, i);
+  }
+  Pt.makeAbsolute = Hj;
+  function qj(r) {
+    return r.replace(Bj, "\\$2");
+  }
+  Pt.escape = qj;
+  function Wj(r) {
+    if (r.charAt(0) === ".") {
+      let i = r.charAt(1);
+      if (i === "/" || i === "\\") return r.slice(Nj);
+    }
+    return r;
+  }
+  Pt.removeLeadingDotSegment = Wj;
+});
+var Fl = te((oE, Ll) => {
+  Ll.exports = function (i) {
+    if (typeof i != "string" || i === "") return !1;
+    for (var e; (e = /(\\).|([@?!+*]\(.*\))/g.exec(i)); ) {
+      if (e[2]) return !0;
+      i = i.slice(e.index + e[0].length);
+    }
+    return !1;
+  };
+});
+var Bl = te((cE, Nl) => {
+  var Zj = Fl(),
+    xl = { "{": "}", "(": ")", "[": "]" },
+    $j = function (r) {
+      if (r[0] === "!") return !0;
+      for (var i = 0, e = -2, l = -2, p = -2, m = -2, w = -2; i < r.length; ) {
+        if (
+          r[i] === "*" ||
+          (r[i + 1] === "?" && /[\].+)]/.test(r[i])) ||
+          (l !== -1 &&
+            r[i] === "[" &&
+            r[i + 1] !== "]" &&
+            (l < i && (l = r.indexOf("]", i)),
+            l > i &&
+              (w === -1 ||
+                w > l ||
+                ((w = r.indexOf("\\", i)), w === -1 || w > l)))) ||
+          (p !== -1 &&
+            r[i] === "{" &&
+            r[i + 1] !== "}" &&
+            ((p = r.indexOf("}", i)),
+            p > i && ((w = r.indexOf("\\", i)), w === -1 || w > p))) ||
+          (m !== -1 &&
+            r[i] === "(" &&
+            r[i + 1] === "?" &&
+            /[:!=]/.test(r[i + 2]) &&
+            r[i + 3] !== ")" &&
+            ((m = r.indexOf(")", i)),
+            m > i && ((w = r.indexOf("\\", i)), w === -1 || w > m))) ||
+          (e !== -1 &&
+            r[i] === "(" &&
+            r[i + 1] !== "|" &&
+            (e < i && (e = r.indexOf("|", i)),
+            e !== -1 &&
+              r[e + 1] !== ")" &&
+              ((m = r.indexOf(")", e)),
+              m > e && ((w = r.indexOf("\\", e)), w === -1 || w > m))))
+        )
+          return !0;
+        if (r[i] === "\\") {
+          var O = r[i + 1];
+          i += 2;
+          var P = xl[O];
+          if (P) {
+            var B = r.indexOf(P, i);
+            B !== -1 && (i = B + 1);
+          }
+          if (r[i] === "!") return !0;
+        } else i++;
+      }
+      return !1;
+    },
+    Gj = function (r) {
+      if (r[0] === "!") return !0;
+      for (var i = 0; i < r.length; ) {
+        if (/[*?{}()[\]]/.test(r[i])) return !0;
+        if (r[i] === "\\") {
+          var e = r[i + 1];
+          i += 2;
+          var l = xl[e];
+          if (l) {
+            var p = r.indexOf(l, i);
+            p !== -1 && (i = p + 1);
+          }
+          if (r[i] === "!") return !0;
+        } else i++;
+      }
+      return !1;
+    };
+  Nl.exports = function (i, e) {
+    if (typeof i != "string" || i === "") return !1;
+    if (Zj(i)) return !0;
+    var l = $j;
+    return e && e.strict === !1 && (l = Gj), l(i);
+  };
+});
+var Hl = te((lE, Yl) => {
+  "use strict";
+  var Vj = Bl(),
+    Kj = require("path").posix.dirname,
+    zj = require("os").platform() === "win32",
+    Ns = "/",
+    Qj = /\\/g,
+    Xj = /[\{\[].*[\}\]]$/,
+    Jj = /(^|[^\\])([\{\[]|\([^\)]+$)/,
+    em = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
+  Yl.exports = function (i, e) {
+    var l = Object.assign({ flipBackslashes: !0 }, e);
+    l.flipBackslashes && zj && i.indexOf(Ns) < 0 && (i = i.replace(Qj, Ns)),
+      Xj.test(i) && (i += Ns),
+      (i += "a");
+    do i = Kj(i);
+    while (Vj(i) || Jj.test(i));
+    return i.replace(em, "$1");
+  };
+});
+var mr = te((mt) => {
+  "use strict";
+  mt.isInteger = (r) =>
+    typeof r == "number"
+      ? Number.isInteger(r)
+      : typeof r == "string" && r.trim() !== ""
+      ? Number.isInteger(Number(r))
+      : !1;
+  mt.find = (r, i) => r.nodes.find((e) => e.type === i);
+  mt.exceedsLimit = (r, i, e = 1, l) =>
+    l === !1 || !mt.isInteger(r) || !mt.isInteger(i)
+      ? !1
+      : (Number(i) - Number(r)) / Number(e) >= l;
+  mt.escapeNode = (r, i = 0, e) => {
+    let l = r.nodes[i];
+    !l ||
+      (((e && l.type === e) || l.type === "open" || l.type === "close") &&
+        l.escaped !== !0 &&
+        ((l.value = "\\" + l.value), (l.escaped = !0)));
+  };
+  mt.encloseBrace = (r) =>
+    r.type !== "brace"
+      ? !1
+      : (r.commas >> (0 + r.ranges)) >> 0 === 0
+      ? ((r.invalid = !0), !0)
+      : !1;
+  mt.isInvalidBrace = (r) =>
+    r.type !== "brace"
+      ? !1
+      : r.invalid === !0 || r.dollar
+      ? !0
+      : (r.commas >> (0 + r.ranges)) >> 0 === 0 ||
+        r.open !== !0 ||
+        r.close !== !0
+      ? ((r.invalid = !0), !0)
+      : !1;
+  mt.isOpenOrClose = (r) =>
+    r.type === "open" || r.type === "close"
+      ? !0
+      : r.open === !0 || r.close === !0;
+  mt.reduce = (r) =>
+    r.reduce(
+      (i, e) => (
+        e.type === "text" && i.push(e.value),
+        e.type === "range" && (e.type = "text"),
+        i
+      ),
+      []
+    );
+  mt.flatten = (...r) => {
+    let i = [],
+      e = (l) => {
+        for (let p = 0; p < l.length; p++) {
+          let m = l[p];
+          Array.isArray(m) ? e(m, i) : m !== void 0 && i.push(m);
+        }
+        return i;
+      };
+    return e(r), i;
+  };
+});
+var wr = te((_E, Wl) => {
+  "use strict";
+  var ql = mr();
+  Wl.exports = (r, i = {}) => {
+    let e = (l, p = {}) => {
+      let m = i.escapeInvalid && ql.isInvalidBrace(p),
+        w = l.invalid === !0 && i.escapeInvalid === !0,
+        O = "";
+      if (l.value)
+        return (m || w) && ql.isOpenOrClose(l) ? "\\" + l.value : l.value;
+      if (l.value) return l.value;
+      if (l.nodes) for (let P of l.nodes) O += e(P);
+      return O;
+    };
+    return e(r);
+  };
+});
+var $l = te((dE, Zl) => {
+  "use strict";
+  Zl.exports = function (r) {
+    return typeof r == "number"
+      ? r - r === 0
+      : typeof r == "string" && r.trim() !== ""
+      ? Number.isFinite
+        ? Number.isFinite(+r)
+        : isFinite(+r)
+      : !1;
+  };
+});
+var tu = te((fE, eu) => {
+  "use strict";
+  var Gl = $l(),
+    Si = (r, i, e) => {
+      if (Gl(r) === !1)
+        throw new TypeError(
+          "toRegexRange: expected the first argument to be a number"
+        );
+      if (i === void 0 || r === i) return String(r);
+      if (Gl(i) === !1)
+        throw new TypeError(
+          "toRegexRange: expected the second argument to be a number."
+        );
+      let l = { relaxZeros: !0, ...e };
+      typeof l.strictZeros == "boolean" &&
+        (l.relaxZeros = l.strictZeros === !1);
+      let p = String(l.relaxZeros),
+        m = String(l.shorthand),
+        w = String(l.capture),
+        O = String(l.wrap),
+        P = r + ":" + i + "=" + p + m + w + O;
+      if (Si.cache.hasOwnProperty(P)) return Si.cache[P].result;
+      let B = Math.min(r, i),
+        D = Math.max(r, i);
+      if (Math.abs(B - D) === 1) {
+        let J = r + "|" + i;
+        return l.capture ? `(${J})` : l.wrap === !1 ? J : `(?:${J})`;
+      }
+      let q = Jl(r) || Jl(i),
+        x = { min: r, max: i, a: B, b: D },
+        ie = [],
+        X = [];
+      if ((q && ((x.isPadded = q), (x.maxLen = String(x.max).length)), B < 0)) {
+        let J = D < 0 ? Math.abs(D) : 1;
+        (X = Vl(J, Math.abs(B), x, l)), (B = x.a = 0);
+      }
+      return (
+        D >= 0 && (ie = Vl(B, D, x, l)),
+        (x.negatives = X),
+        (x.positives = ie),
+        (x.result = tm(X, ie, l)),
+        l.capture === !0
+          ? (x.result = `(${x.result})`)
+          : l.wrap !== !1 &&
+            ie.length + X.length > 1 &&
+            (x.result = `(?:${x.result})`),
+        (Si.cache[P] = x),
+        x.result
+      );
+    };
+  function tm(r, i, e) {
+    let l = Bs(r, i, "-", !1, e) || [],
+      p = Bs(i, r, "", !1, e) || [],
+      m = Bs(r, i, "-?", !0, e) || [];
+    return l.concat(m).concat(p).join("|");
+  }
+  function im(r, i) {
+    let e = 1,
+      l = 1,
+      p = zl(r, e),
+      m = new Set([i]);
+    for (; r <= p && p <= i; ) m.add(p), (e += 1), (p = zl(r, e));
+    for (p = Ql(i + 1, l) - 1; r < p && p <= i; )
+      m.add(p), (l += 1), (p = Ql(i + 1, l) - 1);
+    return (m = [...m]), m.sort(am), m;
+  }
+  function nm(r, i, e) {
+    if (r === i) return { pattern: r, count: [], digits: 0 };
+    let l = rm(r, i),
+      p = l.length,
+      m = "",
+      w = 0;
+    for (let O = 0; O < p; O++) {
+      let [P, B] = l[O];
+      P === B ? (m += P) : P !== "0" || B !== "9" ? (m += sm(P, B, e)) : w++;
+    }
+    return (
+      w && (m += e.shorthand === !0 ? "\\d" : "[0-9]"),
+      { pattern: m, count: [w], digits: p }
+    );
+  }
+  function Vl(r, i, e, l) {
+    let p = im(r, i),
+      m = [],
+      w = r,
+      O;
+    for (let P = 0; P < p.length; P++) {
+      let B = p[P],
+        D = nm(String(w), String(B), l),
+        q = "";
+      if (!e.isPadded && O && O.pattern === D.pattern) {
+        O.count.length > 1 && O.count.pop(),
+          O.count.push(D.count[0]),
+          (O.string = O.pattern + Xl(O.count)),
+          (w = B + 1);
+        continue;
+      }
+      e.isPadded && (q = om(B, e, l)),
+        (D.string = q + D.pattern + Xl(D.count)),
+        m.push(D),
+        (w = B + 1),
+        (O = D);
+    }
+    return m;
+  }
+  function Bs(r, i, e, l, p) {
+    let m = [];
+    for (let w of r) {
+      let { string: O } = w;
+      !l && !Kl(i, "string", O) && m.push(e + O),
+        l && Kl(i, "string", O) && m.push(e + O);
+    }
+    return m;
+  }
+  function rm(r, i) {
+    let e = [];
+    for (let l = 0; l < r.length; l++) e.push([r[l], i[l]]);
+    return e;
+  }
+  function am(r, i) {
+    return r > i ? 1 : i > r ? -1 : 0;
+  }
+  function Kl(r, i, e) {
+    return r.some((l) => l[i] === e);
+  }
+  function zl(r, i) {
+    return Number(String(r).slice(0, -i) + "9".repeat(i));
+  }
+  function Ql(r, i) {
+    return r - (r % Math.pow(10, i));
+  }
+  function Xl(r) {
+    let [i = 0, e = ""] = r;
+    return e || i > 1 ? `{${i + (e ? "," + e : "")}}` : "";
+  }
+  function sm(r, i, e) {
+    return `[${r}${i - r === 1 ? "" : "-"}${i}]`;
+  }
+  function Jl(r) {
+    return /^-?(0+)\d/.test(r);
+  }
+  function om(r, i, e) {
+    if (!i.isPadded) return r;
+    let l = Math.abs(i.maxLen - String(r).length),
+      p = e.relaxZeros !== !1;
+    switch (l) {
+      case 0:
+        return "";
+      case 1:
+        return p ? "0?" : "0";
+      case 2:
+        return p ? "0{0,2}" : "00";
+      default:
+        return p ? `0{0,${l}}` : `0{${l}}`;
+    }
+  }
+  Si.cache = {};
+  Si.clearCache = () => (Si.cache = {});
+  eu.exports = Si;
+});
+var qs = te((hE, lu) => {
+  "use strict";
+  var cm = require("util"),
+    ru = tu(),
+    iu = (r) => r !== null && typeof r == "object" && !Array.isArray(r),
+    lm = (r) => (i) => r === !0 ? Number(i) : String(i),
+    Ys = (r) => typeof r == "number" || (typeof r == "string" && r !== ""),
+    Dn = (r) => Number.isInteger(+r),
+    Hs = (r) => {
+      let i = `${r}`,
+        e = -1;
+      if ((i[0] === "-" && (i = i.slice(1)), i === "0")) return !1;
+      for (; i[++e] === "0"; );
+      return e > 0;
+    },
+    um = (r, i, e) =>
+      typeof r == "string" || typeof i == "string" ? !0 : e.stringify === !0,
+    _m = (r, i, e) => {
+      if (i > 0) {
+        let l = r[0] === "-" ? "-" : "";
+        l && (r = r.slice(1)), (r = l + r.padStart(l ? i - 1 : i, "0"));
+      }
+      return e === !1 ? String(r) : r;
+    },
+    nu = (r, i) => {
+      let e = r[0] === "-" ? "-" : "";
+      for (e && ((r = r.slice(1)), i--); r.length < i; ) r = "0" + r;
+      return e ? "-" + r : r;
+    },
+    dm = (r, i) => {
+      r.negatives.sort((w, O) => (w < O ? -1 : w > O ? 1 : 0)),
+        r.positives.sort((w, O) => (w < O ? -1 : w > O ? 1 : 0));
+      let e = i.capture ? "" : "?:",
+        l = "",
+        p = "",
+        m;
+      return (
+        r.positives.length && (l = r.positives.join("|")),
+        r.negatives.length && (p = `-(${e}${r.negatives.join("|")})`),
+        l && p ? (m = `${l}|${p}`) : (m = l || p),
+        i.wrap ? `(${e}${m})` : m
+      );
+    },
+    au = (r, i, e, l) => {
+      if (e) return ru(r, i, { wrap: !1, ...l });
+      let p = String.fromCharCode(r);
+      if (r === i) return p;
+      let m = String.fromCharCode(i);
+      return `[${p}-${m}]`;
+    },
+    su = (r, i, e) => {
+      if (Array.isArray(r)) {
+        let l = e.wrap === !0,
+          p = e.capture ? "" : "?:";
+        return l ? `(${p}${r.join("|")})` : r.join("|");
+      }
+      return ru(r, i, e);
+    },
+    ou = (...r) =>
+      new RangeError("Invalid range arguments: " + cm.inspect(...r)),
+    cu = (r, i, e) => {
+      if (e.strictRanges === !0) throw ou([r, i]);
+      return [];
+    },
+    fm = (r, i) => {
+      if (i.strictRanges === !0)
+        throw new TypeError(`Expected step "${r}" to be a number`);
+      return [];
+    },
+    hm = (r, i, e = 1, l = {}) => {
+      let p = Number(r),
+        m = Number(i);
+      if (!Number.isInteger(p) || !Number.isInteger(m)) {
+        if (l.strictRanges === !0) throw ou([r, i]);
+        return [];
+      }
+      p === 0 && (p = 0), m === 0 && (m = 0);
+      let w = p > m,
+        O = String(r),
+        P = String(i),
+        B = String(e);
+      e = Math.max(Math.abs(e), 1);
+      let D = Hs(O) || Hs(P) || Hs(B),
+        q = D ? Math.max(O.length, P.length, B.length) : 0,
+        x = D === !1 && um(r, i, l) === !1,
+        ie = l.transform || lm(x);
+      if (l.toRegex && e === 1) return au(nu(r, q), nu(i, q), !0, l);
+      let X = { negatives: [], positives: [] },
+        J = (Ae) => X[Ae < 0 ? "negatives" : "positives"].push(Math.abs(Ae)),
+        ce = [],
+        le = 0;
+      for (; w ? p >= m : p <= m; )
+        l.toRegex === !0 && e > 1 ? J(p) : ce.push(_m(ie(p, le), q, x)),
+          (p = w ? p - e : p + e),
+          le++;
+      return l.toRegex === !0
+        ? e > 1
+          ? dm(X, l)
+          : su(ce, null, { wrap: !1, ...l })
+        : ce;
+    },
+    bm = (r, i, e = 1, l = {}) => {
+      if ((!Dn(r) && r.length > 1) || (!Dn(i) && i.length > 1))
+        return cu(r, i, l);
+      let p = l.transform || ((x) => String.fromCharCode(x)),
+        m = `${r}`.charCodeAt(0),
+        w = `${i}`.charCodeAt(0),
+        O = m > w,
+        P = Math.min(m, w),
+        B = Math.max(m, w);
+      if (l.toRegex && e === 1) return au(P, B, !1, l);
+      let D = [],
+        q = 0;
+      for (; O ? m >= w : m <= w; )
+        D.push(p(m, q)), (m = O ? m - e : m + e), q++;
+      return l.toRegex === !0 ? su(D, null, { wrap: !1, options: l }) : D;
+    },
+    kr = (r, i, e, l = {}) => {
+      if (i == null && Ys(r)) return [r];
+      if (!Ys(r) || !Ys(i)) return cu(r, i, l);
+      if (typeof e == "function") return kr(r, i, 1, { transform: e });
+      if (iu(e)) return kr(r, i, 0, e);
+      let p = { ...l };
+      return (
+        p.capture === !0 && (p.wrap = !0),
+        (e = e || p.step || 1),
+        Dn(e)
+          ? Dn(r) && Dn(i)
+            ? hm(r, i, e, p)
+            : bm(r, i, Math.max(Math.abs(e), 1), p)
+          : e != null && !iu(e)
+          ? fm(e, p)
+          : kr(r, i, 1, e)
+      );
+    };
+  lu.exports = kr;
+});
+var du = te((bE, _u) => {
+  "use strict";
+  var pm = qs(),
+    uu = mr(),
+    ym = (r, i = {}) => {
+      let e = (l, p = {}) => {
+        let m = uu.isInvalidBrace(p),
+          w = l.invalid === !0 && i.escapeInvalid === !0,
+          O = m === !0 || w === !0,
+          P = i.escapeInvalid === !0 ? "\\" : "",
+          B = "";
+        if (l.isOpen === !0 || l.isClose === !0) return P + l.value;
+        if (l.type === "open") return O ? P + l.value : "(";
+        if (l.type === "close") return O ? P + l.value : ")";
+        if (l.type === "comma")
+          return l.prev.type === "comma" ? "" : O ? l.value : "|";
+        if (l.value) return l.value;
+        if (l.nodes && l.ranges > 0) {
+          let D = uu.reduce(l.nodes),
+            q = pm(...D, { ...i, wrap: !1, toRegex: !0 });
+          if (q.length !== 0)
+            return D.length > 1 && q.length > 1 ? `(${q})` : q;
+        }
+        if (l.nodes) for (let D of l.nodes) B += e(D, l);
+        return B;
+      };
+      return e(r);
+    };
+  _u.exports = ym;
+});
+var bu = te((pE, hu) => {
+  "use strict";
+  var gm = qs(),
+    fu = wr(),
+    Wi = mr(),
+    Ci = (r = "", i = "", e = !1) => {
+      let l = [];
+      if (((r = [].concat(r)), (i = [].concat(i)), !i.length)) return r;
+      if (!r.length) return e ? Wi.flatten(i).map((p) => `{${p}}`) : i;
+      for (let p of r)
+        if (Array.isArray(p)) for (let m of p) l.push(Ci(m, i, e));
+        else
+          for (let m of i)
+            e === !0 && typeof m == "string" && (m = `{${m}}`),
+              l.push(Array.isArray(m) ? Ci(p, m, e) : p + m);
+      return Wi.flatten(l);
+    },
+    vm = (r, i = {}) => {
+      let e = i.rangeLimit === void 0 ? 1e3 : i.rangeLimit,
+        l = (p, m = {}) => {
+          p.queue = [];
+          let w = m,
+            O = m.queue;
+          for (; w.type !== "brace" && w.type !== "root" && w.parent; )
+            (w = w.parent), (O = w.queue);
+          if (p.invalid || p.dollar) {
+            O.push(Ci(O.pop(), fu(p, i)));
+            return;
+          }
+          if (p.type === "brace" && p.invalid !== !0 && p.nodes.length === 2) {
+            O.push(Ci(O.pop(), ["{}"]));
+            return;
+          }
+          if (p.nodes && p.ranges > 0) {
+            let q = Wi.reduce(p.nodes);
+            if (Wi.exceedsLimit(...q, i.step, e))
+              throw new RangeError(
+                "expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit."
+              );
+            let x = gm(...q, i);
+            x.length === 0 && (x = fu(p, i)),
+              O.push(Ci(O.pop(), x)),
+              (p.nodes = []);
+            return;
+          }
+          let P = Wi.encloseBrace(p),
+            B = p.queue,
+            D = p;
+          for (; D.type !== "brace" && D.type !== "root" && D.parent; )
+            (D = D.parent), (B = D.queue);
+          for (let q = 0; q < p.nodes.length; q++) {
+            let x = p.nodes[q];
+            if (x.type === "comma" && p.type === "brace") {
+              q === 1 && B.push(""), B.push("");
+              continue;
+            }
+            if (x.type === "close") {
+              O.push(Ci(O.pop(), B, P));
+              continue;
+            }
+            if (x.value && x.type !== "open") {
+              B.push(Ci(B.pop(), x.value));
+              continue;
+            }
+            x.nodes && l(x, p);
+          }
+          return B;
+        };
+      return Wi.flatten(l(r));
+    };
+  hu.exports = vm;
+});
+var yu = te((yE, pu) => {
+  "use strict";
+  pu.exports = {
+    MAX_LENGTH: 1024 * 64,
+    CHAR_0: "0",
+    CHAR_9: "9",
+    CHAR_UPPERCASE_A: "A",
+    CHAR_LOWERCASE_A: "a",
+    CHAR_UPPERCASE_Z: "Z",
+    CHAR_LOWERCASE_Z: "z",
+    CHAR_LEFT_PARENTHESES: "(",
+    CHAR_RIGHT_PARENTHESES: ")",
+    CHAR_ASTERISK: "*",
+    CHAR_AMPERSAND: "&",
+    CHAR_AT: "@",
+    CHAR_BACKSLASH: "\\",
+    CHAR_BACKTICK: "`",
+    CHAR_CARRIAGE_RETURN: "\r",
+    CHAR_CIRCUMFLEX_ACCENT: "^",
+    CHAR_COLON: ":",
+    CHAR_COMMA: ",",
+    CHAR_DOLLAR: "$",
+    CHAR_DOT: ".",
+    CHAR_DOUBLE_QUOTE: '"',
+    CHAR_EQUAL: "=",
+    CHAR_EXCLAMATION_MARK: "!",
+    CHAR_FORM_FEED: "\f",
+    CHAR_FORWARD_SLASH: "/",
+    CHAR_HASH: "#",
+    CHAR_HYPHEN_MINUS: "-",
+    CHAR_LEFT_ANGLE_BRACKET: "<",
+    CHAR_LEFT_CURLY_BRACE: "{",
+    CHAR_LEFT_SQUARE_BRACKET: "[",
+    CHAR_LINE_FEED: `
+`,
+    CHAR_NO_BREAK_SPACE: "\xA0",
+    CHAR_PERCENT: "%",
+    CHAR_PLUS: "+",
+    CHAR_QUESTION_MARK: "?",
+    CHAR_RIGHT_ANGLE_BRACKET: ">",
+    CHAR_RIGHT_CURLY_BRACE: "}",
+    CHAR_RIGHT_SQUARE_BRACKET: "]",
+    CHAR_SEMICOLON: ";",
+    CHAR_SINGLE_QUOTE: "'",
+    CHAR_SPACE: " ",
+    CHAR_TAB: "	",
+    CHAR_UNDERSCORE: "_",
+    CHAR_VERTICAL_LINE: "|",
+    CHAR_ZERO_WIDTH_NOBREAK_SPACE: "\uFEFF",
+  };
+});
+var wu = te((gE, mu) => {
+  "use strict";
+  var jm = wr(),
+    {
+      MAX_LENGTH: gu,
+      CHAR_BACKSLASH: Ws,
+      CHAR_BACKTICK: mm,
+      CHAR_COMMA: wm,
+      CHAR_DOT: km,
+      CHAR_LEFT_PARENTHESES: Em,
+      CHAR_RIGHT_PARENTHESES: Sm,
+      CHAR_LEFT_CURLY_BRACE: Cm,
+      CHAR_RIGHT_CURLY_BRACE: Am,
+      CHAR_LEFT_SQUARE_BRACKET: vu,
+      CHAR_RIGHT_SQUARE_BRACKET: ju,
+      CHAR_DOUBLE_QUOTE: Rm,
+      CHAR_SINGLE_QUOTE: Om,
+      CHAR_NO_BREAK_SPACE: Tm,
+      CHAR_ZERO_WIDTH_NOBREAK_SPACE: Pm,
+    } = yu(),
+    Dm = (r, i = {}) => {
+      if (typeof r != "string") throw new TypeError("Expected a string");
+      let e = i || {},
+        l = typeof e.maxLength == "number" ? Math.min(gu, e.maxLength) : gu;
+      if (r.length > l)
+        throw new SyntaxError(
+          `Input length (${r.length}), exceeds max characters (${l})`
+        );
+      let p = { type: "root", input: r, nodes: [] },
+        m = [p],
+        w = p,
+        O = p,
+        P = 0,
+        B = r.length,
+        D = 0,
+        q = 0,
+        x,
+        ie = {},
+        X = () => r[D++],
+        J = (ce) => {
+          if (
+            (ce.type === "text" && O.type === "dot" && (O.type = "text"),
+            O && O.type === "text" && ce.type === "text")
+          ) {
+            O.value += ce.value;
+            return;
+          }
+          return w.nodes.push(ce), (ce.parent = w), (ce.prev = O), (O = ce), ce;
+        };
+      for (J({ type: "bos" }); D < B; )
+        if (((w = m[m.length - 1]), (x = X()), !(x === Pm || x === Tm))) {
+          if (x === Ws) {
+            J({ type: "text", value: (i.keepEscaping ? x : "") + X() });
+            continue;
+          }
+          if (x === ju) {
+            J({ type: "text", value: "\\" + x });
+            continue;
+          }
+          if (x === vu) {
+            P++;
+            let ce = !0,
+              le;
+            for (; D < B && (le = X()); ) {
+              if (((x += le), le === vu)) {
+                P++;
+                continue;
+              }
+              if (le === Ws) {
+                x += X();
+                continue;
+              }
+              if (le === ju && (P--, P === 0)) break;
+            }
+            J({ type: "text", value: x });
+            continue;
+          }
+          if (x === Em) {
+            (w = J({ type: "paren", nodes: [] })),
+              m.push(w),
+              J({ type: "text", value: x });
+            continue;
+          }
+          if (x === Sm) {
+            if (w.type !== "paren") {
+              J({ type: "text", value: x });
+              continue;
+            }
+            (w = m.pop()), J({ type: "text", value: x }), (w = m[m.length - 1]);
+            continue;
+          }
+          if (x === Rm || x === Om || x === mm) {
+            let ce = x,
+              le;
+            for (i.keepQuotes !== !0 && (x = ""); D < B && (le = X()); ) {
+              if (le === Ws) {
+                x += le + X();
+                continue;
+              }
+              if (le === ce) {
+                i.keepQuotes === !0 && (x += le);
+                break;
+              }
+              x += le;
+            }
+            J({ type: "text", value: x });
+            continue;
+          }
+          if (x === Cm) {
+            q++;
+            let ce = (O.value && O.value.slice(-1) === "$") || w.dollar === !0;
+            (w = J({
+              type: "brace",
+              open: !0,
+              close: !1,
+              dollar: ce,
+              depth: q,
+              commas: 0,
+              ranges: 0,
+              nodes: [],
+            })),
+              m.push(w),
+              J({ type: "open", value: x });
+            continue;
+          }
+          if (x === Am) {
+            if (w.type !== "brace") {
+              J({ type: "text", value: x });
+              continue;
+            }
+            let ce = "close";
+            (w = m.pop()),
+              (w.close = !0),
+              J({ type: ce, value: x }),
+              q--,
+              (w = m[m.length - 1]);
+            continue;
+          }
+          if (x === wm && q > 0) {
+            if (w.ranges > 0) {
+              w.ranges = 0;
+              let ce = w.nodes.shift();
+              w.nodes = [ce, { type: "text", value: jm(w) }];
+            }
+            J({ type: "comma", value: x }), w.commas++;
+            continue;
+          }
+          if (x === km && q > 0 && w.commas === 0) {
+            let ce = w.nodes;
+            if (q === 0 || ce.length === 0) {
+              J({ type: "text", value: x });
+              continue;
+            }
+            if (O.type === "dot") {
+              if (
+                ((w.range = []),
+                (O.value += x),
+                (O.type = "range"),
+                w.nodes.length !== 3 && w.nodes.length !== 5)
+              ) {
+                (w.invalid = !0), (w.ranges = 0), (O.type = "text");
+                continue;
+              }
+              w.ranges++, (w.args = []);
+              continue;
+            }
+            if (O.type === "range") {
+              ce.pop();
+              let le = ce[ce.length - 1];
+              (le.value += O.value + x), (O = le), w.ranges--;
+              continue;
+            }
+            J({ type: "dot", value: x });
+            continue;
+          }
+          J({ type: "text", value: x });
+        }
+      do
+        if (((w = m.pop()), w.type !== "root")) {
+          w.nodes.forEach((Ae) => {
+            Ae.nodes ||
+              (Ae.type === "open" && (Ae.isOpen = !0),
+              Ae.type === "close" && (Ae.isClose = !0),
+              Ae.nodes || (Ae.type = "text"),
+              (Ae.invalid = !0));
+          });
+          let ce = m[m.length - 1],
+            le = ce.nodes.indexOf(w);
+          ce.nodes.splice(le, 1, ...w.nodes);
+        }
+      while (m.length > 0);
+      return J({ type: "eos" }), p;
+    };
+  mu.exports = Dm;
+});
+var Su = te((vE, Eu) => {
+  "use strict";
+  var ku = wr(),
+    Im = du(),
+    Mm = bu(),
+    Um = wu(),
+    gt = (r, i = {}) => {
+      let e = [];
+      if (Array.isArray(r))
+        for (let l of r) {
+          let p = gt.create(l, i);
+          Array.isArray(p) ? e.push(...p) : e.push(p);
+        }
+      else e = [].concat(gt.create(r, i));
+      return (
+        i && i.expand === !0 && i.nodupes === !0 && (e = [...new Set(e)]), e
+      );
+    };
+  gt.parse = (r, i = {}) => Um(r, i);
+  gt.stringify = (r, i = {}) =>
+    ku(typeof r == "string" ? gt.parse(r, i) : r, i);
+  gt.compile = (r, i = {}) => (
+    typeof r == "string" && (r = gt.parse(r, i)), Im(r, i)
+  );
+  gt.expand = (r, i = {}) => {
+    typeof r == "string" && (r = gt.parse(r, i));
+    let e = Mm(r, i);
+    return (
+      i.noempty === !0 && (e = e.filter(Boolean)),
+      i.nodupes === !0 && (e = [...new Set(e)]),
+      e
+    );
+  };
+  gt.create = (r, i = {}) =>
+    r === "" || r.length < 3
+      ? [r]
+      : i.expand !== !0
+      ? gt.compile(r, i)
+      : gt.expand(r, i);
+  Eu.exports = gt;
+});
+var In = te((jE, Tu) => {
+  "use strict";
+  var Lm = require("path"),
+    Dt = "\\\\/",
+    Cu = `[^${Dt}]`,
+    Wt = "\\.",
+    Fm = "\\+",
+    xm = "\\?",
+    Er = "\\/",
+    Nm = "(?=.)",
+    Au = "[^/]",
+    Zs = `(?:${Er}|$)`,
+    Ru = `(?:^|${Er})`,
+    $s = `${Wt}{1,2}${Zs}`,
+    Bm = `(?!${Wt})`,
+    Ym = `(?!${Ru}${$s})`,
+    Hm = `(?!${Wt}{0,1}${Zs})`,
+    qm = `(?!${$s})`,
+    Wm = `[^.${Er}]`,
+    Zm = `${Au}*?`,
+    Ou = {
+      DOT_LITERAL: Wt,
+      PLUS_LITERAL: Fm,
+      QMARK_LITERAL: xm,
+      SLASH_LITERAL: Er,
+      ONE_CHAR: Nm,
+      QMARK: Au,
+      END_ANCHOR: Zs,
+      DOTS_SLASH: $s,
+      NO_DOT: Bm,
+      NO_DOTS: Ym,
+      NO_DOT_SLASH: Hm,
+      NO_DOTS_SLASH: qm,
+      QMARK_NO_DOT: Wm,
+      STAR: Zm,
+      START_ANCHOR: Ru,
+    },
+    $m = {
+      ...Ou,
+      SLASH_LITERAL: `[${Dt}]`,
+      QMARK: Cu,
+      STAR: `${Cu}*?`,
+      DOTS_SLASH: `${Wt}{1,2}(?:[${Dt}]|$)`,
+      NO_DOT: `(?!${Wt})`,
+      NO_DOTS: `(?!(?:^|[${Dt}])${Wt}{1,2}(?:[${Dt}]|$))`,
+      NO_DOT_SLASH: `(?!${Wt}{0,1}(?:[${Dt}]|$))`,
+      NO_DOTS_SLASH: `(?!${Wt}{1,2}(?:[${Dt}]|$))`,
+      QMARK_NO_DOT: `[^.${Dt}]`,
+      START_ANCHOR: `(?:^|[${Dt}])`,
+      END_ANCHOR: `(?:[${Dt}]|$)`,
+    },
+    Gm = {
+      alnum: "a-zA-Z0-9",
+      alpha: "a-zA-Z",
+      ascii: "\\x00-\\x7F",
+      blank: " \\t",
+      cntrl: "\\x00-\\x1F\\x7F",
+      digit: "0-9",
+      graph: "\\x21-\\x7E",
+      lower: "a-z",
+      print: "\\x20-\\x7E ",
+      punct: "\\-!\"#$%&'()\\*+,./:;<=>?@[\\]^_`{|}~",
+      space: " \\t\\r\\n\\v\\f",
+      upper: "A-Z",
+      word: "A-Za-z0-9_",
+      xdigit: "A-Fa-f0-9",
+    };
+  Tu.exports = {
+    MAX_LENGTH: 1024 * 64,
+    POSIX_REGEX_SOURCE: Gm,
+    REGEX_BACKSLASH: /\\(?![*+?^${}(|)[\]])/g,
+    REGEX_NON_SPECIAL_CHARS: /^[^@![\].,$*+?^{}()|\\/]+/,
+    REGEX_SPECIAL_CHARS: /[-*+?.^${}(|)[\]]/,
+    REGEX_SPECIAL_CHARS_BACKREF: /(\\?)((\W)(\3*))/g,
+    REGEX_SPECIAL_CHARS_GLOBAL: /([-*+?.^${}(|)[\]])/g,
+    REGEX_REMOVE_BACKSLASH: /(?:\[.*?[^\\]\]|\\(?=.))/g,
+    REPLACEMENTS: { "***": "*", "**/**": "**", "**/**/**": "**" },
+    CHAR_0: 48,
+    CHAR_9: 57,
+    CHAR_UPPERCASE_A: 65,
+    CHAR_LOWERCASE_A: 97,
+    CHAR_UPPERCASE_Z: 90,
+    CHAR_LOWERCASE_Z: 122,
+    CHAR_LEFT_PARENTHESES: 40,
+    CHAR_RIGHT_PARENTHESES: 41,
+    CHAR_ASTERISK: 42,
+    CHAR_AMPERSAND: 38,
+    CHAR_AT: 64,
+    CHAR_BACKWARD_SLASH: 92,
+    CHAR_CARRIAGE_RETURN: 13,
+    CHAR_CIRCUMFLEX_ACCENT: 94,
+    CHAR_COLON: 58,
+    CHAR_COMMA: 44,
+    CHAR_DOT: 46,
+    CHAR_DOUBLE_QUOTE: 34,
+    CHAR_EQUAL: 61,
+    CHAR_EXCLAMATION_MARK: 33,
+    CHAR_FORM_FEED: 12,
+    CHAR_FORWARD_SLASH: 47,
+    CHAR_GRAVE_ACCENT: 96,
+    CHAR_HASH: 35,
+    CHAR_HYPHEN_MINUS: 45,
+    CHAR_LEFT_ANGLE_BRACKET: 60,
+    CHAR_LEFT_CURLY_BRACE: 123,
+    CHAR_LEFT_SQUARE_BRACKET: 91,
+    CHAR_LINE_FEED: 10,
+    CHAR_NO_BREAK_SPACE: 160,
+    CHAR_PERCENT: 37,
+    CHAR_PLUS: 43,
+    CHAR_QUESTION_MARK: 63,
+    CHAR_RIGHT_ANGLE_BRACKET: 62,
+    CHAR_RIGHT_CURLY_BRACE: 125,
+    CHAR_RIGHT_SQUARE_BRACKET: 93,
+    CHAR_SEMICOLON: 59,
+    CHAR_SINGLE_QUOTE: 39,
+    CHAR_SPACE: 32,
+    CHAR_TAB: 9,
+    CHAR_UNDERSCORE: 95,
+    CHAR_VERTICAL_LINE: 124,
+    CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
+    SEP: Lm.sep,
+    extglobChars(r) {
+      return {
+        "!": { type: "negate", open: "(?:(?!(?:", close: `))${r.STAR})` },
+        "?": { type: "qmark", open: "(?:", close: ")?" },
+        "+": { type: "plus", open: "(?:", close: ")+" },
+        "*": { type: "star", open: "(?:", close: ")*" },
+        "@": { type: "at", open: "(?:", close: ")" },
+      };
+    },
+    globChars(r) {
+      return r === !0 ? $m : Ou;
+    },
+  };
+});
+var Mn = te((ht) => {
+  "use strict";
+  var Vm = require("path"),
+    Km = process.platform === "win32",
+    {
+      REGEX_BACKSLASH: zm,
+      REGEX_REMOVE_BACKSLASH: Qm,
+      REGEX_SPECIAL_CHARS: Xm,
+      REGEX_SPECIAL_CHARS_GLOBAL: Jm,
+    } = In();
+  ht.isObject = (r) => r !== null && typeof r == "object" && !Array.isArray(r);
+  ht.hasRegexChars = (r) => Xm.test(r);
+  ht.isRegexChar = (r) => r.length === 1 && ht.hasRegexChars(r);
+  ht.escapeRegex = (r) => r.replace(Jm, "\\$1");
+  ht.toPosixSlashes = (r) => r.replace(zm, "/");
+  ht.removeBackslashes = (r) => r.replace(Qm, (i) => (i === "\\" ? "" : i));
+  ht.supportsLookbehinds = () => {
+    let r = process.version.slice(1).split(".").map(Number);
+    return (r.length === 3 && r[0] >= 9) || (r[0] === 8 && r[1] >= 10);
+  };
+  ht.isWindows = (r) =>
+    r && typeof r.windows == "boolean"
+      ? r.windows
+      : Km === !0 || Vm.sep === "\\";
+  ht.escapeLast = (r, i, e) => {
+    let l = r.lastIndexOf(i, e);
+    return l === -1
+      ? r
+      : r[l - 1] === "\\"
+      ? ht.escapeLast(r, i, l - 1)
+      : `${r.slice(0, l)}\\${r.slice(l)}`;
+  };
+  ht.removePrefix = (r, i = {}) => {
+    let e = r;
+    return e.startsWith("./") && ((e = e.slice(2)), (i.prefix = "./")), e;
+  };
+  ht.wrapOutput = (r, i = {}, e = {}) => {
+    let l = e.contains ? "" : "^",
+      p = e.contains ? "" : "$",
+      m = `${l}(?:${r})${p}`;
+    return i.negated === !0 && (m = `(?:^(?!${m}).*$)`), m;
+  };
+});
+var xu = te((wE, Fu) => {
+  "use strict";
+  var Pu = Mn(),
+    {
+      CHAR_ASTERISK: Gs,
+      CHAR_AT: ew,
+      CHAR_BACKWARD_SLASH: Un,
+      CHAR_COMMA: tw,
+      CHAR_DOT: Vs,
+      CHAR_EXCLAMATION_MARK: Ks,
+      CHAR_FORWARD_SLASH: Lu,
+      CHAR_LEFT_CURLY_BRACE: zs,
+      CHAR_LEFT_PARENTHESES: Qs,
+      CHAR_LEFT_SQUARE_BRACKET: iw,
+      CHAR_PLUS: nw,
+      CHAR_QUESTION_MARK: Du,
+      CHAR_RIGHT_CURLY_BRACE: rw,
+      CHAR_RIGHT_PARENTHESES: Iu,
+      CHAR_RIGHT_SQUARE_BRACKET: aw,
+    } = In(),
+    Mu = (r) => r === Lu || r === Un,
+    Uu = (r) => {
+      r.isPrefix !== !0 && (r.depth = r.isGlobstar ? 1 / 0 : 1);
+    },
+    sw = (r, i) => {
+      let e = i || {},
+        l = r.length - 1,
+        p = e.parts === !0 || e.scanToEnd === !0,
+        m = [],
+        w = [],
+        O = [],
+        P = r,
+        B = -1,
+        D = 0,
+        q = 0,
+        x = !1,
+        ie = !1,
+        X = !1,
+        J = !1,
+        ce = !1,
+        le = !1,
+        Ae = !1,
+        Ee = !1,
+        xe = !1,
+        _e = !1,
+        Se = 0,
+        de,
+        Y,
+        ne = { value: "", depth: 0, isGlob: !1 },
+        Ce = () => B >= l,
+        F = () => P.charCodeAt(B + 1),
+        je = () => ((de = Y), P.charCodeAt(++B));
+      for (; B < l; ) {
+        Y = je();
+        let ge;
+        if (Y === Un) {
+          (Ae = ne.backslashes = !0), (Y = je()), Y === zs && (le = !0);
+          continue;
+        }
+        if (le === !0 || Y === zs) {
+          for (Se++; Ce() !== !0 && (Y = je()); ) {
+            if (Y === Un) {
+              (Ae = ne.backslashes = !0), je();
+              continue;
+            }
+            if (Y === zs) {
+              Se++;
+              continue;
+            }
+            if (le !== !0 && Y === Vs && (Y = je()) === Vs) {
+              if (
+                ((x = ne.isBrace = !0),
+                (X = ne.isGlob = !0),
+                (_e = !0),
+                p === !0)
+              )
+                continue;
+              break;
+            }
+            if (le !== !0 && Y === tw) {
+              if (
+                ((x = ne.isBrace = !0),
+                (X = ne.isGlob = !0),
+                (_e = !0),
+                p === !0)
+              )
+                continue;
+              break;
+            }
+            if (Y === rw && (Se--, Se === 0)) {
+              (le = !1), (x = ne.isBrace = !0), (_e = !0);
+              break;
+            }
+          }
+          if (p === !0) continue;
+          break;
+        }
+        if (Y === Lu) {
+          if (
+            (m.push(B),
+            w.push(ne),
+            (ne = { value: "", depth: 0, isGlob: !1 }),
+            _e === !0)
+          )
+            continue;
+          if (de === Vs && B === D + 1) {
+            D += 2;
+            continue;
+          }
+          q = B + 1;
+          continue;
+        }
+        if (
+          e.noext !== !0 &&
+          (Y === nw || Y === ew || Y === Gs || Y === Du || Y === Ks) === !0 &&
+          F() === Qs
+        ) {
+          if (
+            ((X = ne.isGlob = !0),
+            (J = ne.isExtglob = !0),
+            (_e = !0),
+            Y === Ks && B === D && (xe = !0),
+            p === !0)
+          ) {
+            for (; Ce() !== !0 && (Y = je()); ) {
+              if (Y === Un) {
+                (Ae = ne.backslashes = !0), (Y = je());
+                continue;
+              }
+              if (Y === Iu) {
+                (X = ne.isGlob = !0), (_e = !0);
+                break;
+              }
+            }
+            continue;
+          }
+          break;
+        }
+        if (Y === Gs) {
+          if (
+            (de === Gs && (ce = ne.isGlobstar = !0),
+            (X = ne.isGlob = !0),
+            (_e = !0),
+            p === !0)
+          )
+            continue;
+          break;
+        }
+        if (Y === Du) {
+          if (((X = ne.isGlob = !0), (_e = !0), p === !0)) continue;
+          break;
+        }
+        if (Y === iw) {
+          for (; Ce() !== !0 && (ge = je()); ) {
+            if (ge === Un) {
+              (Ae = ne.backslashes = !0), je();
+              continue;
+            }
+            if (ge === aw) {
+              (ie = ne.isBracket = !0), (X = ne.isGlob = !0), (_e = !0);
+              break;
+            }
+          }
+          if (p === !0) continue;
+          break;
+        }
+        if (e.nonegate !== !0 && Y === Ks && B === D) {
+          (Ee = ne.negated = !0), D++;
+          continue;
+        }
+        if (e.noparen !== !0 && Y === Qs) {
+          if (((X = ne.isGlob = !0), p === !0)) {
+            for (; Ce() !== !0 && (Y = je()); ) {
+              if (Y === Qs) {
+                (Ae = ne.backslashes = !0), (Y = je());
+                continue;
+              }
+              if (Y === Iu) {
+                _e = !0;
+                break;
+              }
+            }
+            continue;
+          }
+          break;
+        }
+        if (X === !0) {
+          if (((_e = !0), p === !0)) continue;
+          break;
+        }
+      }
+      e.noext === !0 && ((J = !1), (X = !1));
+      let ye = P,
+        Ue = "",
+        I = "";
+      D > 0 && ((Ue = P.slice(0, D)), (P = P.slice(D)), (q -= D)),
+        ye && X === !0 && q > 0
+          ? ((ye = P.slice(0, q)), (I = P.slice(q)))
+          : X === !0
+          ? ((ye = ""), (I = P))
+          : (ye = P),
+        ye &&
+          ye !== "" &&
+          ye !== "/" &&
+          ye !== P &&
+          Mu(ye.charCodeAt(ye.length - 1)) &&
+          (ye = ye.slice(0, -1)),
+        e.unescape === !0 &&
+          (I && (I = Pu.removeBackslashes(I)),
+          ye && Ae === !0 && (ye = Pu.removeBackslashes(ye)));
+      let L = {
+        prefix: Ue,
+        input: r,
+        start: D,
+        base: ye,
+        glob: I,
+        isBrace: x,
+        isBracket: ie,
+        isGlob: X,
+        isExtglob: J,
+        isGlobstar: ce,
+        negated: Ee,
+        negatedExtglob: xe,
+      };
+      if (
+        (e.tokens === !0 &&
+          ((L.maxDepth = 0), Mu(Y) || w.push(ne), (L.tokens = w)),
+        e.parts === !0 || e.tokens === !0)
+      ) {
+        let ge;
+        for (let we = 0; we < m.length; we++) {
+          let lt = ge ? ge + 1 : D,
+            Je = m[we],
+            Te = r.slice(lt, Je);
+          e.tokens &&
+            (we === 0 && D !== 0
+              ? ((w[we].isPrefix = !0), (w[we].value = Ue))
+              : (w[we].value = Te),
+            Uu(w[we]),
+            (L.maxDepth += w[we].depth)),
+            (we !== 0 || Te !== "") && O.push(Te),
+            (ge = Je);
+        }
+        if (ge && ge + 1 < r.length) {
+          let we = r.slice(ge + 1);
+          O.push(we),
+            e.tokens &&
+              ((w[w.length - 1].value = we),
+              Uu(w[w.length - 1]),
+              (L.maxDepth += w[w.length - 1].depth));
+        }
+        (L.slashes = m), (L.parts = O);
+      }
+      return L;
+    };
+  Fu.exports = sw;
+});
+var Hu = te((kE, Yu) => {
+  "use strict";
+  var Sr = In(),
+    vt = Mn(),
+    {
+      MAX_LENGTH: Cr,
+      POSIX_REGEX_SOURCE: ow,
+      REGEX_NON_SPECIAL_CHARS: cw,
+      REGEX_SPECIAL_CHARS_BACKREF: lw,
+      REPLACEMENTS: Nu,
+    } = Sr,
+    uw = (r, i) => {
+      if (typeof i.expandRange == "function") return i.expandRange(...r, i);
+      r.sort();
+      let e = `[${r.join("-")}]`;
+      try {
+        new RegExp(e);
+      } catch {
+        return r.map((p) => vt.escapeRegex(p)).join("..");
+      }
+      return e;
+    },
+    Zi = (r, i) =>
+      `Missing ${r}: "${i}" - use "\\\\${i}" to match literal characters`,
+    Bu = (r, i) => {
+      if (typeof r != "string") throw new TypeError("Expected a string");
+      r = Nu[r] || r;
+      let e = { ...i },
+        l = typeof e.maxLength == "number" ? Math.min(Cr, e.maxLength) : Cr,
+        p = r.length;
+      if (p > l)
+        throw new SyntaxError(
+          `Input length: ${p}, exceeds maximum allowed length: ${l}`
+        );
+      let m = { type: "bos", value: "", output: e.prepend || "" },
+        w = [m],
+        O = e.capture ? "" : "?:",
+        P = vt.isWindows(i),
+        B = Sr.globChars(P),
+        D = Sr.extglobChars(B),
+        {
+          DOT_LITERAL: q,
+          PLUS_LITERAL: x,
+          SLASH_LITERAL: ie,
+          ONE_CHAR: X,
+          DOTS_SLASH: J,
+          NO_DOT: ce,
+          NO_DOT_SLASH: le,
+          NO_DOTS_SLASH: Ae,
+          QMARK: Ee,
+          QMARK_NO_DOT: xe,
+          STAR: _e,
+          START_ANCHOR: Se,
+        } = B,
+        de = (ee) => `(${O}(?:(?!${Se}${ee.dot ? J : q}).)*?)`,
+        Y = e.dot ? "" : ce,
+        ne = e.dot ? Ee : xe,
+        Ce = e.bash === !0 ? de(e) : _e;
+      e.capture && (Ce = `(${Ce})`),
+        typeof e.noext == "boolean" && (e.noextglob = e.noext);
+      let F = {
+        input: r,
+        index: -1,
+        start: 0,
+        dot: e.dot === !0,
+        consumed: "",
+        output: "",
+        prefix: "",
+        backtrack: !1,
+        negated: !1,
+        brackets: 0,
+        braces: 0,
+        parens: 0,
+        quotes: 0,
+        globstar: !1,
+        tokens: w,
+      };
+      (r = vt.removePrefix(r, F)), (p = r.length);
+      let je = [],
+        ye = [],
+        Ue = [],
+        I = m,
+        L,
+        ge = () => F.index === p - 1,
+        we = (F.peek = (ee = 1) => r[F.index + ee]),
+        lt = (F.advance = () => r[++F.index] || ""),
+        Je = () => r.slice(F.index + 1),
+        Te = (ee = "", b = 0) => {
+          (F.consumed += ee), (F.index += b);
+        },
+        Gt = (ee) => {
+          (F.output += ee.output != null ? ee.output : ee.value), Te(ee.value);
+        },
+        Ji = () => {
+          let ee = 1;
+          for (; we() === "!" && (we(2) !== "(" || we(3) === "?"); )
+            lt(), F.start++, ee++;
+          return ee % 2 === 0 ? !1 : ((F.negated = !0), F.start++, !0);
+        },
+        Ti = (ee) => {
+          F[ee]++, Ue.push(ee);
+        },
+        Lt = (ee) => {
+          F[ee]--, Ue.pop();
+        },
+        se = (ee) => {
+          if (I.type === "globstar") {
+            let b =
+                F.braces > 0 && (ee.type === "comma" || ee.type === "brace"),
+              z =
+                ee.extglob === !0 ||
+                (je.length && (ee.type === "pipe" || ee.type === "paren"));
+            ee.type !== "slash" &&
+              ee.type !== "paren" &&
+              !b &&
+              !z &&
+              ((F.output = F.output.slice(0, -I.output.length)),
+              (I.type = "star"),
+              (I.value = "*"),
+              (I.output = Ce),
+              (F.output += I.output));
+          }
+          if (
+            (je.length &&
+              ee.type !== "paren" &&
+              (je[je.length - 1].inner += ee.value),
+            (ee.value || ee.output) && Gt(ee),
+            I && I.type === "text" && ee.type === "text")
+          ) {
+            (I.value += ee.value), (I.output = (I.output || "") + ee.value);
+            return;
+          }
+          (ee.prev = I), w.push(ee), (I = ee);
+        },
+        Vt = (ee, b) => {
+          let z = { ...D[b], conditions: 1, inner: "" };
+          (z.prev = I), (z.parens = F.parens), (z.output = F.output);
+          let oe = (e.capture ? "(" : "") + z.open;
+          Ti("parens"),
+            se({ type: ee, value: b, output: F.output ? "" : X }),
+            se({ type: "paren", extglob: !0, value: lt(), output: oe }),
+            je.push(z);
+        },
+        si = (ee) => {
+          let b = ee.close + (e.capture ? ")" : ""),
+            z;
+          if (ee.type === "negate") {
+            let oe = Ce;
+            ee.inner &&
+              ee.inner.length > 1 &&
+              ee.inner.includes("/") &&
+              (oe = de(e)),
+              (oe !== Ce || ge() || /^\)+$/.test(Je())) &&
+                (b = ee.close = `)$))${oe}`),
+              ee.inner.includes("*") &&
+                (z = Je()) &&
+                /^\.[^\\/.]+$/.test(z) &&
+                (b = ee.close = `)${z})${oe})`),
+              ee.prev.type === "bos" && (F.negatedExtglob = !0);
+          }
+          se({ type: "paren", extglob: !0, value: L, output: b }), Lt("parens");
+        };
+      if (e.fastpaths !== !1 && !/(^[*!]|[/()[\]{}"])/.test(r)) {
+        let ee = !1,
+          b = r.replace(lw, (z, oe, Ne, Ie, Ye, oi) =>
+            Ie === "\\"
+              ? ((ee = !0), z)
+              : Ie === "?"
+              ? oe
+                ? oe + Ie + (Ye ? Ee.repeat(Ye.length) : "")
+                : oi === 0
+                ? ne + (Ye ? Ee.repeat(Ye.length) : "")
+                : Ee.repeat(Ne.length)
+              : Ie === "."
+              ? q.repeat(Ne.length)
+              : Ie === "*"
+              ? oe
+                ? oe + Ie + (Ye ? Ce : "")
+                : Ce
+              : oe
+              ? z
+              : `\\${z}`
+          );
+        return (
+          ee === !0 &&
+            (e.unescape === !0
+              ? (b = b.replace(/\\/g, ""))
+              : (b = b.replace(/\\+/g, (z) =>
+                  z.length % 2 === 0 ? "\\\\" : z ? "\\" : ""
+                ))),
+          b === r && e.contains === !0
+            ? ((F.output = r), F)
+            : ((F.output = vt.wrapOutput(b, F, i)), F)
+        );
+      }
+      for (; !ge(); ) {
+        if (((L = lt()), L === "\0")) continue;
+        if (L === "\\") {
+          let z = we();
+          if ((z === "/" && e.bash !== !0) || z === "." || z === ";") continue;
+          if (!z) {
+            (L += "\\"), se({ type: "text", value: L });
+            continue;
+          }
+          let oe = /^\\+/.exec(Je()),
+            Ne = 0;
+          if (
+            (oe &&
+              oe[0].length > 2 &&
+              ((Ne = oe[0].length),
+              (F.index += Ne),
+              Ne % 2 !== 0 && (L += "\\")),
+            e.unescape === !0 ? (L = lt()) : (L += lt()),
+            F.brackets === 0)
+          ) {
+            se({ type: "text", value: L });
+            continue;
+          }
+        }
+        if (
+          F.brackets > 0 &&
+          (L !== "]" || I.value === "[" || I.value === "[^")
+        ) {
+          if (e.posix !== !1 && L === ":") {
+            let z = I.value.slice(1);
+            if (z.includes("[") && ((I.posix = !0), z.includes(":"))) {
+              let oe = I.value.lastIndexOf("["),
+                Ne = I.value.slice(0, oe),
+                Ie = I.value.slice(oe + 2),
+                Ye = ow[Ie];
+              if (Ye) {
+                (I.value = Ne + Ye),
+                  (F.backtrack = !0),
+                  lt(),
+                  !m.output && w.indexOf(I) === 1 && (m.output = X);
+                continue;
+              }
+            }
+          }
+          ((L === "[" && we() !== ":") || (L === "-" && we() === "]")) &&
+            (L = `\\${L}`),
+            L === "]" &&
+              (I.value === "[" || I.value === "[^") &&
+              (L = `\\${L}`),
+            e.posix === !0 && L === "!" && I.value === "[" && (L = "^"),
+            (I.value += L),
+            Gt({ value: L });
+          continue;
+        }
+        if (F.quotes === 1 && L !== '"') {
+          (L = vt.escapeRegex(L)), (I.value += L), Gt({ value: L });
+          continue;
+        }
+        if (L === '"') {
+          (F.quotes = F.quotes === 1 ? 0 : 1),
+            e.keepQuotes === !0 && se({ type: "text", value: L });
+          continue;
+        }
+        if (L === "(") {
+          Ti("parens"), se({ type: "paren", value: L });
+          continue;
+        }
+        if (L === ")") {
+          if (F.parens === 0 && e.strictBrackets === !0)
+            throw new SyntaxError(Zi("opening", "("));
+          let z = je[je.length - 1];
+          if (z && F.parens === z.parens + 1) {
+            si(je.pop());
+            continue;
+          }
+          se({ type: "paren", value: L, output: F.parens ? ")" : "\\)" }),
+            Lt("parens");
+          continue;
+        }
+        if (L === "[") {
+          if (e.nobracket === !0 || !Je().includes("]")) {
+            if (e.nobracket !== !0 && e.strictBrackets === !0)
+              throw new SyntaxError(Zi("closing", "]"));
+            L = `\\${L}`;
+          } else Ti("brackets");
+          se({ type: "bracket", value: L });
+          continue;
+        }
+        if (L === "]") {
+          if (
+            e.nobracket === !0 ||
+            (I && I.type === "bracket" && I.value.length === 1)
+          ) {
+            se({ type: "text", value: L, output: `\\${L}` });
+            continue;
+          }
+          if (F.brackets === 0) {
+            if (e.strictBrackets === !0)
+              throw new SyntaxError(Zi("opening", "["));
+            se({ type: "text", value: L, output: `\\${L}` });
+            continue;
+          }
+          Lt("brackets");
+          let z = I.value.slice(1);
+          if (
+            (I.posix !== !0 &&
+              z[0] === "^" &&
+              !z.includes("/") &&
+              (L = `/${L}`),
+            (I.value += L),
+            Gt({ value: L }),
+            e.literalBrackets === !1 || vt.hasRegexChars(z))
+          )
+            continue;
+          let oe = vt.escapeRegex(I.value);
+          if (
+            ((F.output = F.output.slice(0, -I.value.length)),
+            e.literalBrackets === !0)
+          ) {
+            (F.output += oe), (I.value = oe);
+            continue;
+          }
+          (I.value = `(${O}${oe}|${I.value})`), (F.output += I.value);
+          continue;
+        }
+        if (L === "{" && e.nobrace !== !0) {
+          Ti("braces");
+          let z = {
+            type: "brace",
+            value: L,
+            output: "(",
+            outputIndex: F.output.length,
+            tokensIndex: F.tokens.length,
+          };
+          ye.push(z), se(z);
+          continue;
+        }
+        if (L === "}") {
+          let z = ye[ye.length - 1];
+          if (e.nobrace === !0 || !z) {
+            se({ type: "text", value: L, output: L });
+            continue;
+          }
+          let oe = ")";
+          if (z.dots === !0) {
+            let Ne = w.slice(),
+              Ie = [];
+            for (
+              let Ye = Ne.length - 1;
+              Ye >= 0 && (w.pop(), Ne[Ye].type !== "brace");
+              Ye--
+            )
+              Ne[Ye].type !== "dots" && Ie.unshift(Ne[Ye].value);
+            (oe = uw(Ie, e)), (F.backtrack = !0);
+          }
+          if (z.comma !== !0 && z.dots !== !0) {
+            let Ne = F.output.slice(0, z.outputIndex),
+              Ie = F.tokens.slice(z.tokensIndex);
+            (z.value = z.output = "\\{"), (L = oe = "\\}"), (F.output = Ne);
+            for (let Ye of Ie) F.output += Ye.output || Ye.value;
+          }
+          se({ type: "brace", value: L, output: oe }), Lt("braces"), ye.pop();
+          continue;
+        }
+        if (L === "|") {
+          je.length > 0 && je[je.length - 1].conditions++,
+            se({ type: "text", value: L });
+          continue;
+        }
+        if (L === ",") {
+          let z = L,
+            oe = ye[ye.length - 1];
+          oe && Ue[Ue.length - 1] === "braces" && ((oe.comma = !0), (z = "|")),
+            se({ type: "comma", value: L, output: z });
+          continue;
+        }
+        if (L === "/") {
+          if (I.type === "dot" && F.index === F.start + 1) {
+            (F.start = F.index + 1),
+              (F.consumed = ""),
+              (F.output = ""),
+              w.pop(),
+              (I = m);
+            continue;
+          }
+          se({ type: "slash", value: L, output: ie });
+          continue;
+        }
+        if (L === ".") {
+          if (F.braces > 0 && I.type === "dot") {
+            I.value === "." && (I.output = q);
+            let z = ye[ye.length - 1];
+            (I.type = "dots"), (I.output += L), (I.value += L), (z.dots = !0);
+            continue;
+          }
+          if (
+            F.braces + F.parens === 0 &&
+            I.type !== "bos" &&
+            I.type !== "slash"
+          ) {
+            se({ type: "text", value: L, output: q });
+            continue;
+          }
+          se({ type: "dot", value: L, output: q });
+          continue;
+        }
+        if (L === "?") {
+          if (
+            !(I && I.value === "(") &&
+            e.noextglob !== !0 &&
+            we() === "(" &&
+            we(2) !== "?"
+          ) {
+            Vt("qmark", L);
+            continue;
+          }
+          if (I && I.type === "paren") {
+            let oe = we(),
+              Ne = L;
+            if (oe === "<" && !vt.supportsLookbehinds())
+              throw new Error(
+                "Node.js v10 or higher is required for regex lookbehinds"
+              );
+            ((I.value === "(" && !/[!=<:]/.test(oe)) ||
+              (oe === "<" && !/<([!=]|\w+>)/.test(Je()))) &&
+              (Ne = `\\${L}`),
+              se({ type: "text", value: L, output: Ne });
+            continue;
+          }
+          if (e.dot !== !0 && (I.type === "slash" || I.type === "bos")) {
+            se({ type: "qmark", value: L, output: xe });
+            continue;
+          }
+          se({ type: "qmark", value: L, output: Ee });
+          continue;
+        }
+        if (L === "!") {
+          if (
+            e.noextglob !== !0 &&
+            we() === "(" &&
+            (we(2) !== "?" || !/[!=<:]/.test(we(3)))
+          ) {
+            Vt("negate", L);
+            continue;
+          }
+          if (e.nonegate !== !0 && F.index === 0) {
+            Ji();
+            continue;
+          }
+        }
+        if (L === "+") {
+          if (e.noextglob !== !0 && we() === "(" && we(2) !== "?") {
+            Vt("plus", L);
+            continue;
+          }
+          if ((I && I.value === "(") || e.regex === !1) {
+            se({ type: "plus", value: L, output: x });
+            continue;
+          }
+          if (
+            (I &&
+              (I.type === "bracket" ||
+                I.type === "paren" ||
+                I.type === "brace")) ||
+            F.parens > 0
+          ) {
+            se({ type: "plus", value: L });
+            continue;
+          }
+          se({ type: "plus", value: x });
+          continue;
+        }
+        if (L === "@") {
+          if (e.noextglob !== !0 && we() === "(" && we(2) !== "?") {
+            se({ type: "at", extglob: !0, value: L, output: "" });
+            continue;
+          }
+          se({ type: "text", value: L });
+          continue;
+        }
+        if (L !== "*") {
+          (L === "$" || L === "^") && (L = `\\${L}`);
+          let z = cw.exec(Je());
+          z && ((L += z[0]), (F.index += z[0].length)),
+            se({ type: "text", value: L });
+          continue;
+        }
+        if (I && (I.type === "globstar" || I.star === !0)) {
+          (I.type = "star"),
+            (I.star = !0),
+            (I.value += L),
+            (I.output = Ce),
+            (F.backtrack = !0),
+            (F.globstar = !0),
+            Te(L);
+          continue;
+        }
+        let ee = Je();
+        if (e.noextglob !== !0 && /^\([^?]/.test(ee)) {
+          Vt("star", L);
+          continue;
+        }
+        if (I.type === "star") {
+          if (e.noglobstar === !0) {
+            Te(L);
+            continue;
+          }
+          let z = I.prev,
+            oe = z.prev,
+            Ne = z.type === "slash" || z.type === "bos",
+            Ie = oe && (oe.type === "star" || oe.type === "globstar");
+          if (e.bash === !0 && (!Ne || (ee[0] && ee[0] !== "/"))) {
+            se({ type: "star", value: L, output: "" });
+            continue;
+          }
+          let Ye = F.braces > 0 && (z.type === "comma" || z.type === "brace"),
+            oi = je.length && (z.type === "pipe" || z.type === "paren");
+          if (!Ne && z.type !== "paren" && !Ye && !oi) {
+            se({ type: "star", value: L, output: "" });
+            continue;
+          }
+          for (; ee.slice(0, 3) === "/**"; ) {
+            let Kt = r[F.index + 4];
+            if (Kt && Kt !== "/") break;
+            (ee = ee.slice(3)), Te("/**", 3);
+          }
+          if (z.type === "bos" && ge()) {
+            (I.type = "globstar"),
+              (I.value += L),
+              (I.output = de(e)),
+              (F.output = I.output),
+              (F.globstar = !0),
+              Te(L);
+            continue;
+          }
+          if (z.type === "slash" && z.prev.type !== "bos" && !Ie && ge()) {
+            (F.output = F.output.slice(0, -(z.output + I.output).length)),
+              (z.output = `(?:${z.output}`),
+              (I.type = "globstar"),
+              (I.output = de(e) + (e.strictSlashes ? ")" : "|$)")),
+              (I.value += L),
+              (F.globstar = !0),
+              (F.output += z.output + I.output),
+              Te(L);
+            continue;
+          }
+          if (z.type === "slash" && z.prev.type !== "bos" && ee[0] === "/") {
+            let Kt = ee[1] !== void 0 ? "|$" : "";
+            (F.output = F.output.slice(0, -(z.output + I.output).length)),
+              (z.output = `(?:${z.output}`),
+              (I.type = "globstar"),
+              (I.output = `${de(e)}${ie}|${ie}${Kt})`),
+              (I.value += L),
+              (F.output += z.output + I.output),
+              (F.globstar = !0),
+              Te(L + lt()),
+              se({ type: "slash", value: "/", output: "" });
+            continue;
+          }
+          if (z.type === "bos" && ee[0] === "/") {
+            (I.type = "globstar"),
+              (I.value += L),
+              (I.output = `(?:^|${ie}|${de(e)}${ie})`),
+              (F.output = I.output),
+              (F.globstar = !0),
+              Te(L + lt()),
+              se({ type: "slash", value: "/", output: "" });
+            continue;
+          }
+          (F.output = F.output.slice(0, -I.output.length)),
+            (I.type = "globstar"),
+            (I.output = de(e)),
+            (I.value += L),
+            (F.output += I.output),
+            (F.globstar = !0),
+            Te(L);
+          continue;
+        }
+        let b = { type: "star", value: L, output: Ce };
+        if (e.bash === !0) {
+          (b.output = ".*?"),
+            (I.type === "bos" || I.type === "slash") &&
+              (b.output = Y + b.output),
+            se(b);
+          continue;
+        }
+        if (
+          I &&
+          (I.type === "bracket" || I.type === "paren") &&
+          e.regex === !0
+        ) {
+          (b.output = L), se(b);
+          continue;
+        }
+        (F.index === F.start || I.type === "slash" || I.type === "dot") &&
+          (I.type === "dot"
+            ? ((F.output += le), (I.output += le))
+            : e.dot === !0
+            ? ((F.output += Ae), (I.output += Ae))
+            : ((F.output += Y), (I.output += Y)),
+          we() !== "*" && ((F.output += X), (I.output += X))),
+          se(b);
+      }
+      for (; F.brackets > 0; ) {
+        if (e.strictBrackets === !0) throw new SyntaxError(Zi("closing", "]"));
+        (F.output = vt.escapeLast(F.output, "[")), Lt("brackets");
+      }
+      for (; F.parens > 0; ) {
+        if (e.strictBrackets === !0) throw new SyntaxError(Zi("closing", ")"));
+        (F.output = vt.escapeLast(F.output, "(")), Lt("parens");
+      }
+      for (; F.braces > 0; ) {
+        if (e.strictBrackets === !0) throw new SyntaxError(Zi("closing", "}"));
+        (F.output = vt.escapeLast(F.output, "{")), Lt("braces");
+      }
+      if (
+        (e.strictSlashes !== !0 &&
+          (I.type === "star" || I.type === "bracket") &&
+          se({ type: "maybe_slash", value: "", output: `${ie}?` }),
+        F.backtrack === !0)
+      ) {
+        F.output = "";
+        for (let ee of F.tokens)
+          (F.output += ee.output != null ? ee.output : ee.value),
+            ee.suffix && (F.output += ee.suffix);
+      }
+      return F;
+    };
+  Bu.fastpaths = (r, i) => {
+    let e = { ...i },
+      l = typeof e.maxLength == "number" ? Math.min(Cr, e.maxLength) : Cr,
+      p = r.length;
+    if (p > l)
+      throw new SyntaxError(
+        `Input length: ${p}, exceeds maximum allowed length: ${l}`
+      );
+    r = Nu[r] || r;
+    let m = vt.isWindows(i),
+      {
+        DOT_LITERAL: w,
+        SLASH_LITERAL: O,
+        ONE_CHAR: P,
+        DOTS_SLASH: B,
+        NO_DOT: D,
+        NO_DOTS: q,
+        NO_DOTS_SLASH: x,
+        STAR: ie,
+        START_ANCHOR: X,
+      } = Sr.globChars(m),
+      J = e.dot ? q : D,
+      ce = e.dot ? x : D,
+      le = e.capture ? "" : "?:",
+      Ae = { negated: !1, prefix: "" },
+      Ee = e.bash === !0 ? ".*?" : ie;
+    e.capture && (Ee = `(${Ee})`);
+    let xe = (Y) =>
+        Y.noglobstar === !0 ? Ee : `(${le}(?:(?!${X}${Y.dot ? B : w}).)*?)`,
+      _e = (Y) => {
+        switch (Y) {
+          case "*":
+            return `${J}${P}${Ee}`;
+          case ".*":
+            return `${w}${P}${Ee}`;
+          case "*.*":
+            return `${J}${Ee}${w}${P}${Ee}`;
+          case "*/*":
+            return `${J}${Ee}${O}${P}${ce}${Ee}`;
+          case "**":
+            return J + xe(e);
+          case "**/*":
+            return `(?:${J}${xe(e)}${O})?${ce}${P}${Ee}`;
+          case "**/*.*":
+            return `(?:${J}${xe(e)}${O})?${ce}${Ee}${w}${P}${Ee}`;
+          case "**/.*":
+            return `(?:${J}${xe(e)}${O})?${w}${P}${Ee}`;
+          default: {
+            let ne = /^(.*?)\.(\w+)$/.exec(Y);
+            if (!ne) return;
+            let Ce = _e(ne[1]);
+            return Ce ? Ce + w + ne[2] : void 0;
+          }
+        }
+      },
+      Se = vt.removePrefix(r, Ae),
+      de = _e(Se);
+    return de && e.strictSlashes !== !0 && (de += `${O}?`), de;
+  };
+  Yu.exports = Bu;
+});
+var Wu = te((EE, qu) => {
+  "use strict";
+  var _w = require("path"),
+    dw = xu(),
+    Xs = Hu(),
+    Js = Mn(),
+    fw = In(),
+    hw = (r) => r && typeof r == "object" && !Array.isArray(r),
+    Ke = (r, i, e = !1) => {
+      if (Array.isArray(r)) {
+        let D = r.map((x) => Ke(x, i, e));
+        return (x) => {
+          for (let ie of D) {
+            let X = ie(x);
+            if (X) return X;
+          }
+          return !1;
+        };
+      }
+      let l = hw(r) && r.tokens && r.input;
+      if (r === "" || (typeof r != "string" && !l))
+        throw new TypeError("Expected pattern to be a non-empty string");
+      let p = i || {},
+        m = Js.isWindows(i),
+        w = l ? Ke.compileRe(r, i) : Ke.makeRe(r, i, !1, !0),
+        O = w.state;
+      delete w.state;
+      let P = () => !1;
+      if (p.ignore) {
+        let D = { ...i, ignore: null, onMatch: null, onResult: null };
+        P = Ke(p.ignore, D, e);
+      }
+      let B = (D, q = !1) => {
+        let {
+            isMatch: x,
+            match: ie,
+            output: X,
+          } = Ke.test(D, w, i, { glob: r, posix: m }),
+          J = {
+            glob: r,
+            state: O,
+            regex: w,
+            posix: m,
+            input: D,
+            output: X,
+            match: ie,
+            isMatch: x,
+          };
+        return (
+          typeof p.onResult == "function" && p.onResult(J),
+          x === !1
+            ? ((J.isMatch = !1), q ? J : !1)
+            : P(D)
+            ? (typeof p.onIgnore == "function" && p.onIgnore(J),
+              (J.isMatch = !1),
+              q ? J : !1)
+            : (typeof p.onMatch == "function" && p.onMatch(J), q ? J : !0)
+        );
+      };
+      return e && (B.state = O), B;
+    };
+  Ke.test = (r, i, e, { glob: l, posix: p } = {}) => {
+    if (typeof r != "string")
+      throw new TypeError("Expected input to be a string");
+    if (r === "") return { isMatch: !1, output: "" };
+    let m = e || {},
+      w = m.format || (p ? Js.toPosixSlashes : null),
+      O = r === l,
+      P = O && w ? w(r) : r;
+    return (
+      O === !1 && ((P = w ? w(r) : r), (O = P === l)),
+      (O === !1 || m.capture === !0) &&
+        (m.matchBase === !0 || m.basename === !0
+          ? (O = Ke.matchBase(r, i, e, p))
+          : (O = i.exec(P))),
+      { isMatch: Boolean(O), match: O, output: P }
+    );
+  };
+  Ke.matchBase = (r, i, e, l = Js.isWindows(e)) =>
+    (i instanceof RegExp ? i : Ke.makeRe(i, e)).test(_w.basename(r));
+  Ke.isMatch = (r, i, e) => Ke(i, e)(r);
+  Ke.parse = (r, i) =>
+    Array.isArray(r)
+      ? r.map((e) => Ke.parse(e, i))
+      : Xs(r, { ...i, fastpaths: !1 });
+  Ke.scan = (r, i) => dw(r, i);
+  Ke.compileRe = (r, i, e = !1, l = !1) => {
+    if (e === !0) return r.output;
+    let p = i || {},
+      m = p.contains ? "" : "^",
+      w = p.contains ? "" : "$",
+      O = `${m}(?:${r.output})${w}`;
+    r && r.negated === !0 && (O = `^(?!${O}).*$`);
+    let P = Ke.toRegex(O, i);
+    return l === !0 && (P.state = r), P;
+  };
+  Ke.makeRe = (r, i = {}, e = !1, l = !1) => {
+    if (!r || typeof r != "string")
+      throw new TypeError("Expected a non-empty string");
+    let p = { negated: !1, fastpaths: !0 };
+    return (
+      i.fastpaths !== !1 &&
+        (r[0] === "." || r[0] === "*") &&
+        (p.output = Xs.fastpaths(r, i)),
+      p.output || (p = Xs(r, i)),
+      Ke.compileRe(p, i, e, l)
+    );
+  };
+  Ke.toRegex = (r, i) => {
+    try {
+      let e = i || {};
+      return new RegExp(r, e.flags || (e.nocase ? "i" : ""));
+    } catch (e) {
+      if (i && i.debug === !0) throw e;
+      return /$^/;
+    }
+  };
+  Ke.constants = fw;
+  qu.exports = Ke;
+});
+var $u = te((SE, Zu) => {
+  "use strict";
+  Zu.exports = Wu();
+});
+var Qu = te((CE, zu) => {
+  "use strict";
+  var Vu = require("util"),
+    Ku = Su(),
+    It = $u(),
+    eo = Mn(),
+    Gu = (r) => r === "" || r === "./",
+    Be = (r, i, e) => {
+      (i = [].concat(i)), (r = [].concat(r));
+      let l = new Set(),
+        p = new Set(),
+        m = new Set(),
+        w = 0,
+        O = (D) => {
+          m.add(D.output), e && e.onResult && e.onResult(D);
+        };
+      for (let D = 0; D < i.length; D++) {
+        let q = It(String(i[D]), { ...e, onResult: O }, !0),
+          x = q.state.negated || q.state.negatedExtglob;
+        x && w++;
+        for (let ie of r) {
+          let X = q(ie, !0);
+          !(x ? !X.isMatch : X.isMatch) ||
+            (x ? l.add(X.output) : (l.delete(X.output), p.add(X.output)));
+        }
+      }
+      let B = (w === i.length ? [...m] : [...p]).filter((D) => !l.has(D));
+      if (e && B.length === 0) {
+        if (e.failglob === !0)
+          throw new Error(`No matches found for "${i.join(", ")}"`);
+        if (e.nonull === !0 || e.nullglob === !0)
+          return e.unescape ? i.map((D) => D.replace(/\\/g, "")) : i;
+      }
+      return B;
+    };
+  Be.match = Be;
+  Be.matcher = (r, i) => It(r, i);
+  Be.isMatch = (r, i, e) => It(i, e)(r);
+  Be.any = Be.isMatch;
+  Be.not = (r, i, e = {}) => {
+    i = [].concat(i).map(String);
+    let l = new Set(),
+      p = [],
+      w = Be(r, i, {
+        ...e,
+        onResult: (O) => {
+          e.onResult && e.onResult(O), p.push(O.output);
+        },
+      });
+    for (let O of p) w.includes(O) || l.add(O);
+    return [...l];
+  };
+  Be.contains = (r, i, e) => {
+    if (typeof r != "string")
+      throw new TypeError(`Expected a string: "${Vu.inspect(r)}"`);
+    if (Array.isArray(i)) return i.some((l) => Be.contains(r, l, e));
+    if (typeof i == "string") {
+      if (Gu(r) || Gu(i)) return !1;
+      if (r.includes(i) || (r.startsWith("./") && r.slice(2).includes(i)))
+        return !0;
+    }
+    return Be.isMatch(r, i, { ...e, contains: !0 });
+  };
+  Be.matchKeys = (r, i, e) => {
+    if (!eo.isObject(r))
+      throw new TypeError("Expected the first argument to be an object");
+    let l = Be(Object.keys(r), i, e),
+      p = {};
+    for (let m of l) p[m] = r[m];
+    return p;
+  };
+  Be.some = (r, i, e) => {
+    let l = [].concat(r);
+    for (let p of [].concat(i)) {
+      let m = It(String(p), e);
+      if (l.some((w) => m(w))) return !0;
+    }
+    return !1;
+  };
+  Be.every = (r, i, e) => {
+    let l = [].concat(r);
+    for (let p of [].concat(i)) {
+      let m = It(String(p), e);
+      if (!l.every((w) => m(w))) return !1;
+    }
+    return !0;
+  };
+  Be.all = (r, i, e) => {
+    if (typeof r != "string")
+      throw new TypeError(`Expected a string: "${Vu.inspect(r)}"`);
+    return [].concat(i).every((l) => It(l, e)(r));
+  };
+  Be.capture = (r, i, e) => {
+    let l = eo.isWindows(e),
+      m = It.makeRe(String(r), { ...e, capture: !0 }).exec(
+        l ? eo.toPosixSlashes(i) : i
+      );
+    if (m) return m.slice(1).map((w) => (w === void 0 ? "" : w));
+  };
+  Be.makeRe = (...r) => It.makeRe(...r);
+  Be.scan = (...r) => It.scan(...r);
+  Be.parse = (r, i) => {
+    let e = [];
+    for (let l of [].concat(r || []))
+      for (let p of Ku(String(l), i)) e.push(It.parse(p, i));
+    return e;
+  };
+  Be.braces = (r, i) => {
+    if (typeof r != "string") throw new TypeError("Expected a string");
+    return (i && i.nobrace === !0) || !/\{.*\}/.test(r) ? [r] : Ku(r, i);
+  };
+  Be.braceExpand = (r, i) => {
+    if (typeof r != "string") throw new TypeError("Expected a string");
+    return Be.braces(r, { ...i, expand: !0 });
+  };
+  zu.exports = Be;
+});
+var a_ = te((be) => {
+  "use strict";
+  Object.defineProperty(be, "__esModule", { value: !0 });
+  be.matchAny =
+    be.convertPatternsToRe =
+    be.makeRe =
+    be.getPatternParts =
+    be.expandBraceExpansion =
+    be.expandPatternsWithBraceExpansion =
+    be.isAffectDepthOfReadingPattern =
+    be.endsWithSlashGlobStar =
+    be.hasGlobStar =
+    be.getBaseDirectory =
+    be.isPatternRelatedToParentDirectory =
+    be.getPatternsOutsideCurrentDirectory =
+    be.getPatternsInsideCurrentDirectory =
+    be.getPositivePatterns =
+    be.getNegativePatterns =
+    be.isPositivePattern =
+    be.isNegativePattern =
+    be.convertToNegativePattern =
+    be.convertToPositivePattern =
+    be.isDynamicPattern =
+    be.isStaticPattern =
+      void 0;
+  var bw = require("path"),
+    pw = Hl(),
+    to = Qu(),
+    Xu = "**",
+    yw = "\\",
+    gw = /[*?]|^!/,
+    vw = /\[[^[]*]/,
+    jw = /(?:^|[^!*+?@])\([^(]*\|[^|]*\)/,
+    mw = /[!*+?@]\([^(]*\)/,
+    ww = /,|\.\./;
+  function Ju(r, i = {}) {
+    return !e_(r, i);
+  }
+  be.isStaticPattern = Ju;
+  function e_(r, i = {}) {
+    return r === ""
+      ? !1
+      : !!(
+          i.caseSensitiveMatch === !1 ||
+          r.includes(yw) ||
+          gw.test(r) ||
+          vw.test(r) ||
+          jw.test(r) ||
+          (i.extglob !== !1 && mw.test(r)) ||
+          (i.braceExpansion !== !1 && kw(r))
+        );
+  }
+  be.isDynamicPattern = e_;
+  function kw(r) {
+    let i = r.indexOf("{");
+    if (i === -1) return !1;
+    let e = r.indexOf("}", i + 1);
+    if (e === -1) return !1;
+    let l = r.slice(i, e);
+    return ww.test(l);
+  }
+  function Ew(r) {
+    return Ar(r) ? r.slice(1) : r;
+  }
+  be.convertToPositivePattern = Ew;
+  function Sw(r) {
+    return "!" + r;
+  }
+  be.convertToNegativePattern = Sw;
+  function Ar(r) {
+    return r.startsWith("!") && r[1] !== "(";
+  }
+  be.isNegativePattern = Ar;
+  function t_(r) {
+    return !Ar(r);
+  }
+  be.isPositivePattern = t_;
+  function Cw(r) {
+    return r.filter(Ar);
+  }
+  be.getNegativePatterns = Cw;
+  function Aw(r) {
+    return r.filter(t_);
+  }
+  be.getPositivePatterns = Aw;
+  function Rw(r) {
+    return r.filter((i) => !io(i));
+  }
+  be.getPatternsInsideCurrentDirectory = Rw;
+  function Ow(r) {
+    return r.filter(io);
+  }
+  be.getPatternsOutsideCurrentDirectory = Ow;
+  function io(r) {
+    return r.startsWith("..") || r.startsWith("./..");
+  }
+  be.isPatternRelatedToParentDirectory = io;
+  function Tw(r) {
+    return pw(r, { flipBackslashes: !1 });
+  }
+  be.getBaseDirectory = Tw;
+  function Pw(r) {
+    return r.includes(Xu);
+  }
+  be.hasGlobStar = Pw;
+  function i_(r) {
+    return r.endsWith("/" + Xu);
+  }
+  be.endsWithSlashGlobStar = i_;
+  function Dw(r) {
+    let i = bw.basename(r);
+    return i_(r) || Ju(i);
+  }
+  be.isAffectDepthOfReadingPattern = Dw;
+  function Iw(r) {
+    return r.reduce((i, e) => i.concat(n_(e)), []);
+  }
+  be.expandPatternsWithBraceExpansion = Iw;
+  function n_(r) {
+    return to.braces(r, { expand: !0, nodupes: !0 });
+  }
+  be.expandBraceExpansion = n_;
+  function Mw(r, i) {
+    let { parts: e } = to.scan(
+      r,
+      Object.assign(Object.assign({}, i), { parts: !0 })
+    );
+    return (
+      e.length === 0 && (e = [r]),
+      e[0].startsWith("/") && ((e[0] = e[0].slice(1)), e.unshift("")),
+      e
+    );
+  }
+  be.getPatternParts = Mw;
+  function r_(r, i) {
+    return to.makeRe(r, i);
+  }
+  be.makeRe = r_;
+  function Uw(r, i) {
+    return r.map((e) => r_(e, i));
+  }
+  be.convertPatternsToRe = Uw;
+  function Lw(r, i) {
+    return i.some((e) => e.test(r));
+  }
+  be.matchAny = Lw;
+});
+var l_ = te((RE, c_) => {
+  "use strict";
+  var Fw = require("stream"),
+    s_ = Fw.PassThrough,
+    xw = Array.prototype.slice;
+  c_.exports = Nw;
+  function Nw() {
+    let r = [],
+      i = xw.call(arguments),
+      e = !1,
+      l = i[i.length - 1];
+    l && !Array.isArray(l) && l.pipe == null ? i.pop() : (l = {});
+    let p = l.end !== !1,
+      m = l.pipeError === !0;
+    l.objectMode == null && (l.objectMode = !0),
+      l.highWaterMark == null && (l.highWaterMark = 64 * 1024);
+    let w = s_(l);
+    function O() {
+      for (let D = 0, q = arguments.length; D < q; D++)
+        r.push(o_(arguments[D], l));
+      return P(), this;
+    }
+    function P() {
+      if (e) return;
+      e = !0;
+      let D = r.shift();
+      if (!D) {
+        process.nextTick(B);
+        return;
+      }
+      Array.isArray(D) || (D = [D]);
+      let q = D.length + 1;
+      function x() {
+        --q > 0 || ((e = !1), P());
+      }
+      function ie(X) {
+        function J() {
+          X.removeListener("merge2UnpipeEnd", J),
+            X.removeListener("end", J),
+            m && X.removeListener("error", ce),
+            x();
+        }
+        function ce(le) {
+          w.emit("error", le);
+        }
+        if (X._readableState.endEmitted) return x();
+        X.on("merge2UnpipeEnd", J),
+          X.on("end", J),
+          m && X.on("error", ce),
+          X.pipe(w, { end: !1 }),
+          X.resume();
+      }
+      for (let X = 0; X < D.length; X++) ie(D[X]);
+      x();
+    }
+    function B() {
+      (e = !1), w.emit("queueDrain"), p && w.end();
+    }
+    return (
+      w.setMaxListeners(0),
+      (w.add = O),
+      w.on("unpipe", function (D) {
+        D.emit("merge2UnpipeEnd");
+      }),
+      i.length && O.apply(null, i),
+      w
+    );
+  }
+  function o_(r, i) {
+    if (Array.isArray(r))
+      for (let e = 0, l = r.length; e < l; e++) r[e] = o_(r[e], i);
+    else {
+      if (
+        (!r._readableState && r.pipe && (r = r.pipe(s_(i))),
+        !r._readableState || !r.pause || !r.pipe)
+      )
+        throw new Error("Only readable stream can be merged.");
+      r.pause();
+    }
+    return r;
+  }
+});
+var __ = te((Rr) => {
+  "use strict";
+  Object.defineProperty(Rr, "__esModule", { value: !0 });
+  Rr.merge = void 0;
+  var Bw = l_();
+  function Yw(r) {
+    let i = Bw(r);
+    return (
+      r.forEach((e) => {
+        e.once("error", (l) => i.emit("error", l));
+      }),
+      i.once("close", () => u_(r)),
+      i.once("end", () => u_(r)),
+      i
+    );
+  }
+  Rr.merge = Yw;
+  function u_(r) {
+    r.forEach((i) => i.emit("close"));
+  }
+});
+var d_ = te(($i) => {
+  "use strict";
+  Object.defineProperty($i, "__esModule", { value: !0 });
+  $i.isEmpty = $i.isString = void 0;
+  function Hw(r) {
+    return typeof r == "string";
+  }
+  $i.isString = Hw;
+  function qw(r) {
+    return r === "";
+  }
+  $i.isEmpty = qw;
+});
+var Zt = te((st) => {
+  "use strict";
+  Object.defineProperty(st, "__esModule", { value: !0 });
+  st.string =
+    st.stream =
+    st.pattern =
+    st.path =
+    st.fs =
+    st.errno =
+    st.array =
+      void 0;
+  var Ww = Dl();
+  st.array = Ww;
+  var Zw = Il();
+  st.errno = Zw;
+  var $w = Ml();
+  st.fs = $w;
+  var Gw = Ul();
+  st.path = Gw;
+  var Vw = a_();
+  st.pattern = Vw;
+  var Kw = __();
+  st.stream = Kw;
+  var zw = d_();
+  st.string = zw;
+});
+var b_ = te((ot) => {
+  "use strict";
+  Object.defineProperty(ot, "__esModule", { value: !0 });
+  ot.convertPatternGroupToTask =
+    ot.convertPatternGroupsToTasks =
+    ot.groupPatternsByBaseDirectory =
+    ot.getNegativePatternsAsPositive =
+    ot.getPositivePatterns =
+    ot.convertPatternsToTasks =
+    ot.generate =
+      void 0;
+  var $t = Zt();
+  function Qw(r, i) {
+    let e = f_(r),
+      l = h_(r, i.ignore),
+      p = e.filter((P) => $t.pattern.isStaticPattern(P, i)),
+      m = e.filter((P) => $t.pattern.isDynamicPattern(P, i)),
+      w = no(p, l, !1),
+      O = no(m, l, !0);
+    return w.concat(O);
+  }
+  ot.generate = Qw;
+  function no(r, i, e) {
+    let l = [],
+      p = $t.pattern.getPatternsOutsideCurrentDirectory(r),
+      m = $t.pattern.getPatternsInsideCurrentDirectory(r),
+      w = ro(p),
+      O = ro(m);
+    return (
+      l.push(...ao(w, i, e)),
+      "." in O ? l.push(so(".", m, i, e)) : l.push(...ao(O, i, e)),
+      l
+    );
+  }
+  ot.convertPatternsToTasks = no;
+  function f_(r) {
+    return $t.pattern.getPositivePatterns(r);
+  }
+  ot.getPositivePatterns = f_;
+  function h_(r, i) {
+    return $t.pattern
+      .getNegativePatterns(r)
+      .concat(i)
+      .map($t.pattern.convertToPositivePattern);
+  }
+  ot.getNegativePatternsAsPositive = h_;
+  function ro(r) {
+    let i = {};
+    return r.reduce((e, l) => {
+      let p = $t.pattern.getBaseDirectory(l);
+      return p in e ? e[p].push(l) : (e[p] = [l]), e;
+    }, i);
+  }
+  ot.groupPatternsByBaseDirectory = ro;
+  function ao(r, i, e) {
+    return Object.keys(r).map((l) => so(l, r[l], i, e));
+  }
+  ot.convertPatternGroupsToTasks = ao;
+  function so(r, i, e, l) {
+    return {
+      dynamic: l,
+      positive: i,
+      negative: e,
+      base: r,
+      patterns: [].concat(i, e.map($t.pattern.convertToNegativePattern)),
+    };
+  }
+  ot.convertPatternGroupToTask = so;
+});
+var y_ = te((Gi) => {
+  "use strict";
+  Object.defineProperty(Gi, "__esModule", { value: !0 });
+  Gi.removeDuplicateSlashes = Gi.transform = void 0;
+  var Xw = /(?!^)\/{2,}/g;
+  function Jw(r) {
+    return r.map((i) => p_(i));
+  }
+  Gi.transform = Jw;
+  function p_(r) {
+    return r.replace(Xw, "/");
+  }
+  Gi.removeDuplicateSlashes = p_;
+});
+var v_ = te((Or) => {
+  "use strict";
+  Object.defineProperty(Or, "__esModule", { value: !0 });
+  Or.read = void 0;
+  function ek(r, i, e) {
+    i.fs.lstat(r, (l, p) => {
+      if (l !== null) {
+        g_(e, l);
+        return;
+      }
+      if (!p.isSymbolicLink() || !i.followSymbolicLink) {
+        oo(e, p);
+        return;
+      }
+      i.fs.stat(r, (m, w) => {
+        if (m !== null) {
+          if (i.throwErrorOnBrokenSymbolicLink) {
+            g_(e, m);
+            return;
+          }
+          oo(e, p);
+          return;
+        }
+        i.markSymbolicLink && (w.isSymbolicLink = () => !0), oo(e, w);
+      });
+    });
+  }
+  Or.read = ek;
+  function g_(r, i) {
+    r(i);
+  }
+  function oo(r, i) {
+    r(null, i);
+  }
+});
+var j_ = te((Tr) => {
+  "use strict";
+  Object.defineProperty(Tr, "__esModule", { value: !0 });
+  Tr.read = void 0;
+  function tk(r, i) {
+    let e = i.fs.lstatSync(r);
+    if (!e.isSymbolicLink() || !i.followSymbolicLink) return e;
+    try {
+      let l = i.fs.statSync(r);
+      return i.markSymbolicLink && (l.isSymbolicLink = () => !0), l;
+    } catch (l) {
+      if (!i.throwErrorOnBrokenSymbolicLink) return e;
+      throw l;
+    }
+  }
+  Tr.read = tk;
+});
+var m_ = te((ei) => {
+  "use strict";
+  Object.defineProperty(ei, "__esModule", { value: !0 });
+  ei.createFileSystemAdapter = ei.FILE_SYSTEM_ADAPTER = void 0;
+  var Pr = require("fs");
+  ei.FILE_SYSTEM_ADAPTER = {
+    lstat: Pr.lstat,
+    stat: Pr.stat,
+    lstatSync: Pr.lstatSync,
+    statSync: Pr.statSync,
+  };
+  function ik(r) {
+    return r === void 0
+      ? ei.FILE_SYSTEM_ADAPTER
+      : Object.assign(Object.assign({}, ei.FILE_SYSTEM_ADAPTER), r);
+  }
+  ei.createFileSystemAdapter = ik;
+});
+var w_ = te((lo) => {
+  "use strict";
+  Object.defineProperty(lo, "__esModule", { value: !0 });
+  var nk = m_(),
+    co = class {
+      constructor(i = {}) {
+        (this._options = i),
+          (this.followSymbolicLink = this._getValue(
+            this._options.followSymbolicLink,
+            !0
+          )),
+          (this.fs = nk.createFileSystemAdapter(this._options.fs)),
+          (this.markSymbolicLink = this._getValue(
+            this._options.markSymbolicLink,
+            !1
+          )),
+          (this.throwErrorOnBrokenSymbolicLink = this._getValue(
+            this._options.throwErrorOnBrokenSymbolicLink,
+            !0
+          ));
+      }
+      _getValue(i, e) {
+        return i ?? e;
+      }
+    };
+  lo.default = co;
+});
+var Ai = te((ti) => {
+  "use strict";
+  Object.defineProperty(ti, "__esModule", { value: !0 });
+  ti.statSync = ti.stat = ti.Settings = void 0;
+  var k_ = v_(),
+    rk = j_(),
+    uo = w_();
+  ti.Settings = uo.default;
+  function ak(r, i, e) {
+    if (typeof i == "function") {
+      k_.read(r, _o(), i);
+      return;
+    }
+    k_.read(r, _o(i), e);
+  }
+  ti.stat = ak;
+  function sk(r, i) {
+    let e = _o(i);
+    return rk.read(r, e);
+  }
+  ti.statSync = sk;
+  function _o(r = {}) {
+    return r instanceof uo.default ? r : new uo.default(r);
+  }
+});
+var C_ = te((NE, S_) => {
+  var E_;
+  S_.exports =
+    typeof queueMicrotask == "function"
+      ? queueMicrotask.bind(typeof window < "u" ? window : global)
+      : (r) =>
+          (E_ || (E_ = Promise.resolve())).then(r).catch((i) =>
+            setTimeout(() => {
+              throw i;
+            }, 0)
+          );
+});
+var R_ = te((BE, A_) => {
+  A_.exports = ck;
+  var ok = C_();
+  function ck(r, i) {
+    let e,
+      l,
+      p,
+      m = !0;
+    Array.isArray(r)
+      ? ((e = []), (l = r.length))
+      : ((p = Object.keys(r)), (e = {}), (l = p.length));
+    function w(P) {
+      function B() {
+        i && i(P, e), (i = null);
+      }
+      m ? ok(B) : B();
+    }
+    function O(P, B, D) {
+      (e[P] = D), (--l === 0 || B) && w(B);
+    }
+    l
+      ? p
+        ? p.forEach(function (P) {
+            r[P](function (B, D) {
+              O(P, B, D);
+            });
+          })
+        : r.forEach(function (P, B) {
+            P(function (D, q) {
+              O(B, D, q);
+            });
+          })
+      : w(null),
+      (m = !1);
+  }
+});
+var fo = te((Ir) => {
+  "use strict";
+  Object.defineProperty(Ir, "__esModule", { value: !0 });
+  Ir.IS_SUPPORT_READDIR_WITH_FILE_TYPES = void 0;
+  var Dr = process.versions.node.split(".");
+  if (Dr[0] === void 0 || Dr[1] === void 0)
+    throw new Error(
+      `Unexpected behavior. The 'process.versions.node' variable has invalid value: ${process.versions.node}`
+    );
+  var O_ = Number.parseInt(Dr[0], 10),
+    lk = Number.parseInt(Dr[1], 10),
+    T_ = 10,
+    uk = 10,
+    _k = O_ > T_,
+    dk = O_ === T_ && lk >= uk;
+  Ir.IS_SUPPORT_READDIR_WITH_FILE_TYPES = _k || dk;
+});
+var P_ = te((Mr) => {
+  "use strict";
+  Object.defineProperty(Mr, "__esModule", { value: !0 });
+  Mr.createDirentFromStats = void 0;
+  var ho = class {
+    constructor(i, e) {
+      (this.name = i),
+        (this.isBlockDevice = e.isBlockDevice.bind(e)),
+        (this.isCharacterDevice = e.isCharacterDevice.bind(e)),
+        (this.isDirectory = e.isDirectory.bind(e)),
+        (this.isFIFO = e.isFIFO.bind(e)),
+        (this.isFile = e.isFile.bind(e)),
+        (this.isSocket = e.isSocket.bind(e)),
+        (this.isSymbolicLink = e.isSymbolicLink.bind(e));
+    }
+  };
+  function fk(r, i) {
+    return new ho(r, i);
+  }
+  Mr.createDirentFromStats = fk;
+});
+var bo = te((Ur) => {
+  "use strict";
+  Object.defineProperty(Ur, "__esModule", { value: !0 });
+  Ur.fs = void 0;
+  var hk = P_();
+  Ur.fs = hk;
+});
+var po = te((Lr) => {
+  "use strict";
+  Object.defineProperty(Lr, "__esModule", { value: !0 });
+  Lr.joinPathSegments = void 0;
+  function bk(r, i, e) {
+    return r.endsWith(e) ? r + i : r + e + i;
+  }
+  Lr.joinPathSegments = bk;
+});
+var F_ = te((ii) => {
+  "use strict";
+  Object.defineProperty(ii, "__esModule", { value: !0 });
+  ii.readdir = ii.readdirWithFileTypes = ii.read = void 0;
+  var pk = Ai(),
+    D_ = R_(),
+    yk = fo(),
+    I_ = bo(),
+    M_ = po();
+  function gk(r, i, e) {
+    if (!i.stats && yk.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
+      U_(r, i, e);
+      return;
+    }
+    L_(r, i, e);
+  }
+  ii.read = gk;
+  function U_(r, i, e) {
+    i.fs.readdir(r, { withFileTypes: !0 }, (l, p) => {
+      if (l !== null) {
+        Fr(e, l);
+        return;
+      }
+      let m = p.map((O) => ({
+        dirent: O,
+        name: O.name,
+        path: M_.joinPathSegments(r, O.name, i.pathSegmentSeparator),
+      }));
+      if (!i.followSymbolicLinks) {
+        yo(e, m);
+        return;
+      }
+      let w = m.map((O) => vk(O, i));
+      D_(w, (O, P) => {
+        if (O !== null) {
+          Fr(e, O);
+          return;
+        }
+        yo(e, P);
+      });
+    });
+  }
+  ii.readdirWithFileTypes = U_;
+  function vk(r, i) {
+    return (e) => {
+      if (!r.dirent.isSymbolicLink()) {
+        e(null, r);
+        return;
+      }
+      i.fs.stat(r.path, (l, p) => {
+        if (l !== null) {
+          if (i.throwErrorOnBrokenSymbolicLink) {
+            e(l);
+            return;
+          }
+          e(null, r);
+          return;
+        }
+        (r.dirent = I_.fs.createDirentFromStats(r.name, p)), e(null, r);
+      });
+    };
+  }
+  function L_(r, i, e) {
+    i.fs.readdir(r, (l, p) => {
+      if (l !== null) {
+        Fr(e, l);
+        return;
+      }
+      let m = p.map((w) => {
+        let O = M_.joinPathSegments(r, w, i.pathSegmentSeparator);
+        return (P) => {
+          pk.stat(O, i.fsStatSettings, (B, D) => {
+            if (B !== null) {
+              P(B);
+              return;
+            }
+            let q = {
+              name: w,
+              path: O,
+              dirent: I_.fs.createDirentFromStats(w, D),
+            };
+            i.stats && (q.stats = D), P(null, q);
+          });
+        };
+      });
+      D_(m, (w, O) => {
+        if (w !== null) {
+          Fr(e, w);
+          return;
+        }
+        yo(e, O);
+      });
+    });
+  }
+  ii.readdir = L_;
+  function Fr(r, i) {
+    r(i);
+  }
+  function yo(r, i) {
+    r(null, i);
+  }
+});
+var H_ = te((ni) => {
+  "use strict";
+  Object.defineProperty(ni, "__esModule", { value: !0 });
+  ni.readdir = ni.readdirWithFileTypes = ni.read = void 0;
+  var jk = Ai(),
+    mk = fo(),
+    x_ = bo(),
+    N_ = po();
+  function wk(r, i) {
+    return !i.stats && mk.IS_SUPPORT_READDIR_WITH_FILE_TYPES
+      ? B_(r, i)
+      : Y_(r, i);
+  }
+  ni.read = wk;
+  function B_(r, i) {
+    return i.fs.readdirSync(r, { withFileTypes: !0 }).map((l) => {
+      let p = {
+        dirent: l,
+        name: l.name,
+        path: N_.joinPathSegments(r, l.name, i.pathSegmentSeparator),
+      };
+      if (p.dirent.isSymbolicLink() && i.followSymbolicLinks)
+        try {
+          let m = i.fs.statSync(p.path);
+          p.dirent = x_.fs.createDirentFromStats(p.name, m);
+        } catch (m) {
+          if (i.throwErrorOnBrokenSymbolicLink) throw m;
+        }
+      return p;
+    });
+  }
+  ni.readdirWithFileTypes = B_;
+  function Y_(r, i) {
+    return i.fs.readdirSync(r).map((l) => {
+      let p = N_.joinPathSegments(r, l, i.pathSegmentSeparator),
+        m = jk.statSync(p, i.fsStatSettings),
+        w = { name: l, path: p, dirent: x_.fs.createDirentFromStats(l, m) };
+      return i.stats && (w.stats = m), w;
+    });
+  }
+  ni.readdir = Y_;
+});
+var q_ = te((ri) => {
+  "use strict";
+  Object.defineProperty(ri, "__esModule", { value: !0 });
+  ri.createFileSystemAdapter = ri.FILE_SYSTEM_ADAPTER = void 0;
+  var Vi = require("fs");
+  ri.FILE_SYSTEM_ADAPTER = {
+    lstat: Vi.lstat,
+    stat: Vi.stat,
+    lstatSync: Vi.lstatSync,
+    statSync: Vi.statSync,
+    readdir: Vi.readdir,
+    readdirSync: Vi.readdirSync,
+  };
+  function kk(r) {
+    return r === void 0
+      ? ri.FILE_SYSTEM_ADAPTER
+      : Object.assign(Object.assign({}, ri.FILE_SYSTEM_ADAPTER), r);
+  }
+  ri.createFileSystemAdapter = kk;
+});
+var W_ = te((vo) => {
+  "use strict";
+  Object.defineProperty(vo, "__esModule", { value: !0 });
+  var Ek = require("path"),
+    Sk = Ai(),
+    Ck = q_(),
+    go = class {
+      constructor(i = {}) {
+        (this._options = i),
+          (this.followSymbolicLinks = this._getValue(
+            this._options.followSymbolicLinks,
+            !1
+          )),
+          (this.fs = Ck.createFileSystemAdapter(this._options.fs)),
+          (this.pathSegmentSeparator = this._getValue(
+            this._options.pathSegmentSeparator,
+            Ek.sep
+          )),
+          (this.stats = this._getValue(this._options.stats, !1)),
+          (this.throwErrorOnBrokenSymbolicLink = this._getValue(
+            this._options.throwErrorOnBrokenSymbolicLink,
+            !0
+          )),
+          (this.fsStatSettings = new Sk.Settings({
+            followSymbolicLink: this.followSymbolicLinks,
+            fs: this.fs,
+            throwErrorOnBrokenSymbolicLink: this.throwErrorOnBrokenSymbolicLink,
+          }));
+      }
+      _getValue(i, e) {
+        return i ?? e;
+      }
+    };
+  vo.default = go;
+});
+var xr = te((ai) => {
+  "use strict";
+  Object.defineProperty(ai, "__esModule", { value: !0 });
+  ai.Settings = ai.scandirSync = ai.scandir = void 0;
+  var Z_ = F_(),
+    Ak = H_(),
+    jo = W_();
+  ai.Settings = jo.default;
+  function Rk(r, i, e) {
+    if (typeof i == "function") {
+      Z_.read(r, mo(), i);
+      return;
+    }
+    Z_.read(r, mo(i), e);
+  }
+  ai.scandir = Rk;
+  function Ok(r, i) {
+    let e = mo(i);
+    return Ak.read(r, e);
+  }
+  ai.scandirSync = Ok;
+  function mo(r = {}) {
+    return r instanceof jo.default ? r : new jo.default(r);
+  }
+});
+var G_ = te((zE, $_) => {
+  "use strict";
+  function Tk(r) {
+    var i = new r(),
+      e = i;
+    function l() {
+      var m = i;
+      return (
+        m.next ? (i = m.next) : ((i = new r()), (e = i)), (m.next = null), m
+      );
+    }
+    function p(m) {
+      (e.next = m), (e = m);
+    }
+    return { get: l, release: p };
+  }
+  $_.exports = Tk;
+});
+var K_ = te((QE, wo) => {
+  "use strict";
+  var Pk = G_();
+  function V_(r, i, e) {
+    if ((typeof r == "function" && ((e = i), (i = r), (r = null)), e < 1))
+      throw new Error("fastqueue concurrency must be greater than 1");
+    var l = Pk(Dk),
+      p = null,
+      m = null,
+      w = 0,
+      O = null,
+      P = {
+        push: J,
+        drain: wt,
+        saturated: wt,
+        pause: D,
+        paused: !1,
+        concurrency: e,
+        running: B,
+        resume: ie,
+        idle: X,
+        length: q,
+        getQueue: x,
+        unshift: ce,
+        empty: wt,
+        kill: Ae,
+        killAndDrain: Ee,
+        error: xe,
+      };
+    return P;
+    function B() {
+      return w;
+    }
+    function D() {
+      P.paused = !0;
+    }
+    function q() {
+      for (var _e = p, Se = 0; _e; ) (_e = _e.next), Se++;
+      return Se;
+    }
+    function x() {
+      for (var _e = p, Se = []; _e; ) Se.push(_e.value), (_e = _e.next);
+      return Se;
+    }
+    function ie() {
+      if (!!P.paused) {
+        P.paused = !1;
+        for (var _e = 0; _e < P.concurrency; _e++) w++, le();
+      }
+    }
+    function X() {
+      return w === 0 && P.length() === 0;
+    }
+    function J(_e, Se) {
+      var de = l.get();
+      (de.context = r),
+        (de.release = le),
+        (de.value = _e),
+        (de.callback = Se || wt),
+        (de.errorHandler = O),
+        w === P.concurrency || P.paused
+          ? m
+            ? ((m.next = de), (m = de))
+            : ((p = de), (m = de), P.saturated())
+          : (w++, i.call(r, de.value, de.worked));
+    }
+    function ce(_e, Se) {
+      var de = l.get();
+      (de.context = r),
+        (de.release = le),
+        (de.value = _e),
+        (de.callback = Se || wt),
+        w === P.concurrency || P.paused
+          ? p
+            ? ((de.next = p), (p = de))
+            : ((p = de), (m = de), P.saturated())
+          : (w++, i.call(r, de.value, de.worked));
+    }
+    function le(_e) {
+      _e && l.release(_e);
+      var Se = p;
+      Se
+        ? P.paused
+          ? w--
+          : (m === p && (m = null),
+            (p = Se.next),
+            (Se.next = null),
+            i.call(r, Se.value, Se.worked),
+            m === null && P.empty())
+        : --w === 0 && P.drain();
+    }
+    function Ae() {
+      (p = null), (m = null), (P.drain = wt);
+    }
+    function Ee() {
+      (p = null), (m = null), P.drain(), (P.drain = wt);
+    }
+    function xe(_e) {
+      O = _e;
+    }
+  }
+  function wt() {}
+  function Dk() {
+    (this.value = null),
+      (this.callback = wt),
+      (this.next = null),
+      (this.release = wt),
+      (this.context = null),
+      (this.errorHandler = null);
+    var r = this;
+    this.worked = function (e, l) {
+      var p = r.callback,
+        m = r.errorHandler,
+        w = r.value;
+      (r.value = null),
+        (r.callback = wt),
+        r.errorHandler && m(e, w),
+        p.call(r.context, e, l),
+        r.release(r);
+    };
+  }
+  function Ik(r, i, e) {
+    typeof r == "function" && ((e = i), (i = r), (r = null));
+    function l(D, q) {
+      i.call(this, D).then(function (x) {
+        q(null, x);
+      }, q);
+    }
+    var p = V_(r, l, e),
+      m = p.push,
+      w = p.unshift;
+    return (p.push = O), (p.unshift = P), (p.drained = B), p;
+    function O(D) {
+      var q = new Promise(function (x, ie) {
+        m(D, function (X, J) {
+          if (X) {
+            ie(X);
+            return;
+          }
+          x(J);
+        });
+      });
+      return q.catch(wt), q;
+    }
+    function P(D) {
+      var q = new Promise(function (x, ie) {
+        w(D, function (X, J) {
+          if (X) {
+            ie(X);
+            return;
+          }
+          x(J);
+        });
+      });
+      return q.catch(wt), q;
+    }
+    function B() {
+      var D = p.drain,
+        q = new Promise(function (x) {
+          p.drain = function () {
+            D(), x();
+          };
+        });
+      return q;
+    }
+  }
+  wo.exports = V_;
+  wo.exports.promise = Ik;
+});
+var Nr = te((Mt) => {
+  "use strict";
+  Object.defineProperty(Mt, "__esModule", { value: !0 });
+  Mt.joinPathSegments =
+    Mt.replacePathSegmentSeparator =
+    Mt.isAppliedFilter =
+    Mt.isFatalError =
+      void 0;
+  function Mk(r, i) {
+    return r.errorFilter === null ? !0 : !r.errorFilter(i);
+  }
+  Mt.isFatalError = Mk;
+  function Uk(r, i) {
+    return r === null || r(i);
+  }
+  Mt.isAppliedFilter = Uk;
+  function Lk(r, i) {
+    return r.split(/[/\\]/).join(i);
+  }
+  Mt.replacePathSegmentSeparator = Lk;
+  function Fk(r, i, e) {
+    return r === "" ? i : r.endsWith(e) ? r + i : r + e + i;
+  }
+  Mt.joinPathSegments = Fk;
+});
+var So = te((Eo) => {
+  "use strict";
+  Object.defineProperty(Eo, "__esModule", { value: !0 });
+  var xk = Nr(),
+    ko = class {
+      constructor(i, e) {
+        (this._root = i),
+          (this._settings = e),
+          (this._root = xk.replacePathSegmentSeparator(
+            i,
+            e.pathSegmentSeparator
+          ));
+      }
+    };
+  Eo.default = ko;
+});
+var Ro = te((Ao) => {
+  "use strict";
+  Object.defineProperty(Ao, "__esModule", { value: !0 });
+  var Nk = require("events"),
+    Bk = xr(),
+    Yk = K_(),
+    Br = Nr(),
+    Hk = So(),
+    Co = class extends Hk.default {
+      constructor(i, e) {
+        super(i, e),
+          (this._settings = e),
+          (this._scandir = Bk.scandir),
+          (this._emitter = new Nk.EventEmitter()),
+          (this._queue = Yk(
+            this._worker.bind(this),
+            this._settings.concurrency
+          )),
+          (this._isFatalError = !1),
+          (this._isDestroyed = !1),
+          (this._queue.drain = () => {
+            this._isFatalError || this._emitter.emit("end");
+          });
+      }
+      read() {
+        return (
+          (this._isFatalError = !1),
+          (this._isDestroyed = !1),
+          setImmediate(() => {
+            this._pushToQueue(this._root, this._settings.basePath);
+          }),
+          this._emitter
+        );
+      }
+      get isDestroyed() {
+        return this._isDestroyed;
+      }
+      destroy() {
+        if (this._isDestroyed)
+          throw new Error("The reader is already destroyed");
+        (this._isDestroyed = !0), this._queue.killAndDrain();
+      }
+      onEntry(i) {
+        this._emitter.on("entry", i);
+      }
+      onError(i) {
+        this._emitter.once("error", i);
+      }
+      onEnd(i) {
+        this._emitter.once("end", i);
+      }
+      _pushToQueue(i, e) {
+        let l = { directory: i, base: e };
+        this._queue.push(l, (p) => {
+          p !== null && this._handleError(p);
+        });
+      }
+      _worker(i, e) {
+        this._scandir(i.directory, this._settings.fsScandirSettings, (l, p) => {
+          if (l !== null) {
+            e(l, void 0);
+            return;
+          }
+          for (let m of p) this._handleEntry(m, i.base);
+          e(null, void 0);
+        });
+      }
+      _handleError(i) {
+        this._isDestroyed ||
+          !Br.isFatalError(this._settings, i) ||
+          ((this._isFatalError = !0),
+          (this._isDestroyed = !0),
+          this._emitter.emit("error", i));
+      }
+      _handleEntry(i, e) {
+        if (this._isDestroyed || this._isFatalError) return;
+        let l = i.path;
+        e !== void 0 &&
+          (i.path = Br.joinPathSegments(
+            e,
+            i.name,
+            this._settings.pathSegmentSeparator
+          )),
+          Br.isAppliedFilter(this._settings.entryFilter, i) &&
+            this._emitEntry(i),
+          i.dirent.isDirectory() &&
+            Br.isAppliedFilter(this._settings.deepFilter, i) &&
+            this._pushToQueue(l, e === void 0 ? void 0 : i.path);
+      }
+      _emitEntry(i) {
+        this._emitter.emit("entry", i);
+      }
+    };
+  Ao.default = Co;
+});
+var z_ = te((To) => {
+  "use strict";
+  Object.defineProperty(To, "__esModule", { value: !0 });
+  var qk = Ro(),
+    Oo = class {
+      constructor(i, e) {
+        (this._root = i),
+          (this._settings = e),
+          (this._reader = new qk.default(this._root, this._settings)),
+          (this._storage = []);
+      }
+      read(i) {
+        this._reader.onError((e) => {
+          Wk(i, e);
+        }),
+          this._reader.onEntry((e) => {
+            this._storage.push(e);
+          }),
+          this._reader.onEnd(() => {
+            Zk(i, this._storage);
+          }),
+          this._reader.read();
+      }
+    };
+  To.default = Oo;
+  function Wk(r, i) {
+    r(i);
+  }
+  function Zk(r, i) {
+    r(null, i);
+  }
+});
+var Q_ = te((Do) => {
+  "use strict";
+  Object.defineProperty(Do, "__esModule", { value: !0 });
+  var $k = require("stream"),
+    Gk = Ro(),
+    Po = class {
+      constructor(i, e) {
+        (this._root = i),
+          (this._settings = e),
+          (this._reader = new Gk.default(this._root, this._settings)),
+          (this._stream = new $k.Readable({
+            objectMode: !0,
+            read: () => {},
+            destroy: () => {
+              this._reader.isDestroyed || this._reader.destroy();
+            },
+          }));
+      }
+      read() {
+        return (
+          this._reader.onError((i) => {
+            this._stream.emit("error", i);
+          }),
+          this._reader.onEntry((i) => {
+            this._stream.push(i);
+          }),
+          this._reader.onEnd(() => {
+            this._stream.push(null);
+          }),
+          this._reader.read(),
+          this._stream
+        );
+      }
+    };
+  Do.default = Po;
+});
+var X_ = te((Mo) => {
+  "use strict";
+  Object.defineProperty(Mo, "__esModule", { value: !0 });
+  var Vk = xr(),
+    Yr = Nr(),
+    Kk = So(),
+    Io = class extends Kk.default {
+      constructor() {
+        super(...arguments),
+          (this._scandir = Vk.scandirSync),
+          (this._storage = []),
+          (this._queue = new Set());
+      }
+      read() {
+        return (
+          this._pushToQueue(this._root, this._settings.basePath),
+          this._handleQueue(),
+          this._storage
+        );
+      }
+      _pushToQueue(i, e) {
+        this._queue.add({ directory: i, base: e });
+      }
+      _handleQueue() {
+        for (let i of this._queue.values())
+          this._handleDirectory(i.directory, i.base);
+      }
+      _handleDirectory(i, e) {
+        try {
+          let l = this._scandir(i, this._settings.fsScandirSettings);
+          for (let p of l) this._handleEntry(p, e);
+        } catch (l) {
+          this._handleError(l);
+        }
+      }
+      _handleError(i) {
+        if (!!Yr.isFatalError(this._settings, i)) throw i;
+      }
+      _handleEntry(i, e) {
+        let l = i.path;
+        e !== void 0 &&
+          (i.path = Yr.joinPathSegments(
+            e,
+            i.name,
+            this._settings.pathSegmentSeparator
+          )),
+          Yr.isAppliedFilter(this._settings.entryFilter, i) &&
+            this._pushToStorage(i),
+          i.dirent.isDirectory() &&
+            Yr.isAppliedFilter(this._settings.deepFilter, i) &&
+            this._pushToQueue(l, e === void 0 ? void 0 : i.path);
+      }
+      _pushToStorage(i) {
+        this._storage.push(i);
+      }
+    };
+  Mo.default = Io;
+});
+var J_ = te((Lo) => {
+  "use strict";
+  Object.defineProperty(Lo, "__esModule", { value: !0 });
+  var zk = X_(),
+    Uo = class {
+      constructor(i, e) {
+        (this._root = i),
+          (this._settings = e),
+          (this._reader = new zk.default(this._root, this._settings));
+      }
+      read() {
+        return this._reader.read();
+      }
+    };
+  Lo.default = Uo;
+});
+var ed = te((xo) => {
+  "use strict";
+  Object.defineProperty(xo, "__esModule", { value: !0 });
+  var Qk = require("path"),
+    Xk = xr(),
+    Fo = class {
+      constructor(i = {}) {
+        (this._options = i),
+          (this.basePath = this._getValue(this._options.basePath, void 0)),
+          (this.concurrency = this._getValue(
+            this._options.concurrency,
+            Number.POSITIVE_INFINITY
+          )),
+          (this.deepFilter = this._getValue(this._options.deepFilter, null)),
+          (this.entryFilter = this._getValue(this._options.entryFilter, null)),
+          (this.errorFilter = this._getValue(this._options.errorFilter, null)),
+          (this.pathSegmentSeparator = this._getValue(
+            this._options.pathSegmentSeparator,
+            Qk.sep
+          )),
+          (this.fsScandirSettings = new Xk.Settings({
+            followSymbolicLinks: this._options.followSymbolicLinks,
+            fs: this._options.fs,
+            pathSegmentSeparator: this._options.pathSegmentSeparator,
+            stats: this._options.stats,
+            throwErrorOnBrokenSymbolicLink:
+              this._options.throwErrorOnBrokenSymbolicLink,
+          }));
+      }
+      _getValue(i, e) {
+        return i ?? e;
+      }
+    };
+  xo.default = Fo;
+});
+var Bo = te((Ut) => {
+  "use strict";
+  Object.defineProperty(Ut, "__esModule", { value: !0 });
+  Ut.Settings = Ut.walkStream = Ut.walkSync = Ut.walk = void 0;
+  var td = z_(),
+    Jk = Q_(),
+    e0 = J_(),
+    No = ed();
+  Ut.Settings = No.default;
+  function t0(r, i, e) {
+    if (typeof i == "function") {
+      new td.default(r, Hr()).read(i);
+      return;
+    }
+    new td.default(r, Hr(i)).read(e);
+  }
+  Ut.walk = t0;
+  function i0(r, i) {
+    let e = Hr(i);
+    return new e0.default(r, e).read();
+  }
+  Ut.walkSync = i0;
+  function n0(r, i) {
+    let e = Hr(i);
+    return new Jk.default(r, e).read();
+  }
+  Ut.walkStream = n0;
+  function Hr(r = {}) {
+    return r instanceof No.default ? r : new No.default(r);
+  }
+});
+var qo = te((Ho) => {
+  "use strict";
+  Object.defineProperty(Ho, "__esModule", { value: !0 });
+  var r0 = require("path"),
+    a0 = Ai(),
+    id = Zt(),
+    Yo = class {
+      constructor(i) {
+        (this._settings = i),
+          (this._fsStatSettings = new a0.Settings({
+            followSymbolicLink: this._settings.followSymbolicLinks,
+            fs: this._settings.fs,
+            throwErrorOnBrokenSymbolicLink: this._settings.followSymbolicLinks,
+          }));
+      }
+      _getFullEntryPath(i) {
+        return r0.resolve(this._settings.cwd, i);
+      }
+      _makeEntry(i, e) {
+        let l = { name: e, path: e, dirent: id.fs.createDirentFromStats(e, i) };
+        return this._settings.stats && (l.stats = i), l;
+      }
+      _isFatalError(i) {
+        return !id.errno.isEnoentCodeError(i) && !this._settings.suppressErrors;
+      }
+    };
+  Ho.default = Yo;
+});
+var $o = te((Zo) => {
+  "use strict";
+  Object.defineProperty(Zo, "__esModule", { value: !0 });
+  var s0 = require("stream"),
+    o0 = Ai(),
+    c0 = Bo(),
+    l0 = qo(),
+    Wo = class extends l0.default {
+      constructor() {
+        super(...arguments),
+          (this._walkStream = c0.walkStream),
+          (this._stat = o0.stat);
+      }
+      dynamic(i, e) {
+        return this._walkStream(i, e);
+      }
+      static(i, e) {
+        let l = i.map(this._getFullEntryPath, this),
+          p = new s0.PassThrough({ objectMode: !0 });
+        p._write = (m, w, O) =>
+          this._getEntry(l[m], i[m], e)
+            .then((P) => {
+              P !== null && e.entryFilter(P) && p.push(P),
+                m === l.length - 1 && p.end(),
+                O();
+            })
+            .catch(O);
+        for (let m = 0; m < l.length; m++) p.write(m);
+        return p;
+      }
+      _getEntry(i, e, l) {
+        return this._getStat(i)
+          .then((p) => this._makeEntry(p, e))
+          .catch((p) => {
+            if (l.errorFilter(p)) return null;
+            throw p;
+          });
+      }
+      _getStat(i) {
+        return new Promise((e, l) => {
+          this._stat(i, this._fsStatSettings, (p, m) =>
+            p === null ? e(m) : l(p)
+          );
+        });
+      }
+    };
+  Zo.default = Wo;
+});
+var nd = te((Vo) => {
+  "use strict";
+  Object.defineProperty(Vo, "__esModule", { value: !0 });
+  var Ki = Zt(),
+    Go = class {
+      constructor(i, e, l) {
+        (this._patterns = i),
+          (this._settings = e),
+          (this._micromatchOptions = l),
+          (this._storage = []),
+          this._fillStorage();
+      }
+      _fillStorage() {
+        let i = Ki.pattern.expandPatternsWithBraceExpansion(this._patterns);
+        for (let e of i) {
+          let l = this._getPatternSegments(e),
+            p = this._splitSegmentsIntoSections(l);
+          this._storage.push({
+            complete: p.length <= 1,
+            pattern: e,
+            segments: l,
+            sections: p,
+          });
+        }
+      }
+      _getPatternSegments(i) {
+        return Ki.pattern
+          .getPatternParts(i, this._micromatchOptions)
+          .map((l) =>
+            Ki.pattern.isDynamicPattern(l, this._settings)
+              ? {
+                  dynamic: !0,
+                  pattern: l,
+                  patternRe: Ki.pattern.makeRe(l, this._micromatchOptions),
+                }
+              : { dynamic: !1, pattern: l }
+          );
+      }
+      _splitSegmentsIntoSections(i) {
+        return Ki.array.splitWhen(
+          i,
+          (e) => e.dynamic && Ki.pattern.hasGlobStar(e.pattern)
+        );
+      }
+    };
+  Vo.default = Go;
+});
+var rd = te((zo) => {
+  "use strict";
+  Object.defineProperty(zo, "__esModule", { value: !0 });
+  var u0 = nd(),
+    Ko = class extends u0.default {
+      match(i) {
+        let e = i.split("/"),
+          l = e.length,
+          p = this._storage.filter((m) => !m.complete || m.segments.length > l);
+        for (let m of p) {
+          let w = m.sections[0];
+          if (
+            (!m.complete && l > w.length) ||
+            e.every((P, B) => {
+              let D = m.segments[B];
+              return !!(
+                (D.dynamic && D.patternRe.test(P)) ||
+                (!D.dynamic && D.pattern === P)
+              );
+            })
+          )
+            return !0;
+        }
+        return !1;
+      }
+    };
+  zo.default = Ko;
+});
+var ad = te((Xo) => {
+  "use strict";
+  Object.defineProperty(Xo, "__esModule", { value: !0 });
+  var qr = Zt(),
+    _0 = rd(),
+    Qo = class {
+      constructor(i, e) {
+        (this._settings = i), (this._micromatchOptions = e);
+      }
+      getFilter(i, e, l) {
+        let p = this._getMatcher(e),
+          m = this._getNegativePatternsRe(l);
+        return (w) => this._filter(i, w, p, m);
+      }
+      _getMatcher(i) {
+        return new _0.default(i, this._settings, this._micromatchOptions);
+      }
+      _getNegativePatternsRe(i) {
+        let e = i.filter(qr.pattern.isAffectDepthOfReadingPattern);
+        return qr.pattern.convertPatternsToRe(e, this._micromatchOptions);
+      }
+      _filter(i, e, l, p) {
+        if (this._isSkippedByDeep(i, e.path) || this._isSkippedSymbolicLink(e))
+          return !1;
+        let m = qr.path.removeLeadingDotSegment(e.path);
+        return this._isSkippedByPositivePatterns(m, l)
+          ? !1
+          : this._isSkippedByNegativePatterns(m, p);
+      }
+      _isSkippedByDeep(i, e) {
+        return this._settings.deep === 1 / 0
+          ? !1
+          : this._getEntryLevel(i, e) >= this._settings.deep;
+      }
+      _getEntryLevel(i, e) {
+        let l = e.split("/").length;
+        if (i === "") return l;
+        let p = i.split("/").length;
+        return l - p;
+      }
+      _isSkippedSymbolicLink(i) {
+        return !this._settings.followSymbolicLinks && i.dirent.isSymbolicLink();
+      }
+      _isSkippedByPositivePatterns(i, e) {
+        return !this._settings.baseNameMatch && !e.match(i);
+      }
+      _isSkippedByNegativePatterns(i, e) {
+        return !qr.pattern.matchAny(i, e);
+      }
+    };
+  Xo.default = Qo;
+});
+var sd = te((ec) => {
+  "use strict";
+  Object.defineProperty(ec, "__esModule", { value: !0 });
+  var Ri = Zt(),
+    Jo = class {
+      constructor(i, e) {
+        (this._settings = i),
+          (this._micromatchOptions = e),
+          (this.index = new Map());
+      }
+      getFilter(i, e) {
+        let l = Ri.pattern.convertPatternsToRe(i, this._micromatchOptions),
+          p = Ri.pattern.convertPatternsToRe(e, this._micromatchOptions);
+        return (m) => this._filter(m, l, p);
+      }
+      _filter(i, e, l) {
+        if (
+          (this._settings.unique && this._isDuplicateEntry(i)) ||
+          this._onlyFileFilter(i) ||
+          this._onlyDirectoryFilter(i) ||
+          this._isSkippedByAbsoluteNegativePatterns(i.path, l)
+        )
+          return !1;
+        let p = this._settings.baseNameMatch ? i.name : i.path,
+          m =
+            this._isMatchToPatterns(p, e) &&
+            !this._isMatchToPatterns(i.path, l);
+        return this._settings.unique && m && this._createIndexRecord(i), m;
+      }
+      _isDuplicateEntry(i) {
+        return this.index.has(i.path);
+      }
+      _createIndexRecord(i) {
+        this.index.set(i.path, void 0);
+      }
+      _onlyFileFilter(i) {
+        return this._settings.onlyFiles && !i.dirent.isFile();
+      }
+      _onlyDirectoryFilter(i) {
+        return this._settings.onlyDirectories && !i.dirent.isDirectory();
+      }
+      _isSkippedByAbsoluteNegativePatterns(i, e) {
+        if (!this._settings.absolute) return !1;
+        let l = Ri.path.makeAbsolute(this._settings.cwd, i);
+        return Ri.pattern.matchAny(l, e);
+      }
+      _isMatchToPatterns(i, e) {
+        let l = Ri.path.removeLeadingDotSegment(i);
+        return Ri.pattern.matchAny(l, e) || Ri.pattern.matchAny(l + "/", e);
+      }
+    };
+  ec.default = Jo;
+});
+var od = te((ic) => {
+  "use strict";
+  Object.defineProperty(ic, "__esModule", { value: !0 });
+  var d0 = Zt(),
+    tc = class {
+      constructor(i) {
+        this._settings = i;
+      }
+      getFilter() {
+        return (i) => this._isNonFatalError(i);
+      }
+      _isNonFatalError(i) {
+        return d0.errno.isEnoentCodeError(i) || this._settings.suppressErrors;
+      }
+    };
+  ic.default = tc;
+});
+var ld = te((rc) => {
+  "use strict";
+  Object.defineProperty(rc, "__esModule", { value: !0 });
+  var cd = Zt(),
+    nc = class {
+      constructor(i) {
+        this._settings = i;
+      }
+      getTransformer() {
+        return (i) => this._transform(i);
+      }
+      _transform(i) {
+        let e = i.path;
+        return (
+          this._settings.absolute &&
+            ((e = cd.path.makeAbsolute(this._settings.cwd, e)),
+            (e = cd.path.unixify(e))),
+          this._settings.markDirectories &&
+            i.dirent.isDirectory() &&
+            (e += "/"),
+          this._settings.objectMode
+            ? Object.assign(Object.assign({}, i), { path: e })
+            : e
+        );
+      }
+    };
+  rc.default = nc;
+});
+var Wr = te((sc) => {
+  "use strict";
+  Object.defineProperty(sc, "__esModule", { value: !0 });
+  var f0 = require("path"),
+    h0 = ad(),
+    b0 = sd(),
+    p0 = od(),
+    y0 = ld(),
+    ac = class {
+      constructor(i) {
+        (this._settings = i),
+          (this.errorFilter = new p0.default(this._settings)),
+          (this.entryFilter = new b0.default(
+            this._settings,
+            this._getMicromatchOptions()
+          )),
+          (this.deepFilter = new h0.default(
+            this._settings,
+            this._getMicromatchOptions()
+          )),
+          (this.entryTransformer = new y0.default(this._settings));
+      }
+      _getRootDirectory(i) {
+        return f0.resolve(this._settings.cwd, i.base);
+      }
+      _getReaderOptions(i) {
+        let e = i.base === "." ? "" : i.base;
+        return {
+          basePath: e,
+          pathSegmentSeparator: "/",
+          concurrency: this._settings.concurrency,
+          deepFilter: this.deepFilter.getFilter(e, i.positive, i.negative),
+          entryFilter: this.entryFilter.getFilter(i.positive, i.negative),
+          errorFilter: this.errorFilter.getFilter(),
+          followSymbolicLinks: this._settings.followSymbolicLinks,
+          fs: this._settings.fs,
+          stats: this._settings.stats,
+          throwErrorOnBrokenSymbolicLink:
+            this._settings.throwErrorOnBrokenSymbolicLink,
+          transform: this.entryTransformer.getTransformer(),
+        };
+      }
+      _getMicromatchOptions() {
+        return {
+          dot: this._settings.dot,
+          matchBase: this._settings.baseNameMatch,
+          nobrace: !this._settings.braceExpansion,
+          nocase: !this._settings.caseSensitiveMatch,
+          noext: !this._settings.extglob,
+          noglobstar: !this._settings.globstar,
+          posix: !0,
+          strictSlashes: !1,
+        };
+      }
+    };
+  sc.default = ac;
+});
+var ud = te((cc) => {
+  "use strict";
+  Object.defineProperty(cc, "__esModule", { value: !0 });
+  var g0 = $o(),
+    v0 = Wr(),
+    oc = class extends v0.default {
+      constructor() {
+        super(...arguments), (this._reader = new g0.default(this._settings));
+      }
+      read(i) {
+        let e = this._getRootDirectory(i),
+          l = this._getReaderOptions(i),
+          p = [];
+        return new Promise((m, w) => {
+          let O = this.api(e, i, l);
+          O.once("error", w),
+            O.on("data", (P) => p.push(l.transform(P))),
+            O.once("end", () => m(p));
+        });
+      }
+      api(i, e, l) {
+        return e.dynamic
+          ? this._reader.dynamic(i, l)
+          : this._reader.static(e.patterns, l);
+      }
+    };
+  cc.default = oc;
+});
+var _d = te((uc) => {
+  "use strict";
+  Object.defineProperty(uc, "__esModule", { value: !0 });
+  var j0 = require("stream"),
+    m0 = $o(),
+    w0 = Wr(),
+    lc = class extends w0.default {
+      constructor() {
+        super(...arguments), (this._reader = new m0.default(this._settings));
+      }
+      read(i) {
+        let e = this._getRootDirectory(i),
+          l = this._getReaderOptions(i),
+          p = this.api(e, i, l),
+          m = new j0.Readable({ objectMode: !0, read: () => {} });
+        return (
+          p
+            .once("error", (w) => m.emit("error", w))
+            .on("data", (w) => m.emit("data", l.transform(w)))
+            .once("end", () => m.emit("end")),
+          m.once("close", () => p.destroy()),
+          m
+        );
+      }
+      api(i, e, l) {
+        return e.dynamic
+          ? this._reader.dynamic(i, l)
+          : this._reader.static(e.patterns, l);
+      }
+    };
+  uc.default = lc;
+});
+var dd = te((dc) => {
+  "use strict";
+  Object.defineProperty(dc, "__esModule", { value: !0 });
+  var k0 = Ai(),
+    E0 = Bo(),
+    S0 = qo(),
+    _c = class extends S0.default {
+      constructor() {
+        super(...arguments),
+          (this._walkSync = E0.walkSync),
+          (this._statSync = k0.statSync);
+      }
+      dynamic(i, e) {
+        return this._walkSync(i, e);
+      }
+      static(i, e) {
+        let l = [];
+        for (let p of i) {
+          let m = this._getFullEntryPath(p),
+            w = this._getEntry(m, p, e);
+          w === null || !e.entryFilter(w) || l.push(w);
+        }
+        return l;
+      }
+      _getEntry(i, e, l) {
+        try {
+          let p = this._getStat(i);
+          return this._makeEntry(p, e);
+        } catch (p) {
+          if (l.errorFilter(p)) return null;
+          throw p;
+        }
+      }
+      _getStat(i) {
+        return this._statSync(i, this._fsStatSettings);
+      }
+    };
+  dc.default = _c;
+});
+var fd = te((hc) => {
+  "use strict";
+  Object.defineProperty(hc, "__esModule", { value: !0 });
+  var C0 = dd(),
+    A0 = Wr(),
+    fc = class extends A0.default {
+      constructor() {
+        super(...arguments), (this._reader = new C0.default(this._settings));
+      }
+      read(i) {
+        let e = this._getRootDirectory(i),
+          l = this._getReaderOptions(i);
+        return this.api(e, i, l).map(l.transform);
+      }
+      api(i, e, l) {
+        return e.dynamic
+          ? this._reader.dynamic(i, l)
+          : this._reader.static(e.patterns, l);
+      }
+    };
+  hc.default = fc;
+});
+var hd = te((Qi) => {
+  "use strict";
+  Object.defineProperty(Qi, "__esModule", { value: !0 });
+  Qi.DEFAULT_FILE_SYSTEM_ADAPTER = void 0;
+  var zi = require("fs"),
+    R0 = require("os"),
+    O0 = Math.max(R0.cpus().length, 1);
+  Qi.DEFAULT_FILE_SYSTEM_ADAPTER = {
+    lstat: zi.lstat,
+    lstatSync: zi.lstatSync,
+    stat: zi.stat,
+    statSync: zi.statSync,
+    readdir: zi.readdir,
+    readdirSync: zi.readdirSync,
+  };
+  var bc = class {
+    constructor(i = {}) {
+      (this._options = i),
+        (this.absolute = this._getValue(this._options.absolute, !1)),
+        (this.baseNameMatch = this._getValue(this._options.baseNameMatch, !1)),
+        (this.braceExpansion = this._getValue(
+          this._options.braceExpansion,
+          !0
+        )),
+        (this.caseSensitiveMatch = this._getValue(
+          this._options.caseSensitiveMatch,
+          !0
+        )),
+        (this.concurrency = this._getValue(this._options.concurrency, O0)),
+        (this.cwd = this._getValue(this._options.cwd, process.cwd())),
+        (this.deep = this._getValue(this._options.deep, 1 / 0)),
+        (this.dot = this._getValue(this._options.dot, !1)),
+        (this.extglob = this._getValue(this._options.extglob, !0)),
+        (this.followSymbolicLinks = this._getValue(
+          this._options.followSymbolicLinks,
+          !0
+        )),
+        (this.fs = this._getFileSystemMethods(this._options.fs)),
+        (this.globstar = this._getValue(this._options.globstar, !0)),
+        (this.ignore = this._getValue(this._options.ignore, [])),
+        (this.markDirectories = this._getValue(
+          this._options.markDirectories,
+          !1
+        )),
+        (this.objectMode = this._getValue(this._options.objectMode, !1)),
+        (this.onlyDirectories = this._getValue(
+          this._options.onlyDirectories,
+          !1
+        )),
+        (this.onlyFiles = this._getValue(this._options.onlyFiles, !0)),
+        (this.stats = this._getValue(this._options.stats, !1)),
+        (this.suppressErrors = this._getValue(
+          this._options.suppressErrors,
+          !1
+        )),
+        (this.throwErrorOnBrokenSymbolicLink = this._getValue(
+          this._options.throwErrorOnBrokenSymbolicLink,
+          !1
+        )),
+        (this.unique = this._getValue(this._options.unique, !0)),
+        this.onlyDirectories && (this.onlyFiles = !1),
+        this.stats && (this.objectMode = !0);
+    }
+    _getValue(i, e) {
+      return i === void 0 ? e : i;
+    }
+    _getFileSystemMethods(i = {}) {
+      return Object.assign(
+        Object.assign({}, Qi.DEFAULT_FILE_SYSTEM_ADAPTER),
+        i
+      );
+    }
+  };
+  Qi.default = bc;
+});
+var gd = te((mS, yd) => {
+  "use strict";
+  var bd = b_(),
+    pd = y_(),
+    T0 = ud(),
+    P0 = _d(),
+    D0 = fd(),
+    pc = hd(),
+    Oi = Zt();
+  async function yc(r, i) {
+    Xi(r);
+    let e = gc(r, T0.default, i),
+      l = await Promise.all(e);
+    return Oi.array.flatten(l);
+  }
+  (function (r) {
+    function i(w, O) {
+      Xi(w);
+      let P = gc(w, D0.default, O);
+      return Oi.array.flatten(P);
+    }
+    r.sync = i;
+    function e(w, O) {
+      Xi(w);
+      let P = gc(w, P0.default, O);
+      return Oi.stream.merge(P);
+    }
+    r.stream = e;
+    function l(w, O) {
+      Xi(w);
+      let P = pd.transform([].concat(w)),
+        B = new pc.default(O);
+      return bd.generate(P, B);
+    }
+    r.generateTasks = l;
+    function p(w, O) {
+      Xi(w);
+      let P = new pc.default(O);
+      return Oi.pattern.isDynamicPattern(w, P);
+    }
+    r.isDynamicPattern = p;
+    function m(w) {
+      return Xi(w), Oi.path.escape(w);
+    }
+    r.escapePath = m;
+  })(yc || (yc = {}));
+  function gc(r, i, e) {
+    let l = pd.transform([].concat(r)),
+      p = new pc.default(e),
+      m = bd.generate(l, p),
+      w = new i(p);
+    return m.map(w.read, w);
+  }
+  function Xi(r) {
+    if (
+      ![].concat(r).every((l) => Oi.string.isString(l) && !Oi.string.isEmpty(l))
+    )
+      throw new TypeError(
+        "Patterns must be a string (non empty) or an array of strings"
+      );
+  }
+  yd.exports = yc;
+});
+var I0 = {};
+Aj(I0, { registerWorker: () => jd });
+module.exports = Rj(I0);
+var ke = Pn(require("apache-arrow"));
+function Hi(r) {
+  switch (r.typeId) {
+    case ke.Type.Binary:
+      return { sqlType: "binary" };
+    case ke.Type.Bool:
+      return { sqlType: "bool" };
+    case ke.Type.Date:
+      return { sqlType: "date" };
+    case ke.Type.DateDay:
+      return { sqlType: "date32[d]" };
+    case ke.Type.DateMillisecond:
+      return { sqlType: "date64[ms]" };
+    case ke.Type.Decimal: {
+      let i = r;
+      return { sqlType: "decimal", precision: i.precision, scale: i.scale };
+    }
+    case ke.Type.Float:
+      return { sqlType: "float" };
+    case ke.Type.Float16:
+      return { sqlType: "float16" };
+    case ke.Type.Float32:
+      return { sqlType: "float32" };
+    case ke.Type.Float64:
+      return { sqlType: "float64" };
+    case ke.Type.Int:
+      return { sqlType: "int32" };
+    case ke.Type.Int16:
+      return { sqlType: "int16" };
+    case ke.Type.Int32:
+      return { sqlType: "int32" };
+    case ke.Type.Int64:
+      return { sqlType: "int64" };
+    case ke.Type.Uint16:
+      return { sqlType: "uint16" };
+    case ke.Type.Uint32:
+      return { sqlType: "uint32" };
+    case ke.Type.Uint64:
+      return { sqlType: "uint64" };
+    case ke.Type.Uint8:
+      return { sqlType: "uint8" };
+    case ke.Type.IntervalDayTime:
+      return { sqlType: "interval[dt]" };
+    case ke.Type.IntervalYearMonth:
+      return { sqlType: "interval[m]" };
+    case ke.Type.List:
+      return { sqlType: "list", valueType: Hi(r.valueType) };
+    case ke.Type.FixedSizeBinary:
+      return { sqlType: "fixedsizebinary", byteWidth: r.byteWidth };
+    case ke.Type.Null:
+      return { sqlType: "null" };
+    case ke.Type.Utf8:
+      return { sqlType: "utf8" };
+    case ke.Type.Struct:
+      return {
+        sqlType: "struct",
+        fields: r.children.map((e) => ur(e.name, e.type)),
+      };
+    case ke.Type.Map: {
+      let i = r;
+      return {
+        sqlType: "map",
+        keyType: Hi(i.keyType),
+        valueType: Hi(i.valueType),
+      };
+    }
+    case ke.Type.Time:
+      return { sqlType: "time[s]" };
+    case ke.Type.TimeMicrosecond:
+      return { sqlType: "time[us]" };
+    case ke.Type.TimeMillisecond:
+      return { sqlType: "time[ms]" };
+    case ke.Type.TimeNanosecond:
+      return { sqlType: "time[ns]" };
+    case ke.Type.TimeSecond:
+      return { sqlType: "time[s]" };
+    case ke.Type.Timestamp:
+      return { sqlType: "timestamp", timezone: r.timezone || void 0 };
+    case ke.Type.TimestampSecond:
+      return { sqlType: "timestamp[s]", timezone: r.timezone || void 0 };
+    case ke.Type.TimestampMicrosecond:
+      return { sqlType: "timestamp[us]", timezone: r.timezone || void 0 };
+    case ke.Type.TimestampNanosecond:
+      return { sqlType: "timestamp[ns]", timezone: r.timezone || void 0 };
+    case ke.Type.TimestampMillisecond:
+      return { sqlType: "timestamp[ms]", timezone: r.timezone || void 0 };
+  }
+  throw new Error(`unsupported arrow type: ${r.toString()}`);
+}
+function ur(r, i) {
+  let e = Hi(i);
+  return (e.name = r), e;
+}
+var _r = class {
+  constructor() {
+    this._bindings = null;
+    this._nextMessageId = 0;
+  }
+  log(i) {
+    this.postMessage(
+      { messageId: this._nextMessageId++, requestId: 0, type: "LOG", data: i },
+      []
+    );
+  }
+  sendOK(i) {
+    this.postMessage(
+      {
+        messageId: this._nextMessageId++,
+        requestId: i.messageId,
+        type: "OK",
+        data: null,
+      },
+      []
+    );
+  }
+  failWith(i, e) {
+    let l = { name: e.name, message: e.message, stack: e.stack || void 0 };
+    this.postMessage(
+      {
+        messageId: this._nextMessageId++,
+        requestId: i.messageId,
+        type: "ERROR",
+        data: l,
+      },
+      []
+    );
+  }
+  async onMessage(i) {
+    switch (i.type) {
+      case "PING":
+        this.sendOK(i);
+        return;
+      case "INSTANTIATE":
+        this._bindings != null &&
+          this.failWith(i, new Error("duckdb already initialized"));
+        try {
+          (this._bindings = await this.instantiate(
+            i.data[0],
+            i.data[1],
+            (e) => {
+              this.postMessage(
+                {
+                  messageId: this._nextMessageId++,
+                  requestId: i.messageId,
+                  type: "INSTANTIATE_PROGRESS",
+                  data: e,
+                },
+                []
+              );
+            }
+          )),
+            this.sendOK(i);
+        } catch (e) {
+          (this._bindings = null), this.failWith(i, e);
+        }
+        return;
+      default:
+        break;
+    }
+    if (!this._bindings)
+      return this.failWith(i, new Error("duckdb is not initialized"));
+    try {
+      switch (i.type) {
+        case "GET_VERSION":
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "VERSION_STRING",
+              data: this._bindings.getVersion(),
+            },
+            []
+          );
+          break;
+        case "GET_FEATURE_FLAGS":
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "FEATURE_FLAGS",
+              data: this._bindings.getFeatureFlags(),
+            },
+            []
+          );
+          break;
+        case "RESET":
+          this._bindings.reset(), this.sendOK(i);
+          break;
+        case "OPEN":
+          this._bindings.open(i.data), this.sendOK(i);
+          break;
+        case "DROP_FILE":
+          this._bindings.dropFile(i.data), this.sendOK(i);
+          break;
+        case "DROP_FILES":
+          this._bindings.dropFiles(), this.sendOK(i);
+          break;
+        case "FLUSH_FILES":
+          this._bindings.flushFiles(), this.sendOK(i);
+          break;
+        case "CONNECT": {
+          let e = this._bindings.connect();
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "CONNECTION_INFO",
+              data: e.useUnsafe((l, p) => p),
+            },
+            []
+          );
+          break;
+        }
+        case "DISCONNECT":
+          this._bindings.disconnect(i.data), this.sendOK(i);
+          break;
+        case "CREATE_PREPARED": {
+          let e = this._bindings.createPrepared(i.data[0], i.data[1]);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "PREPARED_STATEMENT_ID",
+              data: e,
+            },
+            []
+          );
+          break;
+        }
+        case "CLOSE_PREPARED": {
+          this._bindings.closePrepared(i.data[0], i.data[1]), this.sendOK(i);
+          break;
+        }
+        case "RUN_PREPARED": {
+          let e = this._bindings.runPrepared(i.data[0], i.data[1], i.data[2]);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "QUERY_RESULT",
+              data: e,
+            },
+            [e.buffer]
+          );
+          break;
+        }
+        case "RUN_QUERY": {
+          let e = this._bindings.runQuery(i.data[0], i.data[1]);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "QUERY_RESULT",
+              data: e,
+            },
+            [e.buffer]
+          );
+          break;
+        }
+        case "SEND_PREPARED": {
+          let e = this._bindings.sendPrepared(i.data[0], i.data[1], i.data[2]);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "QUERY_RESULT_HEADER",
+              data: e,
+            },
+            [e.buffer]
+          );
+          break;
+        }
+        case "START_PENDING_QUERY": {
+          let e = this._bindings.startPendingQuery(i.data[0], i.data[1]),
+            l = [];
+          e && l.push(e.buffer),
+            this.postMessage(
+              {
+                messageId: this._nextMessageId++,
+                requestId: i.messageId,
+                type: "QUERY_RESULT_HEADER_OR_NULL",
+                data: e,
+              },
+              l
+            );
+          break;
+        }
+        case "POLL_PENDING_QUERY": {
+          let e = this._bindings.pollPendingQuery(i.data),
+            l = [];
+          e && l.push(e.buffer),
+            this.postMessage(
+              {
+                messageId: this._nextMessageId++,
+                requestId: i.messageId,
+                type: "QUERY_RESULT_HEADER_OR_NULL",
+                data: e,
+              },
+              l
+            );
+          break;
+        }
+        case "CANCEL_PENDING_QUERY": {
+          let e = this._bindings.cancelPendingQuery(i.data);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "SUCCESS",
+              data: e,
+            },
+            []
+          );
+          break;
+        }
+        case "FETCH_QUERY_RESULTS": {
+          let e = this._bindings.fetchQueryResults(i.data);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "QUERY_RESULT_CHUNK",
+              data: e,
+            },
+            [e.buffer]
+          );
+          break;
+        }
+        case "GET_TABLE_NAMES": {
+          let e = this._bindings.getTableNames(i.data[0], i.data[1]);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "TABLE_NAMES",
+              data: e,
+            },
+            []
+          );
+          break;
+        }
+        case "GLOB_FILE_INFOS": {
+          let e = this._bindings.globFiles(i.data);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "FILE_INFOS",
+              data: e,
+            },
+            []
+          );
+          break;
+        }
+        case "REGISTER_FILE_URL":
+          this._bindings.registerFileURL(i.data[0], i.data[1]), this.sendOK(i);
+          break;
+        case "REGISTER_FILE_BUFFER":
+          this._bindings.registerFileBuffer(i.data[0], i.data[1]),
+            this.sendOK(i);
+          break;
+        case "REGISTER_FILE_HANDLE":
+          this._bindings.registerFileHandle(i.data[0], i.data[1]),
+            this.sendOK(i);
+          break;
+        case "COPY_FILE_TO_PATH":
+          this._bindings.copyFileToPath(i.data[0], i.data[1]), this.sendOK(i);
+          break;
+        case "COPY_FILE_TO_BUFFER": {
+          let e = this._bindings.copyFileToBuffer(i.data);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "FILE_BUFFER",
+              data: e,
+            },
+            []
+          );
+          break;
+        }
+        case "COLLECT_FILE_STATISTICS":
+          this._bindings.collectFileStatistics(i.data[0], i.data[1]),
+            this.sendOK(i);
+          break;
+        case "EXPORT_FILE_STATISTICS": {
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "FILE_STATISTICS",
+              data: this._bindings.exportFileStatistics(i.data),
+            },
+            []
+          );
+          break;
+        }
+        case "INSERT_ARROW_FROM_IPC_STREAM": {
+          this._bindings.insertArrowFromIPCStream(
+            i.data[0],
+            i.data[1],
+            i.data[2]
+          ),
+            this.sendOK(i);
+          break;
+        }
+        case "IMPORT_CSV_FROM_PATH": {
+          this._bindings.insertCSVFromPath(i.data[0], i.data[1], i.data[2]),
+            this.sendOK(i);
+          break;
+        }
+        case "IMPORT_JSON_FROM_PATH": {
+          this._bindings.insertJSONFromPath(i.data[0], i.data[1], i.data[2]),
+            this.sendOK(i);
+          break;
+        }
+        case "TOKENIZE": {
+          let e = this._bindings.tokenize(i.data);
+          this.postMessage(
+            {
+              messageId: this._nextMessageId++,
+              requestId: i.messageId,
+              type: "SCRIPT_TOKENS",
+              data: e,
+            },
+            []
+          );
+          break;
+        }
+      }
+    } catch (e) {
+      return this.failWith(i, e);
+    }
+  }
+};
+var kl = {},
+  Oj = (() => {
+    var r = kl.url;
+    return function (i) {
+      i = i || {};
+      var e = typeof i < "u" ? i : {},
+        l,
+        p;
+      (e.ready = new Promise(function (c, h) {
+        (l = c), (p = h);
+      })),
+        Object.getOwnPropertyDescriptor(e.ready, "_main") ||
+          (Object.defineProperty(e.ready, "_main", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_main", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_malloc") ||
+          (Object.defineProperty(e.ready, "_malloc", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_malloc", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_free") ||
+          (Object.defineProperty(e.ready, "_free", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_free", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_clear_response"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_clear_response", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_clear_response", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_collect_file_stats"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_collect_file_stats", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_collect_file_stats", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_connect") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_connect", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_connect", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_copy_file_to_buffer"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_buffer", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_buffer", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_copy_file_to_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_disconnect") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_disconnect", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_disconnect", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_export_file_stats"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_export_file_stats", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_export_file_stats", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_fail_with") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fail_with", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fail_with", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_flush_file") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_flush_file", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_flush_file", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_flush_files") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_flush_files", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_flush_files", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_fs_drop_file") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_drop_file", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_drop_file", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_fs_drop_files") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_drop_files", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_drop_files", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_get_file_info_by_id"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_get_file_info_by_id",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_get_file_info_by_id", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_get_file_info_by_name"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_get_file_info_by_name",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_get_file_info_by_name",
+            {
+              configurable: !0,
+              set: function () {
+                k(
+                  "You are setting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          )),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_glob_add_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_glob_add_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_glob_add_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_glob_file_infos"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_glob_file_infos", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_glob_file_infos", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_register_file_buffer"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_register_file_buffer",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_register_file_buffer",
+            {
+              configurable: !0,
+              set: function () {
+                k(
+                  "You are setting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          )),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_register_file_url"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_register_file_url", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_register_file_url", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_set_file_descriptor"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_set_file_descriptor",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_set_file_descriptor", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_get_feature_flags"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_feature_flags", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_feature_flags", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_get_global_file_info"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_global_file_info", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_global_file_info", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_get_tablenames"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_tablenames", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_tablenames", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_get_version") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_version", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_version", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_insert_arrow_from_ipc_stream"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_insert_arrow_from_ipc_stream",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(
+            e.ready,
+            "_duckdb_web_insert_arrow_from_ipc_stream",
+            {
+              configurable: !0,
+              set: function () {
+                k(
+                  "You are setting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          )),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_insert_csv_from_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_insert_csv_from_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_insert_csv_from_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_insert_json_from_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_insert_json_from_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_insert_json_from_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_open") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_open", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_open", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_pending_query_cancel"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_pending_query_cancel", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_pending_query_cancel", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_pending_query_poll"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_pending_query_poll", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_pending_query_poll", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_pending_query_start"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_pending_query_start", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_pending_query_start", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_prepared_close"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_close", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_close", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_prepared_create"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_create", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_create", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_prepared_run") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_run", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_run", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_prepared_send") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_send", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_send", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_query_fetch_results"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_query_fetch_results", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_query_fetch_results", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_query_run") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_query_run", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_query_run", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_reset") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_reset", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_reset", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_tokenize") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_tokenize", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_tokenize", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_udf_scalar_create"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_udf_scalar_create", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_udf_scalar_create", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "___stdio_exit") ||
+          (Object.defineProperty(e.ready, "___stdio_exit", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "___stdio_exit", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "onRuntimeInitialized") ||
+          (Object.defineProperty(e.ready, "onRuntimeInitialized", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "onRuntimeInitialized", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }));
+      var m = Object.assign({}, e),
+        w = [],
+        O = "./this.program",
+        P = (c, h) => {
+          throw h;
+        },
+        B = typeof window == "object",
+        D = typeof importScripts == "function",
+        q =
+          typeof process == "object" &&
+          typeof process.versions == "object" &&
+          typeof process.versions.node == "string",
+        x = !B && !q && !D;
+      if (e.ENVIRONMENT)
+        throw new Error(
+          "Module.ENVIRONMENT has been deprecated. To force the environment, use the ENVIRONMENT compile-time option (for example, -sENVIRONMENT=web or -sENVIRONMENT=node)"
+        );
+      var ie = "";
+      function X(c) {
+        return e.locateFile ? e.locateFile(c, ie) : ie + c;
+      }
+      var J, ce, le, Ae;
+      function Ee(c) {
+        if (c instanceof Yi) return;
+        let h = c;
+        c && typeof c == "object" && c.stack && (h = [c, c.stack]),
+          Y("exiting due to exception: " + h);
+      }
+      var xe, _e, Se;
+      if (q) {
+        if (!(typeof process == "object" && typeof require == "function"))
+          throw new Error(
+            "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)"
+          );
+        D ? (ie = require("path").dirname(ie) + "/") : (ie = __dirname + "/"),
+          (Se = () => {
+            _e || ((xe = require("fs")), (_e = require("path")));
+          }),
+          (J = function (h, v) {
+            return (
+              Se(),
+              (h = _e.normalize(h)),
+              xe.readFileSync(h, v ? void 0 : "utf8")
+            );
+          }),
+          (le = (c) => {
+            var h = J(c, !0);
+            return h.buffer || (h = new Uint8Array(h)), M(h.buffer), h;
+          }),
+          (ce = (c, h, v) => {
+            Se(),
+              (c = _e.normalize(c)),
+              xe.readFile(c, function (R, U) {
+                R ? v(R) : h(U.buffer);
+              });
+          }),
+          process.argv.length > 1 && (O = process.argv[1].replace(/\\/g, "/")),
+          (w = process.argv.slice(2)),
+          process.on("uncaughtException", function (c) {
+            if (!(c instanceof Yi)) throw c;
+          }),
+          process.on("unhandledRejection", function (c) {
+            throw c;
+          }),
+          (P = (c, h) => {
+            if (bi()) throw ((process.exitCode = c), h);
+            Ee(h), process.exit(c);
+          }),
+          (e.inspect = function () {
+            return "[Emscripten Module object]";
+          });
+      } else if (x) {
+        if (
+          (typeof process == "object" && typeof require == "function") ||
+          typeof window == "object" ||
+          typeof importScripts == "function"
+        )
+          throw new Error(
+            "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)"
+          );
+        typeof read < "u" &&
+          (J = function (h) {
+            return read(h);
+          }),
+          (le = function (h) {
+            let v;
+            return typeof readbuffer == "function"
+              ? new Uint8Array(readbuffer(h))
+              : ((v = read(h, "binary")), M(typeof v == "object"), v);
+          }),
+          (ce = function (h, v, R) {
+            setTimeout(() => v(le(h)), 0);
+          }),
+          typeof scriptArgs < "u"
+            ? (w = scriptArgs)
+            : typeof arguments < "u" && (w = arguments),
+          typeof quit == "function" &&
+            (P = (c, h) => {
+              Ee(h), quit(c);
+            }),
+          typeof print < "u" &&
+            (typeof console > "u" && (console = {}),
+            (console.log = print),
+            (console.warn = console.error =
+              typeof printErr < "u" ? printErr : print));
+      } else if (B || D) {
+        if (
+          (D
+            ? (ie = self.location.href)
+            : typeof document < "u" &&
+              document.currentScript &&
+              (ie = document.currentScript.src),
+          r && (ie = r),
+          ie.indexOf("blob:") !== 0
+            ? (ie = ie.substr(0, ie.replace(/[?#].*/, "").lastIndexOf("/") + 1))
+            : (ie = ""),
+          !(typeof window == "object" || typeof importScripts == "function"))
+        )
+          throw new Error(
+            "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)"
+          );
+        (J = (c) => {
+          var h = new XMLHttpRequest();
+          return h.open("GET", c, !1), h.send(null), h.responseText;
+        }),
+          D &&
+            (le = (c) => {
+              var h = new XMLHttpRequest();
+              return (
+                h.open("GET", c, !1),
+                (h.responseType = "arraybuffer"),
+                h.send(null),
+                new Uint8Array(h.response)
+              );
+            }),
+          (ce = (c, h, v) => {
+            var R = new XMLHttpRequest();
+            R.open("GET", c, !0),
+              (R.responseType = "arraybuffer"),
+              (R.onload = () => {
+                if (R.status == 200 || (R.status == 0 && R.response)) {
+                  h(R.response);
+                  return;
+                }
+                v();
+              }),
+              (R.onerror = v),
+              R.send(null);
+          }),
+          (Ae = (c) => (document.title = c));
+      } else throw new Error("environment detection error");
+      var de = e.print || console.log.bind(console),
+        Y = e.printErr || console.warn.bind(console);
+      Object.assign(e, m),
+        (m = null),
+        bs(),
+        e.arguments && (w = e.arguments),
+        se("arguments", "arguments_"),
+        e.thisProgram && (O = e.thisProgram),
+        se("thisProgram", "thisProgram"),
+        e.quit && (P = e.quit),
+        se("quit", "quit_"),
+        M(
+          typeof e.memoryInitializerPrefixURL > "u",
+          "Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.pthreadMainPrefixURL > "u",
+          "Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.cdInitializerPrefixURL > "u",
+          "Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.filePackagePrefixURL > "u",
+          "Module.filePackagePrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.read > "u",
+          "Module.read option was removed (modify read_ in JS)"
+        ),
+        M(
+          typeof e.readAsync > "u",
+          "Module.readAsync option was removed (modify readAsync in JS)"
+        ),
+        M(
+          typeof e.readBinary > "u",
+          "Module.readBinary option was removed (modify readBinary in JS)"
+        ),
+        M(
+          typeof e.setWindowTitle > "u",
+          "Module.setWindowTitle option was removed (modify setWindowTitle in JS)"
+        ),
+        M(
+          typeof e.TOTAL_MEMORY > "u",
+          "Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY"
+        ),
+        se("read", "read_"),
+        se("readAsync", "readAsync"),
+        se("readBinary", "readBinary"),
+        se("setWindowTitle", "setWindowTitle");
+      var ne = "IDBFS is no longer included by default; build with -lidbfs.js",
+        Ce =
+          "PROXYFS is no longer included by default; build with -lproxyfs.js",
+        F =
+          "WORKERFS is no longer included by default; build with -lworkerfs.js",
+        je = "NODEFS is no longer included by default; build with -lnodefs.js";
+      function ye() {
+        k(
+          "`alignMemory` is now a library function and not included by default; add it to your library.js __deps or to DEFAULT_LIBRARY_FUNCS_TO_INCLUDE on the command line"
+        );
+      }
+      M(
+        !x,
+        "shell environment detected but not enabled at build time.  Add 'shell' to `-sENVIRONMENT` to enable."
+      );
+      var Ue = 16,
+        I = 4;
+      function L(c) {
+        switch (c) {
+          case "i1":
+          case "i8":
+            return 1;
+          case "i16":
+            return 2;
+          case "i32":
+            return 4;
+          case "i64":
+            return 8;
+          case "float":
+            return 4;
+          case "double":
+            return 8;
+          default: {
+            if (c[c.length - 1] === "*") return I;
+            if (c[0] === "i") {
+              let h = Number(c.substr(1));
+              return (
+                M(
+                  h % 8 === 0,
+                  "getNativeTypeSize invalid bits " + h + ", type " + c
+                ),
+                h / 8
+              );
+            } else return 0;
+          }
+        }
+      }
+      function ge(c) {
+        ge.shown || (ge.shown = {}), ge.shown[c] || ((ge.shown[c] = 1), Y(c));
+      }
+      function we(c) {
+        return M(c < 16384), c < 128 ? [c] : [c % 128 | 128, c >> 7];
+      }
+      function lt(c, h) {
+        if (typeof WebAssembly.Function == "function") {
+          for (
+            var v = { i: "i32", j: "i64", f: "f32", d: "f64" },
+              R = { parameters: [], results: h[0] == "v" ? [] : [v[h[0]]] },
+              U = 1;
+            U < h.length;
+            ++U
+          )
+            R.parameters.push(v[h[U]]);
+          return new WebAssembly.Function(R, c);
+        }
+        var Z = [1, 96],
+          H = h.slice(0, 1),
+          $ = h.slice(1),
+          ae = { i: 127, j: 126, f: 125, d: 124 };
+        Z = Z.concat(we($.length));
+        for (var U = 0; U < $.length; ++U) Z.push(ae[$[U]]);
+        H == "v" ? Z.push(0) : (Z = Z.concat([1, ae[H]])),
+          (Z = [1].concat(we(Z.length), Z));
+        var fe = new Uint8Array(
+            [0, 97, 115, 109, 1, 0, 0, 0].concat(
+              Z,
+              [2, 7, 1, 1, 101, 1, 102, 0, 0, 7, 5, 1, 1, 102, 0, 0]
+            )
+          ),
+          ve = new WebAssembly.Module(fe),
+          We = new WebAssembly.Instance(ve, { e: { f: c } }),
+          Oe = We.exports.f;
+        return Oe;
+      }
+      var Je = [],
+        Te;
+      function Gt() {
+        if (Je.length) return Je.pop();
+        try {
+          Xe.grow(1);
+        } catch (c) {
+          throw c instanceof RangeError
+            ? "Unable to grow wasm table. Set ALLOW_TABLE_GROWTH."
+            : c;
+        }
+        return Xe.length - 1;
+      }
+      function Ji(c, h) {
+        for (var v = c; v < c + h; v++) {
+          var R = re(v);
+          R && Te.set(R, v);
+        }
+      }
+      function Ti(c, h) {
+        if (
+          (M(typeof c < "u"),
+          Te || ((Te = new WeakMap()), Ji(0, Xe.length)),
+          Te.has(c))
+        )
+          return Te.get(c);
+        var v = Gt();
+        try {
+          gn(v, c);
+        } catch (U) {
+          if (!(U instanceof TypeError)) throw U;
+          M(typeof h < "u", "Missing signature argument to addFunction: " + c);
+          var R = lt(c, h);
+          gn(v, R);
+        }
+        return Te.set(c, v), v;
+      }
+      function Lt(c) {
+        Te.delete(re(c)), Je.push(c);
+      }
+      function se(c, h) {
+        Object.getOwnPropertyDescriptor(e, c) ||
+          Object.defineProperty(e, c, {
+            configurable: !0,
+            get: function () {
+              k(
+                "Module." +
+                  c +
+                  " has been replaced with plain " +
+                  h +
+                  " (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)"
+              );
+            },
+          });
+      }
+      function Vt(c) {
+        Object.getOwnPropertyDescriptor(e, c) &&
+          k(
+            "`Module." +
+              c +
+              "` was supplied but `" +
+              c +
+              "` not included in INCOMING_MODULE_JS_API"
+          );
+      }
+      function si(c, h) {
+        var v =
+          "'" +
+          c +
+          "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
+        return (
+          h &&
+            (v +=
+              ". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you"),
+          v
+        );
+      }
+      function ee(c, h) {
+        Object.getOwnPropertyDescriptor(e, c) ||
+          Object.defineProperty(e, c, {
+            configurable: !0,
+            get: function () {
+              k(si(c, h));
+            },
+          });
+      }
+      function b(c, h) {
+        Object.getOwnPropertyDescriptor(e, c) || (e[c] = () => k(si(c, h)));
+      }
+      var z = 0,
+        oe = (c) => {
+          z = c;
+        },
+        Ne = () => z,
+        Ie;
+      e.wasmBinary && (Ie = e.wasmBinary), se("wasmBinary", "wasmBinary");
+      var Ye = e.noExitRuntime || !0;
+      se("noExitRuntime", "noExitRuntime"),
+        typeof WebAssembly != "object" && k("no native wasm support detected");
+      function oi(c, h, v = "i8", R) {
+        if ((v.charAt(v.length - 1) === "*" && (v = "i32"), R))
+          switch (v) {
+            case "i1":
+              Ge[c >>> 0] = h;
+              break;
+            case "i8":
+              Ge[c >>> 0] = h;
+              break;
+            case "i16":
+              li[c >>> 1] = h;
+              break;
+            case "i32":
+              bt[c >>> 2] = h;
+              break;
+            case "i64":
+              (yt = [
+                h >>> 0,
+                ((Le = h),
+                +Math.abs(Le) >= 1
+                  ? Le > 0
+                    ? (Math.min(+Math.floor(Le / 4294967296), 4294967295) |
+                        0) >>>
+                      0
+                    : ~~+Math.ceil((Le - +(~~Le >>> 0)) / 4294967296) >>> 0
+                  : 0),
+              ]),
+                (bt[c >>> 2] = yt[0]),
+                (bt[(c + 4) >>> 2] = yt[1]);
+              break;
+            case "float":
+              ui[c >>> 2] = h;
+              break;
+            case "double":
+              _i[c >>> 3] = h;
+              break;
+            default:
+              k("invalid type for setValue: " + v);
+          }
+        else
+          switch (v) {
+            case "i1":
+              N(c | 0, h | 0, 1);
+              break;
+            case "i8":
+              N(c | 0, h | 0, 1);
+              break;
+            case "i16":
+              N(c | 0, h | 0, 2);
+              break;
+            case "i32":
+              N(c | 0, h | 0, 4);
+              break;
+            case "i64":
+              (yt = [
+                h >>> 0,
+                ((Le = h),
+                +Math.abs(Le) >= 1
+                  ? Le > 0
+                    ? (Math.min(+Math.floor(Le / 4294967296), 4294967295) |
+                        0) >>>
+                      0
+                    : ~~+Math.ceil((Le - +(~~Le >>> 0)) / 4294967296) >>> 0
+                  : 0),
+              ]),
+                N(c | 0, yt[0] | 0, 4),
+                N((c + 4) | 0, yt[1] | 0, 4);
+              break;
+            case "float":
+              tn(c | 0, Math.fround(h), 4);
+              break;
+            case "double":
+              tn(c | 0, +h, 8);
+              break;
+            default:
+              k("invalid type for setValue: " + v);
+          }
+      }
+      function Kt(c, h = "i8", v) {
+        if ((h.charAt(h.length - 1) === "*" && (h = "i32"), v))
+          switch (h) {
+            case "i1":
+              return Ge[c >>> 0];
+            case "i8":
+              return Ge[c >>> 0];
+            case "i16":
+              return li[c >>> 1];
+            case "i32":
+              return bt[c >>> 2];
+            case "i64":
+              return bt[c >>> 2];
+            case "float":
+              return ui[c >>> 2];
+            case "double":
+              return Number(_i[c >>> 3]);
+            default:
+              k("invalid type for getValue: " + h);
+          }
+        else
+          switch (h) {
+            case "i1":
+              return V(c | 0, 1, 0) | 0;
+            case "i8":
+              return V(c | 0, 1, 0) | 0;
+            case "i16":
+              return V(c | 0, 2, 0) | 0;
+            case "i32":
+              return V(c | 0, 4, 0) | 0;
+            case "i64":
+              return V(c | 0, 8, 0) | 0;
+            case "float":
+              return Math.fround(nn(c | 0, 4, 0));
+            case "double":
+              return +nn(c | 0, 8, 0);
+            default:
+              k("invalid type for getValue: " + h);
+          }
+        return null;
+      }
+      function en(c, h) {
+        switch (c) {
+          case 1:
+            return "i8";
+          case 2:
+            return "i16";
+          case 4:
+            return h ? "float" : "i32";
+          case 8:
+            return h ? "double" : "i64";
+          default:
+            M(0);
+        }
+      }
+      function N(c, h, v, R) {
+        if (
+          ((c >>>= 0),
+          c <= 0 &&
+            k("segmentation fault storing " + v + " bytes to address " + c),
+          c % v !== 0 &&
+            k(
+              "alignment error storing to address " +
+                c +
+                ", which was expected to be aligned to a multiple of " +
+                v
+            ),
+          Ct)
+        ) {
+          var U = js() >>> 0;
+          c + v > U &&
+            k(
+              "segmentation fault, exceeded the top of the available dynamic heap when storing " +
+                v +
+                " bytes to address " +
+                c +
+                ". DYNAMICTOP=" +
+                U
+            ),
+            M(U >= Jn()),
+            M(U <= Ge.length);
+        }
+        return oi(c, h, en(v, R), 1), h;
+      }
+      function tn(c, h, v) {
+        return N(c, h, v, !0);
+      }
+      function V(c, h, v, R) {
+        if (
+          ((c >>>= 0),
+          c <= 0 &&
+            k("segmentation fault loading " + h + " bytes from address " + c),
+          c % h !== 0 &&
+            k(
+              "alignment error loading from address " +
+                c +
+                ", which was expected to be aligned to a multiple of " +
+                h
+            ),
+          Ct)
+        ) {
+          var U = js() >>> 0;
+          c + h > U &&
+            k(
+              "segmentation fault, exceeded the top of the available dynamic heap when loading " +
+                h +
+                " bytes from address " +
+                c +
+                ". DYNAMICTOP=" +
+                U
+            ),
+            M(U >= Jn()),
+            M(U <= Ge.length);
+        }
+        var Z = en(h, R),
+          H = Kt(c, Z, 1);
+        return v && (H = ha(H, parseInt(Z.substr(1), 10))), H;
+      }
+      function nn(c, h, v) {
+        return V(c, h, v, !0);
+      }
+      function md(c, h) {
+        var v = c & h;
+        return (
+          v !== c &&
+            k(
+              "Function table mask error: function pointer is " +
+                c +
+                " which is masked by " +
+                h +
+                ", the likely cause of this is that the function pointer is being called by the wrong type."
+            ),
+          v
+        );
+      }
+      function Zr() {
+        k("segmentation fault");
+      }
+      function $r() {
+        k("alignment fault");
+      }
+      var kt,
+        Et = !1,
+        Ft;
+      function M(c, h) {
+        c || k("Assertion failed" + (h ? ": " + h : ""));
+      }
+      function Gr(c) {
+        var h = e["_" + c];
+        return (
+          M(
+            h,
+            "Cannot call unknown function " + c + ", make sure it is exported"
+          ),
+          h
+        );
+      }
+      function rn(c, h, v, R, U) {
+        var Z = {
+          string: function (Ze) {
+            var nt = 0;
+            if (Ze != null && Ze !== 0) {
+              var Ht = (Ze.length << 2) + 1;
+              (nt = Fi(Ht)), Nt(Ze, nt, Ht);
+            }
+            return nt;
+          },
+          array: function (Ze) {
+            var nt = Fi(Ze.length);
+            return ln(Ze, nt), nt;
+          },
+        };
+        function H(Ze) {
+          return h === "string" ? $e(Ze) : h === "boolean" ? Boolean(Ze) : Ze;
+        }
+        var $ = Gr(c),
+          ae = [],
+          fe = 0;
+        if ((M(h !== "array", 'Return type should not be "array".'), R))
+          for (var ve = 0; ve < R.length; ve++) {
+            var We = Z[v[ve]];
+            We
+              ? (fe === 0 && (fe = ws()), (ae[ve] = We(R[ve])))
+              : (ae[ve] = R[ve]);
+          }
+        var Oe = $.apply(null, ae);
+        function ji(Ze) {
+          return fe !== 0 && ks(fe), H(Ze);
+        }
+        return (Oe = ji(Oe)), Oe;
+      }
+      function wd(c, h, v, R) {
+        return function () {
+          return rn(c, h, v, arguments, R);
+        };
+      }
+      var kd = 0,
+        Vr = 1;
+      function Ed(c, h) {
+        var v;
+        return (
+          M(typeof h == "number", "allocate no longer takes a type argument"),
+          M(typeof c != "number", "allocate no longer takes a number as arg0"),
+          h == Vr ? (v = Fi(c.length)) : (v = Rn(c.length)),
+          !c.subarray && !c.slice && (c = new Uint8Array(c)),
+          Qe.set(c, v >>> 0),
+          v
+        );
+      }
+      var an = typeof TextDecoder < "u" ? new TextDecoder("utf8") : void 0;
+      function sn(c, h, v) {
+        h >>>= 0;
+        for (var R = h + v, U = h; c[U] && !(U >= R); ) ++U;
+        if (U - h > 16 && c.buffer && an) return an.decode(c.subarray(h, U));
+        for (var Z = ""; h < U; ) {
+          var H = c[h++];
+          if (!(H & 128)) {
+            Z += String.fromCharCode(H);
+            continue;
+          }
+          var $ = c[h++] & 63;
+          if ((H & 224) == 192) {
+            Z += String.fromCharCode(((H & 31) << 6) | $);
+            continue;
+          }
+          var ae = c[h++] & 63;
+          if (
+            ((H & 240) == 224
+              ? (H = ((H & 15) << 12) | ($ << 6) | ae)
+              : ((H & 248) != 240 &&
+                  ge(
+                    "Invalid UTF-8 leading byte 0x" +
+                      H.toString(16) +
+                      " encountered when deserializing a UTF-8 string in wasm memory to a JS string!"
+                  ),
+                (H = ((H & 7) << 18) | ($ << 12) | (ae << 6) | (c[h++] & 63))),
+            H < 65536)
+          )
+            Z += String.fromCharCode(H);
+          else {
+            var fe = H - 65536;
+            Z += String.fromCharCode(55296 | (fe >> 10), 56320 | (fe & 1023));
+          }
+        }
+        return Z;
+      }
+      function $e(c, h) {
+        return (c >>>= 0), c ? sn(Qe, c, h) : "";
+      }
+      function xt(c, h, v, R) {
+        if (((v >>>= 0), !(R > 0))) return 0;
+        for (var U = v, Z = v + R - 1, H = 0; H < c.length; ++H) {
+          var $ = c.charCodeAt(H);
+          if ($ >= 55296 && $ <= 57343) {
+            var ae = c.charCodeAt(++H);
+            $ = (65536 + (($ & 1023) << 10)) | (ae & 1023);
+          }
+          if ($ <= 127) {
+            if (v >= Z) break;
+            h[v++ >>> 0] = $;
+          } else if ($ <= 2047) {
+            if (v + 1 >= Z) break;
+            (h[v++ >>> 0] = 192 | ($ >> 6)), (h[v++ >>> 0] = 128 | ($ & 63));
+          } else if ($ <= 65535) {
+            if (v + 2 >= Z) break;
+            (h[v++ >>> 0] = 224 | ($ >> 12)),
+              (h[v++ >>> 0] = 128 | (($ >> 6) & 63)),
+              (h[v++ >>> 0] = 128 | ($ & 63));
+          } else {
+            if (v + 3 >= Z) break;
+            $ > 1114111 &&
+              ge(
+                "Invalid Unicode code point 0x" +
+                  $.toString(16) +
+                  " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF)."
+              ),
+              (h[v++ >>> 0] = 240 | ($ >> 18)),
+              (h[v++ >>> 0] = 128 | (($ >> 12) & 63)),
+              (h[v++ >>> 0] = 128 | (($ >> 6) & 63)),
+              (h[v++ >>> 0] = 128 | ($ & 63));
+          }
+        }
+        return (h[v >>> 0] = 0), v - U;
+      }
+      function Nt(c, h, v) {
+        return (
+          M(
+            typeof v == "number",
+            "stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"
+          ),
+          xt(c, Qe, h, v)
+        );
+      }
+      function Bt(c) {
+        for (var h = 0, v = 0; v < c.length; ++v) {
+          var R = c.charCodeAt(v);
+          R >= 55296 &&
+            R <= 57343 &&
+            (R = (65536 + ((R & 1023) << 10)) | (c.charCodeAt(++v) & 1023)),
+            R <= 127
+              ? ++h
+              : R <= 2047
+              ? (h += 2)
+              : R <= 65535
+              ? (h += 3)
+              : (h += 4);
+        }
+        return h;
+      }
+      function Sd(c) {
+        c >>>= 0;
+        for (var h = ""; ; ) {
+          var v = V(c++ | 0, 1, 1) >>> 0;
+          if (!v) return h;
+          h += String.fromCharCode(v);
+        }
+      }
+      function Cd(c, h) {
+        return un(c, h, !1);
+      }
+      var on = typeof TextDecoder < "u" ? new TextDecoder("utf-16le") : void 0;
+      function Ad(c, h) {
+        M(
+          c % 2 == 0,
+          "Pointer passed to UTF16ToString must be aligned to two bytes!"
+        );
+        for (
+          var v = c, R = v >> 1, U = R + h / 2;
+          !(R >= U) && V((R >>> 0) * 2, 2, 1);
+
+        )
+          ++R;
+        if (((v = R << 1), v - c > 32 && on))
+          return on.decode(Qe.subarray(c >>> 0, v >>> 0));
+        for (var Z = "", H = 0; !(H >= h / 2); ++H) {
+          var $ = V((c + H * 2) | 0, 2, 0) | 0;
+          if ($ == 0) break;
+          Z += String.fromCharCode($);
+        }
+        return Z;
+      }
+      function Rd(c, h, v) {
+        if (
+          (M(
+            h % 2 == 0,
+            "Pointer passed to stringToUTF16 must be aligned to two bytes!"
+          ),
+          M(
+            typeof v == "number",
+            "stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"
+          ),
+          v === void 0 && (v = 2147483647),
+          v < 2)
+        )
+          return 0;
+        v -= 2;
+        for (
+          var R = h, U = v < c.length * 2 ? v / 2 : c.length, Z = 0;
+          Z < U;
+          ++Z
+        ) {
+          var H = c.charCodeAt(Z);
+          N(h | 0, H | 0, 2), (h += 2);
+        }
+        return N(h | 0, 0, 2), h - R;
+      }
+      function Od(c) {
+        return c.length * 2;
+      }
+      function Td(c, h) {
+        M(
+          c % 4 == 0,
+          "Pointer passed to UTF32ToString must be aligned to four bytes!"
+        );
+        for (var v = 0, R = ""; !(v >= h / 4); ) {
+          var U = V((c + v * 4) | 0, 4, 0) | 0;
+          if (U == 0) break;
+          if ((++v, U >= 65536)) {
+            var Z = U - 65536;
+            R += String.fromCharCode(55296 | (Z >> 10), 56320 | (Z & 1023));
+          } else R += String.fromCharCode(U);
+        }
+        return R;
+      }
+      function Pd(c, h, v) {
+        if (
+          ((h >>>= 0),
+          M(
+            h % 4 == 0,
+            "Pointer passed to stringToUTF32 must be aligned to four bytes!"
+          ),
+          M(
+            typeof v == "number",
+            "stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"
+          ),
+          v === void 0 && (v = 2147483647),
+          v < 4)
+        )
+          return 0;
+        for (var R = h, U = R + v - 4, Z = 0; Z < c.length; ++Z) {
+          var H = c.charCodeAt(Z);
+          if (H >= 55296 && H <= 57343) {
+            var $ = c.charCodeAt(++Z);
+            H = (65536 + ((H & 1023) << 10)) | ($ & 1023);
+          }
+          if ((N(h | 0, H | 0, 4), (h += 4), h + 4 > U)) break;
+        }
+        return N(h | 0, 0, 4), h - R;
+      }
+      function Dd(c) {
+        for (var h = 0, v = 0; v < c.length; ++v) {
+          var R = c.charCodeAt(v);
+          R >= 55296 && R <= 57343 && ++v, (h += 4);
+        }
+        return h;
+      }
+      function Id(c) {
+        var h = Bt(c) + 1,
+          v = Rn(h);
+        return v && xt(c, Ge, v, h), v;
+      }
+      function cn(c) {
+        var h = Bt(c) + 1,
+          v = Fi(h);
+        return xt(c, Ge, v, h), v;
+      }
+      function Md(c, h, v) {
+        ge(
+          "writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!"
+        );
+        var R, U;
+        v && ((U = h + Bt(c)), (R = V(U >>> 0, 1, 0))),
+          Nt(c, h, 1 / 0),
+          v && N(U >>> 0, R, 1);
+      }
+      function ln(c, h) {
+        M(
+          c.length >= 0,
+          "writeArrayToMemory array must have a length (should be an array or typed array)"
+        ),
+          Ge.set(c, h >>> 0);
+      }
+      function un(c, h, v) {
+        for (var R = 0; R < c.length; ++R)
+          M(c.charCodeAt(R) === (c.charCodeAt(R) & 255)),
+            N(h++ | 0, c.charCodeAt(R) | 0, 1);
+        v || N(h | 0, 0, 1);
+      }
+      var Ud, ci, Ge, Qe, li, Kr, bt, zr, ui, _i;
+      function _n(c) {
+        (ci = c),
+          (e.HEAP8 = Ge = new Int8Array(c)),
+          (e.HEAP16 = li = new Int16Array(c)),
+          (e.HEAP32 = bt = new Int32Array(c)),
+          (e.HEAPU8 = Qe = new Uint8Array(c)),
+          (e.HEAPU16 = Kr = new Uint16Array(c)),
+          (e.HEAPU32 = zr = new Uint32Array(c)),
+          (e.HEAPF32 = ui = new Float32Array(c)),
+          (e.HEAPF64 = _i = new Float64Array(c));
+      }
+      var di = 5242880;
+      e.TOTAL_STACK &&
+        M(
+          di === e.TOTAL_STACK,
+          "the stack size can no longer be determined at runtime"
+        );
+      var fi = e.INITIAL_MEMORY || 16777216;
+      se("INITIAL_MEMORY", "INITIAL_MEMORY"),
+        M(
+          fi >= di,
+          "INITIAL_MEMORY should be larger than TOTAL_STACK, was " +
+            fi +
+            "! (TOTAL_STACK=" +
+            di +
+            ")"
+        ),
+        M(
+          typeof Int32Array < "u" &&
+            typeof Float64Array < "u" &&
+            Int32Array.prototype.subarray != null &&
+            Int32Array.prototype.set != null,
+          "JS engine does not provide full typed array support"
+        ),
+        M(
+          !e.wasmMemory,
+          "Use of `wasmMemory` detected.  Use -sIMPORTED_MEMORY to define wasmMemory externally"
+        ),
+        M(
+          fi == 16777216,
+          "Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically"
+        );
+      var Xe;
+      function dn() {
+        var c = er();
+        M((c & 3) == 0), N(c | 0, 34821223, 4), N((c + 4) | 0, -1984246274, 4);
+      }
+      function St() {
+        if (!Et) {
+          var c = er(),
+            h = V(c | 0, 4, 1) >>> 0,
+            v = V((c + 4) | 0, 4, 1) >>> 0;
+          (h != 34821223 || v != 2310721022) &&
+            k(
+              "Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x" +
+                v.toString(16) +
+                " 0x" +
+                h.toString(16)
+            );
+        }
+      }
+      (function () {
+        var c = new Int16Array(1),
+          h = new Int8Array(c.buffer);
+        if (((c[0] = 25459), h[0] !== 115 || h[1] !== 99))
+          throw "Runtime error: expected the system to be little-endian! (Run with -sSUPPORT_BIG_ENDIAN to bypass)";
+      })();
+      var hi = [],
+        fn = [],
+        hn = [],
+        Ld = [],
+        bn = [],
+        Ct = !1;
+      function bi() {
+        return Ye;
+      }
+      function Qr() {
+        if (e.preRun)
+          for (
+            typeof e.preRun == "function" && (e.preRun = [e.preRun]);
+            e.preRun.length;
+
+          )
+            ta(e.preRun.shift());
+        Yt(hi);
+      }
+      function Xr() {
+        St(), M(!Ct), (Ct = !0), Yt(fn);
+      }
+      function Jr() {
+        St(), Yt(hn);
+      }
+      function ea() {
+        if ((St(), e.postRun))
+          for (
+            typeof e.postRun == "function" && (e.postRun = [e.postRun]);
+            e.postRun.length;
+
+          )
+            na(e.postRun.shift());
+        Yt(bn);
+      }
+      function ta(c) {
+        hi.unshift(c);
+      }
+      function ia(c) {
+        fn.unshift(c);
+      }
+      function Fd(c) {
+        hn.unshift(c);
+      }
+      function xd(c) {}
+      function na(c) {
+        bn.unshift(c);
+      }
+      M(
+        Math.imul,
+        "This browser does not support Math.imul(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+      ),
+        M(
+          Math.fround,
+          "This browser does not support Math.fround(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+        ),
+        M(
+          Math.clz32,
+          "This browser does not support Math.clz32(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+        ),
+        M(
+          Math.trunc,
+          "This browser does not support Math.trunc(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+        );
+      var it = 0,
+        ct = null,
+        At = null,
+        pt = {};
+      function Nd(c) {
+        for (var h = c; ; ) {
+          if (!pt[c]) return c;
+          c = h + Math.random();
+        }
+      }
+      function ra(c) {
+        it++,
+          e.monitorRunDependencies && e.monitorRunDependencies(it),
+          c
+            ? (M(!pt[c]),
+              (pt[c] = 1),
+              ct === null &&
+                typeof setInterval < "u" &&
+                (ct = setInterval(function () {
+                  if (Et) {
+                    clearInterval(ct), (ct = null);
+                    return;
+                  }
+                  var h = !1;
+                  for (var v in pt)
+                    h || ((h = !0), Y("still waiting on run dependencies:")),
+                      Y("dependency: " + v);
+                  h && Y("(end of list)");
+                }, 1e4)))
+            : Y("warning: run dependency added without ID");
+      }
+      function aa(c) {
+        if (
+          (it--,
+          e.monitorRunDependencies && e.monitorRunDependencies(it),
+          c
+            ? (M(pt[c]), delete pt[c])
+            : Y("warning: run dependency removed without ID"),
+          it == 0 && (ct !== null && (clearInterval(ct), (ct = null)), At))
+        ) {
+          var h = At;
+          (At = null), h();
+        }
+      }
+      function k(c) {
+        e.onAbort && e.onAbort(c),
+          (c = "Aborted(" + c + ")"),
+          Y(c),
+          (Et = !0),
+          (Ft = 1);
+        var h = new WebAssembly.RuntimeError(c);
+        throw (p(h), h);
+      }
+      var sa = "data:application/octet-stream;base64,";
+      function pn(c) {
+        return c.startsWith(sa);
+      }
+      function oa(c) {
+        return c.startsWith("file://");
+      }
+      function g(c, h) {
+        return function () {
+          var v = c,
+            R = h;
+          return (
+            h || (R = e.asm),
+            M(
+              Ct,
+              "native function `" + v + "` called before runtime initialization"
+            ),
+            R[c] || M(R[c], "exported native function `" + v + "` not found"),
+            R[c].apply(null, arguments)
+          );
+        };
+      }
+      var Pe;
+      e.locateFile
+        ? ((Pe = "./duckdb-eh.wasm"), pn(Pe) || (Pe = X(Pe)))
+        : (Pe = new URL("./duckdb-eh.wasm", kl.url).toString());
+      function yn(c) {
+        try {
+          if (c == Pe && Ie) return new Uint8Array(Ie);
+          if (le) return le(c);
+          throw "both async and sync fetching of the wasm failed";
+        } catch (h) {
+          k(h);
+        }
+      }
+      function ca() {
+        return !Ie && (B || D) && typeof fetch == "function"
+          ? fetch(Pe, { credentials: "same-origin" })
+              .then(function (c) {
+                if (!c.ok)
+                  throw "failed to load wasm binary file at '" + Pe + "'";
+                return c.arrayBuffer();
+              })
+              .catch(function () {
+                return yn(Pe);
+              })
+          : Promise.resolve().then(function () {
+              return yn(Pe);
+            });
+      }
+      function la() {
+        var c = { env: zn, wasi_snapshot_preview1: zn };
+        function h($, ae) {
+          var fe = $.exports;
+          (e.asm = fe),
+            (kt = e.asm.memory),
+            M(kt, "memory not found in wasm exports"),
+            _n(kt.buffer),
+            (Xe = e.asm.__indirect_function_table),
+            M(Xe, "table not found in wasm exports"),
+            ia(e.asm.__wasm_call_ctors),
+            aa("wasm-instantiate");
+        }
+        ra("wasm-instantiate");
+        var v = e;
+        function R($) {
+          M(
+            e === v,
+            "the Module object should not be replaced during async compilation - perhaps the order of HTML elements is wrong?"
+          ),
+            (v = null),
+            h($.instance);
+        }
+        function U($) {
+          return ca()
+            .then(function (ae) {
+              return WebAssembly.instantiate(ae, c);
+            })
+            .then(function (ae) {
+              return ae;
+            })
+            .then($, function (ae) {
+              Y("failed to asynchronously prepare wasm: " + ae),
+                oa(Pe) &&
+                  Y(
+                    "warning: Loading from a file URI (" +
+                      Pe +
+                      ") is not supported in most browsers. See https://emscripten.org/docs/getting_started/FAQ.html#how-do-i-run-a-local-webserver-for-testing-why-does-my-program-stall-in-downloading-or-preparing"
+                  ),
+                k(ae);
+            });
+        }
+        function Z() {
+          return !Ie &&
+            typeof WebAssembly.instantiateStreaming == "function" &&
+            !pn(Pe) &&
+            typeof fetch == "function"
+            ? fetch(Pe, { credentials: "same-origin" }).then(function ($) {
+                var ae = WebAssembly.instantiateStreaming($, c);
+                return ae.then(R, function (fe) {
+                  return (
+                    Y("wasm streaming compile failed: " + fe),
+                    Y("falling back to ArrayBuffer instantiation"),
+                    U(R)
+                  );
+                });
+              })
+            : U(R);
+        }
+        if (e.instantiateWasm)
+          try {
+            var H = e.instantiateWasm(c, h);
+            return H;
+          } catch ($) {
+            return (
+              Y("Module.instantiateWasm callback failed with error: " + $), !1
+            );
+          }
+        return Z().catch(p), {};
+      }
+      var Le,
+        yt,
+        Bd = {};
+      function Yt(c) {
+        for (; c.length > 0; ) {
+          var h = c.shift();
+          if (typeof h == "function") {
+            h(e);
+            continue;
+          }
+          var v = h.func;
+          typeof v == "number"
+            ? h.arg === void 0
+              ? re(v)()
+              : re(v)(h.arg)
+            : v(h.arg === void 0 ? null : h.arg);
+        }
+      }
+      function Yd(c) {
+        var h = ws(),
+          v = c();
+        return ks(h), v;
+      }
+      function ua(c) {
+        return (
+          ge(
+            "warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling"
+          ),
+          c
+        );
+      }
+      function _a(c) {
+        var h = /\b_Z[\w\d_]+/g;
+        return c.replace(h, function (v) {
+          var R = ua(v);
+          return v === R ? v : R + " [" + v + "]";
+        });
+      }
+      var Rt = [];
+      function re(c) {
+        var h = Rt[c];
+        return (
+          h || (c >= Rt.length && (Rt.length = c + 1), (Rt[c] = h = Xe.get(c))),
+          M(
+            Xe.get(c) == h,
+            "JavaScript-side Wasm function table mirror is out of date!"
+          ),
+          h
+        );
+      }
+      function da(c) {
+        if (c instanceof Yi || c == "unwind") return Ft;
+        P(1, c);
+      }
+      function fa() {
+        var c = new Error();
+        if (!c.stack) {
+          try {
+            throw new Error();
+          } catch (h) {
+            c = h;
+          }
+          if (!c.stack) return "(no stack trace available)";
+        }
+        return c.stack.toString();
+      }
+      function gn(c, h) {
+        Xe.set(c, h), (Rt[c] = Xe.get(c));
+      }
+      function Hd() {
+        var c = fa();
+        return (
+          e.extraStackTrace &&
+            (c +=
+              `
+` + e.extraStackTrace()),
+          _a(c)
+        );
+      }
+      function ha(c, h) {
+        return c >= 0
+          ? c
+          : h <= 32
+          ? 2 * Math.abs(1 << (h - 1)) + c
+          : Math.pow(2, h) + c;
+      }
+      function ba(c, h, v, R) {
+        k(
+          "Assertion failed: " +
+            $e(c) +
+            ", at: " +
+            [h ? $e(h) : "unknown filename", v, R ? $e(R) : "unknown function"]
+        );
+      }
+      var He = {
+        buffers: [null, [], []],
+        printChar: function (c, h) {
+          var v = He.buffers[c];
+          M(v),
+            h === 0 || h === 10
+              ? ((c === 1 ? de : Y)(sn(v, 0)), (v.length = 0))
+              : v.push(h);
+        },
+        varargs: void 0,
+        get: function () {
+          M(He.varargs != null), (He.varargs += 4);
+          var c = V((He.varargs - 4) | 0, 4, 0) | 0;
+          return c;
+        },
+        getStr: function (c) {
+          var h = $e(c);
+          return h;
+        },
+      };
+      function pi(c, h, v, R, U) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function pa() {
+        Y("missing function: $SOCKFS"), k(-1);
+      }
+      function yi() {
+        Y("missing function: $FS"), k(-1);
+      }
+      function gi(c) {
+        var h = pa.getSocket(c);
+        if (!h) throw new yi.ErrnoError(8);
+        return h;
+      }
+      function Ot(c) {
+        return N(Lc() | 0, c | 0, 4), c;
+      }
+      var zt = {
+        BUFFER_SIZE: 10240,
+        MAX_BUFFER_SIZE: 10485760,
+        nextFd: 1,
+        fds: {},
+        nextport: 1,
+        maxport: 65535,
+        peer: null,
+        connections: {},
+        portmap: {},
+        localAddr: 4261412874,
+        addrPool: [
+          33554442, 50331658, 67108874, 83886090, 100663306, 117440522,
+          134217738, 150994954, 167772170, 184549386, 201326602, 218103818,
+          234881034,
+        ],
+      };
+      function Pi(c) {
+        return (
+          (c & 255) +
+          "." +
+          ((c >> 8) & 255) +
+          "." +
+          ((c >> 16) & 255) +
+          "." +
+          ((c >> 24) & 255)
+        );
+      }
+      function Ln(c) {
+        var h = "",
+          v = 0,
+          R = 0,
+          U = 0,
+          Z = 0,
+          H = 0,
+          $ = 0,
+          ae = [
+            c[0] & 65535,
+            c[0] >> 16,
+            c[1] & 65535,
+            c[1] >> 16,
+            c[2] & 65535,
+            c[2] >> 16,
+            c[3] & 65535,
+            c[3] >> 16,
+          ],
+          fe = !0,
+          ve = "";
+        for ($ = 0; $ < 5; $++)
+          if (ae[$] !== 0) {
+            fe = !1;
+            break;
+          }
+        if (fe) {
+          if (((ve = Pi(ae[6] | (ae[7] << 16))), ae[5] === -1))
+            return (h = "::ffff:"), (h += ve), h;
+          if (ae[5] === 0)
+            return (
+              (h = "::"),
+              ve === "0.0.0.0" && (ve = ""),
+              ve === "0.0.0.1" && (ve = "1"),
+              (h += ve),
+              h
+            );
+        }
+        for (v = 0; v < 8; v++)
+          ae[v] === 0 && (v - U > 1 && (H = 0), (U = v), H++),
+            H > R && ((R = H), (Z = v - R + 1));
+        for (v = 0; v < 8; v++) {
+          if (R > 1 && ae[v] === 0 && v >= Z && v < Z + R) {
+            v === Z && ((h += ":"), Z === 0 && (h += ":"));
+            continue;
+          }
+          (h += Number(vs(ae[v] & 65535)).toString(16)),
+            (h += v < 7 ? ":" : "");
+        }
+        return h;
+      }
+      function Fn(c, h) {
+        var v = V(c | 0, 2, 0) | 0,
+          R = vs(V((c + 2) | 0, 2, 1) >>> 0),
+          U;
+        switch (v) {
+          case 2:
+            if (h !== 16) return { errno: 28 };
+            (U = V((c + 4) | 0, 4, 0) | 0), (U = Pi(U));
+            break;
+          case 10:
+            if (h !== 28) return { errno: 28 };
+            (U = [
+              V((c + 8) | 0, 4, 0) | 0,
+              V((c + 12) | 0, 4, 0) | 0,
+              V((c + 16) | 0, 4, 0) | 0,
+              V((c + 20) | 0, 4, 0) | 0,
+            ]),
+              (U = Ln(U));
+            break;
+          default:
+            return { errno: 5 };
+        }
+        return { family: v, addr: U, port: R };
+      }
+      function Di(c) {
+        for (var h = c.split("."), v = 0; v < 4; v++) {
+          var R = Number(h[v]);
+          if (isNaN(R)) return null;
+          h[v] = R;
+        }
+        return (h[0] | (h[1] << 8) | (h[2] << 16) | (h[3] << 24)) >>> 0;
+      }
+      function Ii(c) {
+        return parseInt(c);
+      }
+      function vn(c) {
+        var h,
+          v,
+          R,
+          U,
+          Z,
+          H =
+            /^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i,
+          $ = [];
+        if (!H.test(c)) return null;
+        if (c === "::") return [0, 0, 0, 0, 0, 0, 0, 0];
+        for (
+          c.startsWith("::")
+            ? (c = c.replace("::", "Z:"))
+            : (c = c.replace("::", ":Z:")),
+            c.indexOf(".") > 0
+              ? ((c = c.replace(new RegExp("[.]", "g"), ":")),
+                (h = c.split(":")),
+                (h[h.length - 4] =
+                  Ii(h[h.length - 4]) + Ii(h[h.length - 3]) * 256),
+                (h[h.length - 3] =
+                  Ii(h[h.length - 2]) + Ii(h[h.length - 1]) * 256),
+                (h = h.slice(0, h.length - 2)))
+              : (h = c.split(":")),
+            R = 0,
+            U = 0,
+            v = 0;
+          v < h.length;
+          v++
+        )
+          if (typeof h[v] == "string")
+            if (h[v] === "Z") {
+              for (U = 0; U < 8 - h.length + 1; U++) $[v + U] = 0;
+              R = U - 1;
+            } else $[v + R] = Xn(parseInt(h[v], 16));
+          else $[v + R] = h[v];
+        return [
+          ($[1] << 16) | $[0],
+          ($[3] << 16) | $[2],
+          ($[5] << 16) | $[4],
+          ($[7] << 16) | $[6],
+        ];
+      }
+      var ut = {
+        address_map: { id: 1, addrs: {}, names: {} },
+        lookup_name: function (c) {
+          var h = Di(c);
+          if (h !== null || ((h = vn(c)), h !== null)) return c;
+          var v;
+          if (ut.address_map.addrs[c]) v = ut.address_map.addrs[c];
+          else {
+            var R = ut.address_map.id++;
+            M(R < 65535, "exceeded max address mappings of 65535"),
+              (v = "172.29." + (R & 255) + "." + (R & 65280)),
+              (ut.address_map.names[v] = c),
+              (ut.address_map.addrs[c] = v);
+          }
+          return v;
+        },
+        lookup_addr: function (c) {
+          return ut.address_map.names[c] ? ut.address_map.names[c] : null;
+        },
+      };
+      function xn(c, h, v) {
+        if (v && c === 0) return null;
+        var R = Fn(c, h);
+        if (R.errno) throw new yi.ErrnoError(R.errno);
+        return (R.addr = ut.lookup_addr(R.addr) || R.addr), R;
+      }
+      function ya(c, h, v) {
+        var R = gi(c),
+          U = xn(h, v);
+        return R.sock_ops.bind(R, U.addr, U.port), 0;
+      }
+      function ga(c, h, v) {
+        var R = gi(c),
+          U = xn(h, v);
+        return R.sock_ops.connect(R, U.addr, U.port), 0;
+      }
+      function va(c, h, v, R) {
+        return (
+          (h = He.getStr(h)),
+          M(R === 0),
+          (h = He.calculateAt(c, h)),
+          He.doAccess(h, v)
+        );
+      }
+      function qe(c, h, v) {
+        return (He.varargs = v), 0;
+      }
+      function ja(c, h) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function ma(c, h, v) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Nn(c, h, v) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Qt(c, h) {
+        Qe.fill(0, c, c + h);
+      }
+      function Bn(c, h, v, R, U) {
+        switch (h) {
+          case 2:
+            (v = Di(v)),
+              Qt(c, 16),
+              U && N(U | 0, 16, 4),
+              N(c | 0, h | 0, 2),
+              N((c + 4) | 0, v | 0, 4),
+              N((c + 2) | 0, Xn(R) | 0, 2);
+            break;
+          case 10:
+            (v = vn(v)),
+              Qt(c, 28),
+              U && N(U | 0, 28, 4),
+              N(c | 0, h | 0, 4),
+              N((c + 8) | 0, v[0] | 0, 4),
+              N((c + 12) | 0, v[1] | 0, 4),
+              N((c + 16) | 0, v[2] | 0, 4),
+              N((c + 20) | 0, v[3] | 0, 4),
+              N((c + 2) | 0, Xn(R) | 0, 2);
+            break;
+          default:
+            return 5;
+        }
+        return 0;
+      }
+      function jc(c, h, v) {
+        var R = gi(c);
+        if (!R.daddr) return -53;
+        var U = Bn(h, R.family, ut.lookup_name(R.daddr), R.dport, v);
+        return M(!U), 0;
+      }
+      function jn(c, h, v, R, U) {
+        var Z = gi(c);
+        return h === 1 && v === 4
+          ? (N(R | 0, Z.error | 0, 4), N(U | 0, 4, 4), (Z.error = null), 0)
+          : -50;
+      }
+      function Yn(c, h, v) {
+        return (He.varargs = v), 0;
+      }
+      function Hn(c, h) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Mi(c, h, v) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ui(c, h, v, R) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function mn(c, h, v, R) {
+        (He.varargs = R),
+          k(
+            "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+          );
+      }
+      function _t(c, h, v, R, U, Z) {
+        var H = gi(c),
+          $ = H.sock_ops.recvmsg(H, v);
+        if (!$) return 0;
+        if (U) {
+          var ae = Bn(U, H.family, ut.lookup_name($.addr), $.port, Z);
+          M(!ae);
+        }
+        return Qe.set($.buffer, h >>> 0), $.buffer.byteLength;
+      }
+      function qn(c, h, v, R) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function wa(c) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function ka(c, h, v, R, U, Z) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ea(c, h, v) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Sa(c, h) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ca(c, h, v) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Aa(c) {}
+      var Wn =
+        "To use dlopen, you need enable dynamic linking, see https://github.com/emscripten-core/emscripten/wiki/Linking";
+      function Zn(c, h) {
+        k(Wn);
+      }
+      function wn(c, h) {
+        k(Wn);
+      }
+      function Ra() {
+        return Date.now();
+      }
+      var Oa = !0;
+      function Ta() {
+        return Oa;
+      }
+      function Pa() {
+        k("native code called abort()");
+      }
+      function Da(c, h) {
+        return globalThis.DUCKDB_RUNTIME.createDirectory(e, c, h);
+      }
+      function Ia(c, h) {
+        return globalThis.DUCKDB_RUNTIME.checkDirectory(e, c, h);
+      }
+      function Ma(c, h) {
+        return globalThis.DUCKDB_RUNTIME.listDirectoryEntries(e, c, h);
+      }
+      function Ua(c, h) {
+        return globalThis.DUCKDB_RUNTIME.removeDirectory(e, c, h);
+      }
+      function La(c) {
+        return globalThis.DUCKDB_RUNTIME.closeFile(e, c);
+      }
+      function Fa(c, h) {
+        return globalThis.DUCKDB_RUNTIME.checkFile(e, c, h);
+      }
+      function xa(c) {
+        return globalThis.DUCKDB_RUNTIME.getLastFileModificationTime(e, c);
+      }
+      function Na(c, h, v, R) {
+        return globalThis.DUCKDB_RUNTIME.moveFile(e, c, h, v, R);
+      }
+      function Ba(c, h) {
+        return globalThis.DUCKDB_RUNTIME.openFile(e, c, h);
+      }
+      function Ya(c, h, v, R) {
+        return globalThis.DUCKDB_RUNTIME.readFile(e, c, h, v, R);
+      }
+      function Ha(c, h) {
+        return globalThis.DUCKDB_RUNTIME.truncateFile(e, c, h);
+      }
+      function $n(c, h, v, R) {
+        return globalThis.DUCKDB_RUNTIME.writeFile(e, c, h, v, R);
+      }
+      function qa(c, h) {
+        return globalThis.DUCKDB_RUNTIME.glob(e, c, h);
+      }
+      function Wa(c) {
+        return globalThis.DUCKDB_RUNTIME.testPlatformFeature(e, c);
+      }
+      function Za(c, h, v, R, U, Z) {
+        return globalThis.DUCKDB_RUNTIME.callScalarUDF(e, c, h, v, R, U, Z);
+      }
+      function $a(c) {
+        M(typeof c == "number"), console.error($e(c));
+      }
+      function Gn() {
+        return 4294901760;
+      }
+      var kn;
+      q
+        ? (kn = () => {
+            var c = process.hrtime();
+            return c[0] * 1e3 + c[1] / 1e6;
+          })
+        : (kn = () => performance.now());
+      function Ga(c, h, v) {
+        Qe.copyWithin(c >>> 0, h >>> 0, (h + v) >>> 0);
+      }
+      function Va(c) {
+        try {
+          return kt.grow((c - ci.byteLength + 65535) >>> 16), _n(kt.buffer), 1;
+        } catch (h) {
+          Y(
+            "emscripten_realloc_buffer: Attempted to grow heap from " +
+              ci.byteLength +
+              " bytes to " +
+              c +
+              " bytes, but got error: " +
+              h
+          );
+        }
+      }
+      function Ka(c) {
+        var h = Qe.length;
+        (c = c >>> 0), M(c > h);
+        var v = Gn();
+        if (c > v)
+          return (
+            Y(
+              "Cannot enlarge memory, asked to go up to " +
+                c +
+                " bytes, but the limit is " +
+                v +
+                " bytes!"
+            ),
+            !1
+          );
+        let R = (ae, fe) => ae + ((fe - (ae % fe)) % fe);
+        for (var U = 1; U <= 4; U *= 2) {
+          var Z = h * (1 + 0.2 / U);
+          Z = Math.min(Z, c + 100663296);
+          var H = Math.min(v, R(Math.max(c, Z), 65536)),
+            $ = Va(H);
+          if ($) return !0;
+        }
+        return (
+          Y(
+            "Failed to grow the heap from " +
+              h +
+              " bytes to " +
+              H +
+              " bytes, not enough memory!"
+          ),
+          !1
+        );
+      }
+      var En = {};
+      function za() {
+        return O || "./this.program";
+      }
+      function vi() {
+        if (!vi.strings) {
+          var c =
+              (
+                (typeof navigator == "object" &&
+                  navigator.languages &&
+                  navigator.languages[0]) ||
+                "C"
+              ).replace("-", "_") + ".UTF-8",
+            h = {
+              USER: "web_user",
+              LOGNAME: "web_user",
+              PATH: "/",
+              PWD: "/",
+              HOME: "/home/web_user",
+              LANG: c,
+              _: za(),
+            };
+          for (var v in En) En[v] === void 0 ? delete h[v] : (h[v] = En[v]);
+          var R = [];
+          for (var v in h) R.push(v + "=" + h[v]);
+          vi.strings = R;
+        }
+        return vi.strings;
+      }
+      function Qa(c, h) {
+        var v = 0;
+        return (
+          vi().forEach(function (R, U) {
+            var Z = h + v;
+            N((c + U * 4) | 0, Z | 0, 4), un(R, Z), (v += R.length + 1);
+          }),
+          0
+        );
+      }
+      function Xa(c, h) {
+        var v = vi();
+        N(c | 0, v.length | 0, 4);
+        var R = 0;
+        return (
+          v.forEach(function (U) {
+            R += U.length + 1;
+          }),
+          N(h | 0, R | 0, 4),
+          0
+        );
+      }
+      function Ja(c) {
+        return (
+          k(
+            "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+          ),
+          0
+        );
+      }
+      function es(c, h, v, R, U, Z) {
+        M(!U, "offsets over 2^32 not yet supported");
+        var H = He.getStreamFromFD(c),
+          $ = He.doReadv(H, h, v, R);
+        return N(Z | 0, $ | 0, 4), 0;
+      }
+      function ts(c, h, v, R, U, Z) {
+        var H = He.getStreamFromFD(c);
+        M(!U, "offsets over 2^32 not yet supported");
+        var $ = He.doWritev(H, h, v, R);
+        return N(Z | 0, $ | 0, 4), 0;
+      }
+      function is(c, h, v, R) {
+        var U = He.getStreamFromFD(c),
+          Z = He.doReadv(U, h, v);
+        return N(R | 0, Z | 0, 4), 0;
+      }
+      function ns(c, h, v, R, U) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function rs(c) {
+        var h = He.getStreamFromFD(c);
+        return h.stream_ops && h.stream_ops.fsync ? -h.stream_ops.fsync(h) : 0;
+      }
+      function as() {
+        Fc();
+        var c = He.buffers;
+        c[1].length && He.printChar(1, 10), c[2].length && He.printChar(2, 10);
+      }
+      function ss(c, h, v, R) {
+        for (var U = 0, Z = 0; Z < v; Z++) {
+          var H = V(h | 0, 4, 0) | 0,
+            $ = V((h + 4) | 0, 4, 0) | 0;
+          h += 8;
+          for (var ae = 0; ae < $; ae++)
+            He.printChar(c, V((H + ae) >>> 0, 1, 1));
+          U += $;
+        }
+        return N(R | 0, U | 0, 4), 0;
+      }
+      function Vn(c, h, v, R) {
+        var U = [],
+          Z = null,
+          H = 0,
+          $ = 0,
+          ae = 0,
+          fe = 0,
+          ve = 0,
+          We = 0,
+          Oe,
+          ji;
+        function Ze(nt, Ht, mi, K, he, at) {
+          var ze, qt, dt, sr;
+          return (
+            (qt = nt === 10 ? 28 : 16),
+            (he = nt === 10 ? Ln(he) : Pi(he)),
+            (ze = Rn(qt)),
+            (sr = Bn(ze, nt, he, at)),
+            M(!sr),
+            (dt = Rn(32)),
+            N((dt + 4) | 0, nt | 0, 4),
+            N((dt + 8) | 0, Ht | 0, 4),
+            N((dt + 12) | 0, mi | 0, 4),
+            N((dt + 24) | 0, K | 0, 4),
+            N((dt + 20) | 0, ze | 0, 4),
+            nt === 10 ? N((dt + 16) | 0, 28, 4) : N((dt + 16) | 0, 16, 4),
+            N((dt + 28) | 0, 0, 4),
+            dt
+          );
+        }
+        if (
+          (v &&
+            ((ae = V(v | 0, 4, 0) | 0),
+            (fe = V((v + 4) | 0, 4, 0) | 0),
+            (ve = V((v + 8) | 0, 4, 0) | 0),
+            (We = V((v + 12) | 0, 4, 0) | 0)),
+          ve && !We && (We = ve === 2 ? 17 : 6),
+          !ve && We && (ve = We === 17 ? 2 : 1),
+          We === 0 && (We = 6),
+          ve === 0 && (ve = 1),
+          !c && !h)
+        )
+          return -2;
+        if (ae & -1088 || (v !== 0 && (V(v | 0, 4, 0) | 0) & 2 && !c))
+          return -1;
+        if (ae & 32) return -2;
+        if (ve !== 0 && ve !== 1 && ve !== 2) return -7;
+        if (fe !== 0 && fe !== 2 && fe !== 10) return -6;
+        if (h && ((h = $e(h)), ($ = parseInt(h, 10)), isNaN($)))
+          return ae & 1024 ? -2 : -8;
+        if (!c)
+          return (
+            fe === 0 && (fe = 2),
+            (ae & 1) === 0 &&
+              (fe === 2 ? (H = Qn(2130706433)) : (H = [0, 0, 0, 1])),
+            (Oe = Ze(fe, ve, We, null, H, $)),
+            N(R | 0, Oe | 0, 4),
+            0
+          );
+        if (((c = $e(c)), (H = Di(c)), H !== null))
+          if (fe === 0 || fe === 2) fe = 2;
+          else if (fe === 10 && ae & 8) (H = [0, 0, Qn(65535), H]), (fe = 10);
+          else return -2;
+        else if (((H = vn(c)), H !== null))
+          if (fe === 0 || fe === 10) fe = 10;
+          else return -2;
+        return H != null
+          ? ((Oe = Ze(fe, ve, We, c, H, $)), N(R | 0, Oe | 0, 4), 0)
+          : ae & 4
+          ? -2
+          : ((c = ut.lookup_name(c)),
+            (H = Di(c)),
+            fe === 0 ? (fe = 2) : fe === 10 && (H = [0, 0, Qn(65535), H]),
+            (Oe = Ze(fe, ve, We, null, H, $)),
+            N(R | 0, Oe | 0, 4),
+            0);
+      }
+      function Sn() {
+        if (
+          typeof crypto == "object" &&
+          typeof crypto.getRandomValues == "function"
+        ) {
+          var c = new Uint8Array(1);
+          return function () {
+            return crypto.getRandomValues(c), c[0];
+          };
+        } else if (q)
+          try {
+            var h = require("crypto");
+            return function () {
+              return h.randomBytes(1)[0];
+            };
+          } catch {}
+        return function () {
+          k(
+            "no cryptographic support found for randomDevice. consider polyfilling it if you want to use something insecure like Math.random(), e.g. put this in a --pre-js: var crypto = { getRandomValues: function(array) { for (var i = 0; i < array.length; i++) array[i] = (Math.random()*256)|0 } };"
+          );
+        };
+      }
+      function Li(c, h) {
+        Li.randomDevice || (Li.randomDevice = Sn());
+        for (var v = 0; v < h; v++) N((c + v) | 0, Li.randomDevice() | 0, 1);
+        return 0;
+      }
+      function os(c, h, v, R, U, Z, H) {
+        var $ = Fn(c, h);
+        if ($.errno) return -6;
+        var ae = $.port,
+          fe = $.addr,
+          ve = !1;
+        if (v && R) {
+          var We;
+          if (H & 1 || !(We = ut.lookup_addr(fe))) {
+            if (H & 8) return -2;
+          } else fe = We;
+          var Oe = Nt(fe, v, R);
+          Oe + 1 >= R && (ve = !0);
+        }
+        if (U && Z) {
+          ae = "" + ae;
+          var Oe = Nt(ae, U, Z);
+          Oe + 1 >= Z && (ve = !0);
+        }
+        return ve ? -12 : 0;
+      }
+      function cs(c) {
+        oe(c);
+      }
+      function Xt(c) {
+        return c % 4 === 0 && (c % 100 !== 0 || c % 400 === 0);
+      }
+      function ls(c, h) {
+        for (var v = 0, R = 0; R <= h; v += c[R++]);
+        return v;
+      }
+      var Jt = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+        Kn = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      function us(c, h) {
+        for (var v = new Date(c.getTime()); h > 0; ) {
+          var R = Xt(v.getFullYear()),
+            U = v.getMonth(),
+            Z = (R ? Jt : Kn)[U];
+          if (h > Z - v.getDate())
+            (h -= Z - v.getDate() + 1),
+              v.setDate(1),
+              U < 11
+                ? v.setMonth(U + 1)
+                : (v.setMonth(0), v.setFullYear(v.getFullYear() + 1));
+          else return v.setDate(v.getDate() + h), v;
+        }
+        return v;
+      }
+      function _s(c, h, v, R) {
+        var U = V((R + 40) | 0, 4, 0) | 0,
+          Z = {
+            tm_sec: V(R | 0, 4, 0) | 0,
+            tm_min: V((R + 4) | 0, 4, 0) | 0,
+            tm_hour: V((R + 8) | 0, 4, 0) | 0,
+            tm_mday: V((R + 12) | 0, 4, 0) | 0,
+            tm_mon: V((R + 16) | 0, 4, 0) | 0,
+            tm_year: V((R + 20) | 0, 4, 0) | 0,
+            tm_wday: V((R + 24) | 0, 4, 0) | 0,
+            tm_yday: V((R + 28) | 0, 4, 0) | 0,
+            tm_isdst: V((R + 32) | 0, 4, 0) | 0,
+            tm_gmtoff: V((R + 36) | 0, 4, 0) | 0,
+            tm_zone: U ? $e(U) : "",
+          },
+          H = $e(v),
+          $ = {
+            "%c": "%a %b %d %H:%M:%S %Y",
+            "%D": "%m/%d/%y",
+            "%F": "%Y-%m-%d",
+            "%h": "%b",
+            "%r": "%I:%M:%S %p",
+            "%R": "%H:%M",
+            "%T": "%H:%M:%S",
+            "%x": "%m/%d/%y",
+            "%X": "%H:%M:%S",
+            "%Ec": "%c",
+            "%EC": "%C",
+            "%Ex": "%m/%d/%y",
+            "%EX": "%H:%M:%S",
+            "%Ey": "%y",
+            "%EY": "%Y",
+            "%Od": "%d",
+            "%Oe": "%e",
+            "%OH": "%H",
+            "%OI": "%I",
+            "%Om": "%m",
+            "%OM": "%M",
+            "%OS": "%S",
+            "%Ou": "%u",
+            "%OU": "%U",
+            "%OV": "%V",
+            "%Ow": "%w",
+            "%OW": "%W",
+            "%Oy": "%y",
+          };
+        for (var ae in $) H = H.replace(new RegExp(ae, "g"), $[ae]);
+        var fe = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          ve = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+        function We(K, he, at) {
+          for (
+            var ze = typeof K == "number" ? K.toString() : K || "";
+            ze.length < he;
+
+          )
+            ze = at[0] + ze;
+          return ze;
+        }
+        function Oe(K, he) {
+          return We(K, he, "0");
+        }
+        function ji(K, he) {
+          function at(qt) {
+            return qt < 0 ? -1 : qt > 0 ? 1 : 0;
+          }
+          var ze;
+          return (
+            (ze = at(K.getFullYear() - he.getFullYear())) === 0 &&
+              (ze = at(K.getMonth() - he.getMonth())) === 0 &&
+              (ze = at(K.getDate() - he.getDate())),
+            ze
+          );
+        }
+        function Ze(K) {
+          switch (K.getDay()) {
+            case 0:
+              return new Date(K.getFullYear() - 1, 11, 29);
+            case 1:
+              return K;
+            case 2:
+              return new Date(K.getFullYear(), 0, 3);
+            case 3:
+              return new Date(K.getFullYear(), 0, 2);
+            case 4:
+              return new Date(K.getFullYear(), 0, 1);
+            case 5:
+              return new Date(K.getFullYear() - 1, 11, 31);
+            case 6:
+              return new Date(K.getFullYear() - 1, 11, 30);
+          }
+        }
+        function nt(K) {
+          var he = us(new Date(K.tm_year + 1900, 0, 1), K.tm_yday),
+            at = new Date(he.getFullYear(), 0, 4),
+            ze = new Date(he.getFullYear() + 1, 0, 4),
+            qt = Ze(at),
+            dt = Ze(ze);
+          return ji(qt, he) <= 0
+            ? ji(dt, he) <= 0
+              ? he.getFullYear() + 1
+              : he.getFullYear()
+            : he.getFullYear() - 1;
+        }
+        var Ht = {
+          "%a": function (K) {
+            return fe[K.tm_wday].substring(0, 3);
+          },
+          "%A": function (K) {
+            return fe[K.tm_wday];
+          },
+          "%b": function (K) {
+            return ve[K.tm_mon].substring(0, 3);
+          },
+          "%B": function (K) {
+            return ve[K.tm_mon];
+          },
+          "%C": function (K) {
+            var he = K.tm_year + 1900;
+            return Oe((he / 100) | 0, 2);
+          },
+          "%d": function (K) {
+            return Oe(K.tm_mday, 2);
+          },
+          "%e": function (K) {
+            return We(K.tm_mday, 2, " ");
+          },
+          "%g": function (K) {
+            return nt(K).toString().substring(2);
+          },
+          "%G": function (K) {
+            return nt(K);
+          },
+          "%H": function (K) {
+            return Oe(K.tm_hour, 2);
+          },
+          "%I": function (K) {
+            var he = K.tm_hour;
+            return he == 0 ? (he = 12) : he > 12 && (he -= 12), Oe(he, 2);
+          },
+          "%j": function (K) {
+            return Oe(
+              K.tm_mday + ls(Xt(K.tm_year + 1900) ? Jt : Kn, K.tm_mon - 1),
+              3
+            );
+          },
+          "%m": function (K) {
+            return Oe(K.tm_mon + 1, 2);
+          },
+          "%M": function (K) {
+            return Oe(K.tm_min, 2);
+          },
+          "%n": function () {
+            return `
+`;
+          },
+          "%p": function (K) {
+            return K.tm_hour >= 0 && K.tm_hour < 12 ? "AM" : "PM";
+          },
+          "%S": function (K) {
+            return Oe(K.tm_sec, 2);
+          },
+          "%t": function () {
+            return "	";
+          },
+          "%u": function (K) {
+            return K.tm_wday || 7;
+          },
+          "%U": function (K) {
+            var he = K.tm_yday + 7 - K.tm_wday;
+            return Oe(Math.floor(he / 7), 2);
+          },
+          "%V": function (K) {
+            var he = Math.floor((K.tm_yday + 7 - ((K.tm_wday + 6) % 7)) / 7);
+            if (((K.tm_wday + 371 - K.tm_yday - 2) % 7 <= 2 && he++, he)) {
+              if (he == 53) {
+                var ze = (K.tm_wday + 371 - K.tm_yday) % 7;
+                ze != 4 && (ze != 3 || !Xt(K.tm_year)) && (he = 1);
+              }
+            } else {
+              he = 52;
+              var at = (K.tm_wday + 7 - K.tm_yday - 1) % 7;
+              (at == 4 || (at == 5 && Xt((K.tm_year % 400) - 1))) && he++;
+            }
+            return Oe(he, 2);
+          },
+          "%w": function (K) {
+            return K.tm_wday;
+          },
+          "%W": function (K) {
+            var he = K.tm_yday + 7 - ((K.tm_wday + 6) % 7);
+            return Oe(Math.floor(he / 7), 2);
+          },
+          "%y": function (K) {
+            return (K.tm_year + 1900).toString().substring(2);
+          },
+          "%Y": function (K) {
+            return K.tm_year + 1900;
+          },
+          "%z": function (K) {
+            var he = K.tm_gmtoff,
+              at = he >= 0;
+            return (
+              (he = Math.abs(he) / 60),
+              (he = (he / 60) * 100 + (he % 60)),
+              (at ? "+" : "-") + String("0000" + he).slice(-4)
+            );
+          },
+          "%Z": function (K) {
+            return K.tm_zone;
+          },
+          "%%": function () {
+            return "%";
+          },
+        };
+        H = H.replace(/%%/g, "\0\0");
+        for (var ae in Ht)
+          H.includes(ae) && (H = H.replace(new RegExp(ae, "g"), Ht[ae](Z)));
+        H = H.replace(/\0\0/g, "%");
+        var mi = hs(H, !1);
+        return mi.length > h ? 0 : (ln(mi, c), mi.length - 1);
+      }
+      function ds(c, h, v, R) {
+        return _s(c, h, v, R);
+      }
+      var fs = !0;
+      function hs(c, h, v) {
+        var R = v > 0 ? v : Bt(c) + 1,
+          U = new Array(R),
+          Z = xt(c, U, 0, U.length);
+        return h && (U.length = Z), U;
+      }
+      function mc(c) {
+        for (var h = [], v = 0; v < c.length; v++) {
+          var R = c[v];
+          R > 255 &&
+            (fs &&
+              M(
+                !1,
+                "Character code " +
+                  R +
+                  " (" +
+                  String.fromCharCode(R) +
+                  ")  at offset " +
+                  v +
+                  " not in 0x00-0xFF."
+              ),
+            (R &= 255)),
+            h.push(String.fromCharCode(R));
+        }
+        return h.join("");
+      }
+      function bs() {
+        Vt("fetchSettings");
+      }
+      var zn = {
+          __assert_fail: ba,
+          __syscall__newselect: pi,
+          __syscall_bind: ya,
+          __syscall_connect: ga,
+          __syscall_faccessat: va,
+          __syscall_fcntl64: qe,
+          __syscall_fstat64: ja,
+          __syscall_ftruncate64: ma,
+          __syscall_getdents64: Nn,
+          __syscall_getpeername: jc,
+          __syscall_getsockopt: jn,
+          __syscall_ioctl: Yn,
+          __syscall_lstat64: Hn,
+          __syscall_mkdirat: Mi,
+          __syscall_newfstatat: Ui,
+          __syscall_openat: mn,
+          __syscall_recvfrom: _t,
+          __syscall_renameat: qn,
+          __syscall_rmdir: wa,
+          __syscall_sendto: ka,
+          __syscall_socket: Ea,
+          __syscall_stat64: Sa,
+          __syscall_unlinkat: Ca,
+          _dlinit: Aa,
+          _dlopen_js: Zn,
+          _dlsym_js: wn,
+          _emscripten_date_now: Ra,
+          _emscripten_get_now_is_monotonic: Ta,
+          abort: Pa,
+          alignfault: $r,
+          duckdb_web_fs_directory_create: Da,
+          duckdb_web_fs_directory_exists: Ia,
+          duckdb_web_fs_directory_list_files: Ma,
+          duckdb_web_fs_directory_remove: Ua,
+          duckdb_web_fs_file_close: La,
+          duckdb_web_fs_file_exists: Fa,
+          duckdb_web_fs_file_get_last_modified_time: xa,
+          duckdb_web_fs_file_move: Na,
+          duckdb_web_fs_file_open: Ba,
+          duckdb_web_fs_file_read: Ya,
+          duckdb_web_fs_file_truncate: Ha,
+          duckdb_web_fs_file_write: $n,
+          duckdb_web_fs_glob: qa,
+          duckdb_web_test_platform_feature: Wa,
+          duckdb_web_udf_scalar_call: Za,
+          emscripten_console_error: $a,
+          emscripten_get_heap_max: Gn,
+          emscripten_get_now: kn,
+          emscripten_memcpy_big: Ga,
+          emscripten_resize_heap: Ka,
+          environ_get: Qa,
+          environ_sizes_get: Xa,
+          fd_close: Ja,
+          fd_pread: es,
+          fd_pwrite: ts,
+          fd_read: is,
+          fd_seek: ns,
+          fd_sync: rs,
+          fd_write: ss,
+          getaddrinfo: Vn,
+          getentropy: Li,
+          getnameinfo: os,
+          segfault: Zr,
+          setTempRet0: cs,
+          strftime_l: ds,
+        },
+        wc = la(),
+        kc = (e.___wasm_call_ctors = g("__wasm_call_ctors")),
+        Ec = (e._main = g("main")),
+        Sc = (e._duckdb_web_fs_glob_add_path = g(
+          "duckdb_web_fs_glob_add_path"
+        )),
+        Cn = (e._duckdb_web_clear_response = g("duckdb_web_clear_response")),
+        Cc = (e._duckdb_web_fail_with = g("duckdb_web_fail_with")),
+        Ac = (e._duckdb_web_reset = g("duckdb_web_reset")),
+        Rc = (e._duckdb_web_connect = g("duckdb_web_connect")),
+        An = (e._duckdb_web_disconnect = g("duckdb_web_disconnect")),
+        Oc = (e._duckdb_web_flush_files = g("duckdb_web_flush_files")),
+        ps = (e._duckdb_web_flush_file = g("duckdb_web_flush_file")),
+        ys = (e._duckdb_web_open = g("duckdb_web_open")),
+        Tc = (e._duckdb_web_get_global_file_info = g(
+          "duckdb_web_get_global_file_info"
+        )),
+        Pc = (e._duckdb_web_collect_file_stats = g(
+          "duckdb_web_collect_file_stats"
+        )),
+        Dc = (e._duckdb_web_export_file_stats = g(
+          "duckdb_web_export_file_stats"
+        )),
+        Ic = (e._duckdb_web_fs_drop_file = g("duckdb_web_fs_drop_file")),
+        Mc = (e._duckdb_web_fs_drop_files = g("duckdb_web_fs_drop_files")),
+        qd = (e._duckdb_web_fs_glob_file_infos = g(
+          "duckdb_web_fs_glob_file_infos"
+        )),
+        Uc = (e._duckdb_web_fs_get_file_info_by_id = g(
+          "duckdb_web_fs_get_file_info_by_id"
+        )),
+        gs = (e._duckdb_web_fs_get_file_info_by_name = g(
+          "duckdb_web_fs_get_file_info_by_name"
+        )),
+        Wd = (e._duckdb_web_fs_set_file_descriptor = g(
+          "duckdb_web_fs_set_file_descriptor"
+        )),
+        Zd = (e._duckdb_web_fs_register_file_url = g(
+          "duckdb_web_fs_register_file_url"
+        )),
+        $d = (e._duckdb_web_fs_register_file_buffer = g(
+          "duckdb_web_fs_register_file_buffer"
+        )),
+        Gd = (e._duckdb_web_copy_file_to_buffer = g(
+          "duckdb_web_copy_file_to_buffer"
+        )),
+        Vd = (e._duckdb_web_copy_file_to_path = g(
+          "duckdb_web_copy_file_to_path"
+        )),
+        Kd = (e._duckdb_web_get_version = g("duckdb_web_get_version")),
+        zd = (e._duckdb_web_get_feature_flags = g(
+          "duckdb_web_get_feature_flags"
+        )),
+        Qd = (e._duckdb_web_tokenize = g("duckdb_web_tokenize")),
+        Xd = (e._duckdb_web_udf_scalar_create = g(
+          "duckdb_web_udf_scalar_create"
+        )),
+        Jd = (e._duckdb_web_prepared_create = g("duckdb_web_prepared_create")),
+        ef = (e._duckdb_web_prepared_close = g("duckdb_web_prepared_close")),
+        tf = (e._duckdb_web_prepared_run = g("duckdb_web_prepared_run")),
+        nf = (e._duckdb_web_prepared_send = g("duckdb_web_prepared_send")),
+        rf = (e._duckdb_web_query_run = g("duckdb_web_query_run")),
+        af = (e._duckdb_web_pending_query_start = g(
+          "duckdb_web_pending_query_start"
+        )),
+        sf = (e._duckdb_web_pending_query_poll = g(
+          "duckdb_web_pending_query_poll"
+        )),
+        of = (e._duckdb_web_pending_query_cancel = g(
+          "duckdb_web_pending_query_cancel"
+        )),
+        cf = (e._duckdb_web_query_fetch_results = g(
+          "duckdb_web_query_fetch_results"
+        )),
+        lf = (e._duckdb_web_get_tablenames = g("duckdb_web_get_tablenames")),
+        uf = (e._duckdb_web_insert_arrow_from_ipc_stream = g(
+          "duckdb_web_insert_arrow_from_ipc_stream"
+        )),
+        _f = (e._duckdb_web_insert_csv_from_path = g(
+          "duckdb_web_insert_csv_from_path"
+        )),
+        df = (e._duckdb_web_insert_json_from_path = g(
+          "duckdb_web_insert_json_from_path"
+        )),
+        Lc = (e.___errno_location = g("__errno_location")),
+        Fc = (e.___stdio_exit = g("__stdio_exit")),
+        ff = (e.___dl_seterr = g("__dl_seterr")),
+        Qn = (e._htonl = g("htonl")),
+        Xn = (e._htons = g("htons")),
+        vs = (e._ntohs = g("ntohs")),
+        Rn = (e._malloc = g("malloc")),
+        hf = (e._free = g("free")),
+        bf = (e._emscripten_get_sbrk_ptr = g("emscripten_get_sbrk_ptr")),
+        js = (e._sbrk = g("sbrk")),
+        pf = (e._setThrew = g("setThrew")),
+        ms = (e._emscripten_stack_init = function () {
+          return (ms = e._emscripten_stack_init =
+            e.asm.emscripten_stack_init).apply(null, arguments);
+        }),
+        xc = (e._emscripten_stack_get_free = function () {
+          return (xc = e._emscripten_stack_get_free =
+            e.asm.emscripten_stack_get_free).apply(null, arguments);
+        }),
+        Jn = (e._emscripten_stack_get_base = function () {
+          return (Jn = e._emscripten_stack_get_base =
+            e.asm.emscripten_stack_get_base).apply(null, arguments);
+        }),
+        er = (e._emscripten_stack_get_end = function () {
+          return (er = e._emscripten_stack_get_end =
+            e.asm.emscripten_stack_get_end).apply(null, arguments);
+        }),
+        ws = (e.stackSave = g("stackSave")),
+        ks = (e.stackRestore = g("stackRestore")),
+        Fi = (e.stackAlloc = g("stackAlloc")),
+        yf = (e.dynCall_jiji = g("dynCall_jiji")),
+        gf = (e.dynCall_iiiiij = g("dynCall_iiiiij")),
+        Nc = (e.dynCall_iiiiijj = g("dynCall_iiiiijj")),
+        Bc = (e.dynCall_iiiiiijj = g("dynCall_iiiiiijj")),
+        vf = (e.dynCall_viijii = g("dynCall_viijii")),
+        tr = (e.dynCall_viij = g("dynCall_viij")),
+        ir = (e.dynCall_viijji = g("dynCall_viijji")),
+        Es = (e.dynCall_viijj = g("dynCall_viijj")),
+        xi = (e.dynCall_viiijj = g("dynCall_viiijj")),
+        Yc = (e.dynCall_viiij = g("dynCall_viiij")),
+        jf = (e.dynCall_viijij = g("dynCall_viijij")),
+        Ss = (e.dynCall_viiji = g("dynCall_viiji")),
+        C = (e.dynCall_ji = g("dynCall_ji")),
+        Cs = (e.dynCall_jiiiii = g("dynCall_jiiiii")),
+        Hc = (e.dynCall_vij = g("dynCall_vij")),
+        nr = (e.dynCall_j = g("dynCall_j")),
+        rr = (e.dynCall_jii = g("dynCall_jii")),
+        E = (e.dynCall_jiii = g("dynCall_jiii")),
+        S = (e.dynCall_jij = g("dynCall_jij")),
+        Ni = (e.dynCall_iij = g("dynCall_iij")),
+        On = (e.dynCall_iiiiiji = g("dynCall_iiiiiji")),
+        qc = (e.dynCall_jiiiij = g("dynCall_jiiiij")),
+        mf = (e.dynCall_jijjij = g("dynCall_jijjij")),
+        Wc = (e.dynCall_ijjj = g("dynCall_ijjj")),
+        Zc = (e.dynCall_jjjd = g("dynCall_jjjd")),
+        $c = (e.dynCall_jjjjjjd = g("dynCall_jjjjjjd")),
+        wf = (e.dynCall_vjjijij = g("dynCall_vjjijij")),
+        Gc = (e.dynCall_vijjji = g("dynCall_vijjji")),
+        Vc = (e.dynCall_vjjii = g("dynCall_vjjii")),
+        Kc = (e.dynCall_viiiiiji = g("dynCall_viiiiiji")),
+        zc = (e.dynCall_jiiiji = g("dynCall_jiiiji")),
+        Qc = (e.dynCall_jiiij = g("dynCall_jiiij")),
+        Xc = (e.dynCall_iiij = g("dynCall_iiij")),
+        Jc = (e.dynCall_vijjj = g("dynCall_vijjj")),
+        el = (e.dynCall_jiijii = g("dynCall_jiijii")),
+        tl = (e.dynCall_jijiii = g("dynCall_jijiii")),
+        il = (e.dynCall_viijiiiii = g("dynCall_viijiiiii")),
+        nl = (e.dynCall_viijiiij = g("dynCall_viijiiij")),
+        rl = (e.dynCall_vijiiiji = g("dynCall_vijiiiji")),
+        al = (e.dynCall_viiiij = g("dynCall_viiiij")),
+        sl = (e.dynCall_jiiji = g("dynCall_jiiji")),
+        ol = (e.dynCall_viiijij = g("dynCall_viiijij")),
+        cl = (e.dynCall_viijiij = g("dynCall_viijiij")),
+        ll = (e.dynCall_viiiiijj = g("dynCall_viiiiijj")),
+        ul = (e.dynCall_viiijji = g("dynCall_viiijji")),
+        _l = (e.dynCall_vijii = g("dynCall_vijii")),
+        dl = (e.dynCall_jiiii = g("dynCall_jiiii")),
+        fl = (e.dynCall_viiijiiiijj = g("dynCall_viiijiiiijj")),
+        hl = (e.dynCall_jiiijj = g("dynCall_jiiijj")),
+        bl = (e.dynCall_viiiji = g("dynCall_viiiji")),
+        pl = (e.dynCall_viiiiji = g("dynCall_viiiiji")),
+        yl = (e.dynCall_jiij = g("dynCall_jiij")),
+        gl = (e.dynCall_jijiiii = g("dynCall_jijiiii")),
+        vl = (e.dynCall_viiijiji = g("dynCall_viiijiji"));
+      b("intArrayFromString", !1),
+        b("intArrayToString", !1),
+        (e.ccall = rn),
+        b("cwrap", !1),
+        b("setValue", !1),
+        b("getValue", !1),
+        b("allocate", !1),
+        b("UTF8ArrayToString", !1),
+        b("UTF8ToString", !1),
+        b("stringToUTF8Array", !1),
+        b("stringToUTF8", !1),
+        b("lengthBytesUTF8", !1),
+        b("stackTrace", !1),
+        b("addOnPreRun", !1),
+        b("addOnInit", !1),
+        b("addOnPreMain", !1),
+        b("addOnExit", !1),
+        b("addOnPostRun", !1),
+        b("writeStringToMemory", !1),
+        b("writeArrayToMemory", !1),
+        b("writeAsciiToMemory", !1),
+        b("addRunDependency", !0),
+        b("removeRunDependency", !0),
+        b("FS_createFolder", !1),
+        b("FS_createPath", !0),
+        b("FS_createDataFile", !0),
+        b("FS_createPreloadedFile", !0),
+        b("FS_createLazyFile", !0),
+        b("FS_createLink", !1),
+        b("FS_createDevice", !0),
+        b("FS_unlink", !0),
+        b("getLEB", !1),
+        b("getFunctionTables", !1),
+        b("alignFunctionTables", !1),
+        b("registerFunctions", !1),
+        b("addFunction", !1),
+        b("removeFunction", !1),
+        b("prettyPrint", !1),
+        b("dynCall", !1),
+        b("getCompilerSetting", !1),
+        b("print", !1),
+        b("printErr", !1),
+        b("getTempRet0", !1),
+        b("setTempRet0", !1),
+        b("callMain", !1),
+        b("abort", !1),
+        b("keepRuntimeAlive", !1),
+        b("ptrToString", !1),
+        b("zeroMemory", !1),
+        b("stringToNewUTF8", !1),
+        b("emscripten_realloc_buffer", !1),
+        b("ENV", !1),
+        b("ERRNO_CODES", !1),
+        b("ERRNO_MESSAGES", !1),
+        b("setErrNo", !1),
+        b("inetPton4", !1),
+        b("inetNtop4", !1),
+        b("inetPton6", !1),
+        b("inetNtop6", !1),
+        b("readSockaddr", !1),
+        b("writeSockaddr", !1),
+        b("DNS", !1),
+        b("getHostByName", !1),
+        b("Protocols", !1),
+        b("Sockets", !1),
+        b("getRandomDevice", !1),
+        b("traverseStack", !1),
+        b("UNWIND_CACHE", !1),
+        b("convertPCtoSourceLocation", !1),
+        b("readAsmConstArgsArray", !1),
+        b("readAsmConstArgs", !1),
+        b("mainThreadEM_ASM", !1),
+        b("jstoi_q", !1),
+        b("jstoi_s", !1),
+        b("getExecutableName", !1),
+        b("listenOnce", !1),
+        b("autoResumeAudioContext", !1),
+        b("dynCallLegacy", !1),
+        b("getDynCaller", !1),
+        b("dynCall", !1),
+        b("handleException", !1),
+        b("runtimeKeepalivePush", !1),
+        b("runtimeKeepalivePop", !1),
+        b("callUserCallback", !1),
+        b("maybeExit", !1),
+        b("safeSetTimeout", !1),
+        b("asmjsMangle", !1),
+        b("asyncLoad", !1),
+        b("alignMemory", !1),
+        b("mmapAlloc", !1),
+        b("reallyNegative", !1),
+        b("unSign", !1),
+        b("reSign", !1),
+        b("formatString", !1),
+        b("PATH", !1),
+        b("PATH_FS", !1),
+        b("SYSCALLS", !1),
+        b("getSocketFromFD", !1),
+        b("getSocketAddress", !1),
+        b("JSEvents", !1),
+        b("registerKeyEventCallback", !1),
+        b("specialHTMLTargets", !1),
+        b("maybeCStringToJsString", !1),
+        b("findEventTarget", !1),
+        b("findCanvasEventTarget", !1),
+        b("getBoundingClientRect", !1),
+        b("fillMouseEventData", !1),
+        b("registerMouseEventCallback", !1),
+        b("registerWheelEventCallback", !1),
+        b("registerUiEventCallback", !1),
+        b("registerFocusEventCallback", !1),
+        b("fillDeviceOrientationEventData", !1),
+        b("registerDeviceOrientationEventCallback", !1),
+        b("fillDeviceMotionEventData", !1),
+        b("registerDeviceMotionEventCallback", !1),
+        b("screenOrientation", !1),
+        b("fillOrientationChangeEventData", !1),
+        b("registerOrientationChangeEventCallback", !1),
+        b("fillFullscreenChangeEventData", !1),
+        b("registerFullscreenChangeEventCallback", !1),
+        b("registerRestoreOldStyle", !1),
+        b("hideEverythingExceptGivenElement", !1),
+        b("restoreHiddenElements", !1),
+        b("setLetterbox", !1),
+        b("currentFullscreenStrategy", !1),
+        b("restoreOldWindowedStyle", !1),
+        b("softFullscreenResizeWebGLRenderTarget", !1),
+        b("doRequestFullscreen", !1),
+        b("fillPointerlockChangeEventData", !1),
+        b("registerPointerlockChangeEventCallback", !1),
+        b("registerPointerlockErrorEventCallback", !1),
+        b("requestPointerLock", !1),
+        b("fillVisibilityChangeEventData", !1),
+        b("registerVisibilityChangeEventCallback", !1),
+        b("registerTouchEventCallback", !1),
+        b("fillGamepadEventData", !1),
+        b("registerGamepadEventCallback", !1),
+        b("registerBeforeUnloadEventCallback", !1),
+        b("fillBatteryEventData", !1),
+        b("battery", !1),
+        b("registerBatteryEventCallback", !1),
+        b("setCanvasElementSize", !1),
+        b("getCanvasElementSize", !1),
+        b("demangle", !1),
+        b("demangleAll", !1),
+        b("jsStackTrace", !1),
+        b("stackTrace", !1),
+        b("getEnvStrings", !1),
+        b("checkWasiClock", !1),
+        b("flush_NO_FILESYSTEM", !1),
+        b("writeI53ToI64", !1),
+        b("writeI53ToI64Clamped", !1),
+        b("writeI53ToI64Signaling", !1),
+        b("writeI53ToU64Clamped", !1),
+        b("writeI53ToU64Signaling", !1),
+        b("readI53FromI64", !1),
+        b("readI53FromU64", !1),
+        b("convertI32PairToI53", !1),
+        b("convertU32PairToI53", !1),
+        b("dlopenMissingError", !1),
+        b("setImmediateWrapped", !1),
+        b("clearImmediateWrapped", !1),
+        b("polyfillSetImmediate", !1),
+        b("Browser", !1),
+        b("setMainLoop", !1),
+        b("wget", !1),
+        b("tempFixedLengthArray", !1),
+        b("miniTempWebGLFloatBuffers", !1),
+        b("heapObjectForWebGLType", !1),
+        b("heapAccessShiftForWebGLHeap", !1),
+        b("GL", !1),
+        b("emscriptenWebGLGet", !1),
+        b("computeUnpackAlignedImageSize", !1),
+        b("emscriptenWebGLGetTexPixelData", !1),
+        b("emscriptenWebGLGetUniform", !1),
+        b("webglGetUniformLocation", !1),
+        b("webglPrepareUniformLocationsBeforeFirstUse", !1),
+        b("webglGetLeftBracePos", !1),
+        b("emscriptenWebGLGetVertexAttrib", !1),
+        b("writeGLArray", !1),
+        b("AL", !1),
+        b("SDL_unicode", !1),
+        b("SDL_ttfContext", !1),
+        b("SDL_audio", !1),
+        b("SDL", !1),
+        b("SDL_gfx", !1),
+        b("GLUT", !1),
+        b("EGL", !1),
+        b("GLFW_Window", !1),
+        b("GLFW", !1),
+        b("GLEW", !1),
+        b("IDBStore", !1),
+        b("runAndAbortIfError", !1),
+        b("SOCKFS", !1),
+        b("FS", !1),
+        b("warnOnce", !1),
+        b("stackSave", !1),
+        b("stackRestore", !1),
+        b("stackAlloc", !1),
+        b("AsciiToString", !1),
+        b("stringToAscii", !1),
+        b("UTF16ToString", !1),
+        b("stringToUTF16", !1),
+        b("lengthBytesUTF16", !1),
+        b("UTF32ToString", !1),
+        b("stringToUTF32", !1),
+        b("lengthBytesUTF32", !1),
+        b("allocateUTF8", !1),
+        b("allocateUTF8OnStack", !1),
+        (e.writeStackCookie = dn),
+        (e.checkStackCookie = St),
+        ee("ALLOC_NORMAL", !1),
+        ee("ALLOC_STACK", !1);
+      var Bi;
+      function Yi(c) {
+        (this.name = "ExitStatus"),
+          (this.message = "Program terminated with exit(" + c + ")"),
+          (this.status = c);
+      }
+      var As = !1;
+      At = function c() {
+        Bi || Tn(), Bi || (At = c);
+      };
+      function Rs(c) {
+        M(
+          it == 0,
+          'cannot call main when async dependencies remain! (listen on Module["onRuntimeInitialized"])'
+        ),
+          M(
+            hi.length == 0,
+            "cannot call main when preRun functions remain to be called"
+          );
+        var h = e._main;
+        c = c || [];
+        var v = c.length + 1,
+          R = Fi((v + 1) * 4);
+        N((R >>> 2) * 4, cn(O), 4);
+        for (var U = 1; U < v; U++)
+          N((((R >> 2) + U) >>> 0) * 4, cn(c[U - 1]), 4);
+        N((((R >> 2) + v) >>> 0) * 4, 0, 4);
+        try {
+          var Z = h(v, R);
+          return Ps(Z, !0), Z;
+        } catch (H) {
+          return da(H);
+        } finally {
+          As = !0;
+        }
+      }
+      function Os() {
+        ms(), dn();
+      }
+      function Tn(c) {
+        if (((c = c || w), it > 0 || (Os(), Qr(), it > 0))) return;
+        function h() {
+          Bi ||
+            ((Bi = !0),
+            (e.calledRun = !0),
+            !Et &&
+              (Xr(),
+              Jr(),
+              l(e),
+              e.onRuntimeInitialized && e.onRuntimeInitialized(),
+              ar && Rs(c),
+              ea()));
+        }
+        e.setStatus
+          ? (e.setStatus("Running..."),
+            setTimeout(function () {
+              setTimeout(function () {
+                e.setStatus("");
+              }, 1),
+                h();
+            }, 1))
+          : h(),
+          St();
+      }
+      e.run = Tn;
+      function Ts() {
+        var c = de,
+          h = Y,
+          v = !1;
+        de = Y = (U) => {
+          v = !0;
+        };
+        try {
+          var R = as;
+          R && R();
+        } catch {}
+        (de = c),
+          (Y = h),
+          v &&
+            (ge(
+              "stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the FAQ), or make sure to emit a newline when you printf etc."
+            ),
+            ge(
+              "(this may also be due to not including full filesystem support - try building with -sFORCE_FILESYSTEM)"
+            ));
+      }
+      function Ps(c, h) {
+        if (((Ft = c), Ts(), bi() && !h)) {
+          var v =
+            "program exited (with status: " +
+            c +
+            "), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";
+          p(v), Y(v);
+        }
+        Ds(c);
+      }
+      function Ds(c) {
+        (Ft = c), bi() || (e.onExit && e.onExit(c), (Et = !0)), P(c, new Yi(c));
+      }
+      if (e.preInit)
+        for (
+          typeof e.preInit == "function" && (e.preInit = [e.preInit]);
+          e.preInit.length > 0;
+
+        )
+          e.preInit.pop()();
+      var ar = !0;
+      return e.noInitialRun && (ar = !1), Tn(), i.ready;
+    };
+  })(),
+  El = Oj;
+var Sl = {},
+  Tj = (() => {
+    var r = Sl.url;
+    return function (i) {
+      i = i || {};
+      var e = typeof i < "u" ? i : {},
+        l,
+        p;
+      (e.ready = new Promise(function (t, n) {
+        (l = t), (p = n);
+      })),
+        Object.getOwnPropertyDescriptor(e.ready, "_main") ||
+          (Object.defineProperty(e.ready, "_main", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_main", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_malloc") ||
+          (Object.defineProperty(e.ready, "_malloc", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_malloc", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _malloc on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_free") ||
+          (Object.defineProperty(e.ready, "_free", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_free", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _free on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_clear_response"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_clear_response", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_clear_response", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_clear_response on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_collect_file_stats"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_collect_file_stats", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_collect_file_stats", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_collect_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_connect") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_connect", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_connect", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_connect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_copy_file_to_buffer"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_buffer", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_buffer", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_copy_file_to_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_copy_file_to_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_copy_file_to_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_copy_file_to_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_disconnect") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_disconnect", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_disconnect", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_disconnect on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_export_file_stats"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_export_file_stats", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_export_file_stats", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_export_file_stats on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_fail_with") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fail_with", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fail_with", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fail_with on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_flush_file") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_flush_file", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_flush_file", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_flush_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_flush_files") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_flush_files", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_flush_files", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_flush_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_fs_drop_file") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_drop_file", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_drop_file", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_drop_file on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_fs_drop_files") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_drop_files", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_drop_files", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_drop_files on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_get_file_info_by_id"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_get_file_info_by_id",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_get_file_info_by_id", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_get_file_info_by_id on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_get_file_info_by_name"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_get_file_info_by_name",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_get_file_info_by_name",
+            {
+              configurable: !0,
+              set: function () {
+                k(
+                  "You are setting _duckdb_web_fs_get_file_info_by_name on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          )),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_glob_add_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_glob_add_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_glob_add_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_glob_add_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_glob_file_infos"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_glob_file_infos", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_glob_file_infos", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_glob_file_infos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_register_file_buffer"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_register_file_buffer",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_register_file_buffer",
+            {
+              configurable: !0,
+              set: function () {
+                k(
+                  "You are setting _duckdb_web_fs_register_file_buffer on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          )),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_register_file_url"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_fs_register_file_url", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_register_file_url", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_register_file_url on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_fs_set_file_descriptor"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_fs_set_file_descriptor",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(e.ready, "_duckdb_web_fs_set_file_descriptor", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_fs_set_file_descriptor on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_get_feature_flags"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_feature_flags", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_feature_flags", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_feature_flags on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_get_global_file_info"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_global_file_info", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_global_file_info", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_global_file_info on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_get_tablenames"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_tablenames", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_tablenames", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_tablenames on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_get_version") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_get_version", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_get_version", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_get_version on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_insert_arrow_from_ipc_stream"
+        ) ||
+          (Object.defineProperty(
+            e.ready,
+            "_duckdb_web_insert_arrow_from_ipc_stream",
+            {
+              configurable: !0,
+              get: function () {
+                k(
+                  "You are getting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          ),
+          Object.defineProperty(
+            e.ready,
+            "_duckdb_web_insert_arrow_from_ipc_stream",
+            {
+              configurable: !0,
+              set: function () {
+                k(
+                  "You are setting _duckdb_web_insert_arrow_from_ipc_stream on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+                );
+              },
+            }
+          )),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_insert_csv_from_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_insert_csv_from_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_insert_csv_from_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_insert_csv_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_insert_json_from_path"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_insert_json_from_path", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_insert_json_from_path", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_insert_json_from_path on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_open") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_open", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_open", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_open on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_pending_query_cancel"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_pending_query_cancel", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_pending_query_cancel", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_pending_query_cancel on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_pending_query_poll"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_pending_query_poll", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_pending_query_poll", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_pending_query_poll on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_pending_query_start"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_pending_query_start", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_pending_query_start", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_pending_query_start on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_prepared_close"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_close", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_close", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_close on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_prepared_create"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_create", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_create", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_prepared_run") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_run", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_run", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_prepared_send") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_prepared_send", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_prepared_send", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_prepared_send on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_query_fetch_results"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_query_fetch_results", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_query_fetch_results", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_query_fetch_results on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_query_run") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_query_run", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_query_run", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_query_run on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_reset") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_reset", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_reset", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_reset on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "_duckdb_web_tokenize") ||
+          (Object.defineProperty(e.ready, "_duckdb_web_tokenize", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_tokenize", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_tokenize on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(
+          e.ready,
+          "_duckdb_web_udf_scalar_create"
+        ) ||
+          (Object.defineProperty(e.ready, "_duckdb_web_udf_scalar_create", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "_duckdb_web_udf_scalar_create", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting _duckdb_web_udf_scalar_create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "___stdio_exit") ||
+          (Object.defineProperty(e.ready, "___stdio_exit", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "___stdio_exit", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          })),
+        Object.getOwnPropertyDescriptor(e.ready, "onRuntimeInitialized") ||
+          (Object.defineProperty(e.ready, "onRuntimeInitialized", {
+            configurable: !0,
+            get: function () {
+              k(
+                "You are getting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }),
+          Object.defineProperty(e.ready, "onRuntimeInitialized", {
+            configurable: !0,
+            set: function () {
+              k(
+                "You are setting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js"
+              );
+            },
+          }));
+      var m = Object.assign({}, e),
+        w = [],
+        O = "./this.program",
+        P = (t, n) => {
+          throw n;
+        },
+        B = typeof window == "object",
+        D = typeof importScripts == "function",
+        q =
+          typeof process == "object" &&
+          typeof process.versions == "object" &&
+          typeof process.versions.node == "string",
+        x = !B && !q && !D;
+      if (e.ENVIRONMENT)
+        throw new Error(
+          "Module.ENVIRONMENT has been deprecated. To force the environment, use the ENVIRONMENT compile-time option (for example, -sENVIRONMENT=web or -sENVIRONMENT=node)"
+        );
+      var ie = "";
+      function X(t) {
+        return e.locateFile ? e.locateFile(t, ie) : ie + t;
+      }
+      var J, ce, le, Ae;
+      function Ee(t) {
+        if (t instanceof cr) return;
+        let n = t;
+        t && typeof t == "object" && t.stack && (n = [t, t.stack]),
+          Y("exiting due to exception: " + n);
+      }
+      var xe, _e, Se;
+      if (q) {
+        if (!(typeof process == "object" && typeof require == "function"))
+          throw new Error(
+            "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)"
+          );
+        D ? (ie = require("path").dirname(ie) + "/") : (ie = __dirname + "/"),
+          (Se = () => {
+            _e || ((xe = require("fs")), (_e = require("path")));
+          }),
+          (J = function (n, a) {
+            return (
+              Se(),
+              (n = _e.normalize(n)),
+              xe.readFileSync(n, a ? void 0 : "utf8")
+            );
+          }),
+          (le = (t) => {
+            var n = J(t, !0);
+            return n.buffer || (n = new Uint8Array(n)), M(n.buffer), n;
+          }),
+          (ce = (t, n, a) => {
+            Se(),
+              (t = _e.normalize(t)),
+              xe.readFile(t, function (s, o) {
+                s ? a(s) : n(o.buffer);
+              });
+          }),
+          process.argv.length > 1 && (O = process.argv[1].replace(/\\/g, "/")),
+          (w = process.argv.slice(2)),
+          process.on("uncaughtException", function (t) {
+            if (!(t instanceof cr)) throw t;
+          }),
+          process.on("unhandledRejection", function (t) {
+            throw t;
+          }),
+          (P = (t, n) => {
+            if (bi()) throw ((process.exitCode = t), n);
+            Ee(n), process.exit(t);
+          }),
+          (e.inspect = function () {
+            return "[Emscripten Module object]";
+          });
+      } else if (x) {
+        if (
+          (typeof process == "object" && typeof require == "function") ||
+          typeof window == "object" ||
+          typeof importScripts == "function"
+        )
+          throw new Error(
+            "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)"
+          );
+        typeof read < "u" &&
+          (J = function (n) {
+            return read(n);
+          }),
+          (le = function (n) {
+            let a;
+            return typeof readbuffer == "function"
+              ? new Uint8Array(readbuffer(n))
+              : ((a = read(n, "binary")), M(typeof a == "object"), a);
+          }),
+          (ce = function (n, a, s) {
+            setTimeout(() => a(le(n)), 0);
+          }),
+          typeof scriptArgs < "u"
+            ? (w = scriptArgs)
+            : typeof arguments < "u" && (w = arguments),
+          typeof quit == "function" &&
+            (P = (t, n) => {
+              Ee(n), quit(t);
+            }),
+          typeof print < "u" &&
+            (typeof console > "u" && (console = {}),
+            (console.log = print),
+            (console.warn = console.error =
+              typeof printErr < "u" ? printErr : print));
+      } else if (B || D) {
+        if (
+          (D
+            ? (ie = self.location.href)
+            : typeof document < "u" &&
+              document.currentScript &&
+              (ie = document.currentScript.src),
+          r && (ie = r),
+          ie.indexOf("blob:") !== 0
+            ? (ie = ie.substr(0, ie.replace(/[?#].*/, "").lastIndexOf("/") + 1))
+            : (ie = ""),
+          !(typeof window == "object" || typeof importScripts == "function"))
+        )
+          throw new Error(
+            "not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)"
+          );
+        (J = (t) => {
+          var n = new XMLHttpRequest();
+          return n.open("GET", t, !1), n.send(null), n.responseText;
+        }),
+          D &&
+            (le = (t) => {
+              var n = new XMLHttpRequest();
+              return (
+                n.open("GET", t, !1),
+                (n.responseType = "arraybuffer"),
+                n.send(null),
+                new Uint8Array(n.response)
+              );
+            }),
+          (ce = (t, n, a) => {
+            var s = new XMLHttpRequest();
+            s.open("GET", t, !0),
+              (s.responseType = "arraybuffer"),
+              (s.onload = () => {
+                if (s.status == 200 || (s.status == 0 && s.response)) {
+                  n(s.response);
+                  return;
+                }
+                a();
+              }),
+              (s.onerror = a),
+              s.send(null);
+          }),
+          (Ae = (t) => (document.title = t));
+      } else throw new Error("environment detection error");
+      var de = e.print || console.log.bind(console),
+        Y = e.printErr || console.warn.bind(console);
+      Object.assign(e, m),
+        (m = null),
+        Uc(),
+        e.arguments && (w = e.arguments),
+        se("arguments", "arguments_"),
+        e.thisProgram && (O = e.thisProgram),
+        se("thisProgram", "thisProgram"),
+        e.quit && (P = e.quit),
+        se("quit", "quit_"),
+        M(
+          typeof e.memoryInitializerPrefixURL > "u",
+          "Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.pthreadMainPrefixURL > "u",
+          "Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.cdInitializerPrefixURL > "u",
+          "Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.filePackagePrefixURL > "u",
+          "Module.filePackagePrefixURL option was removed, use Module.locateFile instead"
+        ),
+        M(
+          typeof e.read > "u",
+          "Module.read option was removed (modify read_ in JS)"
+        ),
+        M(
+          typeof e.readAsync > "u",
+          "Module.readAsync option was removed (modify readAsync in JS)"
+        ),
+        M(
+          typeof e.readBinary > "u",
+          "Module.readBinary option was removed (modify readBinary in JS)"
+        ),
+        M(
+          typeof e.setWindowTitle > "u",
+          "Module.setWindowTitle option was removed (modify setWindowTitle in JS)"
+        ),
+        M(
+          typeof e.TOTAL_MEMORY > "u",
+          "Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY"
+        ),
+        se("read", "read_"),
+        se("readAsync", "readAsync"),
+        se("readBinary", "readBinary"),
+        se("setWindowTitle", "setWindowTitle");
+      var ne = "IDBFS is no longer included by default; build with -lidbfs.js",
+        Ce =
+          "PROXYFS is no longer included by default; build with -lproxyfs.js",
+        F =
+          "WORKERFS is no longer included by default; build with -lworkerfs.js",
+        je = "NODEFS is no longer included by default; build with -lnodefs.js";
+      function ye() {
+        k(
+          "`alignMemory` is now a library function and not included by default; add it to your library.js __deps or to DEFAULT_LIBRARY_FUNCS_TO_INCLUDE on the command line"
+        );
+      }
+      M(
+        !x,
+        "shell environment detected but not enabled at build time.  Add 'shell' to `-sENVIRONMENT` to enable."
+      );
+      var Ue = 16,
+        I = 4;
+      function L(t) {
+        switch (t) {
+          case "i1":
+          case "i8":
+            return 1;
+          case "i16":
+            return 2;
+          case "i32":
+            return 4;
+          case "i64":
+            return 8;
+          case "float":
+            return 4;
+          case "double":
+            return 8;
+          default: {
+            if (t[t.length - 1] === "*") return I;
+            if (t[0] === "i") {
+              let n = Number(t.substr(1));
+              return (
+                M(
+                  n % 8 === 0,
+                  "getNativeTypeSize invalid bits " + n + ", type " + t
+                ),
+                n / 8
+              );
+            } else return 0;
+          }
+        }
+      }
+      function ge(t) {
+        ge.shown || (ge.shown = {}), ge.shown[t] || ((ge.shown[t] = 1), Y(t));
+      }
+      function we(t) {
+        return M(t < 16384), t < 128 ? [t] : [t % 128 | 128, t >> 7];
+      }
+      function lt(t, n) {
+        if (typeof WebAssembly.Function == "function") {
+          for (
+            var a = { i: "i32", j: "i64", f: "f32", d: "f64" },
+              s = { parameters: [], results: n[0] == "v" ? [] : [a[n[0]]] },
+              o = 1;
+            o < n.length;
+            ++o
+          )
+            s.parameters.push(a[n[o]]);
+          return new WebAssembly.Function(s, t);
+        }
+        var u = [1, 96],
+          _ = n.slice(0, 1),
+          d = n.slice(1),
+          f = { i: 127, j: 126, f: 125, d: 124 };
+        u = u.concat(we(d.length));
+        for (var o = 0; o < d.length; ++o) u.push(f[d[o]]);
+        _ == "v" ? u.push(0) : (u = u.concat([1, f[_]])),
+          (u = [1].concat(we(u.length), u));
+        var y = new Uint8Array(
+            [0, 97, 115, 109, 1, 0, 0, 0].concat(
+              u,
+              [2, 7, 1, 1, 101, 1, 102, 0, 0, 7, 5, 1, 1, 102, 0, 0]
+            )
+          ),
+          j = new WebAssembly.Module(y),
+          A = new WebAssembly.Instance(j, { e: { f: t } }),
+          T = A.exports.f;
+        return T;
+      }
+      var Je = [],
+        Te;
+      function Gt() {
+        if (Je.length) return Je.pop();
+        try {
+          Xe.grow(1);
+        } catch (t) {
+          throw t instanceof RangeError
+            ? "Unable to grow wasm table. Set ALLOW_TABLE_GROWTH."
+            : t;
+        }
+        return Xe.length - 1;
+      }
+      function Ji(t, n) {
+        for (var a = t; a < t + n; a++) {
+          var s = re(a);
+          s && Te.set(s, a);
+        }
+      }
+      function Ti(t, n) {
+        if (
+          (M(typeof t < "u"),
+          Te || ((Te = new WeakMap()), Ji(0, Xe.length)),
+          Te.has(t))
+        )
+          return Te.get(t);
+        var a = Gt();
+        try {
+          gn(a, t);
+        } catch (o) {
+          if (!(o instanceof TypeError)) throw o;
+          M(typeof n < "u", "Missing signature argument to addFunction: " + t);
+          var s = lt(t, n);
+          gn(a, s);
+        }
+        return Te.set(t, a), a;
+      }
+      function Lt(t) {
+        Te.delete(re(t)), Je.push(t);
+      }
+      function se(t, n) {
+        Object.getOwnPropertyDescriptor(e, t) ||
+          Object.defineProperty(e, t, {
+            configurable: !0,
+            get: function () {
+              k(
+                "Module." +
+                  t +
+                  " has been replaced with plain " +
+                  n +
+                  " (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)"
+              );
+            },
+          });
+      }
+      function Vt(t) {
+        Object.getOwnPropertyDescriptor(e, t) &&
+          k(
+            "`Module." +
+              t +
+              "` was supplied but `" +
+              t +
+              "` not included in INCOMING_MODULE_JS_API"
+          );
+      }
+      function si(t, n) {
+        var a =
+          "'" +
+          t +
+          "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
+        return (
+          n &&
+            (a +=
+              ". Alternatively, forcing filesystem support (-sFORCE_FILESYSTEM) can export this for you"),
+          a
+        );
+      }
+      function ee(t, n) {
+        Object.getOwnPropertyDescriptor(e, t) ||
+          Object.defineProperty(e, t, {
+            configurable: !0,
+            get: function () {
+              k(si(t, n));
+            },
+          });
+      }
+      function b(t, n) {
+        Object.getOwnPropertyDescriptor(e, t) || (e[t] = () => k(si(t, n)));
+      }
+      var z = 0,
+        oe = (t) => {
+          z = t;
+        },
+        Ne = () => z,
+        Ie;
+      e.wasmBinary && (Ie = e.wasmBinary), se("wasmBinary", "wasmBinary");
+      var Ye = e.noExitRuntime || !0;
+      se("noExitRuntime", "noExitRuntime"),
+        typeof WebAssembly != "object" && k("no native wasm support detected");
+      function oi(t, n, a = "i8", s) {
+        if ((a.charAt(a.length - 1) === "*" && (a = "i32"), s))
+          switch (a) {
+            case "i1":
+              Ge[t >>> 0] = n;
+              break;
+            case "i8":
+              Ge[t >>> 0] = n;
+              break;
+            case "i16":
+              li[t >>> 1] = n;
+              break;
+            case "i32":
+              bt[t >>> 2] = n;
+              break;
+            case "i64":
+              (yt = [
+                n >>> 0,
+                ((Le = n),
+                +Math.abs(Le) >= 1
+                  ? Le > 0
+                    ? (Math.min(+Math.floor(Le / 4294967296), 4294967295) |
+                        0) >>>
+                      0
+                    : ~~+Math.ceil((Le - +(~~Le >>> 0)) / 4294967296) >>> 0
+                  : 0),
+              ]),
+                (bt[t >>> 2] = yt[0]),
+                (bt[(t + 4) >>> 2] = yt[1]);
+              break;
+            case "float":
+              ui[t >>> 2] = n;
+              break;
+            case "double":
+              _i[t >>> 3] = n;
+              break;
+            default:
+              k("invalid type for setValue: " + a);
+          }
+        else
+          switch (a) {
+            case "i1":
+              N(t | 0, n | 0, 1);
+              break;
+            case "i8":
+              N(t | 0, n | 0, 1);
+              break;
+            case "i16":
+              N(t | 0, n | 0, 2);
+              break;
+            case "i32":
+              N(t | 0, n | 0, 4);
+              break;
+            case "i64":
+              (yt = [
+                n >>> 0,
+                ((Le = n),
+                +Math.abs(Le) >= 1
+                  ? Le > 0
+                    ? (Math.min(+Math.floor(Le / 4294967296), 4294967295) |
+                        0) >>>
+                      0
+                    : ~~+Math.ceil((Le - +(~~Le >>> 0)) / 4294967296) >>> 0
+                  : 0),
+              ]),
+                N(t | 0, yt[0] | 0, 4),
+                N((t + 4) | 0, yt[1] | 0, 4);
+              break;
+            case "float":
+              tn(t | 0, Math.fround(n), 4);
+              break;
+            case "double":
+              tn(t | 0, +n, 8);
+              break;
+            default:
+              k("invalid type for setValue: " + a);
+          }
+      }
+      function Kt(t, n = "i8", a) {
+        if ((n.charAt(n.length - 1) === "*" && (n = "i32"), a))
+          switch (n) {
+            case "i1":
+              return Ge[t >>> 0];
+            case "i8":
+              return Ge[t >>> 0];
+            case "i16":
+              return li[t >>> 1];
+            case "i32":
+              return bt[t >>> 2];
+            case "i64":
+              return bt[t >>> 2];
+            case "float":
+              return ui[t >>> 2];
+            case "double":
+              return Number(_i[t >>> 3]);
+            default:
+              k("invalid type for getValue: " + n);
+          }
+        else
+          switch (n) {
+            case "i1":
+              return V(t | 0, 1, 0) | 0;
+            case "i8":
+              return V(t | 0, 1, 0) | 0;
+            case "i16":
+              return V(t | 0, 2, 0) | 0;
+            case "i32":
+              return V(t | 0, 4, 0) | 0;
+            case "i64":
+              return V(t | 0, 8, 0) | 0;
+            case "float":
+              return Math.fround(nn(t | 0, 4, 0));
+            case "double":
+              return +nn(t | 0, 8, 0);
+            default:
+              k("invalid type for getValue: " + n);
+          }
+        return null;
+      }
+      function en(t, n) {
+        switch (t) {
+          case 1:
+            return "i8";
+          case 2:
+            return "i16";
+          case 4:
+            return n ? "float" : "i32";
+          case 8:
+            return n ? "double" : "i64";
+          default:
+            M(0);
+        }
+      }
+      function N(t, n, a, s) {
+        if (
+          ((t >>>= 0),
+          t <= 0 &&
+            k("segmentation fault storing " + a + " bytes to address " + t),
+          t % a !== 0 &&
+            k(
+              "alignment error storing to address " +
+                t +
+                ", which was expected to be aligned to a multiple of " +
+                a
+            ),
+          Ct)
+        ) {
+          var o = Ss() >>> 0;
+          t + a > o &&
+            k(
+              "segmentation fault, exceeded the top of the available dynamic heap when storing " +
+                a +
+                " bytes to address " +
+                t +
+                ". DYNAMICTOP=" +
+                o
+            ),
+            M(o >= nr()),
+            M(o <= Ge.length);
+        }
+        return oi(t, n, en(a, s), 1), n;
+      }
+      function tn(t, n, a) {
+        return N(t, n, a, !0);
+      }
+      function V(t, n, a, s) {
+        if (
+          ((t >>>= 0),
+          t <= 0 &&
+            k("segmentation fault loading " + n + " bytes from address " + t),
+          t % n !== 0 &&
+            k(
+              "alignment error loading from address " +
+                t +
+                ", which was expected to be aligned to a multiple of " +
+                n
+            ),
+          Ct)
+        ) {
+          var o = Ss() >>> 0;
+          t + n > o &&
+            k(
+              "segmentation fault, exceeded the top of the available dynamic heap when loading " +
+                n +
+                " bytes from address " +
+                t +
+                ". DYNAMICTOP=" +
+                o
+            ),
+            M(o >= nr()),
+            M(o <= Ge.length);
+        }
+        var u = en(n, s),
+          _ = Kt(t, u, 1);
+        return a && (_ = ha(_, parseInt(u.substr(1), 10))), _;
+      }
+      function nn(t, n, a) {
+        return V(t, n, a, !0);
+      }
+      function md(t, n) {
+        var a = t & n;
+        return (
+          a !== t &&
+            k(
+              "Function table mask error: function pointer is " +
+                t +
+                " which is masked by " +
+                n +
+                ", the likely cause of this is that the function pointer is being called by the wrong type."
+            ),
+          a
+        );
+      }
+      function Zr() {
+        k("segmentation fault");
+      }
+      function $r() {
+        k("alignment fault");
+      }
+      var kt,
+        Et = !1,
+        Ft;
+      function M(t, n) {
+        t || k("Assertion failed" + (n ? ": " + n : ""));
+      }
+      function Gr(t) {
+        var n = e["_" + t];
+        return (
+          M(
+            n,
+            "Cannot call unknown function " + t + ", make sure it is exported"
+          ),
+          n
+        );
+      }
+      function rn(t, n, a, s, o) {
+        var u = {
+          string: function (Q) {
+            var pe = 0;
+            if (Q != null && Q !== 0) {
+              var De = (Q.length << 2) + 1;
+              (pe = Ni(De)), Nt(Q, pe, De);
+            }
+            return pe;
+          },
+          array: function (Q) {
+            var pe = Ni(Q.length);
+            return ln(Q, pe), pe;
+          },
+        };
+        function _(Q) {
+          return n === "string" ? $e(Q) : n === "boolean" ? Boolean(Q) : Q;
+        }
+        var d = Gr(t),
+          f = [],
+          y = 0;
+        if ((M(n !== "array", 'Return type should not be "array".'), s))
+          for (var j = 0; j < s.length; j++) {
+            var A = u[a[j]];
+            A ? (y === 0 && (y = E()), (f[j] = A(s[j]))) : (f[j] = s[j]);
+          }
+        var T = d.apply(null, f);
+        function G(Q) {
+          return y !== 0 && S(y), _(Q);
+        }
+        return (T = G(T)), T;
+      }
+      function wd(t, n, a, s) {
+        return function () {
+          return rn(t, n, a, arguments, s);
+        };
+      }
+      var kd = 0,
+        Vr = 1;
+      function Ed(t, n) {
+        var a;
+        return (
+          M(typeof n == "number", "allocate no longer takes a type argument"),
+          M(typeof t != "number", "allocate no longer takes a number as arg0"),
+          n == Vr ? (a = Ni(t.length)) : (a = xi(t.length)),
+          !t.subarray && !t.slice && (t = new Uint8Array(t)),
+          Qe.set(t, a >>> 0),
+          a
+        );
+      }
+      var an = typeof TextDecoder < "u" ? new TextDecoder("utf8") : void 0;
+      function sn(t, n, a) {
+        n >>>= 0;
+        for (var s = n + a, o = n; t[o] && !(o >= s); ) ++o;
+        if (o - n > 16 && t.buffer && an) return an.decode(t.subarray(n, o));
+        for (var u = ""; n < o; ) {
+          var _ = t[n++];
+          if (!(_ & 128)) {
+            u += String.fromCharCode(_);
+            continue;
+          }
+          var d = t[n++] & 63;
+          if ((_ & 224) == 192) {
+            u += String.fromCharCode(((_ & 31) << 6) | d);
+            continue;
+          }
+          var f = t[n++] & 63;
+          if (
+            ((_ & 240) == 224
+              ? (_ = ((_ & 15) << 12) | (d << 6) | f)
+              : ((_ & 248) != 240 &&
+                  ge(
+                    "Invalid UTF-8 leading byte 0x" +
+                      _.toString(16) +
+                      " encountered when deserializing a UTF-8 string in wasm memory to a JS string!"
+                  ),
+                (_ = ((_ & 7) << 18) | (d << 12) | (f << 6) | (t[n++] & 63))),
+            _ < 65536)
+          )
+            u += String.fromCharCode(_);
+          else {
+            var y = _ - 65536;
+            u += String.fromCharCode(55296 | (y >> 10), 56320 | (y & 1023));
+          }
+        }
+        return u;
+      }
+      function $e(t, n) {
+        return (t >>>= 0), t ? sn(Qe, t, n) : "";
+      }
+      function xt(t, n, a, s) {
+        if (((a >>>= 0), !(s > 0))) return 0;
+        for (var o = a, u = a + s - 1, _ = 0; _ < t.length; ++_) {
+          var d = t.charCodeAt(_);
+          if (d >= 55296 && d <= 57343) {
+            var f = t.charCodeAt(++_);
+            d = (65536 + ((d & 1023) << 10)) | (f & 1023);
+          }
+          if (d <= 127) {
+            if (a >= u) break;
+            n[a++ >>> 0] = d;
+          } else if (d <= 2047) {
+            if (a + 1 >= u) break;
+            (n[a++ >>> 0] = 192 | (d >> 6)), (n[a++ >>> 0] = 128 | (d & 63));
+          } else if (d <= 65535) {
+            if (a + 2 >= u) break;
+            (n[a++ >>> 0] = 224 | (d >> 12)),
+              (n[a++ >>> 0] = 128 | ((d >> 6) & 63)),
+              (n[a++ >>> 0] = 128 | (d & 63));
+          } else {
+            if (a + 3 >= u) break;
+            d > 1114111 &&
+              ge(
+                "Invalid Unicode code point 0x" +
+                  d.toString(16) +
+                  " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF)."
+              ),
+              (n[a++ >>> 0] = 240 | (d >> 18)),
+              (n[a++ >>> 0] = 128 | ((d >> 12) & 63)),
+              (n[a++ >>> 0] = 128 | ((d >> 6) & 63)),
+              (n[a++ >>> 0] = 128 | (d & 63));
+          }
+        }
+        return (n[a >>> 0] = 0), a - o;
+      }
+      function Nt(t, n, a) {
+        return (
+          M(
+            typeof a == "number",
+            "stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"
+          ),
+          xt(t, Qe, n, a)
+        );
+      }
+      function Bt(t) {
+        for (var n = 0, a = 0; a < t.length; ++a) {
+          var s = t.charCodeAt(a);
+          s >= 55296 &&
+            s <= 57343 &&
+            (s = (65536 + ((s & 1023) << 10)) | (t.charCodeAt(++a) & 1023)),
+            s <= 127
+              ? ++n
+              : s <= 2047
+              ? (n += 2)
+              : s <= 65535
+              ? (n += 3)
+              : (n += 4);
+        }
+        return n;
+      }
+      function Sd(t) {
+        t >>>= 0;
+        for (var n = ""; ; ) {
+          var a = V(t++ | 0, 1, 1) >>> 0;
+          if (!a) return n;
+          n += String.fromCharCode(a);
+        }
+      }
+      function Cd(t, n) {
+        return un(t, n, !1);
+      }
+      var on = typeof TextDecoder < "u" ? new TextDecoder("utf-16le") : void 0;
+      function Ad(t, n) {
+        M(
+          t % 2 == 0,
+          "Pointer passed to UTF16ToString must be aligned to two bytes!"
+        );
+        for (
+          var a = t, s = a >> 1, o = s + n / 2;
+          !(s >= o) && V((s >>> 0) * 2, 2, 1);
+
+        )
+          ++s;
+        if (((a = s << 1), a - t > 32 && on))
+          return on.decode(Qe.subarray(t >>> 0, a >>> 0));
+        for (var u = "", _ = 0; !(_ >= n / 2); ++_) {
+          var d = V((t + _ * 2) | 0, 2, 0) | 0;
+          if (d == 0) break;
+          u += String.fromCharCode(d);
+        }
+        return u;
+      }
+      function Rd(t, n, a) {
+        if (
+          (M(
+            n % 2 == 0,
+            "Pointer passed to stringToUTF16 must be aligned to two bytes!"
+          ),
+          M(
+            typeof a == "number",
+            "stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"
+          ),
+          a === void 0 && (a = 2147483647),
+          a < 2)
+        )
+          return 0;
+        a -= 2;
+        for (
+          var s = n, o = a < t.length * 2 ? a / 2 : t.length, u = 0;
+          u < o;
+          ++u
+        ) {
+          var _ = t.charCodeAt(u);
+          N(n | 0, _ | 0, 2), (n += 2);
+        }
+        return N(n | 0, 0, 2), n - s;
+      }
+      function Od(t) {
+        return t.length * 2;
+      }
+      function Td(t, n) {
+        M(
+          t % 4 == 0,
+          "Pointer passed to UTF32ToString must be aligned to four bytes!"
+        );
+        for (var a = 0, s = ""; !(a >= n / 4); ) {
+          var o = V((t + a * 4) | 0, 4, 0) | 0;
+          if (o == 0) break;
+          if ((++a, o >= 65536)) {
+            var u = o - 65536;
+            s += String.fromCharCode(55296 | (u >> 10), 56320 | (u & 1023));
+          } else s += String.fromCharCode(o);
+        }
+        return s;
+      }
+      function Pd(t, n, a) {
+        if (
+          ((n >>>= 0),
+          M(
+            n % 4 == 0,
+            "Pointer passed to stringToUTF32 must be aligned to four bytes!"
+          ),
+          M(
+            typeof a == "number",
+            "stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!"
+          ),
+          a === void 0 && (a = 2147483647),
+          a < 4)
+        )
+          return 0;
+        for (var s = n, o = s + a - 4, u = 0; u < t.length; ++u) {
+          var _ = t.charCodeAt(u);
+          if (_ >= 55296 && _ <= 57343) {
+            var d = t.charCodeAt(++u);
+            _ = (65536 + ((_ & 1023) << 10)) | (d & 1023);
+          }
+          if ((N(n | 0, _ | 0, 4), (n += 4), n + 4 > o)) break;
+        }
+        return N(n | 0, 0, 4), n - s;
+      }
+      function Dd(t) {
+        for (var n = 0, a = 0; a < t.length; ++a) {
+          var s = t.charCodeAt(a);
+          s >= 55296 && s <= 57343 && ++a, (n += 4);
+        }
+        return n;
+      }
+      function Id(t) {
+        var n = Bt(t) + 1,
+          a = xi(n);
+        return a && xt(t, Ge, a, n), a;
+      }
+      function cn(t) {
+        var n = Bt(t) + 1,
+          a = Ni(n);
+        return xt(t, Ge, a, n), a;
+      }
+      function Md(t, n, a) {
+        ge(
+          "writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!"
+        );
+        var s, o;
+        a && ((o = n + Bt(t)), (s = V(o >>> 0, 1, 0))),
+          Nt(t, n, 1 / 0),
+          a && N(o >>> 0, s, 1);
+      }
+      function ln(t, n) {
+        M(
+          t.length >= 0,
+          "writeArrayToMemory array must have a length (should be an array or typed array)"
+        ),
+          Ge.set(t, n >>> 0);
+      }
+      function un(t, n, a) {
+        for (var s = 0; s < t.length; ++s)
+          M(t.charCodeAt(s) === (t.charCodeAt(s) & 255)),
+            N(n++ | 0, t.charCodeAt(s) | 0, 1);
+        a || N(n | 0, 0, 1);
+      }
+      var Ud, ci, Ge, Qe, li, Kr, bt, zr, ui, _i;
+      function _n(t) {
+        (ci = t),
+          (e.HEAP8 = Ge = new Int8Array(t)),
+          (e.HEAP16 = li = new Int16Array(t)),
+          (e.HEAP32 = bt = new Int32Array(t)),
+          (e.HEAPU8 = Qe = new Uint8Array(t)),
+          (e.HEAPU16 = Kr = new Uint16Array(t)),
+          (e.HEAPU32 = zr = new Uint32Array(t)),
+          (e.HEAPF32 = ui = new Float32Array(t)),
+          (e.HEAPF64 = _i = new Float64Array(t));
+      }
+      var di = 5242880;
+      e.TOTAL_STACK &&
+        M(
+          di === e.TOTAL_STACK,
+          "the stack size can no longer be determined at runtime"
+        );
+      var fi = e.INITIAL_MEMORY || 16777216;
+      se("INITIAL_MEMORY", "INITIAL_MEMORY"),
+        M(
+          fi >= di,
+          "INITIAL_MEMORY should be larger than TOTAL_STACK, was " +
+            fi +
+            "! (TOTAL_STACK=" +
+            di +
+            ")"
+        ),
+        M(
+          typeof Int32Array < "u" &&
+            typeof Float64Array < "u" &&
+            Int32Array.prototype.subarray != null &&
+            Int32Array.prototype.set != null,
+          "JS engine does not provide full typed array support"
+        ),
+        M(
+          !e.wasmMemory,
+          "Use of `wasmMemory` detected.  Use -sIMPORTED_MEMORY to define wasmMemory externally"
+        ),
+        M(
+          fi == 16777216,
+          "Detected runtime INITIAL_MEMORY setting.  Use -sIMPORTED_MEMORY to define wasmMemory dynamically"
+        );
+      var Xe;
+      function dn() {
+        var t = rr();
+        M((t & 3) == 0), N(t | 0, 34821223, 4), N((t + 4) | 0, -1984246274, 4);
+      }
+      function St() {
+        if (!Et) {
+          var t = rr(),
+            n = V(t | 0, 4, 1) >>> 0,
+            a = V((t + 4) | 0, 4, 1) >>> 0;
+          (n != 34821223 || a != 2310721022) &&
+            k(
+              "Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x" +
+                a.toString(16) +
+                " 0x" +
+                n.toString(16)
+            );
+        }
+      }
+      (function () {
+        var t = new Int16Array(1),
+          n = new Int8Array(t.buffer);
+        if (((t[0] = 25459), n[0] !== 115 || n[1] !== 99))
+          throw "Runtime error: expected the system to be little-endian! (Run with -sSUPPORT_BIG_ENDIAN to bypass)";
+      })();
+      var hi = [],
+        fn = [],
+        hn = [],
+        Ld = [],
+        bn = [],
+        Ct = !1;
+      function bi() {
+        return Ye;
+      }
+      function Qr() {
+        if (e.preRun)
+          for (
+            typeof e.preRun == "function" && (e.preRun = [e.preRun]);
+            e.preRun.length;
+
+          )
+            ta(e.preRun.shift());
+        Yt(hi);
+      }
+      function Xr() {
+        St(), M(!Ct), (Ct = !0), Yt(fn);
+      }
+      function Jr() {
+        St(), Yt(hn);
+      }
+      function ea() {
+        if ((St(), e.postRun))
+          for (
+            typeof e.postRun == "function" && (e.postRun = [e.postRun]);
+            e.postRun.length;
+
+          )
+            na(e.postRun.shift());
+        Yt(bn);
+      }
+      function ta(t) {
+        hi.unshift(t);
+      }
+      function ia(t) {
+        fn.unshift(t);
+      }
+      function Fd(t) {
+        hn.unshift(t);
+      }
+      function xd(t) {}
+      function na(t) {
+        bn.unshift(t);
+      }
+      M(
+        Math.imul,
+        "This browser does not support Math.imul(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+      ),
+        M(
+          Math.fround,
+          "This browser does not support Math.fround(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+        ),
+        M(
+          Math.clz32,
+          "This browser does not support Math.clz32(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+        ),
+        M(
+          Math.trunc,
+          "This browser does not support Math.trunc(), build with LEGACY_VM_SUPPORT or POLYFILL_OLD_MATH_FUNCTIONS to add in a polyfill"
+        );
+      var it = 0,
+        ct = null,
+        At = null,
+        pt = {};
+      function Nd(t) {
+        for (var n = t; ; ) {
+          if (!pt[t]) return t;
+          t = n + Math.random();
+        }
+      }
+      function ra(t) {
+        it++,
+          e.monitorRunDependencies && e.monitorRunDependencies(it),
+          t
+            ? (M(!pt[t]),
+              (pt[t] = 1),
+              ct === null &&
+                typeof setInterval < "u" &&
+                (ct = setInterval(function () {
+                  if (Et) {
+                    clearInterval(ct), (ct = null);
+                    return;
+                  }
+                  var n = !1;
+                  for (var a in pt)
+                    n || ((n = !0), Y("still waiting on run dependencies:")),
+                      Y("dependency: " + a);
+                  n && Y("(end of list)");
+                }, 1e4)))
+            : Y("warning: run dependency added without ID");
+      }
+      function aa(t) {
+        if (
+          (it--,
+          e.monitorRunDependencies && e.monitorRunDependencies(it),
+          t
+            ? (M(pt[t]), delete pt[t])
+            : Y("warning: run dependency removed without ID"),
+          it == 0 && (ct !== null && (clearInterval(ct), (ct = null)), At))
+        ) {
+          var n = At;
+          (At = null), n();
+        }
+      }
+      function k(t) {
+        e.onAbort && e.onAbort(t),
+          (t = "Aborted(" + t + ")"),
+          Y(t),
+          (Et = !0),
+          (Ft = 1);
+        var n = new WebAssembly.RuntimeError(t);
+        throw (p(n), n);
+      }
+      var sa = "data:application/octet-stream;base64,";
+      function pn(t) {
+        return t.startsWith(sa);
+      }
+      function oa(t) {
+        return t.startsWith("file://");
+      }
+      function g(t, n) {
+        return function () {
+          var a = t,
+            s = n;
+          return (
+            n || (s = e.asm),
+            M(
+              Ct,
+              "native function `" + a + "` called before runtime initialization"
+            ),
+            s[t] || M(s[t], "exported native function `" + a + "` not found"),
+            s[t].apply(null, arguments)
+          );
+        };
+      }
+      var Pe;
+      e.locateFile
+        ? ((Pe = "./duckdb-mvp.wasm"), pn(Pe) || (Pe = X(Pe)))
+        : (Pe = new URL("./duckdb-mvp.wasm", Sl.url).toString());
+      function yn(t) {
+        try {
+          if (t == Pe && Ie) return new Uint8Array(Ie);
+          if (le) return le(t);
+          throw "both async and sync fetching of the wasm failed";
+        } catch (n) {
+          k(n);
+        }
+      }
+      function ca() {
+        return !Ie && (B || D) && typeof fetch == "function"
+          ? fetch(Pe, { credentials: "same-origin" })
+              .then(function (t) {
+                if (!t.ok)
+                  throw "failed to load wasm binary file at '" + Pe + "'";
+                return t.arrayBuffer();
+              })
+              .catch(function () {
+                return yn(Pe);
+              })
+          : Promise.resolve().then(function () {
+              return yn(Pe);
+            });
+      }
+      function la() {
+        var t = { env: gs, wasi_snapshot_preview1: gs };
+        function n(d, f) {
+          var y = d.exports;
+          (e.asm = y),
+            (kt = e.asm.memory),
+            M(kt, "memory not found in wasm exports"),
+            _n(kt.buffer),
+            (Xe = e.asm.__indirect_function_table),
+            M(Xe, "table not found in wasm exports"),
+            ia(e.asm.__wasm_call_ctors),
+            aa("wasm-instantiate");
+        }
+        ra("wasm-instantiate");
+        var a = e;
+        function s(d) {
+          M(
+            e === a,
+            "the Module object should not be replaced during async compilation - perhaps the order of HTML elements is wrong?"
+          ),
+            (a = null),
+            n(d.instance);
+        }
+        function o(d) {
+          return ca()
+            .then(function (f) {
+              return WebAssembly.instantiate(f, t);
+            })
+            .then(function (f) {
+              return f;
+            })
+            .then(d, function (f) {
+              Y("failed to asynchronously prepare wasm: " + f),
+                oa(Pe) &&
+                  Y(
+                    "warning: Loading from a file URI (" +
+                      Pe +
+                      ") is not supported in most browsers. See https://emscripten.org/docs/getting_started/FAQ.html#how-do-i-run-a-local-webserver-for-testing-why-does-my-program-stall-in-downloading-or-preparing"
+                  ),
+                k(f);
+            });
+        }
+        function u() {
+          return !Ie &&
+            typeof WebAssembly.instantiateStreaming == "function" &&
+            !pn(Pe) &&
+            typeof fetch == "function"
+            ? fetch(Pe, { credentials: "same-origin" }).then(function (d) {
+                var f = WebAssembly.instantiateStreaming(d, t);
+                return f.then(s, function (y) {
+                  return (
+                    Y("wasm streaming compile failed: " + y),
+                    Y("falling back to ArrayBuffer instantiation"),
+                    o(s)
+                  );
+                });
+              })
+            : o(s);
+        }
+        if (e.instantiateWasm)
+          try {
+            var _ = e.instantiateWasm(t, n);
+            return _;
+          } catch (d) {
+            return (
+              Y("Module.instantiateWasm callback failed with error: " + d), !1
+            );
+          }
+        return u().catch(p), {};
+      }
+      var Le,
+        yt,
+        Bd = {};
+      function Yt(t) {
+        for (; t.length > 0; ) {
+          var n = t.shift();
+          if (typeof n == "function") {
+            n(e);
+            continue;
+          }
+          var a = n.func;
+          typeof a == "number"
+            ? n.arg === void 0
+              ? re(a)()
+              : re(a)(n.arg)
+            : a(n.arg === void 0 ? null : n.arg);
+        }
+      }
+      function Yd(t) {
+        var n = E(),
+          a = t();
+        return S(n), a;
+      }
+      function ua(t) {
+        return (
+          ge(
+            "warning: build with -sDEMANGLE_SUPPORT to link in libcxxabi demangling"
+          ),
+          t
+        );
+      }
+      function _a(t) {
+        var n = /\b_Z[\w\d_]+/g;
+        return t.replace(n, function (a) {
+          var s = ua(a);
+          return a === s ? a : s + " [" + a + "]";
+        });
+      }
+      var Rt = [];
+      function re(t) {
+        var n = Rt[t];
+        return (
+          n || (t >= Rt.length && (Rt.length = t + 1), (Rt[t] = n = Xe.get(t))),
+          M(
+            Xe.get(t) == n,
+            "JavaScript-side Wasm function table mirror is out of date!"
+          ),
+          n
+        );
+      }
+      function da(t) {
+        if (t instanceof cr || t == "unwind") return Ft;
+        P(1, t);
+      }
+      function fa() {
+        var t = new Error();
+        if (!t.stack) {
+          try {
+            throw new Error();
+          } catch (n) {
+            t = n;
+          }
+          if (!t.stack) return "(no stack trace available)";
+        }
+        return t.stack.toString();
+      }
+      function gn(t, n) {
+        Xe.set(t, n), (Rt[t] = Xe.get(t));
+      }
+      function Hd() {
+        var t = fa();
+        return (
+          e.extraStackTrace &&
+            (t +=
+              `
+` + e.extraStackTrace()),
+          _a(t)
+        );
+      }
+      function ha(t, n) {
+        return t >= 0
+          ? t
+          : n <= 32
+          ? 2 * Math.abs(1 << (n - 1)) + t
+          : Math.pow(2, n) + t;
+      }
+      function ba(t, n, a, s) {
+        k(
+          "Assertion failed: " +
+            $e(t) +
+            ", at: " +
+            [n ? $e(n) : "unknown filename", a, s ? $e(s) : "unknown function"]
+        );
+      }
+      function He(t) {
+        return xi(t + 24) + 24;
+      }
+      var pi = [];
+      function pa(t) {
+        t.add_ref();
+      }
+      var yi = 0;
+      function gi(t) {
+        var n = new zt(t);
+        return (
+          n.get_caught() || (n.set_caught(!0), yi--),
+          n.set_rethrown(!1),
+          pi.push(n),
+          pa(n),
+          n.get_exception_ptr()
+        );
+      }
+      var Ot = 0;
+      function zt(t) {
+        (this.excPtr = t),
+          (this.ptr = t - 24),
+          (this.set_type = function (n) {
+            N((this.ptr + 4) | 0, n | 0, 4);
+          }),
+          (this.get_type = function () {
+            return V((this.ptr + 4) | 0, 4, 0) | 0;
+          }),
+          (this.set_destructor = function (n) {
+            N((this.ptr + 8) | 0, n | 0, 4);
+          }),
+          (this.get_destructor = function () {
+            return V((this.ptr + 8) | 0, 4, 0) | 0;
+          }),
+          (this.set_refcount = function (n) {
+            N(this.ptr | 0, n | 0, 4);
+          }),
+          (this.set_caught = function (n) {
+            (n = n ? 1 : 0), N((this.ptr + 12) | 0, n | 0, 1);
+          }),
+          (this.get_caught = function () {
+            return (V((this.ptr + 12) | 0, 1, 0) | 0) != 0;
+          }),
+          (this.set_rethrown = function (n) {
+            (n = n ? 1 : 0), N((this.ptr + 13) | 0, n | 0, 1);
+          }),
+          (this.get_rethrown = function () {
+            return (V((this.ptr + 13) | 0, 1, 0) | 0) != 0;
+          }),
+          (this.init = function (n, a) {
+            this.set_adjusted_ptr(0),
+              this.set_type(n),
+              this.set_destructor(a),
+              this.set_refcount(0),
+              this.set_caught(!1),
+              this.set_rethrown(!1);
+          }),
+          (this.add_ref = function () {
+            var n = V(this.ptr | 0, 4, 0) | 0;
+            N(this.ptr | 0, (n + 1) | 0, 4);
+          }),
+          (this.release_ref = function () {
+            var n = V(this.ptr | 0, 4, 0) | 0;
+            return N(this.ptr | 0, (n - 1) | 0, 4), M(n > 0), n === 1;
+          }),
+          (this.set_adjusted_ptr = function (n) {
+            N((this.ptr + 16) | 0, n | 0, 4);
+          }),
+          (this.get_adjusted_ptr = function () {
+            return V((this.ptr + 16) | 0, 4, 0) | 0;
+          }),
+          (this.get_exception_ptr = function () {
+            var n = qc(this.get_type());
+            if (n) return V(this.excPtr | 0, 4, 0) | 0;
+            var a = this.get_adjusted_ptr();
+            return a !== 0 ? a : this.excPtr;
+          });
+      }
+      function Pi(t) {
+        try {
+          return Yc(new zt(t).ptr);
+        } catch (n) {
+          Y("exception during __cxa_free_exception: " + n);
+        }
+      }
+      function Ln(t) {
+        if (t.release_ref() && !t.get_rethrown()) {
+          var n = t.get_destructor();
+          n && re(n)(t.excPtr), Pi(t.excPtr);
+        }
+      }
+      function Fn() {
+        C(0), M(pi.length > 0);
+        var t = pi.pop();
+        Ln(t), (Ot = 0);
+      }
+      function Di(t) {
+        throw (Ot || (Ot = t), t);
+      }
+      function Ii() {
+        var t = Ot;
+        if (!t) return oe(0), 0;
+        var n = new zt(t);
+        n.set_adjusted_ptr(t);
+        var a = n.get_type();
+        if (!a) return oe(0), t | 0;
+        for (
+          var s = Array.prototype.slice.call(arguments), o = 0;
+          o < s.length;
+          o++
+        ) {
+          var u = s[o];
+          if (u === 0 || u === a) break;
+          var _ = n.ptr + 16;
+          if (On(u, a, _)) return oe(u), t | 0;
+        }
+        return oe(a), t | 0;
+      }
+      function vn() {
+        var t = Ot;
+        if (!t) return oe(0), 0;
+        var n = new zt(t);
+        n.set_adjusted_ptr(t);
+        var a = n.get_type();
+        if (!a) return oe(0), t | 0;
+        for (
+          var s = Array.prototype.slice.call(arguments), o = 0;
+          o < s.length;
+          o++
+        ) {
+          var u = s[o];
+          if (u === 0 || u === a) break;
+          var _ = n.ptr + 16;
+          if (On(u, a, _)) return oe(u), t | 0;
+        }
+        return oe(a), t | 0;
+      }
+      function ut() {
+        var t = Ot;
+        if (!t) return oe(0), 0;
+        var n = new zt(t);
+        n.set_adjusted_ptr(t);
+        var a = n.get_type();
+        if (!a) return oe(0), t | 0;
+        for (
+          var s = Array.prototype.slice.call(arguments), o = 0;
+          o < s.length;
+          o++
+        ) {
+          var u = s[o];
+          if (u === 0 || u === a) break;
+          var _ = n.ptr + 16;
+          if (On(u, a, _)) return oe(u), t | 0;
+        }
+        return oe(a), t | 0;
+      }
+      function xn() {
+        var t = Ot;
+        if (!t) return oe(0), 0;
+        var n = new zt(t);
+        n.set_adjusted_ptr(t);
+        var a = n.get_type();
+        if (!a) return oe(0), t | 0;
+        for (
+          var s = Array.prototype.slice.call(arguments), o = 0;
+          o < s.length;
+          o++
+        ) {
+          var u = s[o];
+          if (u === 0 || u === a) break;
+          var _ = n.ptr + 16;
+          if (On(u, a, _)) return oe(u), t | 0;
+        }
+        return oe(a), t | 0;
+      }
+      function ya() {
+        var t = pi.pop();
+        t || k("no exception to throw");
+        var n = t.excPtr;
+        throw (
+          (t.get_rethrown() ||
+            (pi.push(t), t.set_rethrown(!0), t.set_caught(!1), yi++),
+          (Ot = n),
+          n)
+        );
+      }
+      function ga(t, n, a) {
+        var s = new zt(t);
+        throw (s.init(n, a), (Ot = t), yi++, t);
+      }
+      function va() {
+        return yi;
+      }
+      var qe = {
+        buffers: [null, [], []],
+        printChar: function (t, n) {
+          var a = qe.buffers[t];
+          M(a),
+            n === 0 || n === 10
+              ? ((t === 1 ? de : Y)(sn(a, 0)), (a.length = 0))
+              : a.push(n);
+        },
+        varargs: void 0,
+        get: function () {
+          M(qe.varargs != null), (qe.varargs += 4);
+          var t = V((qe.varargs - 4) | 0, 4, 0) | 0;
+          return t;
+        },
+        getStr: function (t) {
+          var n = $e(t);
+          return n;
+        },
+      };
+      function ja(t, n, a, s, o) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function ma() {
+        Y("missing function: $SOCKFS"), k(-1);
+      }
+      function Nn() {
+        Y("missing function: $FS"), k(-1);
+      }
+      function Qt(t) {
+        var n = ma.getSocket(t);
+        if (!n) throw new Nn.ErrnoError(8);
+        return n;
+      }
+      function Bn(t) {
+        return N(Nc() | 0, t | 0, 4), t;
+      }
+      var jc = {
+        BUFFER_SIZE: 10240,
+        MAX_BUFFER_SIZE: 10485760,
+        nextFd: 1,
+        fds: {},
+        nextport: 1,
+        maxport: 65535,
+        peer: null,
+        connections: {},
+        portmap: {},
+        localAddr: 4261412874,
+        addrPool: [
+          33554442, 50331658, 67108874, 83886090, 100663306, 117440522,
+          134217738, 150994954, 167772170, 184549386, 201326602, 218103818,
+          234881034,
+        ],
+      };
+      function jn(t) {
+        return (
+          (t & 255) +
+          "." +
+          ((t >> 8) & 255) +
+          "." +
+          ((t >> 16) & 255) +
+          "." +
+          ((t >> 24) & 255)
+        );
+      }
+      function Yn(t) {
+        var n = "",
+          a = 0,
+          s = 0,
+          o = 0,
+          u = 0,
+          _ = 0,
+          d = 0,
+          f = [
+            t[0] & 65535,
+            t[0] >> 16,
+            t[1] & 65535,
+            t[1] >> 16,
+            t[2] & 65535,
+            t[2] >> 16,
+            t[3] & 65535,
+            t[3] >> 16,
+          ],
+          y = !0,
+          j = "";
+        for (d = 0; d < 5; d++)
+          if (f[d] !== 0) {
+            y = !1;
+            break;
+          }
+        if (y) {
+          if (((j = jn(f[6] | (f[7] << 16))), f[5] === -1))
+            return (n = "::ffff:"), (n += j), n;
+          if (f[5] === 0)
+            return (
+              (n = "::"),
+              j === "0.0.0.0" && (j = ""),
+              j === "0.0.0.1" && (j = "1"),
+              (n += j),
+              n
+            );
+        }
+        for (a = 0; a < 8; a++)
+          f[a] === 0 && (a - o > 1 && (_ = 0), (o = a), _++),
+            _ > s && ((s = _), (u = a - s + 1));
+        for (a = 0; a < 8; a++) {
+          if (s > 1 && f[a] === 0 && a >= u && a < u + s) {
+            a === u && ((n += ":"), u === 0 && (n += ":"));
+            continue;
+          }
+          (n += Number(Es(f[a] & 65535)).toString(16)), (n += a < 7 ? ":" : "");
+        }
+        return n;
+      }
+      function Hn(t, n) {
+        var a = V(t | 0, 2, 0) | 0,
+          s = Es(V((t + 2) | 0, 2, 1) >>> 0),
+          o;
+        switch (a) {
+          case 2:
+            if (n !== 16) return { errno: 28 };
+            (o = V((t + 4) | 0, 4, 0) | 0), (o = jn(o));
+            break;
+          case 10:
+            if (n !== 28) return { errno: 28 };
+            (o = [
+              V((t + 8) | 0, 4, 0) | 0,
+              V((t + 12) | 0, 4, 0) | 0,
+              V((t + 16) | 0, 4, 0) | 0,
+              V((t + 20) | 0, 4, 0) | 0,
+            ]),
+              (o = Yn(o));
+            break;
+          default:
+            return { errno: 5 };
+        }
+        return { family: a, addr: o, port: s };
+      }
+      function Mi(t) {
+        for (var n = t.split("."), a = 0; a < 4; a++) {
+          var s = Number(n[a]);
+          if (isNaN(s)) return null;
+          n[a] = s;
+        }
+        return (n[0] | (n[1] << 8) | (n[2] << 16) | (n[3] << 24)) >>> 0;
+      }
+      function Ui(t) {
+        return parseInt(t);
+      }
+      function mn(t) {
+        var n,
+          a,
+          s,
+          o,
+          u,
+          _ =
+            /^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i,
+          d = [];
+        if (!_.test(t)) return null;
+        if (t === "::") return [0, 0, 0, 0, 0, 0, 0, 0];
+        for (
+          t.startsWith("::")
+            ? (t = t.replace("::", "Z:"))
+            : (t = t.replace("::", ":Z:")),
+            t.indexOf(".") > 0
+              ? ((t = t.replace(new RegExp("[.]", "g"), ":")),
+                (n = t.split(":")),
+                (n[n.length - 4] =
+                  Ui(n[n.length - 4]) + Ui(n[n.length - 3]) * 256),
+                (n[n.length - 3] =
+                  Ui(n[n.length - 2]) + Ui(n[n.length - 1]) * 256),
+                (n = n.slice(0, n.length - 2)))
+              : (n = t.split(":")),
+            s = 0,
+            o = 0,
+            a = 0;
+          a < n.length;
+          a++
+        )
+          if (typeof n[a] == "string")
+            if (n[a] === "Z") {
+              for (o = 0; o < 8 - n.length + 1; o++) d[a + o] = 0;
+              s = o - 1;
+            } else d[a + s] = ir(parseInt(n[a], 16));
+          else d[a + s] = n[a];
+        return [
+          (d[1] << 16) | d[0],
+          (d[3] << 16) | d[2],
+          (d[5] << 16) | d[4],
+          (d[7] << 16) | d[6],
+        ];
+      }
+      var _t = {
+        address_map: { id: 1, addrs: {}, names: {} },
+        lookup_name: function (t) {
+          var n = Mi(t);
+          if (n !== null || ((n = mn(t)), n !== null)) return t;
+          var a;
+          if (_t.address_map.addrs[t]) a = _t.address_map.addrs[t];
+          else {
+            var s = _t.address_map.id++;
+            M(s < 65535, "exceeded max address mappings of 65535"),
+              (a = "172.29." + (s & 255) + "." + (s & 65280)),
+              (_t.address_map.names[a] = t),
+              (_t.address_map.addrs[t] = a);
+          }
+          return a;
+        },
+        lookup_addr: function (t) {
+          return _t.address_map.names[t] ? _t.address_map.names[t] : null;
+        },
+      };
+      function qn(t, n, a) {
+        if (a && t === 0) return null;
+        var s = Hn(t, n);
+        if (s.errno) throw new Nn.ErrnoError(s.errno);
+        return (s.addr = _t.lookup_addr(s.addr) || s.addr), s;
+      }
+      function wa(t, n, a) {
+        var s = Qt(t),
+          o = qn(n, a);
+        return s.sock_ops.bind(s, o.addr, o.port), 0;
+      }
+      function ka(t, n, a) {
+        var s = Qt(t),
+          o = qn(n, a);
+        return s.sock_ops.connect(s, o.addr, o.port), 0;
+      }
+      function Ea(t, n, a, s) {
+        return (
+          (n = qe.getStr(n)),
+          M(s === 0),
+          (n = qe.calculateAt(t, n)),
+          qe.doAccess(n, a)
+        );
+      }
+      function Sa(t, n, a) {
+        return (qe.varargs = a), 0;
+      }
+      function Ca(t, n) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Aa(t, n, a) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Wn(t, n, a) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Zn(t, n) {
+        Qe.fill(0, t, t + n);
+      }
+      function wn(t, n, a, s, o) {
+        switch (n) {
+          case 2:
+            (a = Mi(a)),
+              Zn(t, 16),
+              o && N(o | 0, 16, 4),
+              N(t | 0, n | 0, 2),
+              N((t + 4) | 0, a | 0, 4),
+              N((t + 2) | 0, ir(s) | 0, 2);
+            break;
+          case 10:
+            (a = mn(a)),
+              Zn(t, 28),
+              o && N(o | 0, 28, 4),
+              N(t | 0, n | 0, 4),
+              N((t + 8) | 0, a[0] | 0, 4),
+              N((t + 12) | 0, a[1] | 0, 4),
+              N((t + 16) | 0, a[2] | 0, 4),
+              N((t + 20) | 0, a[3] | 0, 4),
+              N((t + 2) | 0, ir(s) | 0, 2);
+            break;
+          default:
+            return 5;
+        }
+        return 0;
+      }
+      function Ra(t, n, a) {
+        var s = Qt(t);
+        if (!s.daddr) return -53;
+        var o = wn(n, s.family, _t.lookup_name(s.daddr), s.dport, a);
+        return M(!o), 0;
+      }
+      function Oa(t, n, a, s, o) {
+        var u = Qt(t);
+        return n === 1 && a === 4
+          ? (N(s | 0, u.error | 0, 4), N(o | 0, 4, 4), (u.error = null), 0)
+          : -50;
+      }
+      function Ta(t, n, a) {
+        return (qe.varargs = a), 0;
+      }
+      function Pa(t, n) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Da(t, n, a) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ia(t, n, a, s) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ma(t, n, a, s) {
+        (qe.varargs = s),
+          k(
+            "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+          );
+      }
+      function Ua(t, n, a, s, o, u) {
+        var _ = Qt(t),
+          d = _.sock_ops.recvmsg(_, a);
+        if (!d) return 0;
+        if (o) {
+          var f = wn(o, _.family, _t.lookup_name(d.addr), d.port, u);
+          M(!f);
+        }
+        return Qe.set(d.buffer, n >>> 0), d.buffer.byteLength;
+      }
+      function La(t, n, a, s) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Fa(t) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function xa(t, n, a, s, o, u) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Na(t, n, a) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ba(t, n) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ya(t, n, a) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function Ha(t) {}
+      var $n =
+        "To use dlopen, you need enable dynamic linking, see https://github.com/emscripten-core/emscripten/wiki/Linking";
+      function qa(t, n) {
+        k($n);
+      }
+      function Wa(t, n) {
+        k($n);
+      }
+      function Za() {
+        return Date.now();
+      }
+      var $a = !0;
+      function Gn() {
+        return $a;
+      }
+      function kn() {
+        k("native code called abort()");
+      }
+      function Ga(t, n) {
+        return globalThis.DUCKDB_RUNTIME.createDirectory(e, t, n);
+      }
+      function Va(t, n) {
+        return globalThis.DUCKDB_RUNTIME.checkDirectory(e, t, n);
+      }
+      function Ka(t, n) {
+        return globalThis.DUCKDB_RUNTIME.listDirectoryEntries(e, t, n);
+      }
+      function En(t, n) {
+        return globalThis.DUCKDB_RUNTIME.removeDirectory(e, t, n);
+      }
+      function za(t) {
+        return globalThis.DUCKDB_RUNTIME.closeFile(e, t);
+      }
+      function vi(t, n) {
+        return globalThis.DUCKDB_RUNTIME.checkFile(e, t, n);
+      }
+      function Qa(t) {
+        return globalThis.DUCKDB_RUNTIME.getLastFileModificationTime(e, t);
+      }
+      function Xa(t, n, a, s) {
+        return globalThis.DUCKDB_RUNTIME.moveFile(e, t, n, a, s);
+      }
+      function Ja(t, n) {
+        return globalThis.DUCKDB_RUNTIME.openFile(e, t, n);
+      }
+      function es(t, n, a, s) {
+        return globalThis.DUCKDB_RUNTIME.readFile(e, t, n, a, s);
+      }
+      function ts(t, n) {
+        return globalThis.DUCKDB_RUNTIME.truncateFile(e, t, n);
+      }
+      function is(t, n, a, s) {
+        return globalThis.DUCKDB_RUNTIME.writeFile(e, t, n, a, s);
+      }
+      function ns(t, n) {
+        return globalThis.DUCKDB_RUNTIME.glob(e, t, n);
+      }
+      function rs(t) {
+        return globalThis.DUCKDB_RUNTIME.testPlatformFeature(e, t);
+      }
+      function as(t, n, a, s, o, u) {
+        return globalThis.DUCKDB_RUNTIME.callScalarUDF(e, t, n, a, s, o, u);
+      }
+      function ss(t) {
+        M(typeof t == "number"), console.error($e(t));
+      }
+      function Vn() {
+        return 4294901760;
+      }
+      var Sn;
+      q
+        ? (Sn = () => {
+            var t = process.hrtime();
+            return t[0] * 1e3 + t[1] / 1e6;
+          })
+        : (Sn = () => performance.now());
+      function Li(t, n, a) {
+        Qe.copyWithin(t >>> 0, n >>> 0, (n + a) >>> 0);
+      }
+      function os(t) {
+        try {
+          return kt.grow((t - ci.byteLength + 65535) >>> 16), _n(kt.buffer), 1;
+        } catch (n) {
+          Y(
+            "emscripten_realloc_buffer: Attempted to grow heap from " +
+              ci.byteLength +
+              " bytes to " +
+              t +
+              " bytes, but got error: " +
+              n
+          );
+        }
+      }
+      function cs(t) {
+        var n = Qe.length;
+        (t = t >>> 0), M(t > n);
+        var a = Vn();
+        if (t > a)
+          return (
+            Y(
+              "Cannot enlarge memory, asked to go up to " +
+                t +
+                " bytes, but the limit is " +
+                a +
+                " bytes!"
+            ),
+            !1
+          );
+        let s = (f, y) => f + ((y - (f % y)) % y);
+        for (var o = 1; o <= 4; o *= 2) {
+          var u = n * (1 + 0.2 / o);
+          u = Math.min(u, t + 100663296);
+          var _ = Math.min(a, s(Math.max(t, u), 65536)),
+            d = os(_);
+          if (d) return !0;
+        }
+        return (
+          Y(
+            "Failed to grow the heap from " +
+              n +
+              " bytes to " +
+              _ +
+              " bytes, not enough memory!"
+          ),
+          !1
+        );
+      }
+      var Xt = {};
+      function ls() {
+        return O || "./this.program";
+      }
+      function Jt() {
+        if (!Jt.strings) {
+          var t =
+              (
+                (typeof navigator == "object" &&
+                  navigator.languages &&
+                  navigator.languages[0]) ||
+                "C"
+              ).replace("-", "_") + ".UTF-8",
+            n = {
+              USER: "web_user",
+              LOGNAME: "web_user",
+              PATH: "/",
+              PWD: "/",
+              HOME: "/home/web_user",
+              LANG: t,
+              _: ls(),
+            };
+          for (var a in Xt) Xt[a] === void 0 ? delete n[a] : (n[a] = Xt[a]);
+          var s = [];
+          for (var a in n) s.push(a + "=" + n[a]);
+          Jt.strings = s;
+        }
+        return Jt.strings;
+      }
+      function Kn(t, n) {
+        var a = 0;
+        return (
+          Jt().forEach(function (s, o) {
+            var u = n + a;
+            N((t + o * 4) | 0, u | 0, 4), un(s, u), (a += s.length + 1);
+          }),
+          0
+        );
+      }
+      function us(t, n) {
+        var a = Jt();
+        N(t | 0, a.length | 0, 4);
+        var s = 0;
+        return (
+          a.forEach(function (o) {
+            s += o.length + 1;
+          }),
+          N(n | 0, s | 0, 4),
+          0
+        );
+      }
+      function _s(t) {
+        return (
+          k(
+            "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+          ),
+          0
+        );
+      }
+      function ds(t, n, a, s, o, u) {
+        M(!o, "offsets over 2^32 not yet supported");
+        var _ = qe.getStreamFromFD(t),
+          d = qe.doReadv(_, n, a, s);
+        return N(u | 0, d | 0, 4), 0;
+      }
+      function fs(t, n, a, s, o, u) {
+        var _ = qe.getStreamFromFD(t);
+        M(!o, "offsets over 2^32 not yet supported");
+        var d = qe.doWritev(_, n, a, s);
+        return N(u | 0, d | 0, 4), 0;
+      }
+      function hs(t, n, a, s) {
+        var o = qe.getStreamFromFD(t),
+          u = qe.doReadv(o, n, a);
+        return N(s | 0, u | 0, 4), 0;
+      }
+      function mc(t, n, a, s, o) {
+        k(
+          "it should not be possible to operate on streams when !SYSCALLS_REQUIRE_FILESYSTEM"
+        );
+      }
+      function bs(t) {
+        var n = qe.getStreamFromFD(t);
+        return n.stream_ops && n.stream_ops.fsync ? -n.stream_ops.fsync(n) : 0;
+      }
+      function zn() {
+        Bc();
+        var t = qe.buffers;
+        t[1].length && qe.printChar(1, 10), t[2].length && qe.printChar(2, 10);
+      }
+      function wc(t, n, a, s) {
+        for (var o = 0, u = 0; u < a; u++) {
+          var _ = V(n | 0, 4, 0) | 0,
+            d = V((n + 4) | 0, 4, 0) | 0;
+          n += 8;
+          for (var f = 0; f < d; f++) qe.printChar(t, V((_ + f) >>> 0, 1, 1));
+          o += d;
+        }
+        return N(s | 0, o | 0, 4), 0;
+      }
+      function kc() {
+        return Ne();
+      }
+      function Ec(t, n, a, s) {
+        var o = [],
+          u = null,
+          _ = 0,
+          d = 0,
+          f = 0,
+          y = 0,
+          j = 0,
+          A = 0,
+          T,
+          G;
+        function Q(pe, De, Ve, W, ue, ft) {
+          var et, wi, jt, ml;
+          return (
+            (wi = pe === 10 ? 28 : 16),
+            (ue = pe === 10 ? Yn(ue) : jn(ue)),
+            (et = xi(wi)),
+            (ml = wn(et, pe, ue, ft)),
+            M(!ml),
+            (jt = xi(32)),
+            N((jt + 4) | 0, pe | 0, 4),
+            N((jt + 8) | 0, De | 0, 4),
+            N((jt + 12) | 0, Ve | 0, 4),
+            N((jt + 24) | 0, W | 0, 4),
+            N((jt + 20) | 0, et | 0, 4),
+            pe === 10 ? N((jt + 16) | 0, 28, 4) : N((jt + 16) | 0, 16, 4),
+            N((jt + 28) | 0, 0, 4),
+            jt
+          );
+        }
+        if (
+          (a &&
+            ((f = V(a | 0, 4, 0) | 0),
+            (y = V((a + 4) | 0, 4, 0) | 0),
+            (j = V((a + 8) | 0, 4, 0) | 0),
+            (A = V((a + 12) | 0, 4, 0) | 0)),
+          j && !A && (A = j === 2 ? 17 : 6),
+          !j && A && (j = A === 17 ? 2 : 1),
+          A === 0 && (A = 6),
+          j === 0 && (j = 1),
+          !t && !n)
+        )
+          return -2;
+        if (f & -1088 || (a !== 0 && (V(a | 0, 4, 0) | 0) & 2 && !t)) return -1;
+        if (f & 32) return -2;
+        if (j !== 0 && j !== 1 && j !== 2) return -7;
+        if (y !== 0 && y !== 2 && y !== 10) return -6;
+        if (n && ((n = $e(n)), (d = parseInt(n, 10)), isNaN(d)))
+          return f & 1024 ? -2 : -8;
+        if (!t)
+          return (
+            y === 0 && (y = 2),
+            (f & 1) === 0 &&
+              (y === 2 ? (_ = tr(2130706433)) : (_ = [0, 0, 0, 1])),
+            (T = Q(y, j, A, null, _, d)),
+            N(s | 0, T | 0, 4),
+            0
+          );
+        if (((t = $e(t)), (_ = Mi(t)), _ !== null))
+          if (y === 0 || y === 2) y = 2;
+          else if (y === 10 && f & 8) (_ = [0, 0, tr(65535), _]), (y = 10);
+          else return -2;
+        else if (((_ = mn(t)), _ !== null))
+          if (y === 0 || y === 10) y = 10;
+          else return -2;
+        return _ != null
+          ? ((T = Q(y, j, A, t, _, d)), N(s | 0, T | 0, 4), 0)
+          : f & 4
+          ? -2
+          : ((t = _t.lookup_name(t)),
+            (_ = Mi(t)),
+            y === 0 ? (y = 2) : y === 10 && (_ = [0, 0, tr(65535), _]),
+            (T = Q(y, j, A, null, _, d)),
+            N(s | 0, T | 0, 4),
+            0);
+      }
+      function Sc() {
+        if (
+          typeof crypto == "object" &&
+          typeof crypto.getRandomValues == "function"
+        ) {
+          var t = new Uint8Array(1);
+          return function () {
+            return crypto.getRandomValues(t), t[0];
+          };
+        } else if (q)
+          try {
+            var n = require("crypto");
+            return function () {
+              return n.randomBytes(1)[0];
+            };
+          } catch {}
+        return function () {
+          k(
+            "no cryptographic support found for randomDevice. consider polyfilling it if you want to use something insecure like Math.random(), e.g. put this in a --pre-js: var crypto = { getRandomValues: function(array) { for (var i = 0; i < array.length; i++) array[i] = (Math.random()*256)|0 } };"
+          );
+        };
+      }
+      function Cn(t, n) {
+        Cn.randomDevice || (Cn.randomDevice = Sc());
+        for (var a = 0; a < n; a++) N((t + a) | 0, Cn.randomDevice() | 0, 1);
+        return 0;
+      }
+      function Cc(t, n, a, s, o, u, _) {
+        var d = Hn(t, n);
+        if (d.errno) return -6;
+        var f = d.port,
+          y = d.addr,
+          j = !1;
+        if (a && s) {
+          var A;
+          if (_ & 1 || !(A = _t.lookup_addr(y))) {
+            if (_ & 8) return -2;
+          } else y = A;
+          var T = Nt(y, a, s);
+          T + 1 >= s && (j = !0);
+        }
+        if (o && u) {
+          f = "" + f;
+          var T = Nt(f, o, u);
+          T + 1 >= u && (j = !0);
+        }
+        return j ? -12 : 0;
+      }
+      function Ac(t) {
+        return t;
+      }
+      function Rc(t) {
+        oe(t);
+      }
+      function An(t) {
+        return t % 4 === 0 && (t % 100 !== 0 || t % 400 === 0);
+      }
+      function Oc(t, n) {
+        for (var a = 0, s = 0; s <= n; a += t[s++]);
+        return a;
+      }
+      var ps = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+        ys = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      function Tc(t, n) {
+        for (var a = new Date(t.getTime()); n > 0; ) {
+          var s = An(a.getFullYear()),
+            o = a.getMonth(),
+            u = (s ? ps : ys)[o];
+          if (n > u - a.getDate())
+            (n -= u - a.getDate() + 1),
+              a.setDate(1),
+              o < 11
+                ? a.setMonth(o + 1)
+                : (a.setMonth(0), a.setFullYear(a.getFullYear() + 1));
+          else return a.setDate(a.getDate() + n), a;
+        }
+        return a;
+      }
+      function Pc(t, n, a, s) {
+        var o = V((s + 40) | 0, 4, 0) | 0,
+          u = {
+            tm_sec: V(s | 0, 4, 0) | 0,
+            tm_min: V((s + 4) | 0, 4, 0) | 0,
+            tm_hour: V((s + 8) | 0, 4, 0) | 0,
+            tm_mday: V((s + 12) | 0, 4, 0) | 0,
+            tm_mon: V((s + 16) | 0, 4, 0) | 0,
+            tm_year: V((s + 20) | 0, 4, 0) | 0,
+            tm_wday: V((s + 24) | 0, 4, 0) | 0,
+            tm_yday: V((s + 28) | 0, 4, 0) | 0,
+            tm_isdst: V((s + 32) | 0, 4, 0) | 0,
+            tm_gmtoff: V((s + 36) | 0, 4, 0) | 0,
+            tm_zone: o ? $e(o) : "",
+          },
+          _ = $e(a),
+          d = {
+            "%c": "%a %b %d %H:%M:%S %Y",
+            "%D": "%m/%d/%y",
+            "%F": "%Y-%m-%d",
+            "%h": "%b",
+            "%r": "%I:%M:%S %p",
+            "%R": "%H:%M",
+            "%T": "%H:%M:%S",
+            "%x": "%m/%d/%y",
+            "%X": "%H:%M:%S",
+            "%Ec": "%c",
+            "%EC": "%C",
+            "%Ex": "%m/%d/%y",
+            "%EX": "%H:%M:%S",
+            "%Ey": "%y",
+            "%EY": "%Y",
+            "%Od": "%d",
+            "%Oe": "%e",
+            "%OH": "%H",
+            "%OI": "%I",
+            "%Om": "%m",
+            "%OM": "%M",
+            "%OS": "%S",
+            "%Ou": "%u",
+            "%OU": "%U",
+            "%OV": "%V",
+            "%Ow": "%w",
+            "%OW": "%W",
+            "%Oy": "%y",
+          };
+        for (var f in d) _ = _.replace(new RegExp(f, "g"), d[f]);
+        var y = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          j = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+        function A(W, ue, ft) {
+          for (
+            var et = typeof W == "number" ? W.toString() : W || "";
+            et.length < ue;
+
+          )
+            et = ft[0] + et;
+          return et;
+        }
+        function T(W, ue) {
+          return A(W, ue, "0");
+        }
+        function G(W, ue) {
+          function ft(wi) {
+            return wi < 0 ? -1 : wi > 0 ? 1 : 0;
+          }
+          var et;
+          return (
+            (et = ft(W.getFullYear() - ue.getFullYear())) === 0 &&
+              (et = ft(W.getMonth() - ue.getMonth())) === 0 &&
+              (et = ft(W.getDate() - ue.getDate())),
+            et
+          );
+        }
+        function Q(W) {
+          switch (W.getDay()) {
+            case 0:
+              return new Date(W.getFullYear() - 1, 11, 29);
+            case 1:
+              return W;
+            case 2:
+              return new Date(W.getFullYear(), 0, 3);
+            case 3:
+              return new Date(W.getFullYear(), 0, 2);
+            case 4:
+              return new Date(W.getFullYear(), 0, 1);
+            case 5:
+              return new Date(W.getFullYear() - 1, 11, 31);
+            case 6:
+              return new Date(W.getFullYear() - 1, 11, 30);
+          }
+        }
+        function pe(W) {
+          var ue = Tc(new Date(W.tm_year + 1900, 0, 1), W.tm_yday),
+            ft = new Date(ue.getFullYear(), 0, 4),
+            et = new Date(ue.getFullYear() + 1, 0, 4),
+            wi = Q(ft),
+            jt = Q(et);
+          return G(wi, ue) <= 0
+            ? G(jt, ue) <= 0
+              ? ue.getFullYear() + 1
+              : ue.getFullYear()
+            : ue.getFullYear() - 1;
+        }
+        var De = {
+          "%a": function (W) {
+            return y[W.tm_wday].substring(0, 3);
+          },
+          "%A": function (W) {
+            return y[W.tm_wday];
+          },
+          "%b": function (W) {
+            return j[W.tm_mon].substring(0, 3);
+          },
+          "%B": function (W) {
+            return j[W.tm_mon];
+          },
+          "%C": function (W) {
+            var ue = W.tm_year + 1900;
+            return T((ue / 100) | 0, 2);
+          },
+          "%d": function (W) {
+            return T(W.tm_mday, 2);
+          },
+          "%e": function (W) {
+            return A(W.tm_mday, 2, " ");
+          },
+          "%g": function (W) {
+            return pe(W).toString().substring(2);
+          },
+          "%G": function (W) {
+            return pe(W);
+          },
+          "%H": function (W) {
+            return T(W.tm_hour, 2);
+          },
+          "%I": function (W) {
+            var ue = W.tm_hour;
+            return ue == 0 ? (ue = 12) : ue > 12 && (ue -= 12), T(ue, 2);
+          },
+          "%j": function (W) {
+            return T(
+              W.tm_mday + Oc(An(W.tm_year + 1900) ? ps : ys, W.tm_mon - 1),
+              3
+            );
+          },
+          "%m": function (W) {
+            return T(W.tm_mon + 1, 2);
+          },
+          "%M": function (W) {
+            return T(W.tm_min, 2);
+          },
+          "%n": function () {
+            return `
+`;
+          },
+          "%p": function (W) {
+            return W.tm_hour >= 0 && W.tm_hour < 12 ? "AM" : "PM";
+          },
+          "%S": function (W) {
+            return T(W.tm_sec, 2);
+          },
+          "%t": function () {
+            return "	";
+          },
+          "%u": function (W) {
+            return W.tm_wday || 7;
+          },
+          "%U": function (W) {
+            var ue = W.tm_yday + 7 - W.tm_wday;
+            return T(Math.floor(ue / 7), 2);
+          },
+          "%V": function (W) {
+            var ue = Math.floor((W.tm_yday + 7 - ((W.tm_wday + 6) % 7)) / 7);
+            if (((W.tm_wday + 371 - W.tm_yday - 2) % 7 <= 2 && ue++, ue)) {
+              if (ue == 53) {
+                var et = (W.tm_wday + 371 - W.tm_yday) % 7;
+                et != 4 && (et != 3 || !An(W.tm_year)) && (ue = 1);
+              }
+            } else {
+              ue = 52;
+              var ft = (W.tm_wday + 7 - W.tm_yday - 1) % 7;
+              (ft == 4 || (ft == 5 && An((W.tm_year % 400) - 1))) && ue++;
+            }
+            return T(ue, 2);
+          },
+          "%w": function (W) {
+            return W.tm_wday;
+          },
+          "%W": function (W) {
+            var ue = W.tm_yday + 7 - ((W.tm_wday + 6) % 7);
+            return T(Math.floor(ue / 7), 2);
+          },
+          "%y": function (W) {
+            return (W.tm_year + 1900).toString().substring(2);
+          },
+          "%Y": function (W) {
+            return W.tm_year + 1900;
+          },
+          "%z": function (W) {
+            var ue = W.tm_gmtoff,
+              ft = ue >= 0;
+            return (
+              (ue = Math.abs(ue) / 60),
+              (ue = (ue / 60) * 100 + (ue % 60)),
+              (ft ? "+" : "-") + String("0000" + ue).slice(-4)
+            );
+          },
+          "%Z": function (W) {
+            return W.tm_zone;
+          },
+          "%%": function () {
+            return "%";
+          },
+        };
+        _ = _.replace(/%%/g, "\0\0");
+        for (var f in De)
+          _.includes(f) && (_ = _.replace(new RegExp(f, "g"), De[f](u)));
+        _ = _.replace(/\0\0/g, "%");
+        var Ve = Mc(_, !1);
+        return Ve.length > n ? 0 : (ln(Ve, t), Ve.length - 1);
+      }
+      function Dc(t, n, a, s) {
+        return Pc(t, n, a, s);
+      }
+      var Ic = !0;
+      function Mc(t, n, a) {
+        var s = a > 0 ? a : Bt(t) + 1,
+          o = new Array(s),
+          u = xt(t, o, 0, o.length);
+        return n && (o.length = u), o;
+      }
+      function qd(t) {
+        for (var n = [], a = 0; a < t.length; a++) {
+          var s = t[a];
+          s > 255 &&
+            (Ic &&
+              M(
+                !1,
+                "Character code " +
+                  s +
+                  " (" +
+                  String.fromCharCode(s) +
+                  ")  at offset " +
+                  a +
+                  " not in 0x00-0xFF."
+              ),
+            (s &= 255)),
+            n.push(String.fromCharCode(s));
+        }
+        return n.join("");
+      }
+      function Uc() {
+        Vt("fetchSettings");
+      }
+      var gs = {
+          __assert_fail: ba,
+          __cxa_allocate_exception: He,
+          __cxa_begin_catch: gi,
+          __cxa_end_catch: Fn,
+          __cxa_find_matching_catch_2: Ii,
+          __cxa_find_matching_catch_3: vn,
+          __cxa_find_matching_catch_4: ut,
+          __cxa_find_matching_catch_5: xn,
+          __cxa_free_exception: Pi,
+          __cxa_rethrow: ya,
+          __cxa_throw: ga,
+          __cxa_uncaught_exceptions: va,
+          __resumeException: Di,
+          __syscall__newselect: ja,
+          __syscall_bind: wa,
+          __syscall_connect: ka,
+          __syscall_faccessat: Ea,
+          __syscall_fcntl64: Sa,
+          __syscall_fstat64: Ca,
+          __syscall_ftruncate64: Aa,
+          __syscall_getdents64: Wn,
+          __syscall_getpeername: Ra,
+          __syscall_getsockopt: Oa,
+          __syscall_ioctl: Ta,
+          __syscall_lstat64: Pa,
+          __syscall_mkdirat: Da,
+          __syscall_newfstatat: Ia,
+          __syscall_openat: Ma,
+          __syscall_recvfrom: Ua,
+          __syscall_renameat: La,
+          __syscall_rmdir: Fa,
+          __syscall_sendto: xa,
+          __syscall_socket: Na,
+          __syscall_stat64: Ba,
+          __syscall_unlinkat: Ya,
+          _dlinit: Ha,
+          _dlopen_js: qa,
+          _dlsym_js: Wa,
+          _emscripten_date_now: Za,
+          _emscripten_get_now_is_monotonic: Gn,
+          abort: kn,
+          alignfault: $r,
+          duckdb_web_fs_directory_create: Ga,
+          duckdb_web_fs_directory_exists: Va,
+          duckdb_web_fs_directory_list_files: Ka,
+          duckdb_web_fs_directory_remove: En,
+          duckdb_web_fs_file_close: za,
+          duckdb_web_fs_file_exists: vi,
+          duckdb_web_fs_file_get_last_modified_time: Qa,
+          duckdb_web_fs_file_move: Xa,
+          duckdb_web_fs_file_open: Ja,
+          duckdb_web_fs_file_read: es,
+          duckdb_web_fs_file_truncate: ts,
+          duckdb_web_fs_file_write: is,
+          duckdb_web_fs_glob: ns,
+          duckdb_web_test_platform_feature: rs,
+          duckdb_web_udf_scalar_call: as,
+          emscripten_console_error: ss,
+          emscripten_get_heap_max: Vn,
+          emscripten_get_now: Sn,
+          emscripten_memcpy_big: Li,
+          emscripten_resize_heap: cs,
+          environ_get: Kn,
+          environ_sizes_get: us,
+          fd_close: _s,
+          fd_pread: ds,
+          fd_pwrite: fs,
+          fd_read: hs,
+          fd_seek: mc,
+          fd_sync: bs,
+          fd_write: wc,
+          getTempRet0: kc,
+          getaddrinfo: Ec,
+          getentropy: Cn,
+          getnameinfo: Cc,
+          invoke_d: Bp,
+          invoke_di: Ep,
+          invoke_dii: Lp,
+          invoke_diii: Qb,
+          invoke_diijii: By,
+          invoke_f: Np,
+          invoke_fi: kp,
+          invoke_fiii: zb,
+          invoke_fiijii: Ny,
+          invoke_i: rp,
+          invoke_id: jp,
+          invoke_idd: bp,
+          invoke_idiii: gp,
+          invoke_if: vp,
+          invoke_iff: hp,
+          invoke_ii: Zb,
+          invoke_iid: Tp,
+          invoke_iidii: Rp,
+          invoke_iidj: ev,
+          invoke_iii: Wb,
+          invoke_iiid: Op,
+          invoke_iiidi: xp,
+          invoke_iiii: Yb,
+          invoke_iiiid: Fp,
+          invoke_iiiidjj: rv,
+          invoke_iiiii: Kb,
+          invoke_iiiiid: _p,
+          invoke_iiiiii: Gb,
+          invoke_iiiiiii: sp,
+          invoke_iiiiiiii: tp,
+          invoke_iiiiiiiii: yp,
+          invoke_iiiiiiiiii: pp,
+          invoke_iiiiiiiiiii: ip,
+          invoke_iiiiiiiiiiii: op,
+          invoke_iiiiiiiiiiiii: np,
+          invoke_iiiiiiiiiiiiiii: Dp,
+          invoke_iiiiiiiiiiiiiiii: Ap,
+          invoke_iiiiiiiiiiiij: Rg,
+          invoke_iiiiiiiiiiji: yg,
+          invoke_iiiiiiiij: hg,
+          invoke_iiiiiiiiji: lg,
+          invoke_iiiiiiij: Ag,
+          invoke_iiiiiiiji: nv,
+          invoke_iiiiiiijii: Yy,
+          invoke_iiiiiij: pg,
+          invoke_iiiiiiji: cg,
+          invoke_iiiiiijji: uj,
+          invoke_iiiiij: $p,
+          invoke_iiiiiji: ky,
+          invoke_iiiiijii: cv,
+          invoke_iiiiijij: Eg,
+          invoke_iiiiijj: Gp,
+          invoke_iiiiijji: Vg,
+          invoke_iiiiijjiijj: Sv,
+          invoke_iiiiijjj: hj,
+          invoke_iiiiijjji: bj,
+          invoke_iiiij: wy,
+          invoke_iiiiji: Ey,
+          invoke_iiiijii: qv,
+          invoke_iiiijiii: yv,
+          invoke_iiiijj: _y,
+          invoke_iiiijji: tg,
+          invoke_iiiijjii: Gg,
+          invoke_iiiijjj: av,
+          invoke_iiij: ry,
+          invoke_iiiji: gy,
+          invoke_iiijii: Uy,
+          invoke_iiijiii: ov,
+          invoke_iiijiiii: jv,
+          invoke_iiijiij: vy,
+          invoke_iiijiijj: zv,
+          invoke_iiijij: yy,
+          invoke_iiijj: Jp,
+          invoke_iiijji: my,
+          invoke_iiijjii: Cv,
+          invoke_iiijjiij: iv,
+          invoke_iiijjiiji: tv,
+          invoke_iiijjj: Yv,
+          invoke_iiijjji: tj,
+          invoke_iiijjjii: _j,
+          invoke_iij: Vp,
+          invoke_iiji: dy,
+          invoke_iijii: hv,
+          invoke_iijiii: Wv,
+          invoke_iijiiii: fv,
+          invoke_iijiijj: ej,
+          invoke_iijiji: Bv,
+          invoke_iijj: jy,
+          invoke_iijji: dv,
+          invoke_iijjii: lv,
+          invoke_iijjiii: uv,
+          invoke_iijjiiii: _v,
+          invoke_iijjijj: gg,
+          invoke_iijjj: _g,
+          invoke_ij: Lg,
+          invoke_iji: oy,
+          invoke_ijii: Ng,
+          invoke_ijji: og,
+          invoke_ijjiii: fy,
+          invoke_j: Qp,
+          invoke_jd: ng,
+          invoke_jf: rg,
+          invoke_ji: qp,
+          invoke_jii: Wp,
+          invoke_jiii: Ay,
+          invoke_jiiii: Yp,
+          invoke_jiiiii: Xy,
+          invoke_jiiiiii: ag,
+          invoke_jiiiiiii: Cg,
+          invoke_jiiiiiijii: eg,
+          invoke_jiiiiijiiii: Wy,
+          invoke_jiiiij: Qg,
+          invoke_jiiiiji: kg,
+          invoke_jiiiijii: My,
+          invoke_jiiij: Dg,
+          invoke_jiiiji: Ev,
+          invoke_jiiijii: qy,
+          invoke_jiiijiii: Zy,
+          invoke_jiiijj: Ug,
+          invoke_jiiijjj: mg,
+          invoke_jiij: Zg,
+          invoke_jiiji: Tg,
+          invoke_jiijii: Ly,
+          invoke_jiijiii: Hy,
+          invoke_jiijijjii: lj,
+          invoke_jij: xg,
+          invoke_jijiii: Ov,
+          invoke_jijiiii: fj,
+          invoke_jijij: Ig,
+          invoke_jijj: Mg,
+          invoke_jijjij: Pv,
+          invoke_jj: ig,
+          invoke_jji: Nv,
+          invoke_jjiji: Pg,
+          invoke_jjj: qg,
+          invoke_jjjii: xv,
+          invoke_jjjji: Fv,
+          invoke_jjjjjjd: Wg,
+          invoke_v: Hb,
+          invoke_vi: $b,
+          invoke_vid: wp,
+          invoke_vidiijj: Gv,
+          invoke_vif: mp,
+          invoke_vifiijj: $v,
+          invoke_vii: qb,
+          invoke_viid: Jb,
+          invoke_viidii: Ip,
+          invoke_viif: Xb,
+          invoke_viii: ep,
+          invoke_viiii: Vb,
+          invoke_viiiidiiii: Mp,
+          invoke_viiiii: fp,
+          invoke_viiiiii: up,
+          invoke_viiiiiidiii: Pp,
+          invoke_viiiiiii: ap,
+          invoke_viiiiiiii: dp,
+          invoke_viiiiiiiii: Cp,
+          invoke_viiiiiiiiii: cp,
+          invoke_viiiiiiiiiii: Up,
+          invoke_viiiiiiiiiiiii: Sp,
+          invoke_viiiiiiiiiiiiiii: lp,
+          invoke_viiiiiij: Jy,
+          invoke_viiiiij: Vv,
+          invoke_viiiiiji: Sg,
+          invoke_viiiiijiii: Yg,
+          invoke_viiiiijiiii: $y,
+          invoke_viiiiijj: ug,
+          invoke_viiiiijji: Jg,
+          invoke_viiiiijjji: Xv,
+          invoke_viiiij: iy,
+          invoke_viiiiji: Iy,
+          invoke_viiiijii: pv,
+          invoke_viiiijiii: nj,
+          invoke_viiiijiiii: jg,
+          invoke_viiiijiiiii: vg,
+          invoke_viiiijiiiiiiii: Hg,
+          invoke_viiiijij: vv,
+          invoke_viiiijj: Iv,
+          invoke_viiiijji: zg,
+          invoke_viiiijjii: Xg,
+          invoke_viiiijjjj: Gy,
+          invoke_viiij: ny,
+          invoke_viiiji: sg,
+          invoke_viiijii: Fy,
+          invoke_viiijiii: gv,
+          invoke_viiijiiiijjj: Ky,
+          invoke_viiijij: py,
+          invoke_viiijiji: dj,
+          invoke_viiijijiji: by,
+          invoke_viiijijjj: Jv,
+          invoke_viiijj: ly,
+          invoke_viiijji: hy,
+          invoke_viiijjii: Kg,
+          invoke_viiijjiij: Qy,
+          invoke_viiijjij: Oy,
+          invoke_viiijjj: sy,
+          invoke_viiijjjji: ij,
+          invoke_viij: zp,
+          invoke_viiji: Kp,
+          invoke_viijii: Zp,
+          invoke_viijiii: Ty,
+          invoke_viijiiii: rj,
+          invoke_viijiiiii: Dy,
+          invoke_viijiiiiii: Lv,
+          invoke_viijiiiiij: Vy,
+          invoke_viijiiij: Rv,
+          invoke_viijiij: Dv,
+          invoke_viijiiji: kv,
+          invoke_viijiijj: Qv,
+          invoke_viijij: Ry,
+          invoke_viijiji: aj,
+          invoke_viijijiiiijjj: zy,
+          invoke_viijijj: wg,
+          invoke_viijj: Hp,
+          invoke_viijji: ey,
+          invoke_viijjii: Av,
+          invoke_viijjj: uy,
+          invoke_viijjji: bg,
+          invoke_vij: ty,
+          invoke_viji: cy,
+          invoke_vijii: sv,
+          invoke_vijiii: Sy,
+          invoke_vijiiii: Cy,
+          invoke_vijiiiji: Tv,
+          invoke_vijiijj: Zv,
+          invoke_vijij: Mv,
+          invoke_vijiji: Og,
+          invoke_vijijiiiijjj: dg,
+          invoke_vijijj: ay,
+          invoke_vijijjiiiii: sj,
+          invoke_vijijjiij: Py,
+          invoke_vijijjji: Kv,
+          invoke_vijj: xy,
+          invoke_vijji: $g,
+          invoke_vijjiiii: cj,
+          invoke_vijjiiiii: oj,
+          invoke_vijjij: fg,
+          invoke_vijjj: Xp,
+          invoke_vijjji: mv,
+          invoke_vj: Hv,
+          invoke_vjii: Bg,
+          invoke_vjiiii: Fg,
+          invoke_vjiiiji: Uv,
+          invoke_vjjii: bv,
+          invoke_vjjijij: wv,
+          llvm_eh_typeid_for: Ac,
+          segfault: Zr,
+          setTempRet0: Rc,
+          strftime_l: Dc,
+        },
+        Wd = la(),
+        Zd = (e.___wasm_call_ctors = g("__wasm_call_ctors")),
+        $d = (e._main = g("main")),
+        Gd = (e._duckdb_web_fs_glob_add_path = g(
+          "duckdb_web_fs_glob_add_path"
+        )),
+        Vd = (e._duckdb_web_clear_response = g("duckdb_web_clear_response")),
+        Kd = (e._duckdb_web_fail_with = g("duckdb_web_fail_with")),
+        zd = (e._duckdb_web_reset = g("duckdb_web_reset")),
+        Qd = (e._duckdb_web_connect = g("duckdb_web_connect")),
+        Xd = (e._duckdb_web_disconnect = g("duckdb_web_disconnect")),
+        Jd = (e._duckdb_web_flush_files = g("duckdb_web_flush_files")),
+        ef = (e._duckdb_web_flush_file = g("duckdb_web_flush_file")),
+        tf = (e._duckdb_web_open = g("duckdb_web_open")),
+        nf = (e._duckdb_web_get_global_file_info = g(
+          "duckdb_web_get_global_file_info"
+        )),
+        rf = (e._duckdb_web_collect_file_stats = g(
+          "duckdb_web_collect_file_stats"
+        )),
+        af = (e._duckdb_web_export_file_stats = g(
+          "duckdb_web_export_file_stats"
+        )),
+        sf = (e._duckdb_web_fs_drop_file = g("duckdb_web_fs_drop_file")),
+        of = (e._duckdb_web_fs_drop_files = g("duckdb_web_fs_drop_files")),
+        cf = (e._duckdb_web_fs_glob_file_infos = g(
+          "duckdb_web_fs_glob_file_infos"
+        )),
+        lf = (e._duckdb_web_fs_get_file_info_by_id = g(
+          "duckdb_web_fs_get_file_info_by_id"
+        )),
+        uf = (e._duckdb_web_fs_get_file_info_by_name = g(
+          "duckdb_web_fs_get_file_info_by_name"
+        )),
+        _f = (e._duckdb_web_fs_set_file_descriptor = g(
+          "duckdb_web_fs_set_file_descriptor"
+        )),
+        df = (e._duckdb_web_fs_register_file_url = g(
+          "duckdb_web_fs_register_file_url"
+        )),
+        Lc = (e._duckdb_web_fs_register_file_buffer = g(
+          "duckdb_web_fs_register_file_buffer"
+        )),
+        Fc = (e._duckdb_web_copy_file_to_buffer = g(
+          "duckdb_web_copy_file_to_buffer"
+        )),
+        ff = (e._duckdb_web_copy_file_to_path = g(
+          "duckdb_web_copy_file_to_path"
+        )),
+        Qn = (e._duckdb_web_get_version = g("duckdb_web_get_version")),
+        Xn = (e._duckdb_web_get_feature_flags = g(
+          "duckdb_web_get_feature_flags"
+        )),
+        vs = (e._duckdb_web_tokenize = g("duckdb_web_tokenize")),
+        Rn = (e._duckdb_web_udf_scalar_create = g(
+          "duckdb_web_udf_scalar_create"
+        )),
+        hf = (e._duckdb_web_prepared_create = g("duckdb_web_prepared_create")),
+        bf = (e._duckdb_web_prepared_close = g("duckdb_web_prepared_close")),
+        js = (e._duckdb_web_prepared_run = g("duckdb_web_prepared_run")),
+        pf = (e._duckdb_web_prepared_send = g("duckdb_web_prepared_send")),
+        ms = (e._duckdb_web_query_run = g("duckdb_web_query_run")),
+        xc = (e._duckdb_web_pending_query_start = g(
+          "duckdb_web_pending_query_start"
+        )),
+        Jn = (e._duckdb_web_pending_query_poll = g(
+          "duckdb_web_pending_query_poll"
+        )),
+        er = (e._duckdb_web_pending_query_cancel = g(
+          "duckdb_web_pending_query_cancel"
+        )),
+        ws = (e._duckdb_web_query_fetch_results = g(
+          "duckdb_web_query_fetch_results"
+        )),
+        ks = (e._duckdb_web_get_tablenames = g("duckdb_web_get_tablenames")),
+        Fi = (e._duckdb_web_insert_arrow_from_ipc_stream = g(
+          "duckdb_web_insert_arrow_from_ipc_stream"
+        )),
+        yf = (e._duckdb_web_insert_csv_from_path = g(
+          "duckdb_web_insert_csv_from_path"
+        )),
+        gf = (e._duckdb_web_insert_json_from_path = g(
+          "duckdb_web_insert_json_from_path"
+        )),
+        Nc = (e.___errno_location = g("__errno_location")),
+        Bc = (e.___stdio_exit = g("__stdio_exit")),
+        vf = (e.___dl_seterr = g("__dl_seterr")),
+        tr = (e._htonl = g("htonl")),
+        ir = (e._htons = g("htons")),
+        Es = (e._ntohs = g("ntohs")),
+        xi = (e._malloc = g("malloc")),
+        Yc = (e._free = g("free")),
+        jf = (e._emscripten_get_sbrk_ptr = g("emscripten_get_sbrk_ptr")),
+        Ss = (e._sbrk = g("sbrk")),
+        C = (e._setThrew = g("setThrew")),
+        Cs = (e._emscripten_stack_init = function () {
+          return (Cs = e._emscripten_stack_init =
+            e.asm.emscripten_stack_init).apply(null, arguments);
+        }),
+        Hc = (e._emscripten_stack_get_free = function () {
+          return (Hc = e._emscripten_stack_get_free =
+            e.asm.emscripten_stack_get_free).apply(null, arguments);
+        }),
+        nr = (e._emscripten_stack_get_base = function () {
+          return (nr = e._emscripten_stack_get_base =
+            e.asm.emscripten_stack_get_base).apply(null, arguments);
+        }),
+        rr = (e._emscripten_stack_get_end = function () {
+          return (rr = e._emscripten_stack_get_end =
+            e.asm.emscripten_stack_get_end).apply(null, arguments);
+        }),
+        E = (e.stackSave = g("stackSave")),
+        S = (e.stackRestore = g("stackRestore")),
+        Ni = (e.stackAlloc = g("stackAlloc")),
+        On = (e.___cxa_can_catch = g("__cxa_can_catch")),
+        qc = (e.___cxa_is_pointer_type = g("__cxa_is_pointer_type")),
+        mf = (e.dynCall_jiji = g("dynCall_jiji")),
+        Wc = (e.dynCall_jiiii = g("dynCall_jiiii")),
+        Zc = (e.dynCall_iiiiij = g("dynCall_iiiiij")),
+        $c = (e.dynCall_iiiiijj = g("dynCall_iiiiijj")),
+        wf = (e.dynCall_iiiiiijj = g("dynCall_iiiiiijj")),
+        Gc = (e.dynCall_viijii = g("dynCall_viijii")),
+        Vc = (e.dynCall_j = g("dynCall_j")),
+        Kc = (e.dynCall_ji = g("dynCall_ji")),
+        zc = (e.dynCall_iij = g("dynCall_iij")),
+        Qc = (e.dynCall_viij = g("dynCall_viij")),
+        Xc = (e.dynCall_viijji = g("dynCall_viijji")),
+        Jc = (e.dynCall_viijj = g("dynCall_viijj")),
+        el = (e.dynCall_viiijj = g("dynCall_viiijj")),
+        tl = (e.dynCall_viiji = g("dynCall_viiji")),
+        il = (e.dynCall_vijjj = g("dynCall_vijjj")),
+        nl = (e.dynCall_iiijj = g("dynCall_iiijj")),
+        rl = (e.dynCall_viiij = g("dynCall_viiij")),
+        al = (e.dynCall_viijij = g("dynCall_viijij")),
+        sl = (e.dynCall_iiij = g("dynCall_iiij")),
+        ol = (e.dynCall_vijijj = g("dynCall_vijijj")),
+        cl = (e.dynCall_viiijjj = g("dynCall_viiijjj")),
+        ll = (e.dynCall_iji = g("dynCall_iji")),
+        ul = (e.dynCall_viji = g("dynCall_viji")),
+        _l = (e.dynCall_vij = g("dynCall_vij")),
+        dl = (e.dynCall_viiiij = g("dynCall_viiiij")),
+        fl = (e.dynCall_jii = g("dynCall_jii")),
+        hl = (e.dynCall_iiji = g("dynCall_iiji")),
+        bl = (e.dynCall_iiiij = g("dynCall_iiiij")),
+        pl = (e.dynCall_iiiiiji = g("dynCall_iiiiiji")),
+        yl = (e.dynCall_iiiji = g("dynCall_iiiji")),
+        gl = (e.dynCall_iiiiji = g("dynCall_iiiiji")),
+        vl = (e.dynCall_jiii = g("dynCall_jiii")),
+        Bi = (e.dynCall_jij = g("dynCall_jij")),
+        Yi = (e.dynCall_viijiiiii = g("dynCall_viijiiiii")),
+        As = (e.dynCall_iiijii = g("dynCall_iiijii")),
+        Rs = (e.dynCall_jiijii = g("dynCall_jiijii")),
+        Os = (e.dynCall_viiijii = g("dynCall_viiijii")),
+        Tn = (e.dynCall_fiijii = g("dynCall_fiijii")),
+        Ts = (e.dynCall_diijii = g("dynCall_diijii")),
+        Ps = (e.dynCall_iiiiiiijii = g("dynCall_iiiiiiijii")),
+        Ds = (e.dynCall_vijj = g("dynCall_vijj")),
+        ar = (e.dynCall_jiiijii = g("dynCall_jiiijii")),
+        c = (e.dynCall_jiijiii = g("dynCall_jiijiii")),
+        h = (e.dynCall_viiiiji = g("dynCall_viiiiji")),
+        v = (e.dynCall_jiiiijii = g("dynCall_jiiiijii")),
+        R = (e.dynCall_jiiiiijiiii = g("dynCall_jiiiiijiiii")),
+        U = (e.dynCall_jiiijiii = g("dynCall_jiiijiii")),
+        Z = (e.dynCall_viiiiijiiii = g("dynCall_viiiiijiiii")),
+        H = (e.dynCall_viiijjij = g("dynCall_viiijjij")),
+        $ = (e.dynCall_viijiii = g("dynCall_viijiii")),
+        ae = (e.dynCall_vijijjiij = g("dynCall_vijijjiij")),
+        fe = (e.dynCall_viiijjiij = g("dynCall_viiijjiij")),
+        ve = (e.dynCall_viiiijjjj = g("dynCall_viiiijjjj")),
+        We = (e.dynCall_viijiiiiij = g("dynCall_viijiiiiij")),
+        Oe = (e.dynCall_viiijiiiijjj = g("dynCall_viiijiiiijjj")),
+        ji = (e.dynCall_viijijiiiijjj = g("dynCall_viijijiiiijjj")),
+        Ze = (e.dynCall_jj = g("dynCall_jj")),
+        nt = (e.dynCall_jd = g("dynCall_jd")),
+        Ht = (e.dynCall_jf = g("dynCall_jf")),
+        mi = (e.dynCall_iijjj = g("dynCall_iijjj")),
+        K = (e.dynCall_iiijji = g("dynCall_iiijji")),
+        he = (e.dynCall_vijijiiiijjj = g("dynCall_vijijiiiijjj")),
+        at = (e.dynCall_viiiiiij = g("dynCall_viiiiiij")),
+        ze = (e.dynCall_iiiiiiji = g("dynCall_iiiiiiji")),
+        qt = (e.dynCall_iiiiiiiiji = g("dynCall_iiiiiiiiji")),
+        dt = (e.dynCall_viiiiijj = g("dynCall_viiiiijj")),
+        sr = (e.dynCall_vijiii = g("dynCall_vijiii")),
+        kf = (e.dynCall_viijjj = g("dynCall_viijjj")),
+        Ef = (e.dynCall_vijjij = g("dynCall_vijjij")),
+        Sf = (e.dynCall_jiiiii = g("dynCall_jiiiii")),
+        Cf = (e.dynCall_viijjji = g("dynCall_viijjji")),
+        Af = (e.dynCall_vijiiii = g("dynCall_vijiiii")),
+        Rf = (e.dynCall_iijjijj = g("dynCall_iijjijj")),
+        Of = (e.dynCall_viiiijiiiii = g("dynCall_viiiijiiiii")),
+        Tf = (e.dynCall_viiiijiiii = g("dynCall_viiiijiiii")),
+        Pf = (e.dynCall_iiiiiij = g("dynCall_iiiiiij")),
+        Df = (e.dynCall_iiiiiiiiiiji = g("dynCall_iiiiiiiiiiji")),
+        If = (e.dynCall_iiiiiiiij = g("dynCall_iiiiiiiij")),
+        Mf = (e.dynCall_jiiijjj = g("dynCall_jiiijjj")),
+        Uf = (e.dynCall_viijijj = g("dynCall_viijijj")),
+        Lf = (e.dynCall_jiiiiji = g("dynCall_jiiiiji")),
+        Ff = (e.dynCall_iiiiijij = g("dynCall_iiiiijij")),
+        xf = (e.dynCall_viiiiiji = g("dynCall_viiiiiji")),
+        Nf = (e.dynCall_jiiiiiii = g("dynCall_jiiiiiii")),
+        Bf = (e.dynCall_vijiji = g("dynCall_vijiji")),
+        Yf = (e.dynCall_jiiiij = g("dynCall_jiiiij")),
+        Hf = (e.dynCall_jijjij = g("dynCall_jijjij")),
+        qf = (e.dynCall_viiiijiiiiiiii = g("dynCall_viiiijiiiiiiii")),
+        Wf = (e.dynCall_ij = g("dynCall_ij")),
+        Zf = (e.dynCall_jjj = g("dynCall_jjj")),
+        $f = (e.dynCall_jiiji = g("dynCall_jiiji")),
+        Gf = (e.dynCall_jjiji = g("dynCall_jjiji")),
+        Vf = (e.dynCall_jiiij = g("dynCall_jiiij")),
+        Kf = (e.dynCall_jijij = g("dynCall_jijij")),
+        zf = (e.dynCall_jijj = g("dynCall_jijj")),
+        Qf = (e.dynCall_jiiijj = g("dynCall_jiiijj")),
+        Xf = (e.dynCall_vjii = g("dynCall_vjii")),
+        M0 = (e.dynCall_ijjj = g("dynCall_ijjj")),
+        U0 = (e.dynCall_jjjd = g("dynCall_jjjd")),
+        Jf = (e.dynCall_jjjjjjd = g("dynCall_jjjjjjd")),
+        eh = (e.dynCall_viiiji = g("dynCall_viiiji")),
+        th = (e.dynCall_ijii = g("dynCall_ijii")),
+        ih = (e.dynCall_vjiiii = g("dynCall_vjiiii")),
+        nh = (e.dynCall_viiiiijiii = g("dynCall_viiiiijiii")),
+        rh = (e.dynCall_jiij = g("dynCall_jiij")),
+        ah = (e.dynCall_vijji = g("dynCall_vijji")),
+        sh = (e.dynCall_iiiijjii = g("dynCall_iiiijjii")),
+        oh = (e.dynCall_iiiiijji = g("dynCall_iiiiijji")),
+        ch = (e.dynCall_viiijjii = g("dynCall_viiijjii")),
+        lh = (e.dynCall_viiiijji = g("dynCall_viiiijji")),
+        uh = (e.dynCall_viiiijjii = g("dynCall_viiiijjii")),
+        _h = (e.dynCall_viiiiijji = g("dynCall_viiiiijji")),
+        dh = (e.dynCall_iidj = g("dynCall_iidj")),
+        fh = (e.dynCall_ijji = g("dynCall_ijji")),
+        hh = (e.dynCall_iiiiiiij = g("dynCall_iiiiiiij")),
+        bh = (e.dynCall_iiiiiiiiiiiij = g("dynCall_iiiiiiiiiiiij")),
+        ph = (e.dynCall_iiijjiiji = g("dynCall_iiijjiiji")),
+        yh = (e.dynCall_iiijjiij = g("dynCall_iiijjiij")),
+        gh = (e.dynCall_iiiiiiiji = g("dynCall_iiiiiiiji")),
+        vh = (e.dynCall_iiiidjj = g("dynCall_iiiidjj")),
+        jh = (e.dynCall_iiiijjj = g("dynCall_iiiijjj")),
+        mh = (e.dynCall_vijii = g("dynCall_vijii")),
+        wh = (e.dynCall_jiiiiiijii = g("dynCall_jiiiiiijii")),
+        kh = (e.dynCall_iiiijji = g("dynCall_iiiijji")),
+        Eh = (e.dynCall_viiijji = g("dynCall_viiijji")),
+        Sh = (e.dynCall_jiiiiii = g("dynCall_jiiiiii")),
+        Ch = (e.dynCall_iiijiii = g("dynCall_iiijiii")),
+        Ah = (e.dynCall_iiiiijii = g("dynCall_iiiiijii")),
+        Rh = (e.dynCall_iiijiij = g("dynCall_iiijiij")),
+        Oh = (e.dynCall_iijjii = g("dynCall_iijjii")),
+        Th = (e.dynCall_iijjiii = g("dynCall_iijjiii")),
+        Ph = (e.dynCall_iijjiiii = g("dynCall_iijjiiii")),
+        Dh = (e.dynCall_iijji = g("dynCall_iijji")),
+        Ih = (e.dynCall_iijiiii = g("dynCall_iijiiii")),
+        Mh = (e.dynCall_iijii = g("dynCall_iijii")),
+        Uh = (e.dynCall_vjjii = g("dynCall_vjjii")),
+        Lh = (e.dynCall_viiiijii = g("dynCall_viiiijii")),
+        Fh = (e.dynCall_iiiijiii = g("dynCall_iiiijiii")),
+        xh = (e.dynCall_iiijij = g("dynCall_iiijij")),
+        Nh = (e.dynCall_iijj = g("dynCall_iijj")),
+        Bh = (e.dynCall_iiiijj = g("dynCall_iiiijj")),
+        Yh = (e.dynCall_viiijiii = g("dynCall_viiijiii")),
+        Hh = (e.dynCall_viiiijij = g("dynCall_viiiijij")),
+        qh = (e.dynCall_iiijiiii = g("dynCall_iiijiiii")),
+        Wh = (e.dynCall_iiiiijjiijj = g("dynCall_iiiiijjiijj")),
+        Zh = (e.dynCall_viijiiji = g("dynCall_viijiiji")),
+        $h = (e.dynCall_iiijjii = g("dynCall_iiijjii")),
+        Gh = (e.dynCall_vjjijij = g("dynCall_vjjijij")),
+        Vh = (e.dynCall_vijjji = g("dynCall_vijjji")),
+        Kh = (e.dynCall_jiiiji = g("dynCall_jiiiji")),
+        zh = (e.dynCall_viijjii = g("dynCall_viijjii")),
+        Qh = (e.dynCall_viiiijj = g("dynCall_viiiijj")),
+        Xh = (e.dynCall_jijiii = g("dynCall_jijiii")),
+        Jh = (e.dynCall_viijiiij = g("dynCall_viijiiij")),
+        eb = (e.dynCall_vijiiiji = g("dynCall_vijiiiji")),
+        tb = (e.dynCall_viiijij = g("dynCall_viiijij")),
+        ib = (e.dynCall_viijiij = g("dynCall_viijiij")),
+        nb = (e.dynCall_vijij = g("dynCall_vijij")),
+        rb = (e.dynCall_vjiiiji = g("dynCall_vjiiiji")),
+        ab = (e.dynCall_viijiiiiii = g("dynCall_viijiiiiii")),
+        sb = (e.dynCall_jjjji = g("dynCall_jjjji")),
+        ob = (e.dynCall_jjjii = g("dynCall_jjjii")),
+        cb = (e.dynCall_jji = g("dynCall_jji")),
+        lb = (e.dynCall_iijiji = g("dynCall_iijiji")),
+        ub = (e.dynCall_viiijijiji = g("dynCall_viiijijiji")),
+        L0 = (e.dynCall_viiijiiiijj = g("dynCall_viiijiiiijj")),
+        _b = (e.dynCall_iiijjj = g("dynCall_iiijjj")),
+        db = (e.dynCall_vj = g("dynCall_vj")),
+        fb = (e.dynCall_iiiijii = g("dynCall_iiiijii")),
+        hb = (e.dynCall_iijiii = g("dynCall_iijiii")),
+        bb = (e.dynCall_vijiijj = g("dynCall_vijiijj")),
+        pb = (e.dynCall_vifiijj = g("dynCall_vifiijj")),
+        yb = (e.dynCall_vidiijj = g("dynCall_vidiijj")),
+        gb = (e.dynCall_viiiiij = g("dynCall_viiiiij")),
+        vb = (e.dynCall_ijjiii = g("dynCall_ijjiii")),
+        jb = (e.dynCall_vijijjji = g("dynCall_vijijjji")),
+        mb = (e.dynCall_viijiijj = g("dynCall_viijiijj")),
+        wb = (e.dynCall_viiiiijjji = g("dynCall_viiiiijjji")),
+        kb = (e.dynCall_iiijiijj = g("dynCall_iiijiijj")),
+        Eb = (e.dynCall_viiijijjj = g("dynCall_viiijijjj")),
+        Sb = (e.dynCall_iijiijj = g("dynCall_iijiijj")),
+        Cb = (e.dynCall_viiijjjji = g("dynCall_viiijjjji")),
+        Ab = (e.dynCall_viiiijiii = g("dynCall_viiiijiii")),
+        Rb = (e.dynCall_viijiiii = g("dynCall_viijiiii")),
+        Ob = (e.dynCall_vijjiiii = g("dynCall_vijjiiii")),
+        Tb = (e.dynCall_vijijjiiiii = g("dynCall_vijijjiiiii")),
+        Pb = (e.dynCall_vijjiiiii = g("dynCall_vijjiiiii")),
+        Db = (e.dynCall_iiijjji = g("dynCall_iiijjji")),
+        Ib = (e.dynCall_jiijijjii = g("dynCall_jiijijjii")),
+        Mb = (e.dynCall_iiiiiijji = g("dynCall_iiiiiijji")),
+        Ub = (e.dynCall_iiiiijjj = g("dynCall_iiiiijjj")),
+        Lb = (e.dynCall_jijiiii = g("dynCall_jijiiii")),
+        Fb = (e.dynCall_viiijiji = g("dynCall_viiijiji")),
+        xb = (e.dynCall_iiijjjii = g("dynCall_iiijjjii")),
+        Nb = (e.dynCall_iiiiijjji = g("dynCall_iiiiijjji")),
+        Bb = (e.dynCall_viijiji = g("dynCall_viijiji"));
+      function Yb(t, n, a, s) {
+        var o = E();
+        try {
+          return re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Hb(t) {
+        var n = E();
+        try {
+          re(t)();
+        } catch (a) {
+          if ((S(n), a !== a + 0)) throw a;
+          C(1, 0);
+        }
+      }
+      function qb(t, n, a) {
+        var s = E();
+        try {
+          re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function Wb(t, n, a) {
+        var s = E();
+        try {
+          return re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function Zb(t, n) {
+        var a = E();
+        try {
+          return re(t)(n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function $b(t, n) {
+        var a = E();
+        try {
+          re(t)(n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function Gb(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return re(t)(n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Vb(t, n, a, s, o) {
+        var u = E();
+        try {
+          re(t)(n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Kb(t, n, a, s, o) {
+        var u = E();
+        try {
+          return re(t)(n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function zb(t, n, a, s) {
+        var o = E();
+        try {
+          return re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Qb(t, n, a, s) {
+        var o = E();
+        try {
+          return re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Xb(t, n, a, s) {
+        var o = E();
+        try {
+          re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Jb(t, n, a, s) {
+        var o = E();
+        try {
+          re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function ep(t, n, a, s) {
+        var o = E();
+        try {
+          re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function tp(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function ip(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function np(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function rp(t) {
+        var n = E();
+        try {
+          return re(t)();
+        } catch (a) {
+          if ((S(n), a !== a + 0)) throw a;
+          C(1, 0);
+        }
+      }
+      function ap(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          re(t)(n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function sp(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return re(t)(n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function op(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function cp(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function lp(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe) {
+        var De = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe);
+        } catch (Ve) {
+          if ((S(De), Ve !== Ve + 0)) throw Ve;
+          C(1, 0);
+        }
+      }
+      function up(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          re(t)(n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function _p(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return re(t)(n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function dp(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function fp(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          re(t)(n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function hp(t, n, a) {
+        var s = E();
+        try {
+          return re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function bp(t, n, a) {
+        var s = E();
+        try {
+          return re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function pp(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function yp(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function gp(t, n, a, s, o) {
+        var u = E();
+        try {
+          return re(t)(n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function vp(t, n) {
+        var a = E();
+        try {
+          return re(t)(n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function jp(t, n) {
+        var a = E();
+        try {
+          return re(t)(n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function mp(t, n, a) {
+        var s = E();
+        try {
+          re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function wp(t, n, a) {
+        var s = E();
+        try {
+          re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function kp(t, n) {
+        var a = E();
+        try {
+          return re(t)(n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function Ep(t, n) {
+        var a = E();
+        try {
+          return re(t)(n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function Sp(t, n, a, s, o, u, _, d, f, y, j, A, T, G) {
+        var Q = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y, j, A, T, G);
+        } catch (pe) {
+          if ((S(Q), pe !== pe + 0)) throw pe;
+          C(1, 0);
+        }
+      }
+      function Cp(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Ap(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe) {
+        var De = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe);
+        } catch (Ve) {
+          if ((S(De), Ve !== Ve + 0)) throw Ve;
+          C(1, 0);
+        }
+      }
+      function Rp(t, n, a, s, o) {
+        var u = E();
+        try {
+          return re(t)(n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Op(t, n, a, s) {
+        var o = E();
+        try {
+          return re(t)(n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Tp(t, n, a) {
+        var s = E();
+        try {
+          return re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function Pp(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Dp(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q) {
+        var pe = E();
+        try {
+          return re(t)(n, a, s, o, u, _, d, f, y, j, A, T, G, Q);
+        } catch (De) {
+          if ((S(pe), De !== De + 0)) throw De;
+          C(1, 0);
+        }
+      }
+      function Ip(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          re(t)(n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Mp(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Up(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          re(t)(n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function Lp(t, n, a) {
+        var s = E();
+        try {
+          return re(t)(n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function Fp(t, n, a, s, o) {
+        var u = E();
+        try {
+          return re(t)(n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function xp(t, n, a, s, o) {
+        var u = E();
+        try {
+          return re(t)(n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Np(t) {
+        var n = E();
+        try {
+          return re(t)();
+        } catch (a) {
+          if ((S(n), a !== a + 0)) throw a;
+          C(1, 0);
+        }
+      }
+      function Bp(t) {
+        var n = E();
+        try {
+          return re(t)();
+        } catch (a) {
+          if ((S(n), a !== a + 0)) throw a;
+          C(1, 0);
+        }
+      }
+      function Yp(t, n, a, s, o) {
+        var u = E();
+        try {
+          return Wc(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Hp(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          Jc(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function qp(t, n) {
+        var a = E();
+        try {
+          return Kc(t, n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function Wp(t, n, a) {
+        var s = E();
+        try {
+          return fl(t, n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function Zp(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          Gc(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function $p(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Zc(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Gp(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return $c(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Vp(t, n, a, s) {
+        var o = E();
+        try {
+          return zc(t, n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Kp(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          tl(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function zp(t, n, a, s, o) {
+        var u = E();
+        try {
+          Qc(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Qp(t) {
+        var n = E();
+        try {
+          return Vc(t);
+        } catch (a) {
+          if ((S(n), a !== a + 0)) throw a;
+          C(1, 0);
+        }
+      }
+      function Xp(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          il(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Jp(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return nl(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function ey(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          Xc(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function ty(t, n, a, s) {
+        var o = E();
+        try {
+          _l(t, n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function iy(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          dl(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function ny(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          rl(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function ry(t, n, a, s, o) {
+        var u = E();
+        try {
+          return sl(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function ay(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          ol(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function sy(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          cl(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function oy(t, n, a, s) {
+        var o = E();
+        try {
+          return ll(t, n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function cy(t, n, a, s, o) {
+        var u = E();
+        try {
+          ul(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function ly(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          el(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function uy(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          kf(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function _y(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Bh(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function dy(t, n, a, s, o) {
+        var u = E();
+        try {
+          return hl(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function fy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return vb(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function hy(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Eh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function by(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          ub(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function py(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          tb(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function yy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return xh(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function gy(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return yl(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function vy(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return Rh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function jy(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return Nh(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function my(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return K(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function wy(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return bl(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function ky(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return pl(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Ey(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return gl(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Sy(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          sr(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Cy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          Af(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Ay(t, n, a, s) {
+        var o = E();
+        try {
+          return vl(t, n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Ry(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          al(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Oy(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          H(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Ty(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          $(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Py(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          ae(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function Dy(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Yi(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Iy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          h(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function My(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return v(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Uy(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return As(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Ly(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Rs(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Fy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          Os(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function xy(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          Ds(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Ny(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Tn(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function By(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Ts(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Yy(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return Ps(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Hy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return c(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function qy(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return ar(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Wy(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          return R(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function Zy(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return U(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function $y(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          Z(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function Gy(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          ve(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function Vy(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          We(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function Ky(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe) {
+        var De = E();
+        try {
+          Oe(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe);
+        } catch (Ve) {
+          if ((S(De), Ve !== Ve + 0)) throw Ve;
+          C(1, 0);
+        }
+      }
+      function zy(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe, De, Ve) {
+        var W = E();
+        try {
+          ji(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe, De, Ve);
+        } catch (ue) {
+          if ((S(W), ue !== ue + 0)) throw ue;
+          C(1, 0);
+        }
+      }
+      function Qy(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          fe(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function Xy(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return Sf(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Jy(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          at(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function eg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return wh(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function tg(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return kh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function ig(t, n, a) {
+        var s = E();
+        try {
+          return Ze(t, n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function ng(t, n) {
+        var a = E();
+        try {
+          return nt(t, n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function rg(t, n) {
+        var a = E();
+        try {
+          return Ht(t, n);
+        } catch (s) {
+          if ((S(a), s !== s + 0)) throw s;
+          C(1, 0);
+        }
+      }
+      function ag(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Sh(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function sg(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          eh(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function og(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return fh(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function cg(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return ze(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function lg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return qt(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function ug(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          dt(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function _g(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return mi(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function dg(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe, De) {
+        var Ve = E();
+        try {
+          he(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q, pe, De);
+        } catch (W) {
+          if ((S(Ve), W !== W + 0)) throw W;
+          C(1, 0);
+        }
+      }
+      function fg(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Ef(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function hg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return If(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function bg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Cf(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function pg(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Pf(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function yg(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          return Df(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function gg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return Rf(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function vg(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          Of(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function jg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          Tf(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function mg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return Mf(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function wg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Uf(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function kg(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Lf(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Eg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return Ff(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Sg(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          xf(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Cg(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Nf(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Ag(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return hh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Rg(t, n, a, s, o, u, _, d, f, y, j, A, T, G) {
+        var Q = E();
+        try {
+          return bh(t, n, a, s, o, u, _, d, f, y, j, A, T, G);
+        } catch (pe) {
+          if ((S(Q), pe !== pe + 0)) throw pe;
+          C(1, 0);
+        }
+      }
+      function Og(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          Bf(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Tg(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return $f(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Pg(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Gf(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Dg(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return Vf(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Ig(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Kf(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Mg(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return zf(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function Ug(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Qf(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Lg(t, n, a) {
+        var s = E();
+        try {
+          return Wf(t, n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function Fg(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          ih(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function xg(t, n, a, s) {
+        var o = E();
+        try {
+          return Bi(t, n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Ng(t, n, a, s, o) {
+        var u = E();
+        try {
+          return th(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Bg(t, n, a, s, o) {
+        var u = E();
+        try {
+          Xf(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Yg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          nh(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Hg(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q) {
+        var pe = E();
+        try {
+          qf(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q);
+        } catch (De) {
+          if ((S(pe), De !== De + 0)) throw De;
+          C(1, 0);
+        }
+      }
+      function qg(t, n, a, s, o) {
+        var u = E();
+        try {
+          return Zf(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function Wg(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          return Jf(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function Zg(t, n, a, s, o) {
+        var u = E();
+        try {
+          return rh(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function $g(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          ah(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Gg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return sh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Vg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return oh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Kg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          ch(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function zg(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          lh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Qg(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Yf(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Xg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          uh(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Jg(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          _h(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function ev(t, n, a, s, o) {
+        var u = E();
+        try {
+          return dh(t, n, a, s, o);
+        } catch (_) {
+          if ((S(u), _ !== _ + 0)) throw _;
+          C(1, 0);
+        }
+      }
+      function tv(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          return ph(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function iv(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return yh(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function nv(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return gh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function rv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return vh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function av(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return jh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function sv(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          mh(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function ov(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Ch(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function cv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return Ah(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function lv(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Oh(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function uv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return Th(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function _v(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return Ph(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function dv(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Dh(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function fv(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Ih(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function hv(t, n, a, s, o, u) {
+        var _ = E();
+        try {
+          return Mh(t, n, a, s, o, u);
+        } catch (d) {
+          if ((S(_), d !== d + 0)) throw d;
+          C(1, 0);
+        }
+      }
+      function bv(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          Uh(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function pv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Lh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function yv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return Fh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function gv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Yh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function vv(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Hh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function jv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return qh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function mv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Vh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function wv(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          Gh(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function kv(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Zh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Ev(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Kh(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Sv(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q) {
+        var pe = E();
+        try {
+          return Wh(t, n, a, s, o, u, _, d, f, y, j, A, T, G, Q);
+        } catch (De) {
+          if ((S(pe), De !== De + 0)) throw De;
+          C(1, 0);
+        }
+      }
+      function Cv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return $h(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Av(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          zh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Rv(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Jh(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Ov(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return Xh(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Tv(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          eb(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function Pv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return Hf(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Dv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          ib(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Iv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Qh(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Mv(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          nb(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Uv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          rb(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Lv(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          ab(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Fv(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return sb(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function xv(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return ob(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Nv(t, n, a, s) {
+        var o = E();
+        try {
+          return cb(t, n, a, s);
+        } catch (u) {
+          if ((S(o), u !== u + 0)) throw u;
+          C(1, 0);
+        }
+      }
+      function Bv(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return lb(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Yv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          return _b(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Hv(t, n, a) {
+        var s = E();
+        try {
+          db(t, n, a);
+        } catch (o) {
+          if ((S(s), o !== o + 0)) throw o;
+          C(1, 0);
+        }
+      }
+      function qv(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return fb(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Wv(t, n, a, s, o, u, _) {
+        var d = E();
+        try {
+          return hb(t, n, a, s, o, u, _);
+        } catch (f) {
+          if ((S(d), f !== f + 0)) throw f;
+          C(1, 0);
+        }
+      }
+      function Zv(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          bb(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function $v(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          pb(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Gv(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          yb(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function Vv(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          gb(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function Kv(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          jb(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function zv(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return kb(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Qv(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          mb(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function Xv(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          wb(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function Jv(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          Eb(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function ej(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return Sb(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function tj(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          return Db(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function ij(t, n, a, s, o, u, _, d, f, y, j, A, T) {
+        var G = E();
+        try {
+          Cb(t, n, a, s, o, u, _, d, f, y, j, A, T);
+        } catch (Q) {
+          if ((S(G), Q !== Q + 0)) throw Q;
+          C(1, 0);
+        }
+      }
+      function nj(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Ab(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function rj(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Rb(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function aj(t, n, a, s, o, u, _, d, f) {
+        var y = E();
+        try {
+          Bb(t, n, a, s, o, u, _, d, f);
+        } catch (j) {
+          if ((S(y), j !== j + 0)) throw j;
+          C(1, 0);
+        }
+      }
+      function sj(t, n, a, s, o, u, _, d, f, y, j, A, T, G) {
+        var Q = E();
+        try {
+          Tb(t, n, a, s, o, u, _, d, f, y, j, A, T, G);
+        } catch (pe) {
+          if ((S(Q), pe !== pe + 0)) throw pe;
+          C(1, 0);
+        }
+      }
+      function oj(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          Pb(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function cj(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Ob(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function lj(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          return Ib(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      function uj(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return Mb(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function _j(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return xb(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function dj(t, n, a, s, o, u, _, d, f, y) {
+        var j = E();
+        try {
+          Fb(t, n, a, s, o, u, _, d, f, y);
+        } catch (A) {
+          if ((S(j), A !== A + 0)) throw A;
+          C(1, 0);
+        }
+      }
+      function fj(t, n, a, s, o, u, _, d) {
+        var f = E();
+        try {
+          return Lb(t, n, a, s, o, u, _, d);
+        } catch (y) {
+          if ((S(f), y !== y + 0)) throw y;
+          C(1, 0);
+        }
+      }
+      function hj(t, n, a, s, o, u, _, d, f, y, j) {
+        var A = E();
+        try {
+          return Ub(t, n, a, s, o, u, _, d, f, y, j);
+        } catch (T) {
+          if ((S(A), T !== T + 0)) throw T;
+          C(1, 0);
+        }
+      }
+      function bj(t, n, a, s, o, u, _, d, f, y, j, A) {
+        var T = E();
+        try {
+          return Nb(t, n, a, s, o, u, _, d, f, y, j, A);
+        } catch (G) {
+          if ((S(T), G !== G + 0)) throw G;
+          C(1, 0);
+        }
+      }
+      b("intArrayFromString", !1),
+        b("intArrayToString", !1),
+        (e.ccall = rn),
+        b("cwrap", !1),
+        b("setValue", !1),
+        b("getValue", !1),
+        b("allocate", !1),
+        b("UTF8ArrayToString", !1),
+        b("UTF8ToString", !1),
+        b("stringToUTF8Array", !1),
+        b("stringToUTF8", !1),
+        b("lengthBytesUTF8", !1),
+        b("stackTrace", !1),
+        b("addOnPreRun", !1),
+        b("addOnInit", !1),
+        b("addOnPreMain", !1),
+        b("addOnExit", !1),
+        b("addOnPostRun", !1),
+        b("writeStringToMemory", !1),
+        b("writeArrayToMemory", !1),
+        b("writeAsciiToMemory", !1),
+        b("addRunDependency", !0),
+        b("removeRunDependency", !0),
+        b("FS_createFolder", !1),
+        b("FS_createPath", !0),
+        b("FS_createDataFile", !0),
+        b("FS_createPreloadedFile", !0),
+        b("FS_createLazyFile", !0),
+        b("FS_createLink", !1),
+        b("FS_createDevice", !0),
+        b("FS_unlink", !0),
+        b("getLEB", !1),
+        b("getFunctionTables", !1),
+        b("alignFunctionTables", !1),
+        b("registerFunctions", !1),
+        b("addFunction", !1),
+        b("removeFunction", !1),
+        b("prettyPrint", !1),
+        b("dynCall", !1),
+        b("getCompilerSetting", !1),
+        b("print", !1),
+        b("printErr", !1),
+        b("getTempRet0", !1),
+        b("setTempRet0", !1),
+        b("callMain", !1),
+        b("abort", !1),
+        b("keepRuntimeAlive", !1),
+        b("ptrToString", !1),
+        b("zeroMemory", !1),
+        b("stringToNewUTF8", !1),
+        b("emscripten_realloc_buffer", !1),
+        b("ENV", !1),
+        b("ERRNO_CODES", !1),
+        b("ERRNO_MESSAGES", !1),
+        b("setErrNo", !1),
+        b("inetPton4", !1),
+        b("inetNtop4", !1),
+        b("inetPton6", !1),
+        b("inetNtop6", !1),
+        b("readSockaddr", !1),
+        b("writeSockaddr", !1),
+        b("DNS", !1),
+        b("getHostByName", !1),
+        b("Protocols", !1),
+        b("Sockets", !1),
+        b("getRandomDevice", !1),
+        b("traverseStack", !1),
+        b("UNWIND_CACHE", !1),
+        b("convertPCtoSourceLocation", !1),
+        b("readAsmConstArgsArray", !1),
+        b("readAsmConstArgs", !1),
+        b("mainThreadEM_ASM", !1),
+        b("jstoi_q", !1),
+        b("jstoi_s", !1),
+        b("getExecutableName", !1),
+        b("listenOnce", !1),
+        b("autoResumeAudioContext", !1),
+        b("dynCallLegacy", !1),
+        b("getDynCaller", !1),
+        b("dynCall", !1),
+        b("handleException", !1),
+        b("runtimeKeepalivePush", !1),
+        b("runtimeKeepalivePop", !1),
+        b("callUserCallback", !1),
+        b("maybeExit", !1),
+        b("safeSetTimeout", !1),
+        b("asmjsMangle", !1),
+        b("asyncLoad", !1),
+        b("alignMemory", !1),
+        b("mmapAlloc", !1),
+        b("reallyNegative", !1),
+        b("unSign", !1),
+        b("reSign", !1),
+        b("formatString", !1),
+        b("PATH", !1),
+        b("PATH_FS", !1),
+        b("SYSCALLS", !1),
+        b("getSocketFromFD", !1),
+        b("getSocketAddress", !1),
+        b("JSEvents", !1),
+        b("registerKeyEventCallback", !1),
+        b("specialHTMLTargets", !1),
+        b("maybeCStringToJsString", !1),
+        b("findEventTarget", !1),
+        b("findCanvasEventTarget", !1),
+        b("getBoundingClientRect", !1),
+        b("fillMouseEventData", !1),
+        b("registerMouseEventCallback", !1),
+        b("registerWheelEventCallback", !1),
+        b("registerUiEventCallback", !1),
+        b("registerFocusEventCallback", !1),
+        b("fillDeviceOrientationEventData", !1),
+        b("registerDeviceOrientationEventCallback", !1),
+        b("fillDeviceMotionEventData", !1),
+        b("registerDeviceMotionEventCallback", !1),
+        b("screenOrientation", !1),
+        b("fillOrientationChangeEventData", !1),
+        b("registerOrientationChangeEventCallback", !1),
+        b("fillFullscreenChangeEventData", !1),
+        b("registerFullscreenChangeEventCallback", !1),
+        b("registerRestoreOldStyle", !1),
+        b("hideEverythingExceptGivenElement", !1),
+        b("restoreHiddenElements", !1),
+        b("setLetterbox", !1),
+        b("currentFullscreenStrategy", !1),
+        b("restoreOldWindowedStyle", !1),
+        b("softFullscreenResizeWebGLRenderTarget", !1),
+        b("doRequestFullscreen", !1),
+        b("fillPointerlockChangeEventData", !1),
+        b("registerPointerlockChangeEventCallback", !1),
+        b("registerPointerlockErrorEventCallback", !1),
+        b("requestPointerLock", !1),
+        b("fillVisibilityChangeEventData", !1),
+        b("registerVisibilityChangeEventCallback", !1),
+        b("registerTouchEventCallback", !1),
+        b("fillGamepadEventData", !1),
+        b("registerGamepadEventCallback", !1),
+        b("registerBeforeUnloadEventCallback", !1),
+        b("fillBatteryEventData", !1),
+        b("battery", !1),
+        b("registerBatteryEventCallback", !1),
+        b("setCanvasElementSize", !1),
+        b("getCanvasElementSize", !1),
+        b("demangle", !1),
+        b("demangleAll", !1),
+        b("jsStackTrace", !1),
+        b("stackTrace", !1),
+        b("getEnvStrings", !1),
+        b("checkWasiClock", !1),
+        b("flush_NO_FILESYSTEM", !1),
+        b("writeI53ToI64", !1),
+        b("writeI53ToI64Clamped", !1),
+        b("writeI53ToI64Signaling", !1),
+        b("writeI53ToU64Clamped", !1),
+        b("writeI53ToU64Signaling", !1),
+        b("readI53FromI64", !1),
+        b("readI53FromU64", !1),
+        b("convertI32PairToI53", !1),
+        b("convertU32PairToI53", !1),
+        b("dlopenMissingError", !1),
+        b("setImmediateWrapped", !1),
+        b("clearImmediateWrapped", !1),
+        b("polyfillSetImmediate", !1),
+        b("uncaughtExceptionCount", !1),
+        b("exceptionLast", !1),
+        b("exceptionCaught", !1),
+        b("ExceptionInfo", !1),
+        b("exception_addRef", !1),
+        b("exception_decRef", !1),
+        b("formatException", !1),
+        b("Browser", !1),
+        b("setMainLoop", !1),
+        b("wget", !1),
+        b("tempFixedLengthArray", !1),
+        b("miniTempWebGLFloatBuffers", !1),
+        b("heapObjectForWebGLType", !1),
+        b("heapAccessShiftForWebGLHeap", !1),
+        b("GL", !1),
+        b("emscriptenWebGLGet", !1),
+        b("computeUnpackAlignedImageSize", !1),
+        b("emscriptenWebGLGetTexPixelData", !1),
+        b("emscriptenWebGLGetUniform", !1),
+        b("webglGetUniformLocation", !1),
+        b("webglPrepareUniformLocationsBeforeFirstUse", !1),
+        b("webglGetLeftBracePos", !1),
+        b("emscriptenWebGLGetVertexAttrib", !1),
+        b("writeGLArray", !1),
+        b("AL", !1),
+        b("SDL_unicode", !1),
+        b("SDL_ttfContext", !1),
+        b("SDL_audio", !1),
+        b("SDL", !1),
+        b("SDL_gfx", !1),
+        b("GLUT", !1),
+        b("EGL", !1),
+        b("GLFW_Window", !1),
+        b("GLFW", !1),
+        b("GLEW", !1),
+        b("IDBStore", !1),
+        b("runAndAbortIfError", !1),
+        b("SOCKFS", !1),
+        b("FS", !1),
+        b("warnOnce", !1),
+        b("stackSave", !1),
+        b("stackRestore", !1),
+        b("stackAlloc", !1),
+        b("AsciiToString", !1),
+        b("stringToAscii", !1),
+        b("UTF16ToString", !1),
+        b("stringToUTF16", !1),
+        b("lengthBytesUTF16", !1),
+        b("UTF32ToString", !1),
+        b("stringToUTF32", !1),
+        b("lengthBytesUTF32", !1),
+        b("allocateUTF8", !1),
+        b("allocateUTF8OnStack", !1),
+        (e.writeStackCookie = dn),
+        (e.checkStackCookie = St),
+        ee("ALLOC_NORMAL", !1),
+        ee("ALLOC_STACK", !1);
+      var or;
+      function cr(t) {
+        (this.name = "ExitStatus"),
+          (this.message = "Program terminated with exit(" + t + ")"),
+          (this.status = t);
+      }
+      var pj = !1;
+      At = function t() {
+        or || Is(), or || (At = t);
+      };
+      function yj(t) {
+        M(
+          it == 0,
+          'cannot call main when async dependencies remain! (listen on Module["onRuntimeInitialized"])'
+        ),
+          M(
+            hi.length == 0,
+            "cannot call main when preRun functions remain to be called"
+          );
+        var n = e._main;
+        t = t || [];
+        var a = t.length + 1,
+          s = Ni((a + 1) * 4);
+        N((s >>> 2) * 4, cn(O), 4);
+        for (var o = 1; o < a; o++)
+          N((((s >> 2) + o) >>> 0) * 4, cn(t[o - 1]), 4);
+        N((((s >> 2) + a) >>> 0) * 4, 0, 4);
+        try {
+          var u = n(a, s);
+          return jj(u, !0), u;
+        } catch (_) {
+          return da(_);
+        } finally {
+          pj = !0;
+        }
+      }
+      function gj() {
+        Cs(), dn();
+      }
+      function Is(t) {
+        if (((t = t || w), it > 0 || (gj(), Qr(), it > 0))) return;
+        function n() {
+          or ||
+            ((or = !0),
+            (e.calledRun = !0),
+            !Et &&
+              (Xr(),
+              Jr(),
+              l(e),
+              e.onRuntimeInitialized && e.onRuntimeInitialized(),
+              jl && yj(t),
+              ea()));
+        }
+        e.setStatus
+          ? (e.setStatus("Running..."),
+            setTimeout(function () {
+              setTimeout(function () {
+                e.setStatus("");
+              }, 1),
+                n();
+            }, 1))
+          : n(),
+          St();
+      }
+      e.run = Is;
+      function vj() {
+        var t = de,
+          n = Y,
+          a = !1;
+        de = Y = (o) => {
+          a = !0;
+        };
+        try {
+          var s = zn;
+          s && s();
+        } catch {}
+        (de = t),
+          (Y = n),
+          a &&
+            (ge(
+              "stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the FAQ), or make sure to emit a newline when you printf etc."
+            ),
+            ge(
+              "(this may also be due to not including full filesystem support - try building with -sFORCE_FILESYSTEM)"
+            ));
+      }
+      function jj(t, n) {
+        if (((Ft = t), vj(), bi() && !n)) {
+          var a =
+            "program exited (with status: " +
+            t +
+            "), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";
+          p(a), Y(a);
+        }
+        mj(t);
+      }
+      function mj(t) {
+        (Ft = t), bi() || (e.onExit && e.onExit(t), (Et = !0)), P(t, new cr(t));
+      }
+      if (e.preInit)
+        for (
+          typeof e.preInit == "function" && (e.preInit = [e.preInit]);
+          e.preInit.length > 0;
+
+        )
+          e.preInit.pop()();
+      var jl = !0;
+      return e.noInitialRun && (jl = !1), Is(), i.ready;
+    };
+  })(),
+  Cl = Tj;
+var Tt = Pn(require("apache-arrow")),
+  dr = class {
+    constructor(i, e) {
+      (this._bindings = i), (this._conn = e);
+    }
+    close() {
+      this._bindings.disconnect(this._conn);
+    }
+    useUnsafe(i) {
+      return i(this._bindings, this._conn);
+    }
+    query(i) {
+      let e = this._bindings.runQuery(this._conn, i),
+        l = Tt.RecordBatchReader.from(e);
+      return (
+        console.assert(l.isSync()), console.assert(l.isFile()), new Tt.Table(l)
+      );
+    }
+    async send(i) {
+      let e = this._bindings.startPendingQuery(this._conn, i);
+      for (; e == null; )
+        e = await new Promise((m, w) => {
+          try {
+            m(this._bindings.pollPendingQuery(this._conn));
+          } catch (O) {
+            w(O);
+          }
+        });
+      let l = new fr(this._bindings, this._conn, e),
+        p = Tt.RecordBatchReader.from(l);
+      return console.assert(p.isSync()), console.assert(p.isStream()), p;
+    }
+    cancelSent() {
+      return this._bindings.cancelPendingQuery(this._conn);
+    }
+    getTableNames(i) {
+      return this._bindings.getTableNames(this._conn, i);
+    }
+    prepare(i) {
+      let e = this._bindings.createPrepared(this._conn, i);
+      return new Ms(this._bindings, this._conn, e);
+    }
+    createScalarFunction(i, e, l) {
+      this._bindings.createScalarFunction(this._conn, i, e, l);
+    }
+    insertArrowTable(i, e) {
+      let l = Tt.tableToIPC(i, "stream");
+      this.insertArrowFromIPCStream(l, e);
+    }
+    insertArrowFromIPCStream(i, e) {
+      this._bindings.insertArrowFromIPCStream(this._conn, i, e);
+    }
+    insertCSVFromPath(i, e) {
+      this._bindings.insertCSVFromPath(this._conn, i, e);
+    }
+    insertJSONFromPath(i, e) {
+      this._bindings.insertJSONFromPath(this._conn, i, e);
+    }
+  },
+  fr = class {
+    constructor(i, e, l) {
+      this.bindings = i;
+      this.conn = e;
+      this.header = l;
+      (this._first = !0), (this._depleted = !1);
+    }
+    next() {
+      if (this._first)
+        return (this._first = !1), { done: !1, value: this.header };
+      if (this._depleted) return { done: !0, value: null };
+      let i = this.bindings.fetchQueryResults(this.conn);
+      return (
+        (this._depleted = i.length == 0), { done: this._depleted, value: i }
+      );
+    }
+    [Symbol.iterator]() {
+      return this;
+    }
+  },
+  Ms = class {
+    constructor(i, e, l) {
+      (this.bindings = i), (this.connectionId = e), (this.statementId = l);
+    }
+    close() {
+      this.bindings.closePrepared(this.connectionId, this.statementId);
+    }
+    query(...i) {
+      let e = this.bindings.runPrepared(this.connectionId, this.statementId, i),
+        l = Tt.RecordBatchReader.from(e);
+      return (
+        console.assert(l.isSync()), console.assert(l.isFile()), new Tt.Table(l)
+      );
+    }
+    send(...i) {
+      let e = this.bindings.sendPrepared(
+          this.connectionId,
+          this.statementId,
+          i
+        ),
+        l = new fr(this.bindings, this.connectionId, e),
+        p = Tt.RecordBatchReader.from(l);
+      return console.assert(p.isSync()), console.assert(p.isStream()), p;
+    }
+  };
+var Ol = new TextEncoder(),
+  Al = new TextDecoder("utf-8");
+function Us(r, i, e) {
+  let l = Ol.encode(e),
+    p = r._malloc(l.byteLength),
+    m = r.HEAPU8.subarray(p, p + l.byteLength);
+  m.set(l),
+    (r.HEAPF64[(i >> 3) + 0] = 1),
+    (r.HEAPF64[(i >> 3) + 1] = p),
+    (r.HEAPF64[(i >> 3) + 2] = m.byteLength);
+}
+function Fs(r) {
+  switch (r) {
+    case "UINT8":
+    case "INT8":
+      return 1;
+    case "INT32":
+    case "FLOAT":
+      return 4;
+    case "INT64":
+    case "UINT64":
+    case "DOUBLE":
+    case "VARCHAR":
+      return 8;
+    default:
+      return 0;
+  }
+}
+function Ls(r, i, e, l) {
+  let p = r.HEAPU8.subarray(i, i + l * Fs(e));
+  switch (e) {
+    case "UINT8":
+      return new Uint8Array(p.buffer, p.byteOffset, l);
+    case "INT8":
+      return new Int8Array(p.buffer, p.byteOffset, l);
+    case "INT32":
+      return new Int32Array(p.buffer, p.byteOffset, l);
+    case "FLOAT":
+      return new Float32Array(p.buffer, p.byteOffset, l);
+    case "DOUBLE":
+      return new Float64Array(p.buffer, p.byteOffset, l);
+    case "VARCHAR":
+      return new Float64Array(p.buffer, p.byteOffset, l);
+    default:
+      return new Array(0);
+  }
+}
+function Rl(r, i, e) {
+  let l = r.HEAPU8.subarray(i, i + e);
+  return new Uint8Array(l.buffer, l.byteOffset, e);
+}
+function hr(r, i, e) {
+  let l = r.HEAPU8.subarray(i, i + e * 8);
+  return new Float64Array(l.buffer, l.byteOffset, e);
+}
+function Tl(r, i, e, l, p, m, w, O) {
+  try {
+    let P = r._udfFunctions.get(l);
+    if (!P) {
+      Us(i, e, "Unknown UDF with id: " + l);
+      return;
+    }
+    let B = Al.decode(i.HEAPU8.subarray(p, p + m)),
+      D = JSON.parse(B),
+      q = hr(i, w, O / 8),
+      x = (ne) => {
+        var F;
+        let Ce = null;
+        switch (
+          (ne.validityBuffer !== void 0 &&
+            (Ce = Rl(i, q[ne.validityBuffer], D.rows)),
+          ne.physicalType)
+        ) {
+          case "VARCHAR": {
+            if (ne.dataBuffer === null || ne.dataBuffer === void 0)
+              throw new Error(
+                "malformed data view, expected data buffer for VARCHAR argument"
+              );
+            if (ne.lengthBuffer === null || ne.lengthBuffer === void 0)
+              throw new Error(
+                "malformed data view, expected data length buffer for VARCHAR argument"
+              );
+            let je = Ls(i, q[ne.dataBuffer], ne.physicalType, D.rows),
+              ye = [],
+              Ue = hr(i, q[ne.lengthBuffer], D.rows);
+            for (let I = 0; I < D.rows; ++I) {
+              if (Ce != null && !Ce[I]) {
+                ye.push(null);
+                continue;
+              }
+              let L = i.HEAPU8.subarray(je[I], je[I] + Ue[I]),
+                ge = Al.decode(L);
+              ye.push(ge);
+            }
+            return (I) => ye[I];
+          }
+          case "STRUCT": {
+            let je = {},
+              ye = [];
+            for (
+              let Ue = 0;
+              Ue < (((F = ne.children) == null ? void 0 : F.length) || 0);
+              ++Ue
+            ) {
+              let I = ne.children[Ue],
+                L = x(I);
+              ye.push((ge) => {
+                je[I.name] = L(ge);
+              });
+            }
+            return Ce != null
+              ? (Ue) => {
+                  if (!Ce[Ue]) return null;
+                  for (let I of ye) I(Ue);
+                  return je;
+                }
+              : (Ue) => {
+                  for (let I of ye) I(Ue);
+                  return je;
+                };
+          }
+          default: {
+            if (ne.dataBuffer === void 0)
+              throw new Error(
+                "malformed data view, expected data buffer for argument of type: " +
+                  ne.physicalType
+              );
+            let je = Ls(i, q[ne.dataBuffer], ne.physicalType, D.rows);
+            return Ce != null
+              ? (ye) => (Ce[ye] ? je[ye] : null)
+              : (ye) => je[ye];
+          }
+        }
+      },
+      ie = [];
+    for (let ne = 0; ne < D.args.length; ++ne) ie.push(x(D.args[ne]));
+    let X = D.rows * Fs(D.ret.physicalType),
+      J = i._malloc(X),
+      ce = Ls(i, J, D.ret.physicalType, D.rows),
+      le = i._malloc(D.rows),
+      Ae = Rl(i, le, D.rows);
+    if (ce.length == 0 || Ae.length == 0) {
+      Us(i, e, "Can't create physical arrays for result");
+      return;
+    }
+    let Ee = ce;
+    D.ret.physicalType == "VARCHAR" && (Ee = new Array(D.rows));
+    let xe = [];
+    for (let ne = 0; ne < D.args.length; ++ne) xe.push(null);
+    for (let ne = 0; ne < D.rows; ++ne) {
+      for (let F = 0; F < D.args.length; ++F) xe[F] = ie[F](ne);
+      let Ce = P.func(...xe);
+      (Ee[ne] = Ce), (Ae[ne] = Ce == null ? 0 : 1);
+    }
+    let _e = 0;
+    switch (D.ret.physicalType) {
+      case "VARCHAR": {
+        let ne = new Array(0);
+        _e = i._malloc(D.rows * Fs("DOUBLE"));
+        let Ce = hr(i, _e, D.rows),
+          F = 0;
+        for (let I = 0; I < D.rows; ++I) {
+          let L = Ol.encode(Ee[I] || "");
+          ne.push(L), (Ce[I] = L.length), (F += L.length);
+        }
+        let je = i._malloc(F),
+          ye = i.HEAPU8.subarray(je, je + F),
+          Ue = 0;
+        for (let I = 0; I < D.rows; ++I) {
+          ce[I] = Ue;
+          let L = ne[I];
+          ye.subarray(Ue, Ue + L.length).set(L), (Ue += L.length);
+        }
+      }
+    }
+    let Se = 3 * 8,
+      de = i._malloc(Se),
+      Y = hr(i, de, 3);
+    (Y[0] = J),
+      (Y[1] = le),
+      (Y[2] = _e),
+      (i.HEAPF64[(e >> 3) + 0] = 0),
+      (i.HEAPF64[(e >> 3) + 1] = de),
+      (i.HEAPF64[(e >> 3) + 2] = 0);
+  } catch (P) {
+    Us(i, e, P.toString());
+  }
+}
+function Dj() {
+  let r = new TextDecoder();
+  return (i) => (
+    typeof SharedArrayBuffer < "u" &&
+      i.buffer instanceof SharedArrayBuffer &&
+      (i = new Uint8Array(i)),
+    r.decode(i)
+  );
+}
+var ki = Dj();
+function Me(r, i) {
+  r.ccall("duckdb_web_fail_with", null, ["string"], [i]);
+}
+function Ei(r, i, e) {
+  let l = r.HEAPU8.subarray(i, i + e),
+    p = new Uint8Array(new ArrayBuffer(l.byteLength));
+  return p.set(l), p;
+}
+function me(r, i, e) {
+  return ki(r.HEAPU8.subarray(i, i + e));
+}
+function Re(r, i, e, l) {
+  let p = r.stackSave(),
+    m = r.stackAlloc(3 * 8);
+  e.unshift("number"), l.unshift(m), r.ccall(i, null, e, l);
+  let w = r.HEAPF64[(m >> 3) + 0],
+    O = r.HEAPF64[(m >> 3) + 1],
+    P = r.HEAPF64[(m >> 3) + 2];
+  return r.stackRestore(p), [w, O, P];
+}
+function Fe(r) {
+  r.ccall("duckdb_web_clear_response", null, [], []);
+}
+var br = class {
+  constructor(i) {
+    let e = new Float64Array(i.buffer, i.byteOffset, i.byteLength / 8),
+      l = new Uint8Array(new ArrayBuffer(i.byteLength));
+    l.set(i.subarray(7 * 8)),
+      (this.totalFileReadsCold = e[0]),
+      (this.totalFileReadsAhead = e[1]),
+      (this.totalFileReadsCached = e[2]),
+      (this.totalFileWrites = e[3]),
+      (this.totalPageAccesses = e[4]),
+      (this.totalPageLoads = e[5]),
+      (this.blockSize = e[6]),
+      (this.blockStats = l);
+  }
+  getBlockStats(i, e) {
+    return (
+      (e = e || {
+        file_reads_cold: 0,
+        file_reads_ahead: 0,
+        file_reads_cached: 0,
+        file_writes: 0,
+        page_accesses: 0,
+        page_loads: 0,
+      }),
+      (e.file_writes = this.blockStats[i * 3 + 0] & 15),
+      (e.file_reads_cold = this.blockStats[i * 3 + 0] >> 4),
+      (e.file_reads_ahead = this.blockStats[i * 3 + 1] & 15),
+      (e.file_reads_cached = this.blockStats[i * 3 + 1] >> 4),
+      (e.page_accesses = this.blockStats[i * 3 + 1] & 15),
+      (e.page_loads = this.blockStats[i * 3 + 1] >> 4),
+      e
+    );
+  }
+};
+var Ij = new TextEncoder();
+var pr = class {
+  constructor(i, e) {
+    this._instance = null;
+    this._initPromise = null;
+    this._initPromiseResolver = () => {};
+    this.onInstantiationProgress = [];
+    (this._logger = i), (this._runtime = e), (this._nextUDFId = 1);
+  }
+  get logger() {
+    return this._logger;
+  }
+  get mod() {
+    return this._instance;
+  }
+  get pthread() {
+    return this.mod.PThread || null;
+  }
+  async instantiate(i = (e) => {}) {
+    return this._instance != null
+      ? this
+      : (this._initPromise != null &&
+          (this.onInstantiationProgress.push(i), await this._initPromise),
+        (this._initPromise = new Promise((e) => {
+          this._initPromiseResolver = e;
+        })),
+        (this.onInstantiationProgress = [i]),
+        (this._instance = await this.instantiateImpl({
+          print: console.log.bind(console),
+          printErr: console.log.bind(console),
+          onRuntimeInitialized: this._initPromiseResolver,
+        })),
+        await this._initPromise,
+        (this._initPromise = null),
+        (this.onInstantiationProgress = this.onInstantiationProgress.filter(
+          (e) => e != i
+        )),
+        this);
+  }
+  open(i) {
+    let [e, l, p] = Re(
+      this.mod,
+      "duckdb_web_open",
+      ["string"],
+      [JSON.stringify(i)]
+    );
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    Fe(this.mod);
+  }
+  reset() {
+    let [i, e, l] = Re(this.mod, "duckdb_web_reset", [], []);
+    if (i !== 0) throw new Error(me(this.mod, e, l));
+    Fe(this.mod);
+  }
+  getVersion() {
+    let [i, e, l] = Re(this.mod, "duckdb_web_get_version", [], []);
+    if (i !== 0) throw new Error(me(this.mod, e, l));
+    let p = me(this.mod, e, l);
+    return Fe(this.mod), p;
+  }
+  getFeatureFlags() {
+    return this.mod.ccall("duckdb_web_get_feature_flags", "number", [], []);
+  }
+  tokenize(i) {
+    let [e, l, p] = Re(this.mod, "duckdb_web_tokenize", ["string"], [i]);
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    let m = me(this.mod, l, p);
+    return Fe(this.mod), JSON.parse(m);
+  }
+  connect() {
+    let i = this.mod.ccall("duckdb_web_connect", "number", [], []);
+    return new dr(this, i);
+  }
+  disconnect(i) {
+    if (
+      (this.mod.ccall("duckdb_web_disconnect", null, ["number"], [i]),
+      this.pthread)
+    )
+      for (let e of [
+        ...this.pthread.runningWorkers,
+        ...this.pthread.unusedWorkers,
+      ])
+        e.postMessage({ cmd: "dropUDFFunctions", connectionId: i });
+  }
+  runQuery(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_query_run",
+      ["number", "string"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    let w = Ei(this.mod, p, m);
+    return Fe(this.mod), w;
+  }
+  startPendingQuery(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_pending_query_start",
+      ["number", "string"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    if (p == 0) return null;
+    let w = Ei(this.mod, p, m);
+    return Fe(this.mod), w;
+  }
+  pollPendingQuery(i) {
+    let [e, l, p] = Re(
+      this.mod,
+      "duckdb_web_pending_query_poll",
+      ["number"],
+      [i]
+    );
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    if (l == 0) return null;
+    let m = Ei(this.mod, l, p);
+    return Fe(this.mod), m;
+  }
+  cancelPendingQuery(i) {
+    return this.mod.ccall(
+      "duckdb_web_pending_query_cancel",
+      "boolean",
+      ["number"],
+      [i]
+    );
+  }
+  fetchQueryResults(i) {
+    let [e, l, p] = Re(
+      this.mod,
+      "duckdb_web_query_fetch_results",
+      ["number"],
+      [i]
+    );
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    let m = Ei(this.mod, l, p);
+    return Fe(this.mod), m;
+  }
+  getTableNames(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_get_tablenames",
+      ["number", "string"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    let w = me(this.mod, p, m);
+    return Fe(this.mod), JSON.parse(w);
+  }
+  createScalarFunction(i, e, l, p) {
+    let m = { functionId: this._nextUDFId, name: e, returnType: Hi(l) },
+      w = {
+        functionId: m.functionId,
+        connectionId: i,
+        name: e,
+        returnType: l,
+        func: p,
+      };
+    this._nextUDFId += 1;
+    let [O, P, B] = Re(
+      this.mod,
+      "duckdb_web_udf_scalar_create",
+      ["number", "string"],
+      [i, JSON.stringify(m)]
+    );
+    if (O !== 0) throw new Error(me(this.mod, P, B));
+    if (
+      (Fe(this.mod),
+      (globalThis.DUCKDB_RUNTIME._udfFunctions = (
+        globalThis.DUCKDB_RUNTIME._udfFunctions || new Map()
+      ).set(w.functionId, w)),
+      this.pthread)
+    )
+      for (let D of [
+        ...this.pthread.runningWorkers,
+        ...this.pthread.unusedWorkers,
+      ])
+        D.postMessage({ cmd: "registerUDFFunction", udf: w });
+  }
+  createPrepared(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_prepared_create",
+      ["number", "string"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    return Fe(this.mod), p;
+  }
+  closePrepared(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_prepared_close",
+      ["number", "number"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    Fe(this.mod);
+  }
+  runPrepared(i, e, l) {
+    let [p, m, w] = Re(
+      this.mod,
+      "duckdb_web_prepared_run",
+      ["number", "number", "string"],
+      [i, e, JSON.stringify(l)]
+    );
+    if (p !== 0) throw new Error(me(this.mod, m, w));
+    let O = Ei(this.mod, m, w);
+    return Fe(this.mod), O;
+  }
+  sendPrepared(i, e, l) {
+    let [p, m, w] = Re(
+      this.mod,
+      "duckdb_web_prepared_send",
+      ["number", "number", "string"],
+      [i, e, JSON.stringify(l)]
+    );
+    if (p !== 0) throw new Error(me(this.mod, m, w));
+    let O = Ei(this.mod, m, w);
+    return Fe(this.mod), O;
+  }
+  insertArrowFromIPCStream(i, e, l) {
+    if (e.length == 0) return;
+    let p = this.mod._malloc(e.length);
+    this.mod.HEAPU8.subarray(p, p + e.length).set(e);
+    let w = l ? JSON.stringify(l) : "",
+      [O, P, B] = Re(
+        this.mod,
+        "duckdb_web_insert_arrow_from_ipc_stream",
+        ["number", "number", "number", "string"],
+        [i, p, e.length, w]
+      );
+    if (O !== 0) throw new Error(me(this.mod, P, B));
+  }
+  insertCSVFromPath(i, e, l) {
+    if (l.columns !== void 0) {
+      l.columnsFlat = [];
+      for (let B in l.columns) l.columnsFlat.push(ur(B, l.columns[B]));
+    }
+    let p = { ...l };
+    (p.columns = p.columnsFlat), delete p.columnsFlat;
+    let m = JSON.stringify(p),
+      [w, O, P] = Re(
+        this.mod,
+        "duckdb_web_insert_csv_from_path",
+        ["number", "string", "string"],
+        [i, e, m]
+      );
+    if (w !== 0) throw new Error(me(this.mod, O, P));
+  }
+  insertJSONFromPath(i, e, l) {
+    if (l.columns !== void 0) {
+      l.columnsFlat = [];
+      for (let B in l.columns) l.columnsFlat.push(ur(B, l.columns[B]));
+    }
+    let p = { ...l };
+    (p.columns = p.columnsFlat), delete p.columnsFlat;
+    let m = JSON.stringify(p),
+      [w, O, P] = Re(
+        this.mod,
+        "duckdb_web_insert_json_from_path",
+        ["number", "string", "string"],
+        [i, e, m]
+      );
+    if (w !== 0) throw new Error(me(this.mod, O, P));
+  }
+  globFiles(i) {
+    let [e, l, p] = Re(
+      this.mod,
+      "duckdb_web_fs_glob_file_infos",
+      ["string"],
+      [i]
+    );
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    let m = me(this.mod, l, p);
+    Fe(this.mod);
+    let w = JSON.parse(m);
+    return w ?? [];
+  }
+  registerFileURL(i, e) {
+    e === void 0 && (e = i);
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_fs_register_file_url",
+      ["string", "string", "number"],
+      [i, e, -1]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    Fe(this.mod);
+  }
+  registerFileText(i, e) {
+    let l = Ij.encode(e);
+    this.registerFileBuffer(i, l);
+  }
+  registerFileBuffer(i, e) {
+    let l = this.mod._malloc(e.length);
+    this.mod.HEAPU8.subarray(l, l + e.length).set(e);
+    let [m, w, O] = Re(
+      this.mod,
+      "duckdb_web_fs_register_file_buffer",
+      ["string", "number", "number"],
+      [i, l, e.length]
+    );
+    if (m !== 0) throw new Error(me(this.mod, w, O));
+    Fe(this.mod);
+  }
+  registerFileHandle(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_fs_register_file_url",
+      ["string", "string", "number"],
+      [i, i, -1]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    if (
+      (Fe(this.mod),
+      (globalThis.DUCKDB_RUNTIME._files = (
+        globalThis.DUCKDB_RUNTIME._files || new Map()
+      ).set(i, e)),
+      this.pthread)
+    ) {
+      for (let w of this.pthread.runningWorkers)
+        w.postMessage({
+          cmd: "registerFileHandle",
+          fileName: i,
+          fileHandle: e,
+        });
+      for (let w of this.pthread.unusedWorkers)
+        w.postMessage({ cmd: "dropFileHandle", fileName: i });
+    }
+  }
+  dropFile(i) {
+    let [e, l, p] = Re(this.mod, "duckdb_web_fs_drop_file", ["string"], [i]);
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    Fe(this.mod);
+  }
+  dropFiles() {
+    let [i, e, l] = Re(this.mod, "duckdb_web_fs_drop_files", [], []);
+    if (i !== 0) throw new Error(me(this.mod, e, l));
+    Fe(this.mod);
+  }
+  flushFiles() {
+    this.mod.ccall("duckdb_web_flush_files", null, [], []);
+  }
+  copyFileToPath(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_copy_file_to_path",
+      ["string", "string"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+    Fe(this.mod);
+  }
+  copyFileToBuffer(i) {
+    let [e, l, p] = Re(
+      this.mod,
+      "duckdb_web_copy_file_to_buffer",
+      ["string"],
+      [i]
+    );
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    let m = this.mod.HEAPU8.subarray(l, l + p),
+      w = new Uint8Array(m.length);
+    return w.set(m), Fe(this.mod), w;
+  }
+  collectFileStatistics(i, e) {
+    let [l, p, m] = Re(
+      this.mod,
+      "duckdb_web_collect_file_stats",
+      ["string", "boolean"],
+      [i, e]
+    );
+    if (l !== 0) throw new Error(me(this.mod, p, m));
+  }
+  exportFileStatistics(i) {
+    let [e, l, p] = Re(
+      this.mod,
+      "duckdb_web_export_file_stats",
+      ["string"],
+      [i]
+    );
+    if (e !== 0) throw new Error(me(this.mod, l, p));
+    return new br(this.mod.HEAPU8.subarray(l, l + p));
+  }
+};
+var Pl = Pn(require("fs")),
+  yr = class extends pr {
+    constructor(e, l, p, m) {
+      super(e, l);
+      (this.mainModulePath = p), (this.pthreadWorkerPath = m);
+    }
+    locateFile(e, l) {
+      if (e.endsWith(".wasm")) return this.mainModulePath;
+      if (e.endsWith(".worker.js")) {
+        if (!this.pthreadWorkerPath)
+          throw new Error("Missing DuckDB worker path!");
+        return this.pthreadWorkerPath;
+      }
+      throw new Error(
+        `WASM instantiation requested unexpected file: prefix=${l} path=${e}`
+      );
+    }
+    instantiateWasm(e, l) {
+      globalThis.DUCKDB_RUNTIME = {};
+      for (let m of Object.getOwnPropertyNames(this._runtime))
+        m != "constructor" &&
+          (globalThis.DUCKDB_RUNTIME[m] = Object.getOwnPropertyDescriptor(
+            this._runtime,
+            m
+          ).value);
+      let p = Pl.default.readFileSync(this.mainModulePath);
+      return (
+        WebAssembly.instantiate(p, e).then((m) => {
+          l(m.instance, m.module);
+        }),
+        []
+      );
+    }
+    instantiateImpl(e) {
+      return Cl({ ...e, instantiateWasm: this.instantiateWasm.bind(this) });
+    }
+  };
+var gr = class extends yr {
+  constructor(i, e, l, p = null) {
+    super(i, e, l, p);
+  }
+  instantiateImpl(i) {
+    return El({
+      ...i,
+      instantiateWasm: this.instantiateWasm.bind(this),
+      locateFile: this.locateFile.bind(this),
+    });
+  }
+};
+var rt = Pn(require("fs"));
+var vd = Pn(gd());
+var tt = {
+  _files: new Map(),
+  _fileInfoCache: new Map(),
+  _udfFunctions: new Map(),
+  resolveFileInfo(r, i) {
+    try {
+      let e = tt._fileInfoCache.get(i),
+        [l, p, m] = Re(
+          r,
+          "duckdb_web_fs_get_file_info_by_id",
+          ["number", "number"],
+          [i, (e == null ? void 0 : e.cacheEpoch) || 0]
+        );
+      if (l !== 0) return Me(r, me(r, p, m)), null;
+      if (m === 0) return e;
+      let w = me(r, p, m);
+      Fe(r);
+      let O = JSON.parse(w);
+      return O == null ? null : (tt._fileInfoCache.set(i, O), O);
+    } catch (e) {
+      return Me(r, e.toString()), null;
+    }
+  },
+  testPlatformFeature: (r, i) => {
+    switch (i) {
+      case 1:
+        return typeof BigInt64Array < "u";
+      default:
+        return console.warn(`test for unknown feature: ${i}`), !1;
+    }
+  },
+  openFile(r, i, e) {
+    try {
+      tt._fileInfoCache.delete(i);
+      let l = tt.resolveFileInfo(r, i);
+      switch (l == null ? void 0 : l.dataProtocol) {
+        case 1: {
+          l.dataNativeFd = rt.default.openSync(
+            l.dataUrl,
+            rt.default.constants.O_CREAT | rt.default.constants.O_RDWR,
+            rt.default.constants.S_IRUSR | rt.default.constants.S_IWUSR
+          );
+          let [p, m, w] = Re(
+            r,
+            "duckdb_web_fs_set_file_descriptor",
+            ["number", "number"],
+            [i, l.dataNativeFd]
+          );
+          p !== 0 && Me(r, me(r, m, w));
+          let O = rt.default.fstatSync(l.dataNativeFd).size,
+            P = r._malloc(2 * 8);
+          return (
+            (r.HEAPF64[(P >> 3) + 0] = +O), (r.HEAPF64[(P >> 3) + 1] = 0), P
+          );
+        }
+        case 3:
+        case 4:
+          Me(r, "Not implemented");
+      }
+    } catch (l) {
+      Me(r, l.toString());
+    }
+    return 0;
+  },
+  syncFile: (r, i) => {},
+  closeFile: (r, i) => {
+    try {
+      let e = tt.resolveFileInfo(r, i);
+      switch (
+        (tt._fileInfoCache.delete(i), e == null ? void 0 : e.dataProtocol)
+      ) {
+        case 1: {
+          if (!e.dataNativeFd)
+            return Me(r, `File ${i} is missing a file descriptor`), 0;
+          rt.default.closeSync(e.dataNativeFd), (e.dataNativeFd = null);
+          break;
+        }
+        case 3:
+        case 4:
+          Me(r, "Not implemented");
+      }
+    } catch (e) {
+      Me(r, e.toString());
+    }
+    return 0;
+  },
+  truncateFile: (r, i, e) => {
+    try {
+      let l = tt.resolveFileInfo(r, i);
+      switch (l == null ? void 0 : l.dataProtocol) {
+        case 1: {
+          if (!l.dataNativeFd)
+            return Me(r, `File ${i} is missing a file descriptor`), 0;
+          rt.default.truncateSync(l.dataUrl, e);
+          break;
+        }
+        case 3:
+        case 4:
+          Me(r, "Not implemented");
+      }
+    } catch (l) {
+      Me(r, l.toString());
+    }
+    return 0;
+  },
+  readFile: (r, i, e, l, p) => {
+    try {
+      let m = tt.resolveFileInfo(r, i);
+      switch (m == null ? void 0 : m.dataProtocol) {
+        case 1:
+          return m.dataNativeFd
+            ? rt.default.readSync(m.dataNativeFd, r.HEAPU8, e, l, p)
+            : (Me(r, `File ${i} is missing a file descriptor`), 0);
+        case 3:
+        case 4:
+          Me(r, "Not implemented");
+      }
+    } catch (m) {
+      Me(r, m.toString());
+    }
+    return 0;
+  },
+  writeFile: (r, i, e, l, p) => {
+    try {
+      let m = tt.resolveFileInfo(r, i);
+      switch (m == null ? void 0 : m.dataProtocol) {
+        case 1: {
+          if (!m.dataNativeFd)
+            return Me(r, `File ${i} is missing a file descriptor`), 0;
+          let w = r.HEAPU8.subarray(e, e + l);
+          return rt.default.writeSync(m.dataNativeFd, w, 0, w.length, p);
+        }
+      }
+    } catch (m) {
+      Me(r, m.toString());
+    }
+    return 0;
+  },
+  getLastFileModificationTime: (r, i) => {
+    try {
+      let e = tt.resolveFileInfo(r, i);
+      switch (e == null ? void 0 : e.dataProtocol) {
+        case 1:
+          return e.dataNativeFd
+            ? rt.default.fstatSync(e.dataNativeFd).mtime.getTime()
+            : (Me(r, `File ${i} is missing a file descriptor`), 0);
+        case 3:
+        case 4:
+          Me(r, "Not implemented");
+      }
+    } catch (e) {
+      Me(r, e.toString());
+    }
+    return 0;
+  },
+  checkDirectory: (r, i, e) => {
+    try {
+      let l = ki(r.HEAPU8.subarray(i, i + e));
+      return rt.default.existsSync(l);
+    } catch (l) {
+      return Me(r, l.toString()), !1;
+    }
+  },
+  createDirectory: (r, i, e) => {
+    try {
+      let l = ki(r.HEAPU8.subarray(i, i + e));
+      return rt.default.mkdirSync(l);
+    } catch (l) {
+      return Me(r, l.toString()), 0;
+    }
+  },
+  removeDirectory: (r, i, e) => {
+    try {
+      let l = ki(r.HEAPU8.subarray(i, i + e));
+      return rt.default.rmdirSync(l);
+    } catch (l) {
+      return Me(r, l.toString()), 0;
+    }
+  },
+  listDirectoryEntries: (r, i, e) => (Me(r, "Not Implemented"), !1),
+  glob: (r, i, e) => {
+    try {
+      let l = me(r, i, e),
+        p = vd.sync([l], { dot: !0 });
+      for (let m of p)
+        r.ccall("duckdb_web_fs_glob_add_path", null, ["string"], [m]);
+    } catch (l) {
+      return Me(r, l.toString()), 0;
+    }
+  },
+  moveFile: (r, i, e, l, p) => {
+    var P, B;
+    let m = me(r, i, e),
+      w = me(r, l, p),
+      O = (P = tt._files) == null ? void 0 : P.get(m);
+    O !== void 0 && (tt._files.delete(O), tt._files.set(w, O));
+    for (let [D, q] of ((B = tt._fileInfoCache) == null
+      ? void 0
+      : B.entries()) || [])
+      if (q.dataUrl == m) {
+        tt._fileInfoCache.delete(D);
+        break;
+      }
+    return !0;
+  },
+  checkFile: (r, i, e) => {
+    try {
+      let l = ki(r.HEAPU8.subarray(i, i + e));
+      return rt.default.existsSync(l);
+    } catch (l) {
+      return Me(r, l.toString()), !1;
+    }
+  },
+  removeFile: (r, i, e) => {
+    try {
+      let l = ki(r.HEAPU8.subarray(i, i + e));
+      return rt.default.rmSync(l);
+    } catch (l) {
+      return Me(r, l.toString()), 0;
+    }
+  },
+  callScalarUDF: (r, i, e, l, p, m, w) => {
+    Tl(tt, r, i, e, l, p, m, w);
+  },
+};
+var vc = class extends _r {
+  postMessage(i, e) {
+    globalThis.postMessage(i, e);
+  }
+  async instantiate(i, e, l) {
+    return await new gr(this, tt, i, e).instantiate(l);
+  }
+};
+function jd() {
+  let r = new vc();
+  globalThis.onmessage = async (i) => {
+    await r.onMessage(i.data);
+  };
+}
+jd();
+0 && (module.exports = { registerWorker });
 /*!
  * fill-range <https://github.com/jonschlinkert/fill-range>
  *

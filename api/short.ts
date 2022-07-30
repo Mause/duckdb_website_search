@@ -1,7 +1,7 @@
 import { Handler } from "@netlify/functions";
 import { AsyncDuckDB } from "@duckdb/duckdb-wasm";
-import { json, initiate } from '../src/api_common';
-import { readFile } from 'fs/promises';
+import { json, initiate } from "../src/api_common";
+import { readFile } from "fs/promises";
 
 export const handler: Handler = async (_event, _ctx) => {
   let db: AsyncDuckDB;
@@ -21,7 +21,6 @@ export const handler: Handler = async (_event, _ctx) => {
     await conn.close();
 
     return json(200, { results: results.get(0) });
-
   } catch (e) {
     console.error(e);
     return json(500, {
@@ -29,4 +28,4 @@ export const handler: Handler = async (_event, _ctx) => {
       stack: (e as Error).stack?.split("\n"),
     });
   }
-}
+};

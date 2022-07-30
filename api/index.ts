@@ -1,41 +1,42 @@
 import { Handler } from "@netlify/functions";
 import { query } from "../src/common";
 import { json, initiate } from '../src/api_common';
-import { promisify } from 'util';
-import fss from 'fs';
+import fs from 'fs/promises';
 
 const path = 'search_index.db';
 const destPath = '/tmp/' + path;
 const srcPath = __dirname + '/../' + path;
 
-if (!fss.existsSync(destPath)) {
-  console.log('copying db!');
-  fss.copyFileSync(
-    srcPath,
-    destPath
-  )
+async function timing<T>(name:string, f: () => Promise<T>): Promise<T> {
+  console.timeLog(name);
+  const value = await f();
+  console.timeEnd(name);
+  return value;
 }
 
 export const handler: Handler = async (event, ctx) => {
+  try {
+    await fs.stat(destPath);
+    console.log('db exists');
+  } catch (e) {
+    await timing('coping db', () => fs.copyFile(srcPath, destPath));
+  }
+
   const q = event.queryStringParameters?.q;
   if (!q) {
-    return json(422, { error: "missing search query" });
+    return json(422, { error: 'missing search query' });
   }
 
   try {
-    const db = await initiate();
-    console.log('opening');
-    const fd = await promisify(fss.open)(destPath);
-    await db.registerFileHandle(destPath, fd);
-    await db.open({ path: destPath });
-    console.log('connecting');
-    const conn = await db.connect();
+    const db = await timing('initiate', () => initiate());
+    const handle = await fs.open(destPath);
+    await db.registerFileHandle(destPath, handle.fd);
+    await timing('opening', () => db.open({ path: destPath }));
+    const conn = await timing('connecting', () => db.connect());
 
-    console.log('connected');
-    const prepped = await conn.prepare(query);
+    const prepped = await timing('prepping', () => conn.prepare(query));
 
-    console.log('querying');
-    const results = await prepped.query(q);
+    const results = await timing('querying', () => prepped.query(q));
 
     return json(200, {
       results: results.get(0),
@@ -45,7 +46,7 @@ export const handler: Handler = async (event, ctx) => {
     console.error(e);
     return json(500, {
       error: e.toString(),
-      stack: (e as Error).stack?.split("\n"),
+      stack: (e as Error).stack?.split('\n'),
     });
   }
 };
