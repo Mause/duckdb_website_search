@@ -5,6 +5,7 @@ import fs from "fs/promises";
 import { Struct, Int16, Binary } from "apache-arrow";
 import { PreparedStatement } from "@duckdb/duckdb-wasm/dist/types/src/bindings";
 import { AsyncPreparedStatement } from "@duckdb/duckdb-wasm";
+import { maxHeaderSize } from "http";
 
 const path = "search_index.db";
 const destPath = "/tmp/" + path;
@@ -38,7 +39,7 @@ export const handler: Handler = async (event, ctx) => {
     const results = await timing("querying", () => prepped.query(q));
 
     const rows: Struct<Shape>["TValue"][] = [];
-    for (let i = 0; i < results.numRows; i++) {
+    for (let i = 0; i < Math.min(10, results.numRows); i++) {
       const row = results.get(i);
       row && rows.push(row);
     }
