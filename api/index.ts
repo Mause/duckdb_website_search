@@ -22,7 +22,7 @@ export const handler: Handler = async (event, ctx) => {
   }
 
   try {
-    const db = await timing('initiate', () => initiate());
+    const db = await initiate();
     const handle = await fs.open(destPath);
     await db.registerFileHandle(destPath, handle.fd);
     await timing('opening', () => db.open({ path: destPath }));
