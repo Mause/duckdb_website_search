@@ -3803,17 +3803,15 @@ var nd = te((Vo) => {
         }
       }
       _getPatternSegments(i) {
-        return Ki.pattern
-          .getPatternParts(i, this._micromatchOptions)
-          .map((l) =>
-            Ki.pattern.isDynamicPattern(l, this._settings)
-              ? {
-                  dynamic: !0,
-                  pattern: l,
-                  patternRe: Ki.pattern.makeRe(l, this._micromatchOptions),
-                }
-              : { dynamic: !1, pattern: l }
-          );
+        return Ki.pattern.getPatternParts(i, this._micromatchOptions).map((l) =>
+          Ki.pattern.isDynamicPattern(l, this._settings)
+            ? {
+                dynamic: !0,
+                pattern: l,
+                patternRe: Ki.pattern.makeRe(l, this._micromatchOptions),
+              }
+            : { dynamic: !1, pattern: l }
+        );
       }
       _splitSegmentsIntoSections(i) {
         return Ki.array.splitWhen(

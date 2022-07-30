@@ -3796,17 +3796,15 @@ var jc = B((Ln) => {
         }
       }
       _getPatternSegments(i) {
-        return Ut.pattern
-          .getPatternParts(i, this._micromatchOptions)
-          .map((l) =>
-            Ut.pattern.isDynamicPattern(l, this._settings)
-              ? {
-                  dynamic: !0,
-                  pattern: l,
-                  patternRe: Ut.pattern.makeRe(l, this._micromatchOptions),
-                }
-              : { dynamic: !1, pattern: l }
-          );
+        return Ut.pattern.getPatternParts(i, this._micromatchOptions).map((l) =>
+          Ut.pattern.isDynamicPattern(l, this._settings)
+            ? {
+                dynamic: !0,
+                pattern: l,
+                patternRe: Ut.pattern.makeRe(l, this._micromatchOptions),
+              }
+            : { dynamic: !1, pattern: l }
+        );
       }
       _splitSegmentsIntoSections(i) {
         return Ut.array.splitWhen(

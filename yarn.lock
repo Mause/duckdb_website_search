@@ -172,7 +172,7 @@ ansi@^0.3.0, ansi@~0.3.0, ansi@~0.3.1:
 
 apache-arrow@^8.0.0:
   version "8.0.0"
-  resolved "https://registry.npmjs.org/apache-arrow/-/apache-arrow-8.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/apache-arrow/-/apache-arrow-8.0.0.tgz#3b3123a067d84a71693a70c16c762b8d9ee0d4e0"
   integrity sha512-74wgHL9P+vgylNOhnLGw1meOQ1cbYyi+TXo1eDnQJ9g2Ly+k8novUWQIG5SIp6acnErhGRTsMJajwUh9x/ZbaQ==
   dependencies:
     "@types/command-line-args" "5.2.0"
