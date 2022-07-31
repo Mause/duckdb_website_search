@@ -15,7 +15,7 @@ async function populate_index(
 
   const zip = await JSZip.loadAsync(zipball.data);
   for (const [filename, file] of Object.entries(zip.files)) {
-    if (filename.endsWith(".md")) {
+    if (filename.endsWith(".md") && !filename.includes("archive")) {
       const matter = frontMatter<{ title: string }>(
         (await file.async("string")).toString()
       );
