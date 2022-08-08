@@ -16,7 +16,7 @@
     "axios": "^0.27.2",
     "duckdb": "^0.4.0",
     "front-matter": "^4.0.2",
-    "jszip": "^3.10.0",
+    "jszip": "^3.10.1",
     "node-duckdb": "^0.0.79",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
