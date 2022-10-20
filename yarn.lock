@@ -640,10 +640,10 @@ diff@^4.0.1:
   resolved "https://registry.npmjs.org/diff/-/diff-4.0.2.tgz"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
-duckdb@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/duckdb/-/duckdb-0.5.0.tgz#ee6120395977ca406a04015ae7180a4270213307"
-  integrity sha512-CBl1m5QywUx017RCWn/ENsQxy2xm44xhLYnoizX0LWcGCTgYebQIfsYgCBtbfecU0CWjAbMj9sIceGVHkNEMUw==
+duckdb@^0.5.2-dev880.0:
+  version "0.5.2-dev880.0"
+  resolved "https://registry.yarnpkg.com/duckdb/-/duckdb-0.5.2-dev880.0.tgz#71cc2f445dcf43932972a644dc9f9f0a3db01f58"
+  integrity sha512-iko1gmeBOyM0oWKMRge+Jn7A5w+GRPmWPqcDZ5NBuIZgaQH+vp2TLTQFSKuNYh6PB8XeNP0i2HcF8JD/wRq3Pw==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     node-addon-api "*"
