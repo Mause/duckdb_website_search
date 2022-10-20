@@ -1,7 +1,7 @@
 import axios from "axios";
 import JSZip from "jszip";
 import frontMatter from "front-matter";
-import duckdb, { Database } from "duckdb";
+import duckdb, { Database, DuckDbError, TableData } from "duckdb";
 import { promisify } from "util";
 import { query } from "./common";
 
@@ -32,11 +32,8 @@ async function do_work(db: Database) {
   const connection = db.connect();
   const run = promisify(connection.run.bind(connection));
   const exec = promisify(connection.exec.bind(connection));
-  const all = promisify(connection.all.bind(connection));
 
-  await run(
-    "CREATE TABLE search_index(title VARCHAR, body VARCHAR)"
-  );
+  await run("CREATE TABLE search_index(title VARCHAR, body VARCHAR)");
 
   const prep = connection.prepare(
     "INSERT INTO search_index (title, body) VALUES (?::STRING, ?::STRING)"
@@ -48,10 +45,19 @@ async function do_work(db: Database) {
   await run('install "fts"');
   await run('load "fts"');
   console.log("Creating index");
-  console.log(await exec("PRAGMA create_fts_index('search_index', 'title', 'body')"));
+  console.log(
+    await exec("PRAGMA create_fts_index('search_index', 'title', 'body')")
+  );
   console.log("Creating index");
 
-  const results = await all(query, "engine");
+  const results = await new Promise((resolve, reject) =>
+    connection.all(
+      query,
+      ["engine"],
+      (err: DuckDbError | null, res: TableData) =>
+        err ? reject(err) : resolve(res)
+    )
+  );
 
   console.log(results);
 }
@@ -65,7 +71,7 @@ async function main() {
     console.error(e);
   }
 
-  db.close();
+  await new Promise((resolve) => db.close(resolve));
 }
 
 if (require.main == module) {
