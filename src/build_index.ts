@@ -33,9 +33,7 @@ async function do_work(db: Database) {
   const run = promisify(connection.run.bind(connection));
   const exec = promisify(connection.exec.bind(connection));
 
-  await run(
-    "CREATE TABLE search_index(title VARCHAR, body VARCHAR)"
-  );
+  await run("CREATE TABLE search_index(title VARCHAR, body VARCHAR)");
 
   const prep = connection.prepare(
     "INSERT INTO search_index (title, body) VALUES (?::STRING, ?::STRING)"
@@ -47,10 +45,16 @@ async function do_work(db: Database) {
   await run('install "fts"');
   await run('load "fts"');
   console.log("Creating index");
-  console.log(await exec("PRAGMA create_fts_index('search_index', 'title', 'body')"));
+  console.log(
+    await exec("PRAGMA create_fts_index('search_index', 'title', 'body')")
+  );
   console.log("Creating index");
 
-  const results = await new Promise((resolve, reject) => connection.all(query, ["engine"], resolve));
+  const results = await new Promise((resolve, reject) =>
+    connection.all(query, ["engine"], (err, res) =>
+      err ? reject(err) : resolve(res)
+    )
+  );
 
   console.log(results);
 }
@@ -64,7 +68,7 @@ async function main() {
     console.error(e);
   }
 
-  await new Promise(resolve => db.close(resolve));
+  await new Promise((resolve) => db.close(resolve));
 }
 
 if (require.main == module) {
