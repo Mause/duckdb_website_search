@@ -1,7 +1,7 @@
 import axios from "axios";
 import JSZip from "jszip";
 import frontMatter from "front-matter";
-import duckdb, { Database } from "duckdb";
+import duckdb, { Database, DuckDbError, TableData } from "duckdb";
 import { promisify } from "util";
 import { query } from "./common";
 
@@ -51,8 +51,11 @@ async function do_work(db: Database) {
   console.log("Creating index");
 
   const results = await new Promise((resolve, reject) =>
-    connection.all(query, ["engine"], (err, res) =>
-      err ? reject(err) : resolve(res)
+    connection.all(
+      query,
+      ["engine"],
+      (err: DuckDbError | null, res: TableData) =>
+        err ? reject(err) : resolve(res)
     )
   );
 
