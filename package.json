@@ -15,7 +15,7 @@
     "@types/node": "16",
     "apache-arrow": "^9.0.0",
     "axios": "^1.0.0",
-    "duckdb": "^0.5.2-dev880.0",
+    "duckdb": "^0.5.2-dev2289.0",
     "front-matter": "^4.0.2",
     "jszip": "^3.10.1",
     "node-duckdb": "^0.0.79",
