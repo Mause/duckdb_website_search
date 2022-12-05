@@ -29,7 +29,7 @@ export const handler: Handler = async (event, ctx) => {
     const db = await initiate();
     const handle = await fs.open(destPath);
     await db.registerFileHandle(destPath, handle.fd);
-    await timing("opening", () => db.open({ path: destPath }));
+    await timing("opening", () => db.open({ path: srcPath }));
     const conn = await timing("connecting", () => db.connect());
 
     const prepped: AsyncPreparedStatement<Shape> = await timing("prepping", () =>
