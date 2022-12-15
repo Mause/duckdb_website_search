@@ -3,8 +3,7 @@ import { query } from "../src/common";
 import { json, initiate, timing } from "../src/api_common";
 import fs from "fs/promises";
 import { Struct, Int16, Binary } from "apache-arrow";
-import { PreparedStatement } from "@duckdb/duckdb-wasm/dist/types/src/bindings";
-import { AsyncPreparedStatement } from "@duckdb/duckdb-wasm";
+import { AsyncPreparedStatement, PreparedStatement, DuckDBDataProtocol } from "@duckdb/duckdb-wasm";
 import { maxHeaderSize } from "http";
 
 const path = "search_index.db";
@@ -28,7 +27,7 @@ export const handler: Handler = async (event, ctx) => {
   try {
     const db = await initiate();
     const handle = await fs.open(destPath);
-    await db.registerFileHandle(destPath, handle.fd);
+    await db.registerFileHandle(destPath, handle.fd, DuckDBDataProtocol.NODE_FS, true);
     await timing("opening", () => db.open({ path: destPath }));
     const conn = await timing("connecting", () => db.connect());
 
