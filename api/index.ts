@@ -10,7 +10,7 @@ import { maxHeaderSize } from "http";
 const path = "search_index.db";
 const destPath = "/tmp/" + path;
 const srcPath = __dirname + "/../" + path;
-type Shape={ title: Binary; scope: Int16 };
+type Shape = { title: Binary; scope: Int16 };
 
 export const handler: Handler = async (event, ctx) => {
   try {
@@ -32,8 +32,9 @@ export const handler: Handler = async (event, ctx) => {
     await timing("opening", () => db.open({ path: destPath }));
     const conn = await timing("connecting", () => db.connect());
 
-    const prepped: AsyncPreparedStatement<Shape> = await timing("prepping", () =>
-      conn.prepare(query)
+    const prepped: AsyncPreparedStatement<Shape> = await timing(
+      "prepping",
+      () => conn.prepare(query)
     );
 
     const results = await timing("querying", () => prepped.query(q));
@@ -50,9 +51,10 @@ export const handler: Handler = async (event, ctx) => {
     });
   } catch (e) {
     console.error(e);
+    const error = e as Error;
     return json(500, {
-      error: e.toString(),
-      stack: (e as Error).stack?.split("\n"),
+      error: error.toString(),
+      stack: error.stack?.split("\n"),
     });
   }
 };
