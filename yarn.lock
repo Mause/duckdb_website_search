@@ -117,10 +117,10 @@
   resolved "https://registry.npmjs.org/@types/flatbuffers/-/flatbuffers-1.10.0.tgz"
   integrity sha512-7btbphLrKvo5yl/5CC2OCxUSMx1wV1wvGT1qDXkSt7yi00/YW7E8k6qzXqJHsp+WU0eoG7r6MTQQXI9lIvd0qA==
 
-"@types/node@16":
-  version "16.11.46"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.46.tgz#26047602eefa47b36759d9ebb1b55ad08ce97a73"
-  integrity sha512-x+sfpb2dMrhCQPL4NAGs64Z9hh0t72aP0dg+PuZidmPr/0Gj5ELQTjD/t46dq3DF/8ZvSHOaIyDIbAsdPshyVQ==
+"@types/node@18":
+  version "18.13.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.13.0.tgz#0400d1e6ce87e9d3032c19eb6c58205b0d3f7850"
+  integrity sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==
 
 "@types/node@^17.0.36":
   version "17.0.45"
