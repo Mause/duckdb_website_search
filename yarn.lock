@@ -822,13 +822,13 @@ diff@^4.0.1:
   resolved "https://registry.npmjs.org/diff/-/diff-4.0.2.tgz"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
-duckdb@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/duckdb/-/duckdb-0.6.1.tgz#41bdf26263381b566ada8fb12e40006417500f1b"
-  integrity sha512-lvSCKHL9jG9e5k1QS9AWx2qJblwPnqUEBlkJb3MYCuPP088kETEn9bkLfwFY2+4KAQIJFquyJWj2rYXxEoBjVQ==
+duckdb@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/duckdb/-/duckdb-0.10.0.tgz#91312cc5f2277df529fa71423838f92f4e9bb2e7"
+  integrity sha512-+yVccZZTCYVHccKUUKeqCiQQ5/jggdnfyafN01Cgzzx2F0NSSSqNO9vT39oLmpIhEqsJIHYXVC/LuawN3AxUyA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
-    node-addon-api "*"
+    node-addon-api "^7.0.0"
     node-gyp "^9.3.0"
 
 duplexer2@~0.0.2:
@@ -1840,15 +1840,15 @@ node-abi@^2.2.0, node-abi@^2.21.0:
   dependencies:
     semver "^5.4.1"
 
-node-addon-api@*:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/node-addon-api/-/node-addon-api-5.0.0.tgz"
-  integrity sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==
-
 node-addon-api@^3.0.2:
   version "3.2.1"
   resolved "https://registry.npmjs.org/node-addon-api/-/node-addon-api-3.2.1.tgz"
   integrity sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==
+
+node-addon-api@^7.0.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-7.1.0.tgz#71f609369379c08e251c558527a107107b5e0fdb"
+  integrity sha512-mNcltoe1R8o7STTegSOHdnJNN7s5EUvhoS7ShnTHDyOSd+8H+UdWODq6qSv67PjC8Zc5JRT8+oLAMCr0SIXw7g==
 
 node-duckdb@^0.0.79:
   version "0.0.79"
